@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #F4F4F4;
+  --color-main: #A7CAEA;
+  --color-accent: #FF9F67;
+  --color-black: #232323;
+
+  --font-main: "Poppins", "sans-serif";
+  --font-body: "Albert Sans", "sans-serif";
+
+  --text-display: 2.5rem;
+  --text-header: 2rem;
+  --text-nav: 1.2rem;
+  --text-body: 1.25rem;
+}
+
