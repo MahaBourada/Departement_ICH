@@ -62,13 +62,29 @@ const Header = () => {
             className="cursor-pointer w-fit flex justify-end items-center mx-3 hover:underline hover:translate-[1px] mb-3"
             onClick={() => setShowLang(!showLang)}
           >
-            <p>Français</p>
-            <ChevronDown size={26} color="#232323" strokeWidth={2.5} />
+            <img
+              src="/assets/images/french.png"
+              alt="Drapeau français"
+              width={30}
+            />
+            <p className="ml-2 mr-1 font-body font-normal text-body">
+              Français
+            </p>
+            <ChevronDown size={22} color="#232323" strokeWidth={2} />
           </button>
 
           {showLang && (
             <div className="z-50 absolute flex flex-col left-2 mt-0 bg-white shadow-md rounded-md font-normal">
-              <p className="hover:bg-gray-200 rounded-md px-4 py-2">Anglais</p>
+              <button className="cursor-pointer hover:bg-gray-200 rounded-md px-3 py-2 w-fit flex justify-end items-center">
+                <img
+                  src="/assets/images/english.png"
+                  alt="Drapeau du Royaume-Uni"
+                  width={30}
+                />
+                <p className="ml-2 mr-4 font-body font-normal text-body">
+                  Anglais
+                </p>
+              </button>
             </div>
           )}
         </div>
@@ -119,7 +135,7 @@ const Header = () => {
                   to="/master"
                   className="hover:bg-gray-200 rounded-md px-4 py-2"
                 >
-                  Master Handi
+                  Master MIASHS
                 </Link>
                 <Link
                   to="/lab-chart"
