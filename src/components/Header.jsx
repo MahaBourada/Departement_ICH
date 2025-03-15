@@ -53,11 +53,11 @@ const Header = () => {
       <img
         src="/assets/vectors/Logo.svg"
         alt="Logo de l'université Paris 8"
-        width={150}
+        width={175}
       />
 
       <div className="flex flex-col items-end">
-        <div className="relative" ref={langMenuRef}>
+        <div className="relative mb-4" ref={langMenuRef}>
           <button
             className="cursor-pointer w-fit flex justify-end items-center mx-3 hover:underline hover:translate-[1px] mb-3"
             onClick={() => setShowLang(!showLang)}
