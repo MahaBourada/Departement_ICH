@@ -89,7 +89,7 @@ const Header = () => {
           )}
         </div>
 
-        <nav className="flex justify-between items-center">
+        <nav className="flex justify-between items-center mb-1">
           <Link to="/" className="mx-3 hover:underline hover:translate-[1px]">
             Accueil
           </Link>

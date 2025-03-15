@@ -13,8 +13,7 @@ const HomePage = () => {
       </div>
 
       <div className="my-10 mb-20 mx-16 font-body">
-        <div>
-          <p className="my-7">
+          <p className="my-7 mt-10">
             <span className="font-semibold">
               Le département ICH (Ingénierie Cognition Handicap)
             </span>
@@ -33,10 +32,9 @@ const HomePage = () => {
               interfaces homme-machine.
             </span>
           </p>
-        </div>
 
         <div className="flex justify-between items-start">
-          <div className="w-1/2">
+          <div className="w-[60%] mr-10">
             <p className="font-semibold">
               Les travaux du département s'articulent autour de plusieurs axes :
             </p>
@@ -79,10 +77,10 @@ const HomePage = () => {
             </p>
           </div>
 
-          <div className="w-[38rem] h-[38rem] bg-cover bg-center bg-no-repeat bg-[url('/assets/images/unicorn.jpeg')] rounded-[50px]"></div>
+          <div className="w-[33rem] h-[33rem] bg-cover bg-center bg-no-repeat bg-[url('/assets/images/unicorn.jpeg')] rounded-[50px]"></div>
         </div>
 
-        <div className="flex justify-between my-10">
+        <div className="flex justify-between my-6">
           <img src="/assets/images/img2.png" alt="" width={400} />
           <img src="/assets/images/img3.png" alt="" width={400} />
           <img src="/assets/images/Nao.png" alt="" width={400} />
