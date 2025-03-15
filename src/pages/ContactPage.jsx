@@ -7,10 +7,10 @@ const ContactPage = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 font-body">
-      <h1 className="font-main font-semibold text-header">Contact</h1>
+      <h1 className="font-main font-semibold text-display">Contact</h1>
       <div className="flex justify-between items-start">
         <div className="flex flex-col ml-3">
-          <h2 className="font-main font-medium text-2xl my-2">Localisation</h2>
+          <h2 className="font-main font-medium text-header my-2">Localisation</h2>
           <ul className="list-disc ml-8 leading-9">
             <li>Université Paris 8</li>
             <li>2, rue de la Liberté, 93526 Saint-Denis cedex</li>
@@ -21,7 +21,7 @@ const ContactPage = () => {
         </div>
 
         <form onSubmit={(e) => onSubmit(e)} className="flex flex-col w-[45%] mr-7">
-          <h2 className="font-main font-medium text-2xl my-2">
+          <h2 className="font-main font-medium text-header my-2">
             Un problème ? Contactez-nous
           </h2>
           <div className="flex items-start justify-between mb-3">
