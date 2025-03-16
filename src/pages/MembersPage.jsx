@@ -14,7 +14,7 @@ const MembersPage = () => {
 
       <div className="grid grid-cols-2 mb-6">
         <Link
-          to="/"
+          to="anis-rojbi"
           className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 hover:translate-[1px] hover:shadow-none"
         >
           <h3 className="font-main font-medium text-header">Anis ROJBI</h3>
@@ -27,9 +27,9 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold">Maître de conférences</p>
+              <p className="font-semibold text-2xl my-2">Maître de conférences</p>
               <p className="mx-2">61e section</p>
-              <ul className="list-disc mx-7">
+              <ul className="list-disc mx-7 leading-9">
                 <li>Génie informatique</li>
                 <li>Automatique</li>
                 <li>Traitement du signal</li>
@@ -43,7 +43,7 @@ const MembersPage = () => {
 
       <div className="grid grid-cols-2 mb-6">
         <Link
-          to="/"
+          to="rui-rosa"
           className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 hover:translate-[1px] hover:shadow-none"
         >
           <h3 className="font-main font-medium text-header">Rui ROSA</h3>
@@ -56,7 +56,7 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold">Secrétaire</p>
+              <p className="font-semibold text-2xl my-2">Secrétaire</p>
               {/* <p>61e section</p>
             <ul className="list-disc mx-5">
               <li>Génie informatique</li>
@@ -68,7 +68,7 @@ const MembersPage = () => {
         </Link>
 
         <Link
-          to="/"
+          to="subha-peroumal"
           className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 hover:translate-[1px] hover:shadow-none"
         >
           <h3 className="font-main font-medium text-header">Subha PEROUMAL</h3>
@@ -81,7 +81,7 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold">Technicienne</p>
+              <p className="font-semibold text-2xl my-2">Technicienne</p>
               {/* <p>61e section</p>
             <ul className="list-disc mx-5">
               <li>Génie informatique</li>
@@ -97,7 +97,7 @@ const MembersPage = () => {
 
       <div className="grid grid-cols-2">
         <Link
-          to="/"
+          to="dominique-archaumbault"
           className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 hover:translate-[1px] hover:shadow-none"
         >
           <h3 className="font-main font-medium text-header">
@@ -112,9 +112,9 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold">Professeur des Universités</p>
+              <p className="font-semibold text-2xl my-2">Professeur des Universités</p>
               <p className="mx-2">27e section</p>
-              <ul className="list-disc mx-7">
+              <ul className="list-disc mx-7 leading-9">
                 <li>Informatique</li>
               </ul>
             </div>
@@ -122,7 +122,7 @@ const MembersPage = () => {
         </Link>
 
         <Link
-          to="/"
+          to="salvatore-anzalone"
           className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 hover:translate-[1px] hover:shadow-none"
         >
           <h3 className="font-main font-medium text-header">
@@ -137,9 +137,9 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold">Maître de conférences</p>
+              <p className="font-semibold text-2xl my-2">Maître de conférences</p>
               <p className="mx-2">61e section</p>
-              <ul className="list-disc mx-7">
+              <ul className="list-disc mx-7 leading-9">
                 <li>Génie informatique</li>
                 <li>Automatique</li>
                 <li>Traitement du signal</li>
@@ -149,7 +149,7 @@ const MembersPage = () => {
         </Link>
 
         <Link
-          to="/"
+          to="johana-bodard"
           className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 hover:translate-[1px] hover:shadow-none"
         >
           <h3 className="font-main font-medium text-header">Johana BODARD</h3>
@@ -162,9 +162,9 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold">A fournir</p>
+              <p className="font-semibold text-2xl my-2">A fournir</p>
               {/* <p className="mx-2">61e section</p>
-              <ul className="list-disc mx-7">
+              <ul className="list-disc mx-7 leading-9">
                 <li>Génie informatique</li>
                 <li>Automatique</li>
                 <li>Traitement du signal</li>
@@ -174,7 +174,7 @@ const MembersPage = () => {
         </Link>
 
         <Link
-          to="/"
+          to="celine-jost"
           className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 hover:translate-[1px] hover:shadow-none"
         >
           <h3 className="font-main font-medium text-header">Céline JOST</h3>
@@ -187,9 +187,9 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold">Maître de conférences</p>
+              <p className="font-semibold text-2xl my-2">Maître de conférences</p>
               <p className="mx-2">27e section</p>
-              <ul className="list-disc mx-7">
+              <ul className="list-disc mx-7 leading-9">
                 <li>Informatique</li>
               </ul>
             </div>
@@ -197,7 +197,7 @@ const MembersPage = () => {
         </Link>
 
         <Link
-          to="/"
+          to="isis-truck"
           className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 hover:translate-[1px] hover:shadow-none"
         >
           <h3 className="font-main font-medium text-header">Isis TRUCK</h3>
@@ -210,9 +210,9 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold">Professeur des Universités</p>
+              <p className="font-semibold text-2xl my-2">Professeur des Universités</p>
               <p className="mx-2">27e section</p>
-              <ul className="list-disc mx-7">
+              <ul className="list-disc mx-7 leading-9">
                 <li>Informatique</li>
               </ul>
             </div>
@@ -220,7 +220,7 @@ const MembersPage = () => {
         </Link>
 
         <Link
-          to="/"
+          to="gerard-uzan"
           className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 hover:translate-[1px] hover:shadow-none"
         >
           <h3 className="font-main font-medium text-header">Gérard UZAN</h3>
@@ -233,9 +233,9 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold">A fournir</p>
+              <p className="font-semibold text-2xl my-2">A fournir</p>
               {/* <p className="mx-2">61e section</p>
-              <ul className="list-disc mx-7">
+              <ul className="list-disc mx-7 leading-9">
                 <li>Génie informatique</li>
                 <li>Automatique</li>
                 <li>Traitement du signal</li>

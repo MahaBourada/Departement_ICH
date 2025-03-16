@@ -12,6 +12,7 @@ import ProjectsPage from "./pages/ProjectsPage";
 import PrixPage from "./pages/PrixPage";
 import MissingPage from "./pages/MissingPage";
 import ContactPage from "./pages/ContactPage";
+import IndividualPage from "./pages/IndividualPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="conférences" element={<ConferencesPage />} />
           <Route path="équipe" element={<MembersPage />} />
+          <Route path="équipe/:id" element={<IndividualPage />} />
           <Route path="master" element={<MasterPage />} />
           <Route path="lab-chart" element={<LabPage />} />
           <Route path="collaboration-nationale" element={<NationalePage />} />

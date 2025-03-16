@@ -10,17 +10,27 @@ const ContactPage = () => {
       <h1 className="font-main font-semibold text-display">Contact</h1>
       <div className="flex justify-between items-start">
         <div className="flex flex-col ml-3">
-          <h2 className="font-main font-medium text-header my-2">Localisation</h2>
+          <h2 className="font-main font-medium text-header my-2">
+            Localisation
+          </h2>
           <ul className="list-disc ml-8 leading-9">
             <li>Université Paris 8</li>
             <li>2, rue de la Liberté, 93526 Saint-Denis cedex</li>
             <li>Bâtiment D - salle 128</li>
           </ul>
 
-          <img src="/assets/vectors/Contact.svg" alt="" width={560} className="m-3 my-6" />
+          <img
+            src="/assets/vectors/Contact.svg"
+            alt=""
+            width={560}
+            className="m-3 my-6"
+          />
         </div>
 
-        <form onSubmit={(e) => onSubmit(e)} className="flex flex-col w-[45%] mr-7">
+        <form
+          onSubmit={(e) => onSubmit(e)}
+          className="flex flex-col w-[45%] mr-7"
+        >
           <h2 className="font-main font-medium text-header my-2">
             Un problème ? Contactez-nous
           </h2>
@@ -104,17 +114,20 @@ const ContactPage = () => {
               id="message"
               rows="5"
               placeholder="Rédigez votre message"
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-3 outline-none shadow-small"
             ></textarea>
           </div>
 
           <div className="flex justify-end">
-            <button type="reset" className="cursor-pointer bg-white border-[1px] border-black font-main font-medium rounded-2xl px-5 py-3 ml-2 shadow-small hover:translate-[1px] hover:shadow-none">
+            <button
+              type="reset"
+              className="cursor-pointer bg-white border-[1px] border-black font-main font-medium rounded-2xl px-5 py-3 ml-2 shadow-small hover:translate-[1px] hover:shadow-none"
+            >
               Réinitialiser
             </button>
             <button
               type="submit"
-              className="cursor-pointer bg-accent font-main font-medium rounded-2xl px-5 py-3 ml-2 shadow-small hover:translate-[1px] hover:shadow-none"
+              className="cursor-pointer bg-accent font-main font-medium rounded-2xl px-5 py-3 mx-3 shadow-small hover:translate-[1px] hover:shadow-none"
             >
               Envoyer
             </button>
