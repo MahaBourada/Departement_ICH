@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./components/General/Header";
+import Header from "./components/General/UserHeader";
 import { Outlet } from "react-router-dom";
 import Footer from "./components/General/Footer";
 

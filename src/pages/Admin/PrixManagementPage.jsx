@@ -1,13 +1,13 @@
 import React from "react";
 
-const EquipeManagementPage = () => {
+const DashboardPage = () => {
   return (
     <main>
       <h1 className="text-display font-semibold mx-14 mt-20">
-        Gestion de l'équipe du département
+        Gestion des prix & concours
       </h1>
     </main>
   );
 };
 
-export default EquipeManagementPage;
+export default DashboardPage;

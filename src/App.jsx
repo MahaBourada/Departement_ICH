@@ -16,6 +16,11 @@ import ContactPage from "./pages/User/ContactPage";
 import IndividualPage from "./pages/User/IndividualPage";
 import LoginPage from "./pages/Admin/LoginPage";
 import Dashboard from "./pages/Admin/DashboardPage";
+import PagesManagementPage from "./pages/Admin/PagesManagementPage";
+import MembersManagementPage from "./pages/Admin/MembersManagementPage";
+import ConferencesManagementPage from "./pages/Admin/ConferencesManagementPage";
+import ProjectsManagementPage from "./pages/Admin/ProjectsManagementPage";
+import PrixManagementPage from "./pages/Admin/PrixManagementPage";
 
 function App() {
   return (
@@ -44,6 +49,14 @@ function App() {
         <Route path="/admin" element={<LoginPage />} />
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="tableau-de-bord" element={<Dashboard />} />
+          <Route path="gestion-pages" element={<PagesManagementPage />} />
+          <Route path="gestion-équipe" element={<MembersManagementPage />} />
+          <Route
+            path="gestion-conférences"
+            element={<ConferencesManagementPage />}
+          />
+          <Route path="gestion-projets" element={<ProjectsManagementPage />} />
+          <Route path="gestion-prix" element={<PrixManagementPage />} />
         </Route>
 
         <Route path="*" element={<MissingPage />} />

@@ -10,9 +10,9 @@ import {
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const AdminHeader = () => {
+const AdminNavigation = () => {
   return (
-    <header className="bg-main h-screen sticky top-0 left-0 flex flex-col">
+    <nav className="bg-main h-screen sticky top-0 left-0 flex flex-col">
       <div className="flex-grow">
         <img
           src="/assets/vectors/Logo.svg"
@@ -32,8 +32,12 @@ const AdminHeader = () => {
               }`
             }
           >
-            <House size={32} color="#B04404" />
-            <p className="mx-2 text-admin-nav">Accueil</p>
+            {({ isActive }) => (
+              <>
+                <House size={32} color={isActive ? "#B04404" : "#232323"} />
+                <p className="mx-2">Accueil</p>
+              </>
+            )}
           </NavLink>
 
           <NavLink
@@ -46,8 +50,15 @@ const AdminHeader = () => {
               }`
             }
           >
-            <PanelsTopLeft size={32} color="#232323" />
-            <p className="mx-2">Pages</p>
+            {({ isActive }) => (
+              <>
+                <PanelsTopLeft
+                  size={32}
+                  color={isActive ? "#B04404" : "#232323"}
+                />
+                <p className="mx-2">Pages</p>
+              </>
+            )}
           </NavLink>
 
           <NavLink
@@ -60,8 +71,15 @@ const AdminHeader = () => {
               }`
             }
           >
-            <UsersRound size={32} color="#232323" />
-            <p className="mx-2">Équipe</p>
+            {({ isActive }) => (
+              <>
+                <UsersRound
+                  size={32}
+                  color={isActive ? "#B04404" : "#232323"}
+                />
+                <p className="mx-2">Équipe</p>
+              </>
+            )}
           </NavLink>
 
           <NavLink
@@ -74,12 +92,19 @@ const AdminHeader = () => {
               }`
             }
           >
-            <MonitorDot size={32} color="#232323" />
-            <p className="mx-2">Conférences</p>
+            {({ isActive }) => (
+              <>
+                <MonitorDot
+                  size={32}
+                  color={isActive ? "#B04404" : "#232323"}
+                />
+                <p className="mx-2">Conférences</p>
+              </>
+            )}
           </NavLink>
 
           <NavLink
-            to="/admin/gestion_projets"
+            to="/admin/gestion-projets"
             className={({ isActive }) =>
               `flex items-center my-3  px-4 py-3 rounded-2xl hover:translate-[1px] hover:underline mx-7 ${
                 isActive
@@ -88,8 +113,15 @@ const AdminHeader = () => {
               }`
             }
           >
-            <Presentation size={32} color="#232323" />
-            <p className="mx-2">Projets</p>
+            {({ isActive }) => (
+              <>
+                <Presentation
+                  size={32}
+                  color={isActive ? "#B04404" : "#232323"}
+                />
+                <p className="mx-2">Projets</p>
+              </>
+            )}
           </NavLink>
 
           <NavLink
@@ -102,8 +134,12 @@ const AdminHeader = () => {
               }`
             }
           >
-            <Code size={32} color="#232323" />
-            <p className="mx-2">Prix</p>
+            {({ isActive }) => (
+              <>
+                <Code size={32} color={isActive ? "#B04404" : "#232323"} />
+                <p className="mx-2">Prix</p>
+              </>
+            )}
           </NavLink>
         </div>
       </div>
@@ -115,8 +151,8 @@ const AdminHeader = () => {
         <LogOut size={32} color="#8B0000" />
         <p className="mx-2">Déconnexion</p>
       </NavLink>
-    </header>
+    </nav>
   );
 };
 
-export default AdminHeader;
+export default AdminNavigation;
