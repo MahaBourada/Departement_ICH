@@ -40,7 +40,7 @@ const ContactPage = () => {
                 htmlFor="prenom"
                 className="text-nav font-main font-medium my-1"
               >
-                Prénom
+                Prénom *
               </label>
               <input
                 type="text"
@@ -56,7 +56,7 @@ const ContactPage = () => {
                 htmlFor="nom"
                 className="text-nav font-main font-medium my-1"
               >
-                Nom
+                Nom *
               </label>
               <input
                 type="text"
@@ -73,7 +73,7 @@ const ContactPage = () => {
               htmlFor="email"
               className="text-nav font-main font-medium my-1"
             >
-              E-mail
+              E-mail *
             </label>
             <input
               type="email"
@@ -89,7 +89,7 @@ const ContactPage = () => {
               htmlFor="objet"
               className="text-nav font-main font-medium my-1"
             >
-              Objet
+              Objet *
             </label>
             <select
               name="objet"
@@ -107,7 +107,7 @@ const ContactPage = () => {
               htmlFor="message"
               className="text-nav font-main font-medium my-1"
             >
-              Message
+              Message *
             </label>
             <textarea
               name="message"
@@ -121,7 +121,7 @@ const ContactPage = () => {
           <div className="flex justify-end">
             <button
               type="reset"
-              className="cursor-pointer bg-white border-[1px] border-black font-main font-medium rounded-2xl px-5 py-3 ml-2 shadow-small hover:translate-[1px] hover:shadow-none"
+              className="cursor-pointer bg-white border-2 border-black font-main font-medium rounded-2xl px-5 py-3 ml-2 shadow-small hover:translate-[1px] hover:shadow-none"
             >
               Réinitialiser
             </button>

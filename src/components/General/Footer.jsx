@@ -73,7 +73,7 @@ const Footer = () => {
       <div className="border-black border-[1px] my-5 w-full"></div>
 
       <div className="flex justify-between items-end w-full">
-        <div className="relative w-fit" ref={langMenuRef}>
+        {/* <div className="relative w-fit" ref={langMenuRef}>
           {showLang && (
             <div className="z-50 absolute flex flex-col left-2 bottom-14 mt-0 bg-white shadow-md rounded-md font-normal">
               <button className="cursor-pointer hover:bg-gray-200 rounded-md px-3 py-2 w-fit flex justify-end items-center">
@@ -99,7 +99,31 @@ const Footer = () => {
             <p className="ml-2 mr-1">Français</p>
             <ChevronDown size={22} color="#232323" strokeWidth={2} />
           </button>
+        </div> */}
+
+        <div className="flex items-center">
+          <button
+            className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px] mb-2"
+            onClick={() => setShowLang(!showLang)}
+          >
+            <img
+              src="/assets/images/french.png"
+              alt="Drapeau français"
+              width={33}
+            />
+          </button>
+          <button
+            className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px] mb-2"
+            onClick={() => setShowLang(!showLang)}
+          >
+            <img
+              src="/assets/images/english.png"
+              alt="Drapeau du Royaume-Uni"
+              width={33}
+            />
+          </button>
         </div>
+
         <nav className="flex justify-between font-main text-nav">
           <div className="flex flex-col mx-5">
             <Link className="my-1 hover:translate-[1px] hover:underline" to="/">

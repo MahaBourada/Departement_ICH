@@ -1,8 +1,20 @@
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Moon, SunMedium } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
+  const location = useLocation();
+
+  const isActive =
+    location.pathname.startsWith("/équipe") ||
+    [
+      "/conférences",
+      "/master",
+      "/lab-chart",
+      "/projets-étudiants",
+      "/prix-concours",
+    ].includes(location.pathname);
+
   const [showAct, setShowAct] = useState(false);
   const [showDept, setShowDept] = useState(false);
   const [showColl, setShowColl] = useState(false);
@@ -53,50 +65,58 @@ const Header = () => {
       <img
         src="/assets/vectors/Logo.svg"
         alt="Logo de l'université Paris 8"
-        width={175}
+        width={140}
       />
 
       <div className="flex flex-col items-end">
-        <div className="relative mb-4" ref={langMenuRef}>
-          <button
-            className="cursor-pointer w-fit flex justify-end items-center mx-3 hover:underline hover:translate-[1px] mb-3"
-            onClick={() => setShowLang(!showLang)}
-          >
-            <img
-              src="/assets/images/french.png"
-              alt="Drapeau français"
-              width={30}
-            />
-            <p className="ml-2 mr-1 font-body font-normal text-body">
-              Français
-            </p>
-            <ChevronDown size={22} color="#232323" strokeWidth={2} />
+        <div className="flex items-center mb-3">
+          <div className="flex items-center">
+            <button className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px]">
+              <img
+                src="/assets/images/french.png"
+                alt="Version française"
+                width={33}
+              />
+            </button>
+            <button className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px]">
+              <img
+                src="/assets/images/english.png"
+                alt="English version"
+                width={33}
+              />
+            </button>
+          </div>
+
+          <button className="ml-1 cursor-pointer hover:translate-[1px]">
+            <SunMedium size={33} strokeWidth={2} />
+          </button>
+          <button className="ml-1 cursor-pointer hover:translate-[1px]">
+            <Moon size={28} strokeWidth={2.2} />
           </button>
 
-          {showLang && (
-            <div className="z-50 absolute flex flex-col left-2 mt-0 bg-white shadow-md rounded-md font-normal">
-              <button className="cursor-pointer hover:bg-gray-200 rounded-md px-3 py-2 w-fit flex justify-end items-center">
-                <img
-                  src="/assets/images/english.png"
-                  alt="Drapeau du Royaume-Uni"
-                  width={30}
-                />
-                <p className="ml-2 mr-4 font-body font-normal text-body">
-                  Anglais
-                </p>
-              </button>
-            </div>
-          )}
+          <Link
+            to="/admin"
+            className="ml-1 cursor-pointer hover:translate-[1px]"
+          >
+            Mon espace
+          </Link>
         </div>
 
-        <nav className="flex justify-between items-center mb-1">
-          <Link to="/" className="mx-3 hover:underline hover:translate-[1px]">
+        <nav className="flex justify-between items-center">
+          <Link
+            to="/"
+            className={`mx-3 hover:underline hover:translate-[1px] ${
+              location.pathname === "/" ? "underline" : ""
+            }`}
+          >
             Accueil
           </Link>
 
           <div className="relative" ref={actMenuRef}>
             <button
-              className="cursor-pointer flex justify-between items-center mx-3 hover:underline hover:translate-[1px]"
+              className={`cursor-pointer flex justify-between items-center mx-3 hover:underline hover:translate-[1px] ${
+                ["/conférences"].includes(location.pathname) ? "underline" : ""
+              }`}
               onClick={() => setShowAct(!showAct)}
             >
               <p className="mx-1">Actualités</p>
@@ -120,7 +140,9 @@ const Header = () => {
               className="cursor-pointer flex justify-between items-center mx-3 hover:underline hover:translate-[1px]"
               onClick={() => setShowDept(!showDept)}
             >
-              <p className="mx-1">Département ICH</p>
+              <p className={`mx-1 ${isActive ? "underline" : ""}`}>
+                Département ICH
+              </p>
               <ChevronDown size={26} color="#232323" strokeWidth={2.5} />
             </button>
             {showDept && (
@@ -161,7 +183,14 @@ const Header = () => {
 
           <div className="relative" ref={collMenuRef}>
             <button
-              className="cursor-pointer flex justify-between items-center mx-3 hover:underline hover:translate-[1px]"
+              className={`cursor-pointer flex justify-between items-center mx-3 hover:underline hover:translate-[1px] ${
+                [
+                  "/collaboration-nationale",
+                  "/collaboration-internationale",
+                ].includes(location.pathname)
+                  ? "underline"
+                  : ""
+              }`}
               onClick={() => setShowColl(!showColl)}
             >
               <p className="mx-1">Collaboration</p>
@@ -186,7 +215,9 @@ const Header = () => {
           </div>
           <Link
             to="/contact"
-            className="mx-3 hover:underline hover:translate-[1px]"
+            className={`ml-3 mr-2 hover:underline hover:translate-[1px] ${
+              location.pathname === "/contact" ? "underline" : ""
+            }`}
           >
             Contact
           </Link>

@@ -5,13 +5,17 @@
   --color-main: #A7CAEA;
   --color-accent: #FF9F67;
   --color-black: #232323;
+  --color-admin-nav: #B04404;
+  --color-admin-nav-bg: rgba(255, 159, 103, 0.65);
+  --color-red-text: #8B0000;
+  --color-red-bg: rgba(236,103,103, 0.65);
 
   --font-main: "Poppins", "sans-serif";
   --font-body: "Albert Sans", "sans-serif";
 
   --text-display: 2.5rem;
   --text-header: 2rem;
-  --text-nav: 1.25rem;
+  --text-nav: 1.2rem;
   --text-body: 1.27rem;
 
   --shadow-small: 2px 2px 2px 1px #888;

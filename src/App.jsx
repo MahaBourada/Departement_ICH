@@ -1,18 +1,21 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Layout from "./Layout";
-import HomePage from "./pages/HomePage";
-import ConferencesPage from "./pages/ConferencesPage";
-import MembersPage from "./pages/MembersPage";
-import MasterPage from "./pages/MasterPage";
-import LabPage from "./pages/LabPage";
-import NationalePage from "./pages/NationalePage";
-import InternationalePage from "./pages/InternationalePage";
-import ProjectsPage from "./pages/ProjectsPage";
-import PrixPage from "./pages/PrixPage";
-import MissingPage from "./pages/MissingPage";
-import ContactPage from "./pages/ContactPage";
-import IndividualPage from "./pages/IndividualPage";
+import Layout from "./UserLayout";
+import AdminLayout from "./AdminLayout";
+import HomePage from "./pages/User/HomePage";
+import ConferencesPage from "./pages/User/ConferencesPage";
+import MembersPage from "./pages/User/MembersPage";
+import MasterPage from "./pages/User/MasterPage";
+import LabPage from "./pages/User/LabPage";
+import NationalePage from "./pages/User/NationalePage";
+import InternationalePage from "./pages/User/InternationalePage";
+import ProjectsPage from "./pages/User/ProjectsPage";
+import PrixPage from "./pages/User/PrixPage";
+import MissingPage from "./pages/User/MissingPage";
+import ContactPage from "./pages/User/ContactPage";
+import IndividualPage from "./pages/User/IndividualPage";
+import LoginPage from "./pages/Admin/LoginPage";
+import Dashboard from "./pages/Admin/DashboardPage";
 
 function App() {
   return (
@@ -33,8 +36,17 @@ function App() {
           <Route path="projets-étudiants" element={<ProjectsPage />} />
           <Route path="prix-concours" element={<PrixPage />} />
           <Route path="contact" element={<ContactPage />} />
-          <Route path="*" element={<MissingPage />} />
         </Route>
+
+        {/* <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<LoginPage />} />
+        </Route> */}
+        <Route path="/admin" element={<LoginPage />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route path="tableau-de-bord" element={<Dashboard />} />
+        </Route>
+
+        <Route path="*" element={<MissingPage />} />
       </Routes>
     </Router>
   );
