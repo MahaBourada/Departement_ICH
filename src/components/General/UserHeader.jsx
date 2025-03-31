@@ -20,16 +20,14 @@ const Header = () => {
   const [showColl, setShowColl] = useState(false);
   const [showLang, setShowLang] = useState(false);
 
-  // References for each dropdown menu
   const actMenuRef = useRef(null);
   const deptMenuRef = useRef(null);
   const collMenuRef = useRef(null);
   const langMenuRef = useRef(null);
 
-  // Handle clicks outside of any menu
   const handleClickOutside = (event, setState, menuRef) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
-      setState(false); // Close the menu if clicked outside
+      setState(false); 
     }
   };
 

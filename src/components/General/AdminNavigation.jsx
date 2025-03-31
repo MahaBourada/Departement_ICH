@@ -143,14 +143,6 @@ const AdminNavigation = () => {
           </NavLink>
         </div>
       </div>
-
-      <NavLink
-        to="/admin"
-        className={`flex items-center my-5 text-red-text hover:bg-red-bg px-4 py-3 rounded-2xl hover:translate-[1px] font-medium text-nav font-main w-fit mx-auto hover:underline`}
-      >
-        <LogOut size={32} color="#8B0000" />
-        <p className="mx-2">Déconnexion</p>
-      </NavLink>
     </nav>
   );
 };

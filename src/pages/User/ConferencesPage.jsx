@@ -14,7 +14,7 @@ const ConferencesPage = () => {
 
         <div className="flex">
           <div className="w-[55%] mr-12 ml-6">
-            <div className="border-black border-[1px] my-5 w-full"></div>
+            <div className="h-[0.5px] bg-black my-5 w-full"></div>
 
             <div className="text-body">
               <div className="flex items-start justify-between">
@@ -54,7 +54,7 @@ const ConferencesPage = () => {
                 chaque fois des exemples liés au handicap.
               </p>
             </div>
-            <div className="border-black border-[1px] my-5 w-full"></div>
+            <div className="h-[0.5px] bg-black my-5 w-full"></div>
           </div>
 
           <img src="/assets/vectors/Conferences.svg" alt="" width={500} />
@@ -66,7 +66,7 @@ const ConferencesPage = () => {
           Conférences passées
         </h2>
 
-        <div className="border-black border-[1px] my-5 w-full mx-6"></div>
+        <div className="h-[0.5px] bg-black my-5 w-full mx-6"></div>
 
         <div className="text-body w-full mx-6">
           <div className="flex items-start justify-between">
@@ -107,7 +107,7 @@ const ConferencesPage = () => {
           </p>
         </div>
 
-        <div className="border-black border-[1px] my-5 w-full mx-6"></div>
+        <div className="h-[0.5px] bg-black my-5 w-full mx-6"></div>
 
         <div className="text-body w-full mx-6">
           <div className="flex items-start justify-between">
@@ -148,7 +148,7 @@ const ConferencesPage = () => {
           </p>
         </div>
 
-        <div className="border-black border-[1px] my-5 w-full mx-6"></div>
+        <div className="h-[0.5px] bg-black my-5 w-full mx-6"></div>
       </div>
     </main>
   );
