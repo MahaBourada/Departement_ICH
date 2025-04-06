@@ -1,8 +1,37 @@
 import { Pencil, Plus, Trash2 } from "lucide-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import api from "../../api/api";
 
 const DashboardPage = () => {
+  const [adminList, setAdminList] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await api.get("/admin");
+
+      setAdminList(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleDelete = async (idAdmin) => {
+    try {
+      setAdminList((prevAdminList) =>
+        prevAdminList.filter((admin) => admin.idAdmin !== idAdmin)
+      );
+
+      await api.delete(`/admin/${idAdmin}`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="flex mt-20">
       <main className="w-[55%] mx-14">
@@ -18,73 +47,51 @@ const DashboardPage = () => {
             <Plus size={36} color="#232323" strokeWidth={2.8} />
           </Link>
         </div>
-        <div className="mx-5">
-          <div className="flex justify-between items-center my-3">
-            <p>Anis ROJBI</p>
-            <p>Super administrateur</p>
-            <p>01/04/2025</p>
-            <div className="flex items-center">
-              <button
-                type="button"
-                className="cursor-pointer hover:translate-[1px] mr-1"
-              >
-                <Pencil size={26} color="#232323" />
-              </button>
-              <button
-                type="button"
-                className="cursor-pointer hover:translate-[1px] ml-1"
-              >
-                <Trash2 size={26} color="#8B0000" />
-              </button>
-            </div>
-          </div>
 
-          <div className="h-[0.5px] bg-black my-1 w-full"></div>
-
-          <div className="flex justify-between items-center my-3">
-            <p>Céline JOST</p>
-            <p>Administrateur</p>
-            <p>01/04/2025</p>
-            <div className="flex items-center">
-              <button
-                type="button"
-                className="cursor-pointer hover:translate-[1px] mr-1"
-              >
-                <Pencil size={26} color="#232323" />
-              </button>
-              <button
-                type="button"
-                className="cursor-pointer hover:translate-[1px] ml-1"
-              >
-                <Trash2 size={26} color="#8B0000" />
-              </button>
-            </div>
-          </div>
-
-          <div className="h-[0.5px] bg-black my-1 w-full"></div>
-
-          <div className="flex justify-between items-center my-3">
-            <p>Isis TRUCK</p>
-            <p>Administrateur</p>
-            <p>01/04/2025</p>
-            <div className="flex items-center">
-              <button
-                type="button"
-                className="cursor-pointer hover:translate-[1px] mr-1"
-              >
-                <Pencil size={26} color="#232323" />
-              </button>
-              <button
-                type="button"
-                className="cursor-pointer hover:translate-[1px] ml-1"
-              >
-                <Trash2 size={26} color="#8B0000" />
-              </button>
-            </div>
-          </div>
-
-          <div className="h-[0.5px] bg-black my-1 w-full"></div>
-        </div>
+        <table className="w-full mx-5">
+          <thead>
+            <tr className="border-b-[0.5px] text-start">
+              <th className="py-3 text-start">Utilisateur</th>
+              <th className="py-3 text-start">Rôle</th>
+              <th className="py-3 text-start">Créé le</th>
+              <th className="py-3 text-start">Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            {adminList.map((admin) => (
+              <tr key={admin.idAdmin} className="border-b-[0.5px]">
+                <td className="py-3 text-start">
+                  {admin.first_name + " " + admin.last_name.toUpperCase()}
+                </td>
+                <td className="py-3 text-start">{admin.type}</td>
+                <td className="py-3 text-start">
+                  {new Date(admin.createdAt).toLocaleDateString("fr-FR", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                  })}
+                </td>
+                <td className="py-3 w-fit mx-auto">
+                  <div className="flex justify-center items-center">
+                    <button
+                      type="button"
+                      className="cursor-pointer hover:translate-[1px] mr-1"
+                    >
+                      <Pencil size={26} color="#232323" />
+                    </button>
+                    <button
+                      type="button"
+                      className="cursor-pointer hover:translate-[1px] ml-1"
+                      onClick={() => handleDelete(admin.idAdmin)}
+                    >
+                      <Trash2 size={26} color="#8B0000" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </main>
       <aside className="w-[30%]">
         <div>

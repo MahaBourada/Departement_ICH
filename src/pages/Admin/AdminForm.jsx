@@ -7,7 +7,7 @@ const AdminForm = () => {
     lastname: "",
     email: "",
     username: "",
-    password: "",
+    role: "",
   });
 
   const handleSubmit = async (e) => {
@@ -98,8 +98,8 @@ const AdminForm = () => {
               onChange={(e) => setValues({ ...values, role: e.target.value })}
             >
               <option value="">Selectionez une option</option>
-              <option value="superAdmin">Super administrateur</option>
-              <option value="admin">Administrateur</option>
+              <option value="Super admin">Super admin</option>
+              <option value="Admin">Admin</option>
             </select>
           </div>
         </div>
@@ -120,25 +120,6 @@ const AdminForm = () => {
               className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
               onChange={(e) =>
                 setValues({ ...values, username: e.target.value })
-              }
-            />
-          </div>
-
-          <div className="flex flex-col w-1/2">
-            <label
-              htmlFor="password"
-              className="text-nav font-main font-medium my-1"
-            >
-              Mot de passe *
-            </label>
-            <input
-              type="text"
-              name="password"
-              id="password"
-              placeholder="Ceci est un secret"
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
-              onChange={(e) =>
-                setValues({ ...values, password: e.target.value })
               }
             />
           </div>
