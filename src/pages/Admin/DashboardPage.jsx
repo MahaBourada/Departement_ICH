@@ -3,28 +3,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const DashboardPage = () => {
-  const onSubmit = (e) => {
-    e.preventDefault();
-  };
-
   return (
     <div className="flex mt-20">
       <main className="w-[55%] mx-14">
-        <form
-          onSubmit={(e) => onSubmit(e)}
-          className="flex items-center justify-between"
-        >
+        <div className="flex items-center justify-between">
           <h1 className="text-display font-semibold ">
             Comptes administrateurs
           </h1>
 
-          <button
-            type="submit"
+          <Link
+            to="/admin/tableau-de-bord/add-admin"
             className="hover:translate-[1px] cursor-pointer mx-4"
           >
             <Plus size={36} color="#232323" strokeWidth={2.8} />
-          </button>
-        </form>
+          </Link>
+        </div>
         <div className="mx-5">
           <div className="flex justify-between items-center my-3">
             <p>Anis ROJBI</p>
@@ -124,7 +117,7 @@ const DashboardPage = () => {
           </div>
 
           <div className="w-fit ml-auto mt-2 hover:underline hover:translate-[1px] font-semibold">
-            <Link to="/admin/historique">Voir plus</Link>
+            <Link to="/admin/tableau-de-bord/historique">Voir plus</Link>
           </div>
         </div>
 

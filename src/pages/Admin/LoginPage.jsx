@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../../api/api";
 
 const LoginPage = () => {
   const navigate = useNavigate();
 
-  const onSubmit = (e) => {
+  const [values, setValues] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate("/admin/tableau-de-bord");
+
+    try {
+      const response = await api.post("/login", values, {
+        withCredentials: true,
+      });
+
+      if (response.status === 200) return navigate("/admin/tableau-de-bord");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -23,7 +38,7 @@ const LoginPage = () => {
         <h1 className="text-center text-display font-medium font-main mb-10">
           Connexion
         </h1>
-        <form onSubmit={(e) => onSubmit(e)} className="flex flex-col w-96">
+        <form onSubmit={handleSubmit} className="flex flex-col w-96">
           <div className="flex flex-col my-3 w-full">
             <label
               htmlFor="username"
@@ -37,6 +52,9 @@ const LoginPage = () => {
               id="username"
               placeholder="jdoe"
               className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              onChange={(e) =>
+                setValues({ ...values, username: e.target.value })
+              }
             />
           </div>
 
@@ -53,6 +71,9 @@ const LoginPage = () => {
               id="password"
               placeholder="Ceci est un secret"
               className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              onChange={(e) =>
+                setValues({ ...values, password: e.target.value })
+              }
             />
           </div>
 

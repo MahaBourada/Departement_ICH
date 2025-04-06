@@ -1,10 +1,10 @@
 import { ChevronDown, CircleUserRound } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import api from "../../api/api";
 
 const AdminHeader = () => {
   const [showMenu, setShowMenu] = useState(false);
-
   const actMenuRef = useRef(null);
 
   const handleClickOutside = (event, setState, menuRef) => {
@@ -30,6 +30,22 @@ const AdminHeader = () => {
     };
   }, [showMenu]);
 
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await api.get("/login", {
+        withCredentials: true,
+      });
+
+      if (response.status === 200) return navigate("/admin");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <header
       className="m-5 mx-6 ml-auto relative w-fit"
@@ -53,14 +69,17 @@ const AdminHeader = () => {
       </button>
 
       {showMenu && (
-        <div className="absolute flex flex-col right-2 top-9 mt-1 bg-white shadow-md rounded-md font-normal w-full">
-          <Link
-            to="/admin"
-            className="hover:bg-gray-200 rounded-md px-4 py-2"
+        <form
+          onSubmit={handleSubmit}
+          className="absolute flex flex-col right-2 top-9 mt-1 bg-white shadow-md rounded-md font-normal w-full"
+        >
+          <button
+            type="submit"
+            className="hover:bg-gray-200 rounded-md px-4 py-2 cursor-pointer"
           >
             Déconnexion
-          </Link>
-        </div>
+          </button>
+        </form>
       )}
     </header>
   );

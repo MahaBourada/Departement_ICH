@@ -1,7 +1,7 @@
 import React from "react";
-import AdminNavigation from "./components/General/AdminNavigation";
+import AdminNavigation from "./components/Navigation/AdminNavigation";
 import { Outlet } from "react-router-dom";
-import AdminHeader from "./components/General/AdminHeader";
+import AdminHeader from "./components/Navigation/AdminHeader";
 
 const Layout = () => {
   return (
