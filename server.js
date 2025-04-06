@@ -17,6 +17,7 @@ app.use(cookieParser());
 app.use("/login", loginRoutes);
 app.use("/admin", adminRoutes);
 
+
 app.listen(3000, () =>
   console.log(`Server running on port ${process.env.PORT}`)
 );

@@ -56,13 +56,13 @@ export const handleLogin = (req, res) => {
     res.cookie("jwt", refreshToken, {
       httpOnly: true,
       sameSite: true, // Allows cross-origin requests
-      secure: process.env.NODE_ENV === "production", // Use secure cookies on production (HTTPS)
+      secure: true,
       maxAge: 24 * 60 * 60 * 1000, // 1 day
     });
 
     return res.json({
       accessToken,
-      username: foundUser.username,
+      user: foundUser,
     });
   });
 };
