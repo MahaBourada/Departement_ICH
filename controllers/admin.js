@@ -56,7 +56,7 @@ export const addAdmin = (req, res) => {
       db.query(sqlAdmin, values, (err, result) => {
         if (err) return res.json({ Error: err });
 
-        sendPasswordEmail(adminBody.email, password, adminBody.username);
+        sendPasswordEmail(adminBody.email, adminBody.username, password);
 
         return res.json({ Status: "Success" });
       });
@@ -90,16 +90,18 @@ const sendPasswordEmail = (email, username, password) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: email,
-    subject: "Votre compte a été créés",
-    text: `Bonjour,
+    subject: "Votre compte administrateur a été créé",
+    text: `
+          Bonjour,
 
-    Votre compte administrateur a été créé.
+          Votre compte administrateur a été créé.
 
-    Voici vos informations d'identification : 
-    Nom d'utilisateur : ${username}
-    Mot de passe : ${password}
+          Voici vos informations d'identification : 
+          Nom d'utilisateur : ${username}
+          Mot de passe : ${password}
 
-    Département ICH`,
+          Département ICH
+          `,
   };
 
   transporter.sendMail(mailOptions, (err, info) => {

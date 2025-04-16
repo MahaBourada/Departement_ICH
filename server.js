@@ -1,5 +1,6 @@
 import express from "express";
 import adminRoutes from "./routes/admin.js";
+import pagesRoutes from "./routes/pages.js";
 import loginRoutes from "./routes/login.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -16,7 +17,7 @@ app.use(cookieParser());
 
 app.use("/login", loginRoutes);
 app.use("/admin", adminRoutes);
-
+app.use("/pages", pagesRoutes);
 
 app.listen(3000, () =>
   console.log(`Server running on port ${process.env.PORT}`)
