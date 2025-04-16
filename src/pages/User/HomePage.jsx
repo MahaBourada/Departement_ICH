@@ -1,6 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import api from "../../api/api";
 
 const HomePage = () => {
+  const [pagesList, setPagesList] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await api.get("/pages");
+
+      setPagesList(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const getPageContent = (index) =>
+    pagesList.find((page) => page.ordre_positionnement === index)?.texte || "";
+
   return (
     <main className="flex-grow leading-9">
       <div className="h-72 bg-cover bg-center bg-no-repeat flex items-center justify-center bg-[url('/assets/images/HomeImage.png')]">
@@ -13,25 +33,29 @@ const HomePage = () => {
       </div>
 
       <div className="my-10 mb-20 mx-16 font-body">
-          <p className="my-7 mt-10">
-            <span className="font-semibold">
-              Le département ICH (Ingénierie Cognition Handicap)
-            </span>
-            de l'Université Paris 8 est spécialisé dans la recherche et le
-            développement de{" "}
-            <span className="font-semibold">technologies d'assistance</span>{" "}
-            destinées aux{" "}
-            <span className="font-semibold">
-              personnes en situation de handicap
-            </span>
-            . Il conçoit des outils techniques visant à améliorer la
-            communication, la perception, l'apprentissage et l'interaction
-            sociale, en s'appuyant sur des approches issues de{" "}
-            <span className="font-semibold">
-              l'intelligence artificielle, de l'apprentissage automatique et des
-              interfaces homme-machine.
-            </span>
-          </p>
+        <p className="my-7 mt-10">
+          <span className="font-semibold">
+            Le département ICH (Ingénierie Cognition Handicap)
+          </span>
+          de l'Université Paris 8 est spécialisé dans la recherche et le
+          développement de{" "}
+          <span className="font-semibold">technologies d'assistance</span>{" "}
+          destinées aux{" "}
+          <span className="font-semibold">
+            personnes en situation de handicap
+          </span>
+          . Il conçoit des outils techniques visant à améliorer la
+          communication, la perception, l'apprentissage et l'interaction
+          sociale, en s'appuyant sur des approches issues de{" "}
+          <span className="font-semibold">
+            l'intelligence artificielle, de l'apprentissage automatique et des
+            interfaces homme-machine.
+          </span>
+        </p>
+        {/* <p
+          className="my-7 mt-10"
+          dangerouslySetInnerHTML={{ __html: getPageContent(1) }}
+        ></p> */}
 
         <div className="flex justify-between items-start">
           <div className="w-[60%] mr-10">

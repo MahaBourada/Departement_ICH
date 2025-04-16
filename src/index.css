@@ -21,3 +21,17 @@
   --shadow-small: 2px 2px 2px 1px #888;
 }
 
+.toolbar-button {
+  margin: 0 2px;
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+}
+
+.toolbar-button.active {
+  background-color: black;
+  color: white;
+}

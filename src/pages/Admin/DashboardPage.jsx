@@ -33,8 +33,8 @@ const DashboardPage = () => {
   };
 
   return (
-    <div className="flex mt-20">
-      <main className="w-[55%] mx-14">
+    <div className="mt-20">
+      <main className="mx-14">
         <div className="flex items-center justify-between">
           <h1 className="text-display font-semibold ">
             Comptes administrateurs
@@ -92,50 +92,50 @@ const DashboardPage = () => {
             ))}
           </tbody>
         </table>
+        <aside>
+          <div>
+            <h1 className="text-display font-semibold">Historique</h1>
+
+            <div>
+              <div className="flex justify-between items-center my-3">
+                <p>Isis TRUCK</p>
+                <p>01/04/2025</p>
+                <p>20:35</p>
+              </div>
+
+              <div className="h-[0.5px] bg-black my-1 w-full"></div>
+
+              <div className="flex justify-between items-center my-3">
+                <p>Anis ROJBI</p>
+                <p>01/04/2025</p>
+                <p>20:35</p>
+              </div>
+
+              <div className="h-[0.5px] bg-black my-1 w-full"></div>
+
+              <div className="flex justify-between items-center my-3">
+                <p>Céline JOST</p>
+                <p>01/04/2025</p>
+                <p>20:35</p>
+              </div>
+
+              <div className="h-[0.5px] bg-black my-1 w-full"></div>
+            </div>
+
+            <div className="w-fit ml-auto mt-2 hover:underline hover:translate-[1px] font-semibold">
+              <Link to="/admin/tableau-de-bord/historique">Voir plus</Link>
+            </div>
+          </div>
+
+          <div className="my-5">
+            <h1 className="text-display font-semibold">Newsletter</h1>
+
+            <div>
+              <h2>Meow</h2>
+            </div>
+          </div>
+        </aside>
       </main>
-      <aside className="w-[30%]">
-        <div>
-          <h1 className="text-display font-semibold">Historique</h1>
-
-          <div>
-            <div className="flex justify-between items-center my-3">
-              <p>Isis TRUCK</p>
-              <p>01/04/2025</p>
-              <p>20:35</p>
-            </div>
-
-            <div className="h-[0.5px] bg-black my-1 w-full"></div>
-
-            <div className="flex justify-between items-center my-3">
-              <p>Anis ROJBI</p>
-              <p>01/04/2025</p>
-              <p>20:35</p>
-            </div>
-
-            <div className="h-[0.5px] bg-black my-1 w-full"></div>
-
-            <div className="flex justify-between items-center my-3">
-              <p>Céline JOST</p>
-              <p>01/04/2025</p>
-              <p>20:35</p>
-            </div>
-
-            <div className="h-[0.5px] bg-black my-1 w-full"></div>
-          </div>
-
-          <div className="w-fit ml-auto mt-2 hover:underline hover:translate-[1px] font-semibold">
-            <Link to="/admin/tableau-de-bord/historique">Voir plus</Link>
-          </div>
-        </div>
-
-        <div className="my-5">
-          <h1 className="text-display font-semibold">Newsletter</h1>
-
-          <div>
-            <h2>Meow</h2>
-          </div>
-        </div>
-      </aside>
     </div>
   );
 };
