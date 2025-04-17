@@ -5,16 +5,6 @@ import { Link, useLocation } from "react-router-dom";
 const Header = () => {
   const location = useLocation();
 
-  const isActive =
-    location.pathname.startsWith("/équipe") ||
-    [
-      "/conférences",
-      "/master",
-      "/lab-chart",
-      "/projets-étudiants",
-      "/prix-concours",
-    ].includes(location.pathname);
-
   const [showAct, setShowAct] = useState(false);
   const [showDept, setShowDept] = useState(false);
   const [showColl, setShowColl] = useState(false);
@@ -27,7 +17,7 @@ const Header = () => {
 
   const handleClickOutside = (event, setState, menuRef) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
-      setState(false); 
+      setState(false);
     }
   };
 
@@ -62,7 +52,7 @@ const Header = () => {
     <header className="flex justify-between items-end font-main text-nav font-medium py-4 px-10 bg-main">
       <img
         src="/assets/vectors/Logo.svg"
-        alt="Logo de l'université Paris 8"
+        alt="Logo de l'universite Paris 8"
         width={140}
       />
 
@@ -113,7 +103,7 @@ const Header = () => {
           <div className="relative" ref={actMenuRef}>
             <button
               className={`cursor-pointer flex justify-between items-center mx-3 hover:underline hover:translate-[1px] ${
-                ["/conférences"].includes(location.pathname) ? "underline" : ""
+                ["/conferences"].includes(location.pathname) ? "underline" : ""
               }`}
               onClick={() => setShowAct(!showAct)}
             >
@@ -124,7 +114,7 @@ const Header = () => {
             {showAct && (
               <div className="absolute flex flex-col left-2 mt-1 bg-white shadow-md rounded-md font-normal">
                 <Link
-                  to="/conférences"
+                  to="/conferences"
                   className="hover:bg-gray-200 rounded-md px-4 py-2"
                 >
                   Conférences
@@ -135,18 +125,26 @@ const Header = () => {
 
           <div className="relative" ref={deptMenuRef}>
             <button
-              className="cursor-pointer flex justify-between items-center mx-3 hover:underline hover:translate-[1px]"
+              className={`cursor-pointer flex justify-between items-center mx-3 hover:underline hover:translate-[1px] ${
+                [
+                  "/equipe",
+                  "/master",
+                  "/lab-chart",
+                  "/projets-etudiants",
+                  "/prix-concours",
+                ].includes(location.pathname)
+                  ? "underline"
+                  : ""
+              }`}
               onClick={() => setShowDept(!showDept)}
             >
-              <p className={`mx-1 ${isActive ? "underline" : ""}`}>
-                Département ICH
-              </p>
+              <p className="mx-1">Département ICH</p>
               <ChevronDown size={26} color="#232323" strokeWidth={2.5} />
             </button>
             {showDept && (
               <div className="absolute flex flex-col left-2 mt-1 bg-white shadow-md rounded-md font-normal">
                 <Link
-                  to="/équipe"
+                  to="/equipe"
                   className="hover:bg-gray-200 rounded-md px-4 py-2"
                 >
                   Équipe
@@ -164,7 +162,7 @@ const Header = () => {
                   Lab CHArt
                 </Link>
                 <Link
-                  to="/projets-étudiants"
+                  to="/projets-etudiants"
                   className="hover:bg-gray-200 rounded-md px-4 py-2"
                 >
                   Projets étudiants
@@ -194,6 +192,7 @@ const Header = () => {
               <p className="mx-1">Collaboration</p>
               <ChevronDown size={26} color="#232323" strokeWidth={2.5} />
             </button>
+
             {showColl && (
               <div className="absolute flex flex-col left-2 mt-1 bg-white shadow-md rounded-md font-normal">
                 <Link

@@ -31,9 +31,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
-          <Route path="conférences" element={<ConferencesPage />} />
-          <Route path="équipe" element={<MembersPage />} />
-          <Route path="équipe/:id" element={<IndividualPage />} />
+          <Route path="conferences" element={<ConferencesPage />} />
+          <Route path="equipe" element={<MembersPage />} />
+          <Route path="equipe/:id" element={<IndividualPage />} />
           <Route path="master" element={<MasterPage />} />
           <Route path="lab-chart" element={<LabPage />} />
           <Route path="collaboration-nationale" element={<NationalePage />} />
@@ -41,7 +41,7 @@ function App() {
             path="collaboration-internationale"
             element={<InternationalePage />}
           />
-          <Route path="projets-étudiants" element={<ProjectsPage />} />
+          <Route path="projets-etudiants" element={<ProjectsPage />} />
           <Route path="prix-concours" element={<PrixPage />} />
           <Route path="contact" element={<ContactPage />} />
         </Route>
@@ -61,9 +61,9 @@ function App() {
             element={<PagesManagementPage />}
           />
 
-          <Route path="gestion-équipe" element={<MembersManagementPage />} />
+          <Route path="gestion-equipe" element={<MembersManagementPage />} />
           <Route
-            path="gestion-conférences"
+            path="gestion-conferences"
             element={<ConferencesManagementPage />}
           />
           <Route path="gestion-projets" element={<ProjectsManagementPage />} />

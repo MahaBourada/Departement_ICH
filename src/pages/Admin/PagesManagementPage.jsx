@@ -35,32 +35,47 @@ const PagesManagementPage = () => {
       <h1 className="text-display font-semibold">Gestion de la {pageSlug}</h1>
 
       <form onSubmit={handleSubmit} className="flex flex-col mx-5">
-        <div className="mb-5">
+        <div className="mt-4">
           <label
+            id="section1"
             htmlFor="section1"
-            className="text-nav font-main font-medium my-1"
+            className="text-2xl font-main font-medium"
           >
             Première section *
           </label>
-          <RichTextEditor value={section1} onChange={setSection1} />
+          <RichTextEditor
+            aria-labelledby="section1"
+            value={section1}
+            onChange={setSection1}
+          />
         </div>
-        <div className="mb-5">
+        <div className="mt-4">
           <label
+            id="section2"
             htmlFor="section2"
-            className="text-nav font-main font-medium my-1"
+            className="text-2xl font-main font-medium"
           >
             Deuxième section *
           </label>
-          <RichTextEditor value={section2} onChange={setSection2} />
+          <RichTextEditor
+            aria-labelledby="section2"
+            value={section2}
+            onChange={setSection2}
+          />
         </div>
-        <div className="mb-5">
+        <div className="mt-4">
           <label
+            id="section3"
             htmlFor="section3"
-            className="text-nav font-main font-medium my-1"
+            className="text-2xl font-main font-medium"
           >
             Troisième section *
           </label>
-          <RichTextEditor value={section3} onChange={setSection3} />
+          <RichTextEditor
+            aria-labelledby="section3"
+            value={section3}
+            onChange={setSection3}
+          />
         </div>
 
         <div className="flex justify-end mt-3">
@@ -74,7 +89,7 @@ const PagesManagementPage = () => {
             type="submit"
             className="cursor-pointer bg-accent font-main font-medium rounded-2xl px-5 py-3 mx-3 shadow-small hover:translate-[1px] hover:shadow-none"
           >
-            Enregistrer
+            Modifier
           </button>
         </div>
       </form>

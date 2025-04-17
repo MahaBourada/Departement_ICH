@@ -34,7 +34,7 @@ const HOTKEYS = {
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
 const TEXT_ALIGN_TYPES = ["left", "center", "right", "justify"];
 
-const RichTextEditor = ({ value, onChange }) => {
+const RichTextEditor = ({ onChange }) => {
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
@@ -47,37 +47,46 @@ const RichTextEditor = ({ value, onChange }) => {
         onChange(newValue);
       }}
     >
-      <Toolbar>
-        <MarkButton format="bold" icon={<Bold size={18} />} />
-        <MarkButton format="italic" icon={<Italic size={18} />} />
-        <MarkButton format="underline" icon={<Underline size={18} />} />
-        <MarkButton format="code" icon={<Code size={18} />} />
-        <BlockButton format="heading-one" icon={<Heading1 size={18} />} />
-        <BlockButton format="heading-two" icon={<Heading2 size={18} />} />
-        <BlockButton format="block-quote" icon={<Quote size={18} />} />
-        <BlockButton format="numbered-list" icon={<ListOrdered size={18} />} />
-        <BlockButton format="bulleted-list" icon={<List size={18} />} />
-        <BlockButton format="left" icon={<AlignLeft size={18} />} />
-        <BlockButton format="center" icon={<AlignCenter size={18} />} />
-        <BlockButton format="right" icon={<AlignRight size={18} />} />
-        <BlockButton format="justify" icon={<AlignJustify size={18} />} />
-      </Toolbar>
-      <Editable
-        renderElement={renderElement}
-        renderLeaf={renderLeaf}
-        placeholder="Enter some rich text…"
-        spellCheck
-        autoFocus
-        onKeyDown={(event) => {
-          for (const hotkey in HOTKEYS) {
-            if (isHotkey(hotkey, event)) {
-              event.preventDefault();
-              const mark = HOTKEYS[hotkey];
-              toggleMark(editor, mark);
+      <div
+        className="bg-white rounded-2xl p-4 my-3"
+        aria-label="Éditeur de texte enrichi"
+      >
+        <Toolbar aria-label="Barre d'outils de l'éditeur">
+          <MarkButton format="bold" icon={<Bold size={18} />} />
+          <MarkButton format="italic" icon={<Italic size={18} />} />
+          <MarkButton format="underline" icon={<Underline size={18} />} />
+          <MarkButton format="code" icon={<Code size={18} />} />
+          {/* <BlockButton format="heading-one" icon={<Heading1 size={18} />} /> */}
+          <BlockButton format="heading-two" icon={<Heading2 size={18} />} />
+          <BlockButton format="block-quote" icon={<Quote size={18} />} />
+          <BlockButton
+            format="numbered-list"
+            icon={<ListOrdered size={18} />}
+          />
+          <BlockButton format="bulleted-list" icon={<List size={18} />} />
+          <BlockButton format="left" icon={<AlignLeft size={18} />} />
+          <BlockButton format="center" icon={<AlignCenter size={18} />} />
+          <BlockButton format="right" icon={<AlignRight size={18} />} />
+          <BlockButton format="justify" icon={<AlignJustify size={18} />} />
+        </Toolbar>
+        <Editable
+          aria-label="Zone de saisie de texte"
+          renderElement={renderElement}
+          renderLeaf={renderLeaf}
+          placeholder="Veuillez entrer votre texte..."
+          spellCheck
+          autoFocus
+          onKeyDown={(event) => {
+            for (const hotkey in HOTKEYS) {
+              if (isHotkey(hotkey, event)) {
+                event.preventDefault();
+                const mark = HOTKEYS[hotkey];
+                toggleMark(editor, mark);
+              }
             }
-          }
-        }}
-      />
+          }}
+        />
+      </div>
     </Slate>
   );
 };
@@ -151,25 +160,28 @@ const Element = ({ attributes, children, element }) => {
   switch (element.type) {
     case "block-quote":
       return (
-        <blockquote style={style} {...attributes}>
+        <blockquote
+          className="border-l-4 border-gray-400 pl-4 italic text-gray-600 my-2"
+          {...attributes}
+        >
           {children}
         </blockquote>
       );
     case "bulleted-list":
       return (
-        <ul style={style} {...attributes}>
+        <ul className="list-disc mx-6" {...attributes}>
           {children}
         </ul>
       );
-    case "heading-one":
+    /* case "heading-one":
       return (
-        <h1 style={style} {...attributes}>
+        <h1 className="text-2xl font-semibold my-2" {...attributes}>
           {children}
         </h1>
-      );
+      ); */
     case "heading-two":
       return (
-        <h2 style={style} {...attributes}>
+        <h2 className="text-[2rem] font-medium" {...attributes}>
           {children}
         </h2>
       );
@@ -181,7 +193,7 @@ const Element = ({ attributes, children, element }) => {
       );
     case "numbered-list":
       return (
-        <ol style={style} {...attributes}>
+        <ol className="list-decimal mx-6" {...attributes}>
           {children}
         </ol>
       );
@@ -198,7 +210,7 @@ const Leaf = ({ attributes, children, leaf }) => {
     children = <strong>{children}</strong>;
   }
   if (leaf.code) {
-    children = <code>{children}</code>;
+    children = <code className="bg-gray-300 px-1 rounded">{children}</code>;
   }
   if (leaf.italic) {
     children = <em>{children}</em>;
@@ -252,7 +264,7 @@ const isAlignElement = (element) => {
 const initialValue = [
   {
     type: "paragraph",
-    children: [{ text: "This is editable " }],
+    children: [{ text: "" }],
   },
 ];
 export default RichTextEditor;

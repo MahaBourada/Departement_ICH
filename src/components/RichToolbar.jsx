@@ -1,10 +1,13 @@
-import { css, cx } from '@emotion/css'
-import React from 'react'
-import ReactDOM from 'react-dom'
+import { css, cx } from "@emotion/css";
+import React from "react";
+import ReactDOM from "react-dom";
 
 export const Button = React.forwardRef(
   ({ className, active, reversed, ...props }, ref) => (
     <span
+      role="button"
+      tabIndex={0} // tab keyboard navigation
+      aria-pressed={active}
       {...props}
       ref={ref}
       className={cx(
@@ -13,22 +16,23 @@ export const Button = React.forwardRef(
           cursor: pointer;
           color: ${reversed
             ? active
-              ? 'white'
-              : '#aaa'
+              ? "white"
+              : "#aaa"
             : active
-            ? 'black'
-            : '#ccc'};
+            ? "black"
+            : "#aaa"};
         `
       )}
     />
   )
-)
+);
 export const Icon = React.forwardRef(({ className, ...props }, ref) => (
   <span
     {...props}
+    aria-hidden="true"
     ref={ref}
     className={cx(
-      'material-icons',
+      "material-icons",
       className,
       css`
         font-size: 18px;
@@ -36,7 +40,7 @@ export const Icon = React.forwardRef(({ className, ...props }, ref) => (
       `
     )}
   />
-))
+));
 export const Instruction = React.forwardRef(({ className, ...props }, ref) => (
   <div
     {...props}
@@ -52,7 +56,7 @@ export const Instruction = React.forwardRef(({ className, ...props }, ref) => (
       `
     )}
   />
-))
+));
 export const Menu = React.forwardRef(({ className, ...props }, ref) => (
   <div
     {...props}
@@ -71,15 +75,17 @@ export const Menu = React.forwardRef(({ className, ...props }, ref) => (
       `
     )}
   />
-))
+));
 export const Portal = ({ children }) => {
-  return typeof document === 'object'
+  return typeof document === "object"
     ? ReactDOM.createPortal(children, document.body)
-    : null
-}
+    : null;
+};
 export const Toolbar = React.forwardRef(({ className, ...props }, ref) => (
   <Menu
     {...props}
+    role="toolbar"
+    aria-label="Barre d'outils de l'éditeur"
     ref={ref}
     className={cx(
       className,
@@ -92,4 +98,4 @@ export const Toolbar = React.forwardRef(({ className, ...props }, ref) => (
       `
     )}
   />
-))
+));
