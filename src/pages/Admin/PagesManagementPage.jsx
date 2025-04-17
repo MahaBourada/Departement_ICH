@@ -1,38 +1,47 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import RichTextEditor from "../../components/RichTextEditor";
 import { serializeToHtml } from "../../utils/slateToHtml";
+import { positions } from "slate";
+import api from "../../api/api";
 
 const PagesManagementPage = () => {
-  const { pageSlug } = useParams();
-  const [editorValue, setEditorValue] = useState([
-    {
-      type: "paragraph",
-      children: [{ text: "Start typing here..." }],
-    },
-  ]);
+  const location = useLocation();
+  const { title, link } = location.state || {};
 
   const [section1, setSection1] = useState([]);
   const [section2, setSection2] = useState([]);
   const [section3, setSection3] = useState([]);
+  const [section4, setSection4] = useState([]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const content = {
-      section1: JSON.stringify(section1),
-      section2: JSON.stringify(section2),
-      section3: JSON.stringify(section3),
-    };
+    const sections = [
+      { content: section1, position: 1 },
+      { content: section2, position: 2 },
+      { content: section3, position: 3 },
+      { content: section4, position: 4 },
+    ];
 
-    const section1Html = serializeToHtml(section1);
+    try {
+      for (const section of sections) {
+        const body = {
+          link: link,
+          texte: JSON.stringify(section.content),
+          ordre_positionnement: section.position,
+        };
 
-    console.log(section1Html);
+        await api.post("/pages", body);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <main className="mx-14 mt-20">
-      <h1 className="text-display font-semibold">Gestion de la {pageSlug}</h1>
+      <h1 className="text-display font-semibold">Gestion de la {title}</h1>
 
       <form onSubmit={handleSubmit} className="flex flex-col mx-5">
         <div className="mt-4">
@@ -75,6 +84,20 @@ const PagesManagementPage = () => {
             aria-labelledby="section3"
             value={section3}
             onChange={setSection3}
+          />
+        </div>
+        <div className="mt-4">
+          <label
+            id="section4"
+            htmlFor="section4"
+            className="text-2xl font-main font-medium"
+          >
+            Quatrième section *
+          </label>
+          <RichTextEditor
+            aria-labelledby="section4"
+            value={section4}
+            onChange={setSection4}
           />
         </div>
 

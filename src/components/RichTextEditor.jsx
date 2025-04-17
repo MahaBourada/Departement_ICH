@@ -207,7 +207,7 @@ const Element = ({ attributes, children, element }) => {
 };
 const Leaf = ({ attributes, children, leaf }) => {
   if (leaf.bold) {
-    children = <strong>{children}</strong>;
+    children = <strong className="font-semibold">{children}</strong>;
   }
   if (leaf.code) {
     children = <code className="bg-gray-300 px-1 rounded">{children}</code>;

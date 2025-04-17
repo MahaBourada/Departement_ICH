@@ -4,11 +4,17 @@ import { Link } from "react-router-dom";
 
 const PagesListPage = () => {
   const pages_titles = [
-    "Page d'accueil",
-    "Page de master",
-    "Page du laboratoire CHArt",
-    "Page des collaborations nationales",
-    "Page des collaborations internationales",
+    { title: "Page d'accueil", link: "accueil" },
+    { title: "Page de master", link: "master" },
+    { title: "Page du laboratoire CHArt", link: "lab-chart" },
+    {
+      title: "Page des collaborations nationales",
+      link: "collaboration-nationale",
+    },
+    {
+      title: "Page des collaborations internationales",
+      link: "collaboration-internationale",
+    },
   ];
 
   return (
@@ -21,11 +27,12 @@ const PagesListPage = () => {
         {pages_titles.map((page, index) => (
           <Link
             key={index}
-            to={`/admin/gestion-pages/${page.toLowerCase()}`}
+            to={`/admin/gestion-pages/${page.link}`}
+            state={{ title: page.title, link: page.link }}
             className="mx-4 my-2 hover:translate-[1px] hover:underline"
           >
             <div className=" flex justify-between items-center font-main font-medium bg-admin-nav-bg p-6 rounded-3xl">
-              <p>{page}</p>
+              <p>{page.title}</p>
               <ExternalLink size={26} color="#232323" />
             </div>
           </Link>

@@ -62,7 +62,7 @@ const AdminNavigation = () => {
           </NavLink>
 
           <NavLink
-            to="/admin/gestion-équipe"
+            to="/admin/gestion-equipe"
             className={({ isActive }) =>
               `flex items-center my-3  px-4 py-3 rounded-2xl hover:translate-[1px] hover:underline mx-7 ${
                 isActive
@@ -83,7 +83,7 @@ const AdminNavigation = () => {
           </NavLink>
 
           <NavLink
-            to="/admin/gestion-conférences"
+            to="/admin/gestion-conferences"
             className={({ isActive }) =>
               `flex items-center my-3  px-4 py-3 rounded-2xl hover:translate-[1px] hover:underline mx-7 ${
                 isActive

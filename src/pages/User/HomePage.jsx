@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from "react";
 import api from "../../api/api";
+import { serializeToHtml } from "../../utils/slateToHtml";
 
 const HomePage = () => {
-  const [pagesList, setPagesList] = useState([]);
+  const [pageAccueil, setPageAccueil] = useState([]);
 
   const fetchData = async () => {
     try {
-      const response = await api.get("/pages");
+      const response = await api.get("/pages/accueil");
 
-      setPagesList(response.data);
+      setPageAccueil(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
+  console.log(pageAccueil);
+
   useEffect(() => {
     fetchData();
   }, []);
-
-  const getPageContent = (index) =>
-    pagesList.find((page) => page.ordre_positionnement === index)?.texte || "";
 
   return (
     <main className="flex-grow leading-9">
@@ -33,7 +33,7 @@ const HomePage = () => {
       </div>
 
       <div className="my-10 mb-20 mx-16 font-body">
-        <p className="my-7 mt-10">
+        {/* <p className="my-7 mt-10">
           <span className="font-semibold">
             Le département ICH (Ingénierie Cognition Handicap)
           </span>
@@ -51,15 +51,15 @@ const HomePage = () => {
             l'intelligence artificielle, de l'apprentissage automatique et des
             interfaces homme-machine.
           </span>
-        </p>
-        {/* <p
+        </p> */}
+        <div
           className="my-7 mt-10"
-          dangerouslySetInnerHTML={{ __html: getPageContent(1) }}
-        ></p> */}
+          dangerouslySetInnerHTML={{ __html: serializeToHtml(pageAccueil, 1) }}
+        ></div>
 
         <div className="flex justify-between items-start">
           <div className="w-[60%] mr-10">
-            <p className="font-semibold">
+            {/* <p className="font-semibold">
               Les travaux du département s'articulent autour de plusieurs axes :
             </p>
             <ul className="list-disc ml-7">
@@ -75,9 +75,14 @@ const HomePage = () => {
                 Le développement de modèles et d'interfaces basés sur
                 l'intelligence artificielle et l'apprentissage automatique.
               </li>
-            </ul>
+            </ul> */}
+            <div
+              dangerouslySetInnerHTML={{
+                __html: serializeToHtml(pageAccueil, 2),
+              }}
+            ></div>
 
-            <p className="my-10">
+            {/* <p className="my-10">
               Le département ICH est également impliqué dans la formation à
               travers le{" "}
               <span className="font-semibold">
@@ -89,16 +94,28 @@ const HomePage = () => {
               </span>
               , en alliant enseignements théoriques, travaux pratiques et
               expériences en milieu professionnel.
-            </p>
+            </p> */}
+            <div
+              className="my-10"
+              dangerouslySetInnerHTML={{
+                __html: serializeToHtml(pageAccueil, 3),
+              }}
+            ></div>
 
-            <p className="my-10">
+            {/* <p className="my-10">
               Par ses activités de recherche et d'enseignement, le département
               contribue à{" "}
               <span className="font-semibold">
                 l'amélioration des conditions de vie des personnes handicapées
               </span>{" "}
               en développant des solutions adaptées à leurs besoins spécifiques.
-            </p>
+            </p> */}
+            <div
+              className="my-10"
+              dangerouslySetInnerHTML={{
+                __html: serializeToHtml(pageAccueil, 4),
+              }}
+            ></div>
           </div>
 
           <div className="w-[33rem] h-[33rem] bg-cover bg-center bg-no-repeat bg-[url('/assets/images/unicorn.jpeg')] rounded-[50px]"></div>
