@@ -2,7 +2,7 @@ import { ChevronDown } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-const Footer = () => {
+const Footer = ({ switchLang }) => {
   const [showLang, setShowLang] = useState(false);
 
   const langMenuRef = useRef(null);
@@ -73,38 +73,10 @@ const Footer = () => {
       <div className="border-black border-[1px] my-5 w-full"></div>
 
       <div className="flex justify-between items-end w-full">
-        {/* <div className="relative w-fit" ref={langMenuRef}>
-          {showLang && (
-            <div className="z-50 absolute flex flex-col left-2 bottom-14 mt-0 bg-white shadow-md rounded-md font-normal">
-              <button className="cursor-pointer hover:bg-gray-200 rounded-md px-3 py-2 w-fit flex justify-end items-center">
-                <img
-                  src="/assets/images/english.png"
-                  alt="Drapeau du Royaume-Uni"
-                  width={30}
-                />
-                <p className="ml-2 mr-4">Anglais</p>
-              </button>
-            </div>
-          )}
-
-          <button
-            className="cursor-pointer w-fit flex justify-end items-center mx-3 hover:underline hover:translate-[1px] mb-3"
-            onClick={() => setShowLang(!showLang)}
-          >
-            <img
-              src="/assets/images/french.png"
-              alt="Drapeau français"
-              width={30}
-            />
-            <p className="ml-2 mr-1">Français</p>
-            <ChevronDown size={22} color="#232323" strokeWidth={2} />
-          </button>
-        </div> */}
-
         <div className="flex items-center">
           <button
             className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px] mb-2"
-            onClick={() => setShowLang(!showLang)}
+            onClick={() => switchLang("fr")}
           >
             <img
               src="/assets/images/french.png"
@@ -114,7 +86,7 @@ const Footer = () => {
           </button>
           <button
             className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px] mb-2"
-            onClick={() => setShowLang(!showLang)}
+            onClick={() => switchLang("en")}
           >
             <img
               src="/assets/images/english.png"

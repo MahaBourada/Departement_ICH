@@ -1,105 +1,281 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import RichTextEditor from "../../components/RichTextEditor";
-import { serializeToHtml } from "../../utils/slateToHtml";
-import { positions } from "slate";
 import api from "../../api/api";
+import { positions } from "slate";
 
 const PagesManagementPage = () => {
   const location = useLocation();
   const { title, link } = location.state || {};
 
-  const [section1, setSection1] = useState([]);
-  const [section2, setSection2] = useState([]);
-  const [section3, setSection3] = useState([]);
-  const [section4, setSection4] = useState([]);
+  const [sections, setSections] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const sections = [
-      { content: section1, position: 1 },
-      { content: section2, position: 2 },
-      { content: section3, position: 3 },
-      { content: section4, position: 4 },
-    ];
-
     try {
-      for (const section of sections) {
+      for (let i = 0; i < sections.length; i++) {
+        const section = sections[i];
         const body = {
-          link: link,
-          texte: JSON.stringify(section.content),
-          ordre_positionnement: section.position,
+          link,
+          idSection: section.idSection,
+          texte_fr: JSON.stringify(section.content_fr),
+          texte_en: JSON.stringify(section.content_en),
+          ordre_positionnement: i + 1,
         };
 
-        await api.post("/pages", body);
+        console.log(body);
+
+        if (section.idSection) {
+          await api.put(`/pages/${section.idSection}`, body);
+        } else {
+          await api.post("/pages", body);
+        }
       }
     } catch (error) {
       console.error(error);
     }
   };
 
+  const fetchData = async () => {
+    try {
+      const response = await api.get(`/pages/${link}`);
+
+      const fetchedSections = response.data.map((section) => ({
+        idSection: section.idSection,
+        link,
+        content_fr: JSON.parse(section.texte_fr),
+        content_en: JSON.parse(section.texte_en),
+        position: section.ordre_positionnement,
+      }));
+
+      const defaultEmptySection = {
+        content_fr: [
+          {
+            type: "paragraph",
+            children: [{ text: "" }],
+          },
+        ],
+        content_en: [
+          {
+            type: "paragraph",
+            children: [{ text: "" }],
+          },
+        ],
+        link,
+      };
+      while (fetchedSections.length < 4) {
+        fetchedSections.push({ ...defaultEmptySection });
+      }
+
+      setSections(fetchedSections);
+    } catch (error) {
+      console.error("Failed to fetch sections", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <main className="mx-14 mt-20">
       <h1 className="text-display font-semibold">Gestion de la {title}</h1>
 
       <form onSubmit={handleSubmit} className="flex flex-col mx-5">
-        <div className="mt-4">
+        {/* <div className="mt-4">
           <label
-            id="section1"
-            htmlFor="section1"
+            id="section1_fr"
+            htmlFor="section1_fr"
             className="text-2xl font-main font-medium"
           >
             Première section *
           </label>
           <RichTextEditor
-            aria-labelledby="section1"
-            value={section1}
-            onChange={setSection1}
+            aria-labelledby="section1_fr"
+            value={sections[0].content_fr}
+            onChange={(newValue) => {
+              const updated = [...sections];
+              updated[0].content_fr = newValue;
+              setSections(updated);
+            }}
           />
         </div>
+
         <div className="mt-4">
           <label
-            id="section2"
-            htmlFor="section2"
+            id="section1_en"
+            htmlFor="section1_en"
+            className="text-2xl font-main font-medium"
+          >
+            Traduction de la première section *
+          </label>
+          <RichTextEditor
+            aria-labelledby="section1_en"
+            value={sections[0].content_en}
+            onChange={(newValue) => {
+              const updated = [...sections];
+              updated[0].content_en = newValue;
+              setSections(updated);
+            }}
+          />
+        </div>
+
+        <div className="mt-4">
+          <label
+            id="section2_fr"
+            htmlFor="section2_fr"
             className="text-2xl font-main font-medium"
           >
             Deuxième section *
           </label>
           <RichTextEditor
-            aria-labelledby="section2"
-            value={section2}
-            onChange={setSection2}
+            aria-labelledby="section2_fr"
+            value={sections[1].content_fr}
+            onChange={(newValue) => {
+              const updated = [...sections];
+              updated[1].content_fr = newValue;
+              setSections(updated);
+            }}
           />
         </div>
+
         <div className="mt-4">
           <label
-            id="section3"
-            htmlFor="section3"
+            id="section2_en"
+            htmlFor="section2_en"
+            className="text-2xl font-main font-medium"
+          >
+            Traduction de la deuxième section *
+          </label>
+          <RichTextEditor
+            aria-labelledby="section2_en"
+            value={sections[1].content_en}
+            onChange={(newValue) => {
+              const updated = [...sections];
+              updated[1].content_en = newValue;
+              setSections(updated);
+            }}
+          />
+        </div>
+
+        <div className="mt-4">
+          <label
+            id="section3_fr"
+            htmlFor="section3_fr"
             className="text-2xl font-main font-medium"
           >
             Troisième section *
           </label>
           <RichTextEditor
-            aria-labelledby="section3"
-            value={section3}
-            onChange={setSection3}
+            aria-labelledby="section3_fr"
+            value={sections[2].content_fr}
+            onChange={(newValue) => {
+              const updated = [...sections];
+              updated[2].content_fr = newValue;
+              setSections(updated);
+            }}
           />
         </div>
+
         <div className="mt-4">
           <label
-            id="section4"
-            htmlFor="section4"
+            id="section3_en"
+            htmlFor="section3_en"
+            className="text-2xl font-main font-medium"
+          >
+            Traduction de la troisième section *
+          </label>
+          <RichTextEditor
+            aria-labelledby="section3_en"
+            value={sections[2].content_en}
+            onChange={(newValue) => {
+              const updated = [...sections];
+              updated[2].content_en = newValue;
+              setSections(updated);
+            }}
+          />
+        </div>
+
+        <div className="mt-4">
+          <label
+            id="section4_fr"
+            htmlFor="section4_fr"
             className="text-2xl font-main font-medium"
           >
             Quatrième section *
           </label>
           <RichTextEditor
-            aria-labelledby="section4"
-            value={section4}
-            onChange={setSection4}
+            aria-labelledby="section4_fr"
+            value={sections[3].content_fr}
+            onChange={(newValue) => {
+              const updated = [...sections];
+              updated[3].content_fr = newValue;
+              setSections(updated);
+            }}
           />
         </div>
+
+        <div className="mt-4">
+          <label
+            id="section4_en"
+            htmlFor="section4_en"
+            className="text-2xl font-main font-medium"
+          >
+            Traduction de la quatrième section *
+          </label>
+          <RichTextEditor
+            aria-labelledby="section4_en"
+            value={sections[3].content_en}
+            onChange={(newValue) => {
+              const updated = [...sections];
+              updated[3].content_en = newValue;
+              setSections(updated);
+            }}
+          />
+        </div> */}
+
+        {sections.map((section, index) => (
+          <div key={index}>
+            <div className="mt-4">
+              <label
+                id={`section${index + 1}_fr`}
+                htmlFor={`section${index + 1}_fr`}
+                className="text-2xl font-main font-medium"
+              >
+                Section {index + 1} - Français
+              </label>
+              <RichTextEditor
+                aria-labelledby={`section${index + 1}_fr`}
+                value={section.content_fr}
+                onChange={(newValue) => {
+                  const updated = [...sections];
+                  updated[index].content_fr = newValue;
+                  setSections(updated);
+                }}
+              />
+            </div>
+
+            <div className="mt-4">
+              <label
+                id={`section${index + 1}_en`}
+                htmlFor={`section${index + 1}_en`}
+                className="text-2xl font-main font-medium"
+              >
+                Section {index + 1} - English
+              </label>
+              <RichTextEditor
+                aria-labelledby={`section${index + 1}_en`}
+                value={section.content_en}
+                onChange={(newValue) => {
+                  const updated = [...sections];
+                  updated[index].content_en = newValue;
+                  setSections(updated);
+                }}
+              />
+            </div>
+          </div>
+        ))}
 
         <div className="flex justify-end mt-3">
           <button

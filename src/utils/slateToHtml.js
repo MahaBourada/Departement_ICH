@@ -43,8 +43,7 @@ export const serializeToHtml = (pagesList, position) => {
         }
 
         let text = node.text;
-        if (node.bold)
-          text = `<strong>${text}</strong>`;
+        if (node.bold) text = `<strong>${text}</strong>`;
         if (node.italic) text = `<em>${text}</em>`;
         if (node.underline) text = `<u>${text}</u>`;
         if (node.code) text = `<code>${text}</code>`;

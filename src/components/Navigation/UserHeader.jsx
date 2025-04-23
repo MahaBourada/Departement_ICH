@@ -2,7 +2,7 @@ import { ChevronDown, Moon, SunMedium } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ switchLang }) => {
   const location = useLocation();
 
   const [showAct, setShowAct] = useState(false);
@@ -59,14 +59,20 @@ const Header = () => {
       <div className="flex flex-col items-end">
         <div className="flex items-center mb-3">
           <div className="flex items-center">
-            <button className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px]">
+            <button
+              className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px]"
+              onClick={() => switchLang("fr")}
+            >
               <img
                 src="/assets/images/french.png"
                 alt="Version française"
                 width={33}
               />
             </button>
-            <button className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px]">
+            <button
+              className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px]"
+              onClick={() => switchLang("en")}
+            >
               <img
                 src="/assets/images/english.png"
                 alt="English version"

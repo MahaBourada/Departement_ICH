@@ -34,7 +34,7 @@ const HOTKEYS = {
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
 const TEXT_ALIGN_TYPES = ["left", "center", "right", "justify"];
 
-const RichTextEditor = ({ onChange }) => {
+const RichTextEditor = ({ value, onChange }) => {
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
@@ -42,7 +42,7 @@ const RichTextEditor = ({ onChange }) => {
   return (
     <Slate
       editor={editor}
-      initialValue={initialValue}
+      initialValue={!value ? initialValue : value}
       onChange={(newValue) => {
         onChange(newValue);
       }}

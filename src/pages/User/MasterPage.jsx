@@ -4,10 +4,11 @@ import { serializeToHtml } from "../../utils/slateToHtml";
 
 const MasterPage = () => {
   const [pageMaster, setPageMaster] = useState([]);
+  const lang = localStorage.getItem("lang") || "fr";
 
   const fetchData = async () => {
     try {
-      const response = await api.get("/pages/master");
+      const response = await api.get(`/pages/master?lang=${lang}`);
 
       setPageMaster(response.data);
     } catch (error) {
@@ -31,18 +32,21 @@ const MasterPage = () => {
           __html: serializeToHtml(pageMaster, 1),
         }}
       ></div>
+
       <div
         className="my-10"
         dangerouslySetInnerHTML={{
           __html: serializeToHtml(pageMaster, 2),
         }}
       ></div>
+
       <div
         className="my-10"
         dangerouslySetInnerHTML={{
           __html: serializeToHtml(pageMaster, 3),
         }}
       ></div>
+
       <div
         className="my-10"
         dangerouslySetInnerHTML={{

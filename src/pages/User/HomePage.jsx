@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import api from "../../api/api";
 import { serializeToHtml } from "../../utils/slateToHtml";
+import { useTranslation } from "react-i18next";
 
 const HomePage = () => {
+  const { t } = useTranslation();
   const [pageAccueil, setPageAccueil] = useState([]);
+  const lang = localStorage.getItem("lang") || "fr";
 
   const fetchData = async () => {
     try {
-      const response = await api.get("/pages/accueil");
+      const response = await api.get(`/pages/accueil?lang=${lang}`);
 
       setPageAccueil(response.data);
     } catch (error) {
@@ -28,7 +31,10 @@ const HomePage = () => {
           className="text-white font-main font-semibold text-display text-center"
           style={{ textShadow: "2px 2px 5px #333" }}
         >
-          Département Ingénierie - Cognition - Handicap <br /> <br /> UFR eriTES
+          {/* Département Ingénierie - Cognition - Handicap <br /> <br /> UFR eriTES */}
+          {t("accueil_title.1")}
+          <br /> <br />
+          {t("accueil_title.2")}
         </h1>
       </div>
 
