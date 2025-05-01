@@ -1,8 +1,10 @@
 import { ChevronDown, Moon, SunMedium } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-const Header = ({ switchLang }) => {
+  const Header = ({ switchLang }) => {
+    const { t } = useTranslation();
   const location = useLocation();
 
   const [showAct, setShowAct] = useState(false);
@@ -103,7 +105,7 @@ const Header = ({ switchLang }) => {
               location.pathname === "/" ? "underline" : ""
             }`}
           >
-            Accueil
+            {t("home.link")}
           </Link>
 
           <div className="relative" ref={actMenuRef}>
@@ -113,7 +115,7 @@ const Header = ({ switchLang }) => {
               }`}
               onClick={() => setShowAct(!showAct)}
             >
-              <p className="mx-1">Actualités</p>
+              <p className="mx-1">{t("news.link")}</p>
               <ChevronDown size={26} color="#232323" strokeWidth={2.5} />
             </button>
 
@@ -123,7 +125,7 @@ const Header = ({ switchLang }) => {
                   to="/conferences"
                   className="hover:bg-gray-200 rounded-md px-4 py-2"
                 >
-                  Conférences
+                  {t("news.conferences.link")}
                 </Link>
               </div>
             )}
@@ -144,7 +146,7 @@ const Header = ({ switchLang }) => {
               }`}
               onClick={() => setShowDept(!showDept)}
             >
-              <p className="mx-1">Département ICH</p>
+              <p className="mx-1">{t("department.link")}</p>
               <ChevronDown size={26} color="#232323" strokeWidth={2.5} />
             </button>
             {showDept && (
@@ -153,31 +155,31 @@ const Header = ({ switchLang }) => {
                   to="/equipe"
                   className="hover:bg-gray-200 rounded-md px-4 py-2"
                 >
-                  Équipe
+                  {t("department.team.link")}
                 </Link>
                 <Link
                   to="/master"
                   className="hover:bg-gray-200 rounded-md px-4 py-2"
                 >
-                  Master MIASHS
+                  {t("department.master.link")}
                 </Link>
                 <Link
                   to="/lab-chart"
                   className="hover:bg-gray-200 rounded-md px-4 py-2"
                 >
-                  Lab CHArt
+                  {t("department.lab-chart.link")}
                 </Link>
                 <Link
                   to="/projets-etudiants"
                   className="hover:bg-gray-200 rounded-md px-4 py-2"
                 >
-                  Projets étudiants
+                  {t("department.projects_title")}
                 </Link>
                 <Link
                   to="/prix-concours"
                   className="hover:bg-gray-200 rounded-md px-4 py-2"
                 >
-                  Prix & concours
+                  {t("department.awards_title")}
                 </Link>
               </div>
             )}
@@ -205,13 +207,13 @@ const Header = ({ switchLang }) => {
                   to="/collaboration-nationale"
                   className="hover:bg-gray-200 rounded-md px-4 py-2"
                 >
-                  Nationale
+                  {t("collaboration.national.link")}
                 </Link>
                 <Link
                   to="/collaboration-internationale"
                   className="hover:bg-gray-200 rounded-md px-4 py-2"
                 >
-                  Internationale
+                  {t("collaboration.international.link")}
                 </Link>
               </div>
             )}

@@ -1,10 +1,13 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const LabPage = () => {
+  const { t } = useTranslation();
+
   return (
     <main className="flex-grow my-10 mb-20 mx-16">
       <h1 className="font-main font-semibold text-display my-2 mb-4">
-        Laboratoire Cognition Humaine et ARTificielle (CHArt)
+        {t("department.lab-chart.title")}
       </h1>
     </main>
   );

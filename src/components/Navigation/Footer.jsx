@@ -1,15 +1,16 @@
-import { ChevronDown } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Footer = ({ switchLang }) => {
+    const { t } = useTranslation();
   const [showLang, setShowLang] = useState(false);
 
   const langMenuRef = useRef(null);
 
   const handleClickOutside = (event, setState, menuRef) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
-      setState(false); // Close the menu if clicked outside
+      setState(false); 
     }
   };
 
@@ -99,7 +100,7 @@ const Footer = ({ switchLang }) => {
         <nav className="flex justify-between font-main text-nav">
           <div className="flex flex-col mx-5">
             <Link className="my-1 hover:translate-[1px] hover:underline" to="/">
-              Accueil
+            {t("home.link")}
             </Link>
             <Link
               className="my-1 hover:translate-[1px] hover:underline"
@@ -110,46 +111,46 @@ const Footer = ({ switchLang }) => {
           </div>
 
           <div className="flex flex-col mx-5">
-            <p className="my-1 font-medium">Actualités</p>
+            <p className="my-1 font-medium">{t("news.link")}</p>
             <Link
               className="my-1 hover:translate-[1px] hover:underline"
               to="/conférences"
             >
-              Conférences
+              {t("news.conferences.link")}
             </Link>
           </div>
 
           <div className="flex flex-col mx-5">
-            <p className="my-1 font-medium">Département ICH</p>
+            <p className="my-1 font-medium">{t("department.link")}</p>
             <Link
               className="my-1 hover:translate-[1px] hover:underline"
               to="/équipe"
             >
-              Équipe
+              {t("department.team.link")}
             </Link>
             <Link
               className="my-1 hover:translate-[1px] hover:underline"
               to="/master"
             >
-              Master MIASHS
+              {t("department.master.link")}
             </Link>
             <Link
               className="my-1 hover:translate-[1px] hover:underline"
               to="/lab-chart"
             >
-              Lab CHArt
+              {t("department.lab-chart.link")}
             </Link>
             <Link
               className="my-1 hover:translate-[1px] hover:underline"
               to="/projets-étudiants"
             >
-              Projets étudiants
+              {t("department.projects_title")}
             </Link>
             <Link
               className="my-1 hover:translate-[1px] hover:underline"
               to="/prix-concours"
             >
-              Prix & concours
+              {t("department.awards_title")}
             </Link>
           </div>
 
@@ -159,13 +160,13 @@ const Footer = ({ switchLang }) => {
               className="my-1 hover:translate-[1px] hover:underline"
               to="/collaboration-nationale"
             >
-              Nationale
+              {t("collaboration.national.link")}
             </Link>
             <Link
               className="my-1 hover:translate-[1px] hover:underline"
               to="/collaboration-internationale"
             >
-              Internationale
+              {t("collaboration.international.link")}
             </Link>
           </div>
         </nav>

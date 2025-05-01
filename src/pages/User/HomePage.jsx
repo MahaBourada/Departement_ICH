@@ -18,8 +18,6 @@ const HomePage = () => {
     }
   };
 
-  console.log(pageAccueil);
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -32,9 +30,9 @@ const HomePage = () => {
           style={{ textShadow: "2px 2px 5px #333" }}
         >
           {/* Département Ingénierie - Cognition - Handicap <br /> <br /> UFR eriTES */}
-          {t("accueil_title.1")}
+          {t("home.title.1")}
           <br /> <br />
-          {t("accueil_title.2")}
+          {t("home.title.2")}
         </h1>
       </div>
 

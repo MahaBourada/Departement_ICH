@@ -1,10 +1,13 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const ProjectsPage = () => {
+  const { t } = useTranslation();
+
   return (
     <main className="flex-grow my-10 mb-20 mx-16 ">
       <h1 className="font-main font-semibold text-display my-2">
-        Projets étudiants
+        {t("department.projects_title")}
       </h1>
 
       <div className="border-black border-[1px] my-5 w-full mx-6"></div>

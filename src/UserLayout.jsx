@@ -8,7 +8,7 @@ const Layout = () => {
   const switchLang = (lang) => {
     localStorage.setItem("lang", lang);
     setTimeout(() => {
-      i18n.changeLanguage(lng);
+      i18n.changeLanguage(lang);
     }, 300);
     window.location.reload();
   };

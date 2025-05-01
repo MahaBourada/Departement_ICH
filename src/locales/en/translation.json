@@ -1,9 +1,61 @@
 {
-  "accueil_title": {
-    "1": "Department of Engineering - Cognition - Disability",
-    "2": "eriTES faculty"
+  "home": {
+    "link": "Home",
+    "title": {
+      "1": "Department of Engineering - Cognition - Disability",
+      "2": "eriTES faculty"
+    }
   },
-  "conferences": {
-    "title": "Conferences schedule"
+  "news": {
+    "link": "News",
+    "conferences": {
+      "link": "Conferences",
+      "title": "Conferences schedule"
+    }
+  },
+  "department": {
+    "link": "ICH department",
+    "team": {
+      "link": "Team",
+      "title": "Department team"
+    },
+    "master": {
+      "link": "MIASHS Master",
+      "title": "Master's in MIASHS - Specialization in Technology and Disability"
+    },
+    "lab-chart": {
+      "link": "CHArt lab",
+      "title": "Human and ARTificial Cognition Laboratory (CHArt)"
+    },
+    "projects_title": "Students projects",
+    "awards_title": "Awards & Competitions"
+  },
+  "collaboration": {
+    "national": {
+      "link": "National",
+      "title": "National collaboration"
+    },
+    "international": {
+      "link": "International",
+      "title": "International collaboration"
+    }
+  },
+  "contact": {
+    "title": "Location",
+    "form": {
+      "title": "Having a problem? Contact us",
+      "firstname_label": "First name",
+      "lastname_label": "Last name",
+      "mail_placeholder": "example@mail.com",
+      "object": {
+        "label": "Object",
+        "placeholder": "Select an option",
+        "1": "Feedback",
+        "2": "Information"
+      },
+      "message_placeholder": "Write your message",
+      "submit": "Submit",
+      "reset": "Reset"
+    }
   }
 }

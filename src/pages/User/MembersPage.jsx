@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const MembersPage = () => {
+  const { t } = useTranslation();
+
   return (
     <main className="flex-grow my-10 mb-20 mx-16">
       <h1 className="font-main font-semibold text-display my-2 mb-4">
-        Équipe du département
+        {t("department.team.title")}
       </h1>
 
       <h2 className="font-medium text-header font-main mx-2">
@@ -27,7 +30,9 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold text-2xl my-2">Maître de conférences</p>
+              <p className="font-semibold text-2xl my-2">
+                Maître de conférences
+              </p>
               <p className="mx-2">61e section</p>
               <ul className="list-disc mx-7 leading-9">
                 <li>Génie informatique</li>
@@ -112,7 +117,9 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold text-2xl my-2">Professeur des Universités</p>
+              <p className="font-semibold text-2xl my-2">
+                Professeur des Universités
+              </p>
               <p className="mx-2">27e section</p>
               <ul className="list-disc mx-7 leading-9">
                 <li>Informatique</li>
@@ -137,7 +144,9 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold text-2xl my-2">Maître de conférences</p>
+              <p className="font-semibold text-2xl my-2">
+                Maître de conférences
+              </p>
               <p className="mx-2">61e section</p>
               <ul className="list-disc mx-7 leading-9">
                 <li>Génie informatique</li>
@@ -187,7 +196,9 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold text-2xl my-2">Maître de conférences</p>
+              <p className="font-semibold text-2xl my-2">
+                Maître de conférences
+              </p>
               <p className="mx-2">27e section</p>
               <ul className="list-disc mx-7 leading-9">
                 <li>Informatique</li>
@@ -210,7 +221,9 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold text-2xl my-2">Professeur des Universités</p>
+              <p className="font-semibold text-2xl my-2">
+                Professeur des Universités
+              </p>
               <p className="mx-2">27e section</p>
               <ul className="list-disc mx-7 leading-9">
                 <li>Informatique</li>

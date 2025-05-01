@@ -1,6 +1,9 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const ContactPage = () => {
+  const { t } = useTranslation();
+
   const onSubmit = (e) => {
     e.preventDefault();
   };
@@ -11,7 +14,7 @@ const ContactPage = () => {
       <div className="flex justify-between items-start">
         <div className="flex flex-col ml-3">
           <h2 className="font-main font-medium text-header my-2">
-            Localisation
+            {t("contact.title")}
           </h2>
           <ul className="list-disc ml-8 leading-9">
             <li>Université Paris 8</li>
@@ -32,7 +35,7 @@ const ContactPage = () => {
           className="flex flex-col w-[45%] mr-7"
         >
           <h2 className="font-main font-medium text-header my-2">
-            Un problème ? Contactez-nous
+            {t("contact.title")}
           </h2>
           <div className="flex items-start justify-between mb-3">
             <div className="flex flex-col w-1/2 mr-3">
@@ -40,7 +43,7 @@ const ContactPage = () => {
                 htmlFor="prenom"
                 className="text-nav font-main font-medium my-1"
               >
-                Prénom *
+                {t("contact.form.firstname_label")} *
               </label>
               <input
                 type="text"
@@ -56,13 +59,13 @@ const ContactPage = () => {
                 htmlFor="nom"
                 className="text-nav font-main font-medium my-1"
               >
-                Nom *
+                {t("contact.form.lastname_label")} *
               </label>
               <input
                 type="text"
                 name="nom"
                 id="nom"
-                placeholder="Doe"
+                placeholder="DOE"
                 className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
               />
             </div>
@@ -79,7 +82,7 @@ const ContactPage = () => {
               type="email"
               name="email"
               id="email"
-              placeholder="example@mail.com"
+              placeholder={t("contact.form.mail_placeholder")}
               className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
             />
           </div>
@@ -89,16 +92,16 @@ const ContactPage = () => {
               htmlFor="objet"
               className="text-nav font-main font-medium my-1"
             >
-              Objet *
+              {t("contact.form.object.label")} *
             </label>
             <select
               name="objet"
               id="objet"
               className="bg-white rounded-2xl px-5 py-[0.8rem] border-[1px] border-black mr-2 outline-none shadow-small"
             >
-              <option value="">Selectionez une option</option>
-              <option value="feedback">Feedback</option>
-              <option value="reneseignements">Renseignements</option>
+              <option value="">{t("contact.form.object.placeholder")}</option>
+              <option value="feedback">{t("contact.form.object.1")}</option>
+              <option value="reneseignements">{t("contact.form.object.2")}</option>
             </select>
           </div>
 
@@ -113,7 +116,7 @@ const ContactPage = () => {
               name="message"
               id="message"
               rows="5"
-              placeholder="Rédigez votre message"
+              placeholder={t("contact.form.message_placeholder")}
               className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-3 outline-none shadow-small"
             ></textarea>
           </div>
@@ -123,13 +126,13 @@ const ContactPage = () => {
               type="reset"
               className="cursor-pointer bg-white border-2 border-black font-main font-medium rounded-2xl px-5 py-3 ml-2 shadow-small hover:translate-[1px] hover:shadow-none"
             >
-              Réinitialiser
+              {t("contact.form.reset")}
             </button>
             <button
               type="submit"
               className="cursor-pointer bg-accent font-main font-medium rounded-2xl px-5 py-3 mx-3 shadow-small hover:translate-[1px] hover:shadow-none"
             >
-              Envoyer
+              {t("contact.form.submit")}
             </button>
           </div>
         </form>

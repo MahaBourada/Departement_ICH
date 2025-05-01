@@ -1,9 +1,61 @@
 {
-  "accueil_title": {
-    "1": "Département Ingénierie - Cognition - Handicap",
-    "2": "UFR eriTES"
+  "home": {
+    "link": "Accueil",
+    "title": {
+      "1": "Département Ingénierie - Cognition - Handicap",
+      "2": "UFR eriTES"
+    }
   },
-  "conferences": {
-    "title": "Calendrier des conférences"
+  "news": {
+    "link": "Actualités",
+    "conferences": {
+      "link": "Conférences",
+      "title": "Calendrier des conférences"
+    }
+  },
+  "department": {
+    "link": "Département ICH",
+    "team": {
+      "link": "Equipe",
+      "title": "Équipe du département"
+    },
+    "master": {
+      "link": "Master MIASHS",
+      "title": "Master MIASHS - Parcours Technologie et handicap"
+    },
+    "lab-chart": {
+      "link": "Lab CHArt",
+      "title": "Laboratoire Cognition Humaine et ARTificielle (CHArt)"
+    },
+    "projects_title": "Projets étudiants",
+    "awards_title": "Prix & Concours"
+  },
+  "collaboration": {
+    "national": {
+      "link": "Nationale",
+      "title": "Collaboration nationale"
+    },
+    "international": {
+      "link": "Internationale",
+      "title": "Collaboration internationale"
+    }
+  },
+  "contact": {
+    "title": "Localisation",
+    "form": {
+      "title": "Un problème ? Contactez-nous",
+      "firstname_label": "Prénom",
+      "lastname_label": "Nom",
+      "mail_placeholder": "exemple@mail.com",
+      "object": {
+        "label": "Objet",
+        "placeholder": "Sélectionnez une option",
+        "1": "Feedback",
+        "2": "Renseignements"
+      },
+      "message_placeholder": "Rédigez votre message",
+      "submit": "Envoyer",
+      "reset": "Réinitialiser"
+    }
   }
 }
