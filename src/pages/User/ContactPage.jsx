@@ -35,7 +35,7 @@ const ContactPage = () => {
           className="flex flex-col w-[45%] mr-7"
         >
           <h2 className="font-main font-medium text-header my-2">
-            {t("contact.title")}
+            {t("contact.form.title")}
           </h2>
           <div className="flex items-start justify-between mb-3">
             <div className="flex flex-col w-1/2 mr-3">
@@ -101,7 +101,9 @@ const ContactPage = () => {
             >
               <option value="">{t("contact.form.object.placeholder")}</option>
               <option value="feedback">{t("contact.form.object.1")}</option>
-              <option value="reneseignements">{t("contact.form.object.2")}</option>
+              <option value="reneseignements">
+                {t("contact.form.object.2")}
+              </option>
             </select>
           </div>
 

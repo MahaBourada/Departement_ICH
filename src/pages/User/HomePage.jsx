@@ -26,10 +26,9 @@ const HomePage = () => {
     <main className="flex-grow leading-9">
       <div className="h-72 bg-cover bg-center bg-no-repeat flex items-center justify-center bg-[url('/assets/images/HomeImage.png')]">
         <h1
-          className="text-white font-main font-semibold text-display text-center"
+          className="text-white bg-bg-transparent py-6 px-7 rounded-4xl font-main font-semibold text-display text-center"
           style={{ textShadow: "2px 2px 5px #333" }}
         >
-          {/* Département Ingénierie - Cognition - Handicap <br /> <br /> UFR eriTES */}
           {t("home.title.1")}
           <br /> <br />
           {t("home.title.2")}

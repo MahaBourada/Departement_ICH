@@ -43,7 +43,7 @@
   "contact": {
     "title": "Location",
     "form": {
-      "title": "Having a problem? Contact us",
+      "title": "Have a problem ? Contact us",
       "firstname_label": "First name",
       "lastname_label": "Last name",
       "mail_placeholder": "example@mail.com",

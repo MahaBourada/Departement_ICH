@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const Footer = ({ switchLang }) => {
-    const { t } = useTranslation();
+  const { t } = useTranslation();
   const [showLang, setShowLang] = useState(false);
 
   const langMenuRef = useRef(null);
 
   const handleClickOutside = (event, setState, menuRef) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
-      setState(false); 
+      setState(false);
     }
   };
 
@@ -37,7 +37,7 @@ const Footer = ({ switchLang }) => {
   };
 
   return (
-    <footer className="flex flex-col items-center py-4 px-10 bg-main">
+    <footer className="flex flex-col items-center py-4 px-10 bg-main dark:bg-dark-main dark:text-black">
       <div className="flex justify-between items-center w-full">
         <img
           src="/assets/vectors/Logo.svg"
@@ -63,7 +63,7 @@ const Footer = ({ switchLang }) => {
             />
             <button
               type="submit"
-              className="cursor-pointer bg-accent font-main font-medium rounded-2xl px-5 py-3 ml-2 shadow-small hover:translate-[1px] hover:shadow-none"
+              className="cursor-pointer bg-accent dark:bg-dark-accent font-main font-medium rounded-2xl px-5 py-3 ml-2 shadow-small hover:translate-[1px] hover:shadow-none"
             >
               S'inscrire
             </button>
@@ -75,32 +75,35 @@ const Footer = ({ switchLang }) => {
 
       <div className="flex justify-between items-end w-full">
         <div className="flex items-center">
-          <button
-            className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px] mb-2"
-            onClick={() => switchLang("fr")}
-          >
-            <img
-              src="/assets/images/french.png"
-              alt="Drapeau français"
-              width={33}
-            />
-          </button>
-          <button
-            className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px] mb-2"
-            onClick={() => switchLang("en")}
-          >
-            <img
-              src="/assets/images/english.png"
-              alt="Drapeau du Royaume-Uni"
-              width={33}
-            />
-          </button>
+          {localStorage.getItem("lang") === "en" ? (
+            <button
+              className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px]"
+              onClick={() => switchLang("fr")}
+            >
+              <img
+                src="/assets/images/french.png"
+                alt="Version française"
+                width={33}
+              />
+            </button>
+          ) : (
+            <button
+              className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px]"
+              onClick={() => switchLang("en")}
+            >
+              <img
+                src="/assets/images/english.png"
+                alt="English version"
+                width={33}
+              />
+            </button>
+          )}
         </div>
 
         <nav className="flex justify-between font-main text-nav">
           <div className="flex flex-col mx-5">
             <Link className="my-1 hover:translate-[1px] hover:underline" to="/">
-            {t("home.link")}
+              {t("home.link")}
             </Link>
             <Link
               className="my-1 hover:translate-[1px] hover:underline"
@@ -173,15 +176,15 @@ const Footer = ({ switchLang }) => {
       </div>
 
       <div className="flex justify-between items-center mt-5">
-        <p className="mx-1 underline">Accessibilité</p>
+        <p className="mx-1">Accessibilité</p>
         <p className="mx-1">|</p>
-        <p className="mx-1 underline">Crédits</p>
+        <p className="mx-1">Crédits</p>
         <p className="mx-1">|</p>
-        <p className="mx-1 underline">Mentions légales</p>
+        <p className="mx-1">Mentions légales</p>
         <p className="mx-1">|</p>
-        <p className="mx-1 underline">Politique de confidentialité</p>
+        <p className="mx-1">Politique de confidentialité</p>
         <p className="mx-1">|</p>
-        <p className="mx-1 underline">@2025 Paris 8 - Droits d'auteurs</p>
+        <p className="mx-1">@2025 Paris 8 - Droits d'auteurs</p>
       </div>
     </footer>
   );

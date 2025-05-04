@@ -2,9 +2,10 @@ import { ChevronDown, Moon, SunMedium } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import ThemeSwitch from "../ThemeSwitch";
 
-  const Header = ({ switchLang }) => {
-    const { t } = useTranslation();
+const Header = ({ switchLang }) => {
+  const { t } = useTranslation();
   const location = useLocation();
 
   const [showAct, setShowAct] = useState(false);
@@ -51,7 +52,7 @@ import { useTranslation } from "react-i18next";
   }, [showAct, showDept, showColl, showLang]);
 
   return (
-    <header className="flex justify-between items-end font-main text-nav font-medium py-4 px-10 bg-main">
+    <header className="flex justify-between items-end font-main text-nav font-medium py-4 px-10 bg-main dark:bg-dark-main dark:text-black">
       <img
         src="/assets/vectors/Logo.svg"
         alt="Logo de l'universite Paris 8"
@@ -61,34 +62,38 @@ import { useTranslation } from "react-i18next";
       <div className="flex flex-col items-end">
         <div className="flex items-center mb-3">
           <div className="flex items-center">
-            <button
-              className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px]"
-              onClick={() => switchLang("fr")}
-            >
-              <img
-                src="/assets/images/french.png"
-                alt="Version française"
-                width={33}
-              />
-            </button>
-            <button
-              className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px]"
-              onClick={() => switchLang("en")}
-            >
-              <img
-                src="/assets/images/english.png"
-                alt="English version"
-                width={33}
-              />
-            </button>
+            {localStorage.getItem("lang") === "en" ? (
+              <button
+                className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px]"
+                onClick={() => switchLang("fr")}
+              >
+                <img
+                  src="/assets/images/french.png"
+                  alt="Version française"
+                  width={33}
+                />
+              </button>
+            ) : (
+              <button
+                className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px]"
+                onClick={() => switchLang("en")}
+              >
+                <img
+                  src="/assets/images/english.png"
+                  alt="English version"
+                  width={33}
+                />
+              </button>
+            )}
           </div>
 
-          <button className="ml-1 cursor-pointer hover:translate-[1px]">
-            <SunMedium size={33} strokeWidth={2} />
+          {/* <button className="ml-1 cursor-pointer hover:translate-[1px]">
+            <SunMedium aria-label="Thème clair" size={33} strokeWidth={2} />
           </button>
           <button className="ml-1 cursor-pointer hover:translate-[1px]">
-            <Moon size={28} strokeWidth={2.2} />
-          </button>
+            <Moon aria-label="Thème sombre" size={26.25} strokeWidth={2.5} />
+          </button> */}
+          <ThemeSwitch />
 
           <Link
             to="/admin"

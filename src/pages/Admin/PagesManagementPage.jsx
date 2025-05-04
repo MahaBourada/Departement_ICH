@@ -39,7 +39,7 @@ const PagesManagementPage = () => {
 
   const fetchData = async () => {
     try {
-      const response = await api.get(`/pages/${link}`);
+      const response = await api.get(`/pages/${link}?lang=fr`);
 
       const fetchedSections = response.data.map((section) => ({
         idSection: section.idSection,
@@ -69,6 +69,8 @@ const PagesManagementPage = () => {
       }
 
       setSections(fetchedSections);
+      
+      console.log(fetchedSections)
     } catch (error) {
       console.error("Failed to fetch sections", error);
     }
