@@ -57,7 +57,7 @@ const AdminForm = () => {
               type="text"
               name="lastname"
               id="lastname"
-              placeholder="Doe"
+              placeholder="DOE"
               className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
               onChange={(e) =>
                 setValues({ ...values, lastname: e.target.value })

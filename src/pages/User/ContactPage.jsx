@@ -40,15 +40,15 @@ const ContactPage = () => {
           <div className="flex items-start justify-between mb-3">
             <div className="flex flex-col w-1/2 mr-3">
               <label
-                htmlFor="prenom"
+                htmlFor={t("contact.form.firstname_label")}
                 className="text-nav font-main font-medium my-1"
               >
                 {t("contact.form.firstname_label")} *
               </label>
               <input
                 type="text"
-                name="prenom"
-                id="prenom"
+                name={t("contact.form.firstname_label")}
+                id={t("contact.form.firstname_label")}
                 placeholder="Jane"
                 className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
               />
@@ -56,15 +56,15 @@ const ContactPage = () => {
 
             <div className="flex flex-col w-1/2">
               <label
-                htmlFor="nom"
+                htmlFor={t("contact.form.lastname_label")}
                 className="text-nav font-main font-medium my-1"
               >
                 {t("contact.form.lastname_label")} *
               </label>
               <input
                 type="text"
-                name="nom"
-                id="nom"
+                name={t("contact.form.lastname_label")}
+                id={t("contact.form.lastname_label")}
                 placeholder="DOE"
                 className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
               />
@@ -73,15 +73,15 @@ const ContactPage = () => {
 
           <div className="flex flex-col my-3">
             <label
-              htmlFor="email"
+              htmlFor="E-mail"
               className="text-nav font-main font-medium my-1"
             >
               E-mail *
             </label>
             <input
               type="email"
-              name="email"
-              id="email"
+              name="E-mail"
+              id="E-mail"
               placeholder={t("contact.form.mail_placeholder")}
               className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
             />
@@ -89,14 +89,14 @@ const ContactPage = () => {
 
           <div className="flex flex-col my-3">
             <label
-              htmlFor="objet"
+              htmlFor={t("contact.form.object.label")}
               className="text-nav font-main font-medium my-1"
             >
               {t("contact.form.object.label")} *
             </label>
             <select
-              name="objet"
-              id="objet"
+              name={t("contact.form.object.label")}
+              id={t("contact.form.object.label")}
               className="bg-white rounded-2xl px-5 py-[0.8rem] border-[1px] border-black mr-2 outline-none shadow-small"
             >
               <option value="">{t("contact.form.object.placeholder")}</option>
@@ -109,14 +109,14 @@ const ContactPage = () => {
 
           <div className="flex flex-col my-3">
             <label
-              htmlFor="message"
+              htmlFor="Message"
               className="text-nav font-main font-medium my-1"
             >
               Message *
             </label>
             <textarea
-              name="message"
-              id="message"
+              name="Message"
+              id="Message"
               rows="5"
               placeholder={t("contact.form.message_placeholder")}
               className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-3 outline-none shadow-small"

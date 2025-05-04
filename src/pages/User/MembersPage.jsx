@@ -30,9 +30,9 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold text-2xl my-2">
+              <h4 className="font-semibold text-2xl my-2">
                 Maître de conférences
-              </p>
+              </h4>
               <p className="mx-2">61e section</p>
               <ul className="list-disc mx-7 leading-9">
                 <li>Génie informatique</li>
@@ -61,13 +61,7 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold text-2xl my-2">Secrétaire</p>
-              {/* <p>61e section</p>
-            <ul className="list-disc mx-5">
-              <li>Génie informatique</li>
-              <li>Automatique</li>
-              <li>Traitement du signal</li>
-            </ul> */}
+              <h4 className="font-semibold text-2xl my-2">Secrétaire</h4>
             </div>
           </div>
         </Link>
@@ -86,13 +80,7 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold text-2xl my-2">Technicienne</p>
-              {/* <p>61e section</p>
-            <ul className="list-disc mx-5">
-              <li>Génie informatique</li>
-              <li>Automatique</li>
-              <li>Traitement du signal</li>
-            </ul> */}
+              <h4 className="font-semibold text-2xl my-2">Technicienne</h4>
             </div>
           </div>
         </Link>
@@ -117,9 +105,9 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold text-2xl my-2">
+              <h4 className="font-semibold text-2xl my-2">
                 Professeur des Universités
-              </p>
+              </h4>
               <p className="mx-2">27e section</p>
               <ul className="list-disc mx-7 leading-9">
                 <li>Informatique</li>
@@ -144,9 +132,9 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold text-2xl my-2">
+              <h4 className="font-semibold text-2xl my-2">
                 Maître de conférences
-              </p>
+              </h4>
               <p className="mx-2">61e section</p>
               <ul className="list-disc mx-7 leading-9">
                 <li>Génie informatique</li>
@@ -171,13 +159,7 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold text-2xl my-2">A fournir</p>
-              {/* <p className="mx-2">61e section</p>
-              <ul className="list-disc mx-7 leading-9">
-                <li>Génie informatique</li>
-                <li>Automatique</li>
-                <li>Traitement du signal</li>
-              </ul> */}
+              <h4 className="font-semibold text-2xl my-2">A fournir</h4>
             </div>
           </div>
         </Link>
@@ -196,9 +178,9 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold text-2xl my-2">
+              <h4 className="font-semibold text-2xl my-2">
                 Maître de conférences
-              </p>
+              </h4>
               <p className="mx-2">27e section</p>
               <ul className="list-disc mx-7 leading-9">
                 <li>Informatique</li>
@@ -221,9 +203,9 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold text-2xl my-2">
+              <h4 className="font-semibold text-2xl my-2">
                 Professeur des Universités
-              </p>
+              </h4>
               <p className="mx-2">27e section</p>
               <ul className="list-disc mx-7 leading-9">
                 <li>Informatique</li>
@@ -246,13 +228,7 @@ const MembersPage = () => {
             />
 
             <div className="ml-4 my-2">
-              <p className="font-semibold text-2xl my-2">A fournir</p>
-              {/* <p className="mx-2">61e section</p>
-              <ul className="list-disc mx-7 leading-9">
-                <li>Génie informatique</li>
-                <li>Automatique</li>
-                <li>Traitement du signal</li>
-              </ul> */}
+              <h4 className="font-semibold text-2xl my-2">A fournir</h4>
             </div>
           </div>
         </Link>

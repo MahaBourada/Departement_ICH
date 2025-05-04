@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
   <head>
+    <script>
+      document.documentElement.lang = localStorage.getItem("lang") || "fr";
+    </script>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

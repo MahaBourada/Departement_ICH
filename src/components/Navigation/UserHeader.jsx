@@ -52,11 +52,11 @@ const Header = ({ switchLang }) => {
   }, [showAct, showDept, showColl, showLang]);
 
   return (
-    <header className="flex justify-between items-end font-main text-nav font-medium py-4 px-10 bg-main dark:bg-dark-main dark:text-black">
+    <header className="flex justify-between items-center font-main text-nav font-medium py-2 px-10 bg-main dark:bg-dark-main dark:text-black">
       <img
         src="/assets/vectors/Logo.svg"
         alt="Logo de l'universite Paris 8"
-        width={140}
+        width={160}
       />
 
       <div className="flex flex-col items-end">
@@ -64,40 +64,37 @@ const Header = ({ switchLang }) => {
           <div className="flex items-center">
             {localStorage.getItem("lang") === "en" ? (
               <button
-                className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px]"
+                className="cursor-pointer w-fit flex justify-end items-center px-2 hover:underline hover:translate-[1px]"
                 onClick={() => switchLang("fr")}
               >
                 <img
                   src="/assets/images/french.png"
                   alt="Version française"
                   width={33}
+                  className="py-2"
                 />
               </button>
             ) : (
               <button
-                className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px]"
+                className="cursor-pointer w-fit flex justify-end items-center px-2 hover:underline hover:translate-[1px]"
                 onClick={() => switchLang("en")}
               >
                 <img
                   src="/assets/images/english.png"
                   alt="English version"
                   width={33}
+                  className="py-2"
                 />
               </button>
             )}
+
+            <ThemeSwitch />
           </div>
 
-          {/* <button className="ml-1 cursor-pointer hover:translate-[1px]">
-            <SunMedium aria-label="Thème clair" size={33} strokeWidth={2} />
-          </button>
-          <button className="ml-1 cursor-pointer hover:translate-[1px]">
-            <Moon aria-label="Thème sombre" size={26.25} strokeWidth={2.5} />
-          </button> */}
-          <ThemeSwitch />
-
+          <div className="h-8 bg-black w-[1px] rounded-full"></div>
           <Link
             to="/admin"
-            className="ml-1 cursor-pointer hover:translate-[1px]"
+            className="text-[1.125rem] ml-1 cursor-pointer hover:translate-[1px] p-2"
           >
             Mon espace
           </Link>
@@ -106,7 +103,7 @@ const Header = ({ switchLang }) => {
         <nav className="flex justify-between items-center">
           <Link
             to="/"
-            className={`mx-3 hover:underline hover:translate-[1px] ${
+            className={`px-3 py-2 hover:underline hover:translate-[1px] ${
               location.pathname === "/" ? "underline" : ""
             }`}
           >
@@ -115,7 +112,7 @@ const Header = ({ switchLang }) => {
 
           <div className="relative" ref={actMenuRef}>
             <button
-              className={`cursor-pointer flex justify-between items-center mx-3 hover:underline hover:translate-[1px] ${
+              className={`cursor-pointer flex justify-between items-center px-3 py-2 hover:underline hover:translate-[1px] ${
                 ["/conferences"].includes(location.pathname) ? "underline" : ""
               }`}
               onClick={() => setShowAct(!showAct)}
@@ -138,7 +135,7 @@ const Header = ({ switchLang }) => {
 
           <div className="relative" ref={deptMenuRef}>
             <button
-              className={`cursor-pointer flex justify-between items-center mx-3 hover:underline hover:translate-[1px] ${
+              className={`cursor-pointer flex justify-between items-center px-3 py-2 hover:underline hover:translate-[1px] ${
                 [
                   "/equipe",
                   "/master",
@@ -192,7 +189,7 @@ const Header = ({ switchLang }) => {
 
           <div className="relative" ref={collMenuRef}>
             <button
-              className={`cursor-pointer flex justify-between items-center mx-3 hover:underline hover:translate-[1px] ${
+              className={`cursor-pointer flex justify-between items-center px-3 py-2 hover:underline hover:translate-[1px] ${
                 [
                   "/collaboration-nationale",
                   "/collaboration-internationale",
@@ -225,7 +222,7 @@ const Header = ({ switchLang }) => {
           </div>
           <Link
             to="/contact"
-            className={`ml-3 mr-2 hover:underline hover:translate-[1px] ${
+            className={`pl-3 pr-2 py-2 hover:underline hover:translate-[1px] ${
               location.pathname === "/contact" ? "underline" : ""
             }`}
           >

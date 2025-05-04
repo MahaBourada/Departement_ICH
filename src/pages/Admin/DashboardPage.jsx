@@ -44,7 +44,12 @@ const DashboardPage = () => {
             to="/admin/tableau-de-bord/add-admin"
             className="hover:translate-[1px] cursor-pointer mx-4"
           >
-            <Plus size={36} color="#232323" strokeWidth={2.8} />
+            <Plus
+              aria-label="Ajouter un admin"
+              size={36}
+              color="#232323"
+              strokeWidth={2.8}
+            />
           </Link>
         </div>
 
@@ -77,14 +82,22 @@ const DashboardPage = () => {
                       type="button"
                       className="cursor-pointer hover:translate-[1px] mr-1"
                     >
-                      <Pencil size={26} color="#232323" />
+                      <Pencil
+                        aria-label="Mettre à jour un admin"
+                        size={26}
+                        color="#232323"
+                      />
                     </button>
                     <button
                       type="button"
                       className="cursor-pointer hover:translate-[1px] ml-1"
                       onClick={() => handleDelete(admin.idAdmin)}
                     >
-                      <Trash2 size={26} color="#8B0000" />
+                      <Trash2
+                        aria-label="Supprimer un admin"
+                        size={26}
+                        color="#8B0000"
+                      />
                     </button>
                   </div>
                 </td>

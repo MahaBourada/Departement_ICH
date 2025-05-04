@@ -23,14 +23,14 @@ const ThemeSwitch = () => {
   return (
     <button
       type="button"
-      className="hover:translate-x-[1px] hover:translate-y-[1px]"
+      className="hover:translate-x-[1px] hover:translate-y-[1px] p-2"
       onClick={toggleTheme}
       aria-label={theme === "light" ? "Thème sombre" : "Thème clair"}
     >
       {theme === "light" ? (
-        <Moon color="#232323" size={30} className="cursor-pointer" />
+        <Moon color="#232323" size={28} className="cursor-pointer" />
       ) : (
-        <Sun color="#232323" size={30} className="cursor-pointer" />
+        <Sun color="#232323" size={28} className="cursor-pointer" />
       )}
     </button>
   );

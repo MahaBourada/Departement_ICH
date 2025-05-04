@@ -39,42 +39,53 @@ const PagesManagementPage = () => {
 
   const fetchData = async () => {
     try {
-      const response = await api.get(`/pages/${link}?lang=fr`);
+      const [resFr, resEn] = await Promise.all([
+        api.get(`/pages/${link}?lang=fr`),
+        api.get(`/pages/${link}?lang=en`),
+      ]);
 
-      const fetchedSections = response.data.map((section) => ({
-        idSection: section.idSection,
-        link,
-        content_fr: JSON.parse(section.texte_fr),
-        content_en: JSON.parse(section.texte_en),
-        position: section.ordre_positionnement,
-      }));
+      const frenchSections = resFr.data;
+      const englishSections = resEn.data;
 
-      const defaultEmptySection = {
-        content_fr: [
-          {
-            type: "paragraph",
-            children: [{ text: "" }],
-          },
-        ],
-        content_en: [
-          {
-            type: "paragraph",
-            children: [{ text: "" }],
-          },
-        ],
-        link,
-      };
-      while (fetchedSections.length < 4) {
-        fetchedSections.push({ ...defaultEmptySection });
-      }
+      const maxLength = Math.max(
+        frenchSections.length,
+        englishSections.length,
+        4
+      );
+
+      const fetchedSections = Array.from({ length: maxLength }, (_, index) => {
+        const frSection = frenchSections[index];
+        const enSection = englishSections[index];
+
+        console.log(frSection);
+
+        return {
+          link,
+          content_fr: frSection?.texte
+            ? JSON.parse(frSection.texte)
+            : defaultContent,
+          content_en: enSection?.texte
+            ? JSON.parse(enSection.texte)
+            : defaultContent,
+          position:
+            frSection?.ordre_positionnement ??
+            enSection?.ordre_positionnement ??
+            index,
+        };
+      });
 
       setSections(fetchedSections);
-      
-      console.log(fetchedSections)
     } catch (error) {
       console.error("Failed to fetch sections", error);
     }
   };
+
+  const defaultContent = [
+    {
+      type: "paragraph",
+      children: [{ text: "" }],
+    },
+  ];
 
   useEffect(() => {
     fetchData();
