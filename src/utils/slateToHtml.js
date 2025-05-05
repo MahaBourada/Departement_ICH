@@ -28,7 +28,7 @@ export const serializeToHtml = (pagesList, position) => {
             case "block-quote":
               return `<blockquote ${style}>${children}</blockquote>`;
             case "bulleted-list":
-              return `<ul ${style}>${children}</ul>`;
+              return `<ul class="list">${children}</ul>`;
             case "heading-one":
               return `<h1 ${style}>${children}</h1>`;
             case "heading-two":
@@ -38,12 +38,12 @@ export const serializeToHtml = (pagesList, position) => {
             case "numbered-list":
               return `<ol ${style}>${children}</ol>`;
             default:
-              return `<p ${style}>${children}</p>`;
+              return `<p class="justified-text" ${style}>${children}</p>`;
           }
         }
 
         let text = node.text;
-        if (node.bold) text = `<strong>${text}</strong>`;
+        if (node.bold) text = `<strong class="bold-style">${text}</strong>`;
         if (node.italic) text = `<em>${text}</em>`;
         if (node.underline) text = `<u>${text}</u>`;
         if (node.code) text = `<code>${text}</code>`;

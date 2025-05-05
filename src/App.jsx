@@ -22,7 +22,6 @@ import ConferencesManagementPage from "./pages/Admin/ConferencesManagementPage";
 import ProjectsManagementPage from "./pages/Admin/ProjectsManagementPage";
 import PrixManagementPage from "./pages/Admin/PrixManagementPage";
 import AdminForm from "./pages/Admin/AdminForm";
-import HistoryPage from "./pages/Admin/HistoryPage";
 import PagesListPage from "./pages/Admin/PagesListPage";
 
 function App() {
@@ -53,7 +52,6 @@ function App() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="tableau-de-bord" element={<Dashboard />} />
           <Route path="tableau-de-bord/add-admin" element={<AdminForm />} />
-          <Route path="tableau-de-bord/historique" element={<HistoryPage />} />
 
           <Route path="gestion-pages" element={<PagesListPage />} />
           <Route

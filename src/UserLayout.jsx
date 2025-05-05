@@ -12,6 +12,7 @@ const Layout = () => {
       i18n.changeLanguage(lang);
     }, 300);
     window.location.reload();
+    window.scrollTo({ top: 0 });
   };
 
   return (

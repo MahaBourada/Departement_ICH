@@ -26,6 +26,7 @@ const PagesListPage = () => {
       <div className="grid grid-cols-2 mx-14 my-4">
         {pages_titles.map((page, index) => (
           <Link
+            onClick={() => window.scrollTo({ top: 0 })}
             key={index}
             to={`/admin/gestion-pages/${page.link}`}
             state={{ title: page.title, link: page.link }}

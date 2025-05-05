@@ -91,8 +91,10 @@ const Header = ({ switchLang }) => {
             <ThemeSwitch />
           </div>
 
-          <div className="h-8 bg-black w-[1px] rounded-full"></div>
+          <div className="h-7 bg-black w-[1px] rounded-full"></div>
+
           <Link
+            onClick={() => window.scrollTo({ top: 0 })}
             to="/admin"
             className="text-[1.125rem] ml-1 cursor-pointer hover:translate-[1px] p-2"
           >
@@ -102,6 +104,7 @@ const Header = ({ switchLang }) => {
 
         <nav className="flex justify-between items-center">
           <Link
+            onClick={() => window.scrollTo({ top: 0 })}
             to="/"
             className={`px-3 py-2 hover:underline hover:translate-[1px] ${
               location.pathname === "/" ? "underline" : ""
@@ -124,6 +127,7 @@ const Header = ({ switchLang }) => {
             {showAct && (
               <div className="absolute flex flex-col left-2 mt-1 bg-white shadow-md rounded-md font-normal">
                 <Link
+                  onClick={() => window.scrollTo({ top: 0 })}
                   to="/conferences"
                   className="hover:bg-gray-200 rounded-md px-4 py-2"
                 >
@@ -154,30 +158,35 @@ const Header = ({ switchLang }) => {
             {showDept && (
               <div className="absolute flex flex-col left-2 mt-1 bg-white shadow-md rounded-md font-normal">
                 <Link
+                  onClick={() => window.scrollTo({ top: 0 })}
                   to="/equipe"
                   className="hover:bg-gray-200 rounded-md px-4 py-2"
                 >
                   {t("department.team.link")}
                 </Link>
                 <Link
+                  onClick={() => window.scrollTo({ top: 0 })}
                   to="/master"
                   className="hover:bg-gray-200 rounded-md px-4 py-2"
                 >
                   {t("department.master.link")}
                 </Link>
                 <Link
+                  onClick={() => window.scrollTo({ top: 0 })}
                   to="/lab-chart"
                   className="hover:bg-gray-200 rounded-md px-4 py-2"
                 >
                   {t("department.lab-chart.link")}
                 </Link>
                 <Link
+                  onClick={() => window.scrollTo({ top: 0 })}
                   to="/projets-etudiants"
                   className="hover:bg-gray-200 rounded-md px-4 py-2"
                 >
                   {t("department.projects_title")}
                 </Link>
                 <Link
+                  onClick={() => window.scrollTo({ top: 0 })}
                   to="/prix-concours"
                   className="hover:bg-gray-200 rounded-md px-4 py-2"
                 >
@@ -206,12 +215,14 @@ const Header = ({ switchLang }) => {
             {showColl && (
               <div className="absolute flex flex-col left-2 mt-1 bg-white shadow-md rounded-md font-normal">
                 <Link
+                  onClick={() => window.scrollTo({ top: 0 })}
                   to="/collaboration-nationale"
                   className="hover:bg-gray-200 rounded-md px-4 py-2"
                 >
                   {t("collaboration.national.link")}
                 </Link>
                 <Link
+                  onClick={() => window.scrollTo({ top: 0 })}
                   to="/collaboration-internationale"
                   className="hover:bg-gray-200 rounded-md px-4 py-2"
                 >
@@ -221,6 +232,7 @@ const Header = ({ switchLang }) => {
             )}
           </div>
           <Link
+            onClick={() => window.scrollTo({ top: 0 })}
             to="/contact"
             className={`pl-3 pr-2 py-2 hover:underline hover:translate-[1px] ${
               location.pathname === "/contact" ? "underline" : ""

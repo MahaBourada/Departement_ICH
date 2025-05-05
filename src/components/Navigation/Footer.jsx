@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const Footer = ({ switchLang }) => {
@@ -101,76 +101,129 @@ const Footer = ({ switchLang }) => {
         </div>
 
         <nav className="flex justify-between font-main text-nav">
-          <div className="flex flex-col mx-5">
-            <Link className="my-1 hover:translate-[1px] hover:underline" to="/">
+          <div className="flex flex-col px-2">
+            <NavLink
+              onClick={() => window.scrollTo({ top: 0 })}
+              className={({ isActive }) =>
+                isActive
+                  ? "underline p-2"
+                  : "hover:translate-[1px] hover:underline p-2"
+              }
+              to="/"
+            >
               {t("home.link")}
-            </Link>
-            <Link
-              className="my-1 hover:translate-[1px] hover:underline"
+            </NavLink>
+            <NavLink
+              onClick={() => window.scrollTo({ top: 0 })}
+              className={({ isActive }) =>
+                isActive
+                  ? "underline p-2"
+                  : "hover:translate-[1px] hover:underline p-2"
+              }
               to="/contact"
             >
               Contact
-            </Link>
+            </NavLink>
           </div>
 
-          <div className="flex flex-col mx-5">
-            <p className="my-1 font-medium">{t("news.link")}</p>
-            <Link
-              className="my-1 hover:translate-[1px] hover:underline"
-              to="/conférences"
+          <div className="flex flex-col px-2">
+            <p className="p-2 font-medium">{t("news.link")}</p>
+            <NavLink
+              onClick={() => window.scrollTo({ top: 0 })}
+              className={({ isActive }) =>
+                isActive
+                  ? "underline p-2"
+                  : "hover:translate-[1px] hover:underline p-2"
+              }
+              to="/conferences"
             >
               {t("news.conferences.link")}
-            </Link>
+            </NavLink>
           </div>
 
-          <div className="flex flex-col mx-5">
-            <p className="my-1 font-medium">{t("department.link")}</p>
-            <Link
-              className="my-1 hover:translate-[1px] hover:underline"
-              to="/équipe"
+          <div className="flex flex-col px-2">
+            <p className="p-2 font-medium">{t("department.link")}</p>
+            <NavLink
+              onClick={() => window.scrollTo({ top: 0 })}
+              className={({ isActive }) =>
+                isActive
+                  ? "underline p-2"
+                  : "hover:translate-[1px] hover:underline p-2"
+              }
+              to="/equipe"
             >
               {t("department.team.link")}
-            </Link>
-            <Link
-              className="my-1 hover:translate-[1px] hover:underline"
+            </NavLink>
+            <NavLink
+              onClick={() => window.scrollTo({ top: 0 })}
+              className={({ isActive }) =>
+                isActive
+                  ? "underline p-2"
+                  : "hover:translate-[1px] hover:underline p-2"
+              }
               to="/master"
             >
               {t("department.master.link")}
-            </Link>
-            <Link
-              className="my-1 hover:translate-[1px] hover:underline"
+            </NavLink>
+            <NavLink
+              onClick={() => window.scrollTo({ top: 0 })}
+              className={({ isActive }) =>
+                isActive
+                  ? "underline p-2"
+                  : "hover:translate-[1px] hover:underline p-2"
+              }
               to="/lab-chart"
             >
               {t("department.lab-chart.link")}
-            </Link>
-            <Link
-              className="my-1 hover:translate-[1px] hover:underline"
-              to="/projets-étudiants"
+            </NavLink>
+            <NavLink
+              onClick={() => window.scrollTo({ top: 0 })}
+              className={({ isActive }) =>
+                isActive
+                  ? "underline p-2"
+                  : "hover:translate-[1px] hover:underline p-2"
+              }
+              to="/projets-etudiants"
             >
               {t("department.projects_title")}
-            </Link>
-            <Link
-              className="my-1 hover:translate-[1px] hover:underline"
+            </NavLink>
+            <NavLink
+              onClick={() => window.scrollTo({ top: 0 })}
+              className={({ isActive }) =>
+                isActive
+                  ? "underline p-2"
+                  : "hover:translate-[1px] hover:underline p-2"
+              }
               to="/prix-concours"
             >
               {t("department.awards_title")}
-            </Link>
+            </NavLink>
           </div>
 
-          <div className="flex flex-col mx-5">
-            <p className="my-1 font-medium">Collaboration</p>
-            <Link
-              className="my-1 hover:translate-[1px] hover:underline"
+          <div className="flex flex-col px-2">
+            <p className="p-2 font-medium">Collaboration</p>
+            <NavLink
+              onClick={() => window.scrollTo({ top: 0 })}
+              className={({ isActive }) =>
+                isActive
+                  ? "underline p-2"
+                  : "hover:translate-[1px] hover:underline p-2"
+              }
               to="/collaboration-nationale"
             >
               {t("collaboration.national.link")}
-            </Link>
-            <Link
-              className="my-1 hover:translate-[1px] hover:underline"
+            </NavLink>
+            <NavLink
+              onClick={() => window.scrollTo({ top: 0 })}
+              className={({ isActive }) =>
+                isActive
+                  ? "underline p-2"
+                  : "hover:translate-[1px] hover:underline p-2"
+              }
               to="/collaboration-internationale"
             >
               {t("collaboration.international.link")}
-            </Link>
+            </NavLink>
           </div>
         </nav>
       </div>

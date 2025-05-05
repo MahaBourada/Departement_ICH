@@ -5,7 +5,7 @@ const ConferencesPage = () => {
   const { t } = useTranslation();
 
   return (
-    <main className="flex-grow my-10 mb-20 mx-16 ">
+    <main className="flex-grow my-10 mb-20 mx-16">
       <h1 className="font-main font-semibold text-display my-2">
         {t("news.conferences.title")}
       </h1>
@@ -64,7 +64,7 @@ const ConferencesPage = () => {
         </div>
       </div>
 
-      <div>
+      <div className="mr-10">
         <h2 className="font-main font-medium text-header mx-4">
           Conférences passées
         </h2>

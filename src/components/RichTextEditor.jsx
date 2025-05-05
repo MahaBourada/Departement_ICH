@@ -75,7 +75,6 @@ const RichTextEditor = ({ value, onChange }) => {
           renderLeaf={renderLeaf}
           placeholder="Veuillez entrer votre texte..."
           spellCheck
-          autoFocus
           onKeyDown={(event) => {
             for (const hotkey in HOTKEYS) {
               if (isHotkey(hotkey, event)) {

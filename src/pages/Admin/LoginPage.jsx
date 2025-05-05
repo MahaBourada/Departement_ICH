@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../../api/api";
+import { ArrowLeft } from "lucide-react";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[url('/assets/vectors/AdminBg.png')] bg-cover bg-no-repeat bg-center">
+    <div className="flex flex-col min-h-screen bg-[url('/assets/vectors/AdminBg.png')] bg-cover bg-no-repeat bg-center text-black">
       <header>
         <img
           src="/assets/vectors/Logo.svg"
@@ -35,10 +36,24 @@ const LoginPage = () => {
         />
       </header>
       <main className="mx-auto mt-14">
-        <h1 className="text-center text-display font-medium font-main mb-10">
-          Connexion
-        </h1>
-        <form onSubmit={handleSubmit} className="flex flex-col w-96">
+        <div className="flex justify-between items-center">
+          <Link
+            onClick={() => window.scrollTo({ top: 0 })}
+            to="/"
+            className="hover:translate-[1px]"
+          >
+            <ArrowLeft
+              aria-label="Revenir à l'accueil"
+              size={38}
+              color="#232323"
+              strokeWidth={2.5}
+            />
+          </Link>
+          <h1 className="m-auto text-center text-display font-medium font-main">
+            Connexion
+          </h1>
+        </div>
+        <form onSubmit={handleSubmit} className="flex flex-col w-96 mt-10">
           <div className="flex flex-col my-3 w-full">
             <label
               htmlFor="username"

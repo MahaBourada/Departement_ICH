@@ -53,7 +53,7 @@ const DashboardPage = () => {
           </Link>
         </div>
 
-        <table className="w-full mx-5">
+        <table className="w-full mx-3">
           <thead>
             <tr className="border-b-[0.5px] text-start">
               <th className="py-3 text-start">Utilisateur</th>
@@ -109,7 +109,7 @@ const DashboardPage = () => {
           <div>
             <h1 className="text-display font-semibold">Historique</h1>
 
-            <div>
+            <div className="mx-3">
               <div className="flex justify-between items-center my-3">
                 <p>Isis TRUCK</p>
                 <p>01/04/2025</p>
@@ -135,15 +135,17 @@ const DashboardPage = () => {
               <div className="h-[0.5px] bg-black my-1 w-full"></div>
             </div>
 
-            <div className="w-fit ml-auto mt-2 hover:underline hover:translate-[1px] font-semibold">
-              <Link to="/admin/tableau-de-bord/historique">Voir plus</Link>
+            <div className="w-fit ml-auto mt-2 font-semibold">
+              <button className="mr-2 p-2 cursor-pointer hover:underline hover:translate-[1px]">
+                Voir plus
+              </button>
             </div>
           </div>
 
           <div className="my-5">
             <h1 className="text-display font-semibold">Newsletter</h1>
 
-            <div>
+            <div className="mx-3">
               <h2>Meow</h2>
             </div>
           </div>

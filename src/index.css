@@ -41,3 +41,16 @@
   background-color: black;
   color: white;
 }
+
+.list {
+  list-style: disc;
+  margin: 0.25rem 2.1rem;
+}
+
+.bold-style {
+  font-weight: 600;
+}
+
+.justified-text {
+  text-align: justify;
+}
