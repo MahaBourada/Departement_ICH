@@ -96,7 +96,7 @@ const Header = ({ switchLang }) => {
           <Link
             onClick={() => window.scrollTo({ top: 0 })}
             to="/admin"
-            className="text-[1.125rem] ml-1 cursor-pointer hover:translate-[1px] p-2"
+            className="text-[1.125rem] ml-1 cursor-pointer hover:translate-[1px] hover:underline p-2"
           >
             Mon espace
           </Link>

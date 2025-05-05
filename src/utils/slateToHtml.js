@@ -38,7 +38,55 @@ export const serializeToHtml = (pagesList, position) => {
             case "numbered-list":
               return `<ol ${style}>${children}</ol>`;
             default:
-              return `<p class="justified-text" ${style}>${children}</p>`;
+              return `<p ${style}>${children}</p>`;
+          }
+        }
+
+        let text = node.text;
+        if (node.bold) text = `<strong class="bold-style">${text}</strong>`;
+        if (node.italic) text = `<em>${text}</em>`;
+        if (node.underline) text = `<u>${text}</u>`;
+        if (node.code) text = `<code>${text}</code>`;
+
+        return text;
+      })
+      .join("");
+  };
+
+  return serializeToHtml(parsedText);
+};
+
+export const serializeSingleToHtml = (texte) => {
+  let parsedText;
+  try {
+    parsedText = JSON.parse(texte);
+  } catch (error) {
+    console.error("Invalid JSON in texte:", error);
+    return "";
+  }
+
+  const serializeToHtml = (nodes) => {
+    return nodes
+      .map((node) => {
+        if (SlateElement.isElement(node)) {
+          const children = serializeToHtml(node.children);
+          const style = node.align ? `style="text-align: ${node.align}"` : "";
+
+          switch (node.type) {
+            case "block-quote":
+              return `<blockquote ${style}>${children}</blockquote>`;
+            case "bulleted-list":
+              return `<ul class="list">${children}</ul>`;
+            case "heading-one":
+              return `<h1 ${style}>${children}</h1>`;
+            case "heading-two":
+              return `<h2 ${style}>${children}</h2>`;
+            case "list-item":
+              return `<li ${style}>${children}</li>`;
+            case "numbered-list":
+              return `<ol ${style}>${children}</ol>`;
+            default:
+              return `<p ${style}>${children}</p>`;
           }
         }
 

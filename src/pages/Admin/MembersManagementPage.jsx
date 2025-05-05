@@ -26,7 +26,7 @@ const MembersManagementPage = () => {
       ...values,
       propos: JSON.stringify(values.propos),
     };
-    
+
     try {
       await api.put(`/members/${member.idMembre}`, data);
     } catch (error) {
@@ -99,7 +99,7 @@ const MembersManagementPage = () => {
                 Directeur du département
               </option>
               <option value="Administration">Administration</option>
-              <option value="Enseignant">Enseignant</option>
+              <option value="Enseignant(e)">Enseignant(e)</option>
             </select>
           </div>
 

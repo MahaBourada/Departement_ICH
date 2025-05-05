@@ -39,21 +39,30 @@ const MembersListPage = () => {
         </Link>
       </div>
 
+      <div className="m-auto w-fit mt-20 text-3xl font-medium">
+        {members.length === 0 && (
+          <h2>
+            Aucun membre enregistré
+          </h2>
+        )}
+      </div>
+
       <div className="grid grid-cols-2 my-4">
-        {members.map((member, index) => (
-          <Link
-            onClick={() => window.scrollTo({ top: 0 })}
-            key={index}
-            to={`/admin/gestion-equipe/${member.link}`}
-            state={{ nom: member.nom, link: member.link, member: member }}
-            className="mx-4 my-2 hover:translate-[1px] hover:underline"
-          >
-            <div className=" flex justify-between items-center font-main font-medium bg-admin-nav-bg p-6 rounded-3xl">
-              <p>{member.prenom + " " + member.nom.toUpperCase()}</p>
-              <ExternalLink size={26} color="#232323" />
-            </div>
-          </Link>
-        ))}
+        {members.length > 0 &&
+          members.map((member, index) => (
+            <Link
+              onClick={() => window.scrollTo({ top: 0 })}
+              key={index}
+              to={`/admin/gestion-equipe/${member.idMembre}`}
+              state={{ nom: member.nom, link: member.link, member: member }}
+              className="mx-4 my-2 hover:translate-[1px] hover:underline"
+            >
+              <div className=" flex justify-between items-center font-main font-medium bg-admin-nav-bg p-6 rounded-3xl">
+                <p>{member.prenom + " " + member.nom.toUpperCase()}</p>
+                <ExternalLink size={26} color="#232323" />
+              </div>
+            </Link>
+          ))}
       </div>
     </main>
   );
