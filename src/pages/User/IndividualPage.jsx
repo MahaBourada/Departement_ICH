@@ -28,6 +28,8 @@ const IndividualPage = () => {
   const mainPart = match ? match[1].trim() : "";
   const subParts = match ? match[2].split(",").map((s) => s.trim()) : [];
 
+  console.log(serializeSingleToHtml(member.propos))
+
   return (
     <main className="flex-grow my-10 mb-20 mx-16">
       <h1 className="font-main font-semibold text-display my-2 mb-4">
@@ -47,13 +49,19 @@ const IndividualPage = () => {
             ))}
           </ul>
 
-          <h2 className="font-medium text-header font-main mt-4">A propos</h2>
-          <div
-            className="my-2"
-            dangerouslySetInnerHTML={{
-              __html: serializeSingleToHtml(member.propos),
-            }}
-          ></div>
+          {serializeSingleToHtml(member.propos) !== "<p ></p>" && (
+            <>
+              <h2 className="font-medium text-header font-main mt-4">
+                A propos
+              </h2>
+              <div
+                className="my-2"
+                dangerouslySetInnerHTML={{
+                  __html: serializeSingleToHtml(member.propos),
+                }}
+              ></div>
+            </>
+          )}
 
           <h2 className="font-medium text-header font-main mt-4">Contact</h2>
 

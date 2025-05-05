@@ -15,13 +15,22 @@ const MembersManagementPage = () => {
     lieu: "",
   });
 
+  const defaultContent = [
+    {
+      type: "paragraph",
+      children: [{ text: "" }],
+    },
+  ];
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = {
       ...values,
-      propos: JSON.stringify(values.propos),
+      propos: JSON.stringify(values.propos || defaultContent),
     };
+
+    console.log(data);
 
     try {
       await api.post("/members", data);
@@ -31,7 +40,7 @@ const MembersManagementPage = () => {
   };
 
   return (
-    <main className="mx-14 mt-20">
+    <main className="mx-14 my-20">
       <h1 className="text-display font-semibold">Ajouter un membre</h1>
 
       <form onSubmit={handleSubmit} className="flex flex-col mx-5">
@@ -90,7 +99,7 @@ const MembersManagementPage = () => {
                 Directeur du département
               </option>
               <option value="Administration">Administration</option>
-              <option value="Enseignant">Enseignant</option>
+              <option value="Enseignant(e)">Enseignant(e)</option>
             </select>
           </div>
 

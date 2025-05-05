@@ -42,7 +42,7 @@ const RichTextEditor = ({ value, onChange }) => {
   return (
     <Slate
       editor={editor}
-      initialValue={!value ? initialValue : value}
+      initialValue={value ? value : initialValue}
       onChange={(newValue) => {
         onChange(newValue);
       }}

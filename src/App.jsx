@@ -58,7 +58,7 @@ function App() {
           <Route path="gestion-equipe" element={<MembersListPage />} />
           <Route path="gestion-equipe/ajouter-membre" element={<AddMember />} />
           <Route
-            path="gestion-equipe/:member"
+            path="gestion-equipe/:id"
             element={<MembersManagementPage />}
           />
 

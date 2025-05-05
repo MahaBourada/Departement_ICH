@@ -1,11 +1,52 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import RichTextEditor from "../../components/RichTextEditor";
 import api from "../../api/api";
+import { Trash } from "lucide-react";
 
 const MembersManagementPage = () => {
-  const location = useLocation();
-  const { member } = location.state || {};
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const [member, setMember] = useState({});
+
+  const fetchData = async () => {
+    try {
+      const response = await api.get(`/members/${id}`);
+      setMember(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [id]);
+
+  const defaultContent = [
+    {
+      type: "paragraph",
+      children: [{ text: "" }],
+    },
+  ];
+
+  useEffect(() => {
+    if (member?.idMembre) {
+      setValues({
+        prenom: member.prenom || "",
+        nom: member.nom || "",
+        titre: member.titre || "",
+        fonction: member.fonction || "",
+        section: member.section || "",
+        propos:
+          typeof member?.propos === "string" && member.propos.trim() !== ""
+            ? JSON.parse(member.propos)
+            : defaultContent,
+        email: member.email || "",
+        telephone: member.telephone || "",
+        lieu: member.lieu || "",
+      });
+    }
+  }, [member]);
 
   const [values, setValues] = useState({
     prenom: member?.prenom || "",
@@ -13,7 +54,10 @@ const MembersManagementPage = () => {
     titre: member?.titre || "",
     fonction: member?.fonction || "",
     section: member?.section || "",
-    propos: JSON.parse(member?.propos) || "",
+    propos:
+      typeof member?.propos === "string" && member.propos.trim() !== ""
+        ? JSON.parse(member.propos)
+        : defaultContent,
     email: member?.email || "",
     telephone: member?.telephone || "",
     lieu: member?.lieu || "",
@@ -24,7 +68,7 @@ const MembersManagementPage = () => {
 
     const data = {
       ...values,
-      propos: JSON.stringify(values.propos),
+      propos: JSON.stringify(values.propos || defaultContent),
     };
 
     try {
@@ -34,11 +78,39 @@ const MembersManagementPage = () => {
     }
   };
 
+  const handleDelete = async (idMembre) => {
+    try {
+      await api.delete(`/members/${idMembre}`);
+      setTimeout(() => {
+        navigate("/admin/gestion-equipe");
+      }, 300);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  console.log(values.propos);
+
   return (
-    <main className="mx-14 mt-20">
-      <h1 className="text-display font-semibold">
-        Gestion du membre {member.prenom + " " + member.nom}
-      </h1>
+    <main className="mx-14 my-20">
+      <div className="flex items-center justify-between text-display font-semibold">
+        <h1 className="text-display font-semibold ">
+          Gestion du membre {member.prenom + " " + member.nom}
+        </h1>
+
+        <button
+          type="button"
+          onClick={() => handleDelete(member.idMembre)}
+          className="hover:translate-[1px] cursor-pointer mx-7"
+        >
+          <Trash
+            aria-label="Ajouter un membre"
+            size={36}
+            color="#8E0000"
+            strokeWidth={2.8}
+          />
+        </button>
+      </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col mx-5">
         <div className="flex items-start justify-between mb-3">
@@ -62,7 +134,7 @@ const MembersManagementPage = () => {
 
           <div className="flex flex-col w-1/2 ml-2">
             <label
-              htmlFor="titre"
+              htmlFor="nom"
               className="text-nav font-main font-medium my-1"
             >
               Nom *

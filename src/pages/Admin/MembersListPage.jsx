@@ -20,7 +20,7 @@ const MembersListPage = () => {
   }, []);
 
   return (
-    <main className="mx-14 mt-20">
+    <main className="mx-14 my-20">
       <div className="flex items-center justify-between text-display font-semibold">
         <h1 className="text-display font-semibold ">
           Gestion de l'équipe du département
@@ -39,13 +39,11 @@ const MembersListPage = () => {
         </Link>
       </div>
 
-      <div className="m-auto w-fit mt-20 text-3xl font-medium">
-        {members.length === 0 && (
-          <h2>
-            Aucun membre enregistré
-          </h2>
-        )}
-      </div>
+      {members.length === 0 && (
+        <div className="m-auto w-fit mt-20 text-3xl font-medium">
+          <h2>Aucun membre enregistré</h2>
+        </div>
+      )}
 
       <div className="grid grid-cols-2 my-4">
         {members.length > 0 &&
