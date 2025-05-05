@@ -1,19 +1,84 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+import RichTextEditor from "../../components/RichTextEditor";
+import api from "../../api/api";
 
 const MembersManagementPage = () => {
   const location = useLocation();
-  const { nom, link } = location.state || {};
+  const { member } = location.state || {};
 
-  const handleSubmit = (e) => {
+  const [values, setValues] = useState({
+    prenom: member?.prenom || "",
+    nom: member?.nom || "",
+    titre: member?.titre || "",
+    fonction: member?.fonction || "",
+    section: member?.section || "",
+    propos: JSON.parse(member?.propos) || "",
+    email: member?.email || "",
+    telephone: member?.telephone || "",
+    lieu: member?.lieu || "",
+  });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const data = {
+      ...values,
+      propos: JSON.stringify(values.propos),
+    };
+    
+    try {
+      await api.put(`/members/${member.idMembre}`, data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <main className="mx-14 mt-20">
-      <h1 className="text-display font-semibold">Gestion du membre {nom}</h1>
+      <h1 className="text-display font-semibold">
+        Gestion du membre {member.prenom + " " + member.nom}
+      </h1>
 
       <form onSubmit={handleSubmit} className="flex flex-col mx-5">
+        <div className="flex items-start justify-between mb-3">
+          <div className="flex flex-col w-1/2 mr-2">
+            <label
+              htmlFor="prenom"
+              className="text-nav font-main font-medium my-1"
+            >
+              Prénom *
+            </label>
+            <input
+              type="text"
+              name="prenom"
+              id="prenom"
+              placeholder="Jane"
+              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              value={values.prenom}
+              onChange={(e) => setValues({ ...values, prenom: e.target.value })}
+            />
+          </div>
+
+          <div className="flex flex-col w-1/2 ml-2">
+            <label
+              htmlFor="titre"
+              className="text-nav font-main font-medium my-1"
+            >
+              Nom *
+            </label>
+            <input
+              type="text"
+              name="nom"
+              id="nom"
+              placeholder="DOE"
+              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              value={values.nom}
+              onChange={(e) => setValues({ ...values, nom: e.target.value })}
+            />
+          </div>
+        </div>
+
         <div className="flex items-start justify-between mb-3">
           <div className="flex flex-col w-1/2 mr-2">
             <label
@@ -26,6 +91,7 @@ const MembersManagementPage = () => {
               name="titre"
               id="titre"
               className="bg-white rounded-2xl px-5 py-[0.8rem] border-[1px] border-black outline-none shadow-small"
+              value={values.titre}
               onChange={(e) => setValues({ ...values, titre: e.target.value })}
             >
               <option value="">Selectionez un titre</option>
@@ -50,6 +116,7 @@ const MembersManagementPage = () => {
               id="fonction"
               placeholder="ex : Maître de conférences"
               className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              value={values.fonction}
               onChange={(e) =>
                 setValues({ ...values, fonction: e.target.value })
               }
@@ -57,41 +124,36 @@ const MembersManagementPage = () => {
           </div>
         </div>
 
-        <div className="flex items-start justify-between mb-3">
-          <div className="flex flex-col w-1/2 mr-3">
-            <label
-              htmlFor="section"
-              className="text-nav font-main font-medium my-1"
-            >
-              Section disciplinaire *
-            </label>
-            <textarea
-              name="section"
-              id="section"
-              rows="3"
-              placeholder="ex : Génie informatique, Automatique, Traitement du signal"
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-3 outline-none shadow-small"
-              onChange={(e) =>
-                setValues({ ...values, section: e.target.value })
-              }
-            />
-          </div>
-          <div className="flex flex-col w-1/2 mr-3">
-            <label
-              htmlFor="à propos"
-              className="text-nav font-main font-medium my-1"
-            >
-              A propos *
-            </label>
-            <textarea
-              name="à propos"
-              id="à propos"
-              rows="3"
-              placeholder="Résumé du membre"
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-3 outline-none shadow-small"
-              onChange={(e) => setValues({ ...values, propos: e.target.value })}
-            />
-          </div>
+        <div className="flex flex-col mb-3">
+          <label
+            htmlFor="section"
+            className="text-nav font-main font-medium my-1"
+          >
+            Section disciplinaire *
+          </label>
+          <input
+            type="text"
+            name="section"
+            id="section"
+            placeholder="ex : Génie informatique, Automatique, Traitement du signal"
+            className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+            value={values.section}
+            onChange={(e) => setValues({ ...values, section: e.target.value })}
+          />
+        </div>
+
+        <div className="flex flex-col mb-3 mr-2">
+          <label
+            htmlFor="à propos"
+            className="text-nav font-main font-medium my-1"
+          >
+            A propos *
+          </label>
+          <RichTextEditor
+            aria-labelledby="A propos"
+            value={values.propos}
+            onChange={(val) => setValues({ ...values, propos: val })}
+          />
         </div>
 
         <div className="flex items-start justify-between mb-3">
@@ -108,6 +170,7 @@ const MembersManagementPage = () => {
               id="e-mail"
               placeholder="exemple@mail.com"
               className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              value={values.email}
               onChange={(e) => setValues({ ...values, email: e.target.value })}
             />
           </div>
@@ -124,6 +187,7 @@ const MembersManagementPage = () => {
               id="telephone"
               placeholder="0712345678"
               className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              value={values.telephone}
               onChange={(e) =>
                 setValues({ ...values, telephone: e.target.value })
               }
@@ -142,6 +206,7 @@ const MembersManagementPage = () => {
               rows="1"
               placeholder="ex : Bâtiment D - Salle D111"
               className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-3 outline-none shadow-small"
+              value={values.lieu}
               onChange={(e) => setValues({ ...values, lieu: e.target.value })}
             />
           </div>
