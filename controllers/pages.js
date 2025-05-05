@@ -1,5 +1,6 @@
 import db from "../config/db.js";
 import { v4 as uuidv4 } from "uuid";
+import { translateText } from "../utils/translate.js";
 
 export const getAllPages = (req, res) => {
   const sql =
@@ -47,11 +48,24 @@ export const addPage = (req, res) => {
 
   const sqlPageId = "SELECT idPage FROM pages WHERE link = ?";
 
-  db.query(sqlPageId, [sectionBody.link], (err, pageResult) => {
+  db.query(sqlPageId, [sectionBody.link], async (err, pageResult) => {
     if (err) return res.json({ Error: err });
     if (pageResult.length === 0) return res.json({ Error: err });
 
     const idPage = pageResult[0].idPage;
+
+    let texteEn = sectionBody.texte_en;
+    if (!texteEn || texteEn.trim() === "") {
+      try {
+        texteEn = await translateText(sectionBody.texte_fr);
+      } catch (translationError) {
+        return res.status(500).json({
+          Error: "Translation failed",
+          details: translationError.message,
+          API: process.env.OPENAI_API_KEY,
+        });
+      }
+    }
 
     const sqlSection =
       "INSERT INTO departement_ich.sections_page (idSection, texte_fr, texte_en, ordre_positionnement, idPage) VALUES (?, ?, ?, ?, ?)";
@@ -59,7 +73,7 @@ export const addPage = (req, res) => {
     const values = [
       idSection,
       sectionBody.texte_fr,
-      sectionBody.texte_en,
+      texteEn,
       sectionBody.ordre_positionnement,
       idPage,
     ];
