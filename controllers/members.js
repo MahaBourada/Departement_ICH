@@ -11,6 +11,23 @@ export const getAllMembers = (req, res) => {
   });
 };
 
+export const getMember = (req, res) => {
+  const id = req.params.idMembre;
+
+  const sql = "SELECT * FROM membres_equipe WHERE idMembre = ?";
+  db.query(sql, [id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Member not found" });
+    }
+
+    res.json(results[0]);
+  });
+};
+
 export const addMember = (req, res) => {
   const id = uuidv4();
   const memberBody = req.body;
@@ -57,7 +74,7 @@ export const updateMember = (req, res) => {
     memberBody.email,
     memberBody.telephone,
     memberBody.lieu,
-    idMembre
+    idMembre,
   ];
 
   db.query(sql, values, (err, result) => {
