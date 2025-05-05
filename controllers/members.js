@@ -37,15 +37,15 @@ export const addMember = (req, res) => {
 
   const values = [
     id,
-    memberBody.prenom,
-    memberBody.nom,
-    memberBody.titre,
-    memberBody.fonction,
-    memberBody.section,
-    memberBody.propos,
-    memberBody.email,
-    memberBody.telephone,
-    memberBody.lieu,
+    memberBody?.prenom,
+    memberBody?.nom,
+    memberBody?.titre,
+    memberBody?.fonction,
+    memberBody?.section,
+    memberBody?.propos,
+    memberBody?.email,
+    memberBody?.telephone,
+    memberBody?.lieu,
   ];
   db.query(sql, values, (err, result) => {
     if (err) return res.json({ Error: err });
@@ -81,5 +81,19 @@ export const updateMember = (req, res) => {
     if (err) return res.json({ Error: err });
 
     return res.json({ Status: "Success", result });
+  });
+};
+
+export const deleteMember = (req, res) => {
+  const { idMembre } = req.params;
+
+  const sql = "DELETE FROM membres_equipe WHERE idMembre = ?";
+
+  db.query(sql, [idMembre], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    } else {
+      res.json({ Success: "Member deleted successfully" });
+    }
   });
 };
