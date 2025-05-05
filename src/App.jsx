@@ -17,12 +17,14 @@ import IndividualPage from "./pages/User/IndividualPage";
 import LoginPage from "./pages/Admin/LoginPage";
 import Dashboard from "./pages/Admin/DashboardPage";
 import PagesManagementPage from "./pages/Admin/PagesManagementPage";
+import MembersListPage from "./pages/Admin/MembersListPage";
 import MembersManagementPage from "./pages/Admin/MembersManagementPage";
 import ConferencesManagementPage from "./pages/Admin/ConferencesManagementPage";
 import ProjectsManagementPage from "./pages/Admin/ProjectsManagementPage";
 import PrixManagementPage from "./pages/Admin/PrixManagementPage";
 import AdminForm from "./pages/Admin/AdminForm";
 import PagesListPage from "./pages/Admin/PagesListPage";
+import AddMember from "./pages/Admin/AddMember";
 
 function App() {
   return (
@@ -45,21 +47,21 @@ function App() {
           <Route path="contact" element={<ContactPage />} />
         </Route>
 
-        {/* <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<LoginPage />} />
-        </Route> */}
         <Route path="/admin" element={<LoginPage />} />
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="tableau-de-bord" element={<Dashboard />} />
           <Route path="tableau-de-bord/add-admin" element={<AdminForm />} />
 
           <Route path="gestion-pages" element={<PagesListPage />} />
+          <Route path="gestion-pages/:page" element={<PagesManagementPage />} />
+
+          <Route path="gestion-equipe" element={<MembersListPage />} />
+          <Route path="gestion-equipe/ajouter-membre" element={<AddMember />} />
           <Route
-            path="gestion-pages/:pageSlug"
-            element={<PagesManagementPage />}
+            path="gestion-equipe/:member"
+            element={<MembersManagementPage />}
           />
 
-          <Route path="gestion-equipe" element={<MembersManagementPage />} />
           <Route
             path="gestion-conferences"
             element={<ConferencesManagementPage />}

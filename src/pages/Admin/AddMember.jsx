@@ -1,19 +1,76 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import RichTextEditor from "../../components/RichTextEditor";
+import api from "../../api/api";
 
 const MembersManagementPage = () => {
-  const location = useLocation();
-  const { nom, link } = location.state || {};
+  const [values, setValues] = useState({
+    prenom: "",
+    nom: "",
+    titre: "",
+    fonction: "",
+    section: "",
+    propos: "",
+    email: "",
+    telephone: "",
+    lieu: "",
+  });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const data = {
+      ...values,
+      propos: JSON.stringify(values.propos),
+    };
+
+    try {
+      await api.post("/members", data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <main className="mx-14 mt-20">
-      <h1 className="text-display font-semibold">Gestion du membre {nom}</h1>
+      <h1 className="text-display font-semibold">Ajouter un membre</h1>
 
       <form onSubmit={handleSubmit} className="flex flex-col mx-5">
+        <div className="flex items-start justify-between mb-3">
+          <div className="flex flex-col w-1/2 mr-2">
+            <label
+              htmlFor="prenom"
+              className="text-nav font-main font-medium my-1"
+            >
+              Prénom *
+            </label>
+            <input
+              type="text"
+              name="prenom"
+              id="prenom"
+              placeholder="Jane"
+              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              onChange={(e) => setValues({ ...values, prenom: e.target.value })}
+            />
+          </div>
+
+          <div className="flex flex-col w-1/2 ml-2">
+            <label
+              htmlFor="titre"
+              className="text-nav font-main font-medium my-1"
+            >
+              Nom *
+            </label>
+            <input
+              type="text"
+              name="nom"
+              id="nom"
+              placeholder="DOE"
+              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              onChange={(e) => setValues({ ...values, nom: e.target.value })}
+            />
+          </div>
+        </div>
+
         <div className="flex items-start justify-between mb-3">
           <div className="flex flex-col w-1/2 mr-2">
             <label
@@ -25,7 +82,7 @@ const MembersManagementPage = () => {
             <select
               name="titre"
               id="titre"
-              className="bg-white rounded-2xl px-5 py-[0.8rem] border-[1px] border-black outline-none shadow-small"
+              className="bg-white rounded-2xl px-5 py-[0.8rem] border-[1px] border-black outline-none shadow-small mr-2"
               onChange={(e) => setValues({ ...values, titre: e.target.value })}
             >
               <option value="">Selectionez un titre</option>
@@ -57,41 +114,35 @@ const MembersManagementPage = () => {
           </div>
         </div>
 
-        <div className="flex items-start justify-between mb-3">
-          <div className="flex flex-col w-1/2 mr-3">
-            <label
-              htmlFor="section"
-              className="text-nav font-main font-medium my-1"
-            >
-              Section disciplinaire *
-            </label>
-            <textarea
-              name="section"
-              id="section"
-              rows="3"
-              placeholder="ex : Génie informatique, Automatique, Traitement du signal"
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-3 outline-none shadow-small"
-              onChange={(e) =>
-                setValues({ ...values, section: e.target.value })
-              }
-            />
-          </div>
-          <div className="flex flex-col w-1/2 mr-3">
-            <label
-              htmlFor="à propos"
-              className="text-nav font-main font-medium my-1"
-            >
-              A propos *
-            </label>
-            <textarea
-              name="à propos"
-              id="à propos"
-              rows="3"
-              placeholder="Résumé du membre"
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-3 outline-none shadow-small"
-              onChange={(e) => setValues({ ...values, propos: e.target.value })}
-            />
-          </div>
+        <div className="flex flex-col mb-3">
+          <label
+            htmlFor="section"
+            className="text-nav font-main font-medium my-1"
+          >
+            Section disciplinaire *
+          </label>
+          <input
+            type="text"
+            name="section"
+            id="section"
+            placeholder="ex : Génie informatique, Automatique, Traitement du signal"
+            className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+            onChange={(e) => setValues({ ...values, section: e.target.value })}
+          />
+        </div>
+
+        <div className="flex flex-col mb-3 mr-2">
+          <label
+            htmlFor="à propos"
+            className="text-nav font-main font-medium my-1"
+          >
+            A propos *
+          </label>
+          <RichTextEditor
+            aria-labelledby="A propos"
+            value={values.propos}
+            onChange={(val) => setValues({ ...values, propos: val })}
+          />
         </div>
 
         <div className="flex items-start justify-between mb-3">
@@ -158,7 +209,7 @@ const MembersManagementPage = () => {
             type="submit"
             className="cursor-pointer bg-accent font-main font-medium rounded-2xl px-5 py-3 mx-3 shadow-small hover:translate-[1px] hover:shadow-none"
           >
-            Modifier
+            Ajouter
           </button>
         </div>
       </form>

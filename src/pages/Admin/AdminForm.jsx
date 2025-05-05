@@ -16,7 +16,7 @@ const AdminForm = () => {
     try {
       await api.post("/admin", values);
     } catch (error) {
-      console.err(error);
+      console.error(error);
     }
   };
 

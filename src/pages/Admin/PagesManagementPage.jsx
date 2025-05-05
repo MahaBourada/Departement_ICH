@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import RichTextEditor from "../../components/RichTextEditor";
 import api from "../../api/api";
-import { positions } from "slate";
 
 const PagesManagementPage = () => {
   const location = useLocation();
@@ -23,8 +22,6 @@ const PagesManagementPage = () => {
           texte_en: JSON.stringify(section.content_en),
           ordre_positionnement: i + 1,
         };
-
-        console.log(body);
 
         if (section.idSection) {
           await api.put(`/pages/${section.idSection}`, body);
@@ -56,8 +53,6 @@ const PagesManagementPage = () => {
       const fetchedSections = Array.from({ length: maxLength }, (_, index) => {
         const frSection = frenchSections[index];
         const enSection = englishSections[index];
-
-        console.log(frSection);
 
         return {
           link,
