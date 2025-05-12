@@ -55,6 +55,7 @@ const PagesManagementPage = () => {
         const enSection = englishSections[index];
 
         return {
+          idSection: frSection?.idSection ?? enSection?.idSection ?? null,
           link,
           content_fr: frSection?.texte
             ? JSON.parse(frSection.texte)
@@ -85,6 +86,8 @@ const PagesManagementPage = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  console.log(sections);
 
   return (
     <main className="mx-14 mt-20">
@@ -243,47 +246,49 @@ const PagesManagementPage = () => {
           />
         </div> */}
 
-        {sections.map((section, index) => (
-          <div key={index}>
-            <div className="mt-4">
-              <label
-                id={`section${index + 1}_fr`}
-                htmlFor={`section${index + 1}_fr`}
-                className="text-2xl font-main font-medium"
-              >
-                Section {index + 1} - Français
-              </label>
-              <RichTextEditor
-                aria-labelledby={`section${index + 1}_fr`}
-                value={section.content_fr}
-                onChange={(newValue) => {
-                  const updated = [...sections];
-                  updated[index].content_fr = newValue;
-                  setSections(updated);
-                }}
-              />
-            </div>
+        {[...sections]
+          .sort((a, b) => a.position - b.position)
+          .map((section, index) => (
+            <div key={index}>
+              <div className="mt-4">
+                <label
+                  id={`section${index + 1}_fr`}
+                  htmlFor={`section${index + 1}_fr`}
+                  className="text-2xl font-main font-medium"
+                >
+                  Section {index + 1} - Français
+                </label>
+                <RichTextEditor
+                  aria-labelledby={`section${index + 1}_fr`}
+                  value={section.content_fr}
+                  onChange={(newValue) => {
+                    const updated = [...sections];
+                    updated[index].content_fr = newValue;
+                    setSections(updated);
+                  }}
+                />
+              </div>
 
-            <div className="mt-4">
-              <label
-                id={`section${index + 1}_en`}
-                htmlFor={`section${index + 1}_en`}
-                className="text-2xl font-main font-medium"
-              >
-                Section {index + 1} - English
-              </label>
-              <RichTextEditor
-                aria-labelledby={`section${index + 1}_en`}
-                value={section.content_en}
-                onChange={(newValue) => {
-                  const updated = [...sections];
-                  updated[index].content_en = newValue;
-                  setSections(updated);
-                }}
-              />
+              <div className="mt-4">
+                <label
+                  id={`section${index + 1}_en`}
+                  htmlFor={`section${index + 1}_en`}
+                  className="text-2xl font-main font-medium"
+                >
+                  Section {index + 1} - English
+                </label>
+                <RichTextEditor
+                  aria-labelledby={`section${index + 1}_en`}
+                  value={section.content_en}
+                  onChange={(newValue) => {
+                    const updated = [...sections];
+                    updated[index].content_en = newValue;
+                    setSections(updated);
+                  }}
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
 
         <div className="flex justify-end mt-3">
           <button

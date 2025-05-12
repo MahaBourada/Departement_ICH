@@ -40,7 +40,7 @@ const Footer = ({ switchLang }) => {
     <footer className="flex flex-col items-center py-4 px-10 bg-main dark:bg-dark-main dark:text-black">
       <div className="flex justify-between items-center w-full">
         <img
-          src="/assets/vectors/Logo.svg"
+          src="assets/vectors/Logo.svg"
           alt="Logo de l'université Paris 8"
           width={150}
         />
@@ -81,7 +81,7 @@ const Footer = ({ switchLang }) => {
               onClick={() => switchLang("fr")}
             >
               <img
-                src="/assets/images/french.png"
+                src="assets/images/french.png"
                 alt="Version française"
                 width={33}
               />
@@ -92,7 +92,7 @@ const Footer = ({ switchLang }) => {
               onClick={() => switchLang("en")}
             >
               <img
-                src="/assets/images/english.png"
+                src="assets/images/english.png"
                 alt="English version"
                 width={33}
               />

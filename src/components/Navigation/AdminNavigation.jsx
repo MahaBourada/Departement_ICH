@@ -15,7 +15,7 @@ const AdminNavigation = () => {
     <nav className="bg-main h-screen sticky top-0 left-0 flex flex-col">
       <div className="flex-grow">
         <img
-          src="/assets/vectors/Logo.svg"
+          src="/ich/assets/vectors/Logo.svg"
           alt="Logo de l'université Paris 8"
           width={160}
           className="m-5 mb-10 mx-auto"

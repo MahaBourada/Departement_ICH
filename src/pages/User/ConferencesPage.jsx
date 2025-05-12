@@ -60,7 +60,7 @@ const ConferencesPage = () => {
             <div className="h-[0.5px] bg-black my-5 w-full"></div>
           </div>
 
-          <img src="/assets/vectors/Conferences.svg" alt="" width={500} />
+          <img src="assets/vectors/Conferences.svg" alt="" width={500} />
         </div>
       </div>
 

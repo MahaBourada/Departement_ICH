@@ -125,9 +125,9 @@ const HomePage = () => {
         </div>
 
         <div className="flex justify-between my-6">
-          <img src="/assets/images/img2.png" alt="" width={400} />
-          <img src="/assets/images/img3.png" alt="" width={400} />
-          <img src="/assets/images/Nao.png" alt="" width={400} />
+          <img src="assets/images/img2.png" alt="" width={400} />
+          <img src="assets/images/img3.png" alt="" width={400} />
+          <img src="assets/images/Nao.png" alt="" width={400} />
         </div>
       </div>
     </main>

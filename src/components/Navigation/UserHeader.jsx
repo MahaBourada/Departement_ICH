@@ -54,7 +54,7 @@ const Header = ({ switchLang }) => {
   return (
     <header className="flex justify-between items-center font-main text-nav font-medium py-2 px-10 bg-main dark:bg-dark-main dark:text-black">
       <img
-        src="/assets/vectors/Logo.svg"
+        src="assets/vectors/Logo.svg"
         alt="Logo de l'universite Paris 8"
         width={160}
       />
@@ -68,7 +68,7 @@ const Header = ({ switchLang }) => {
                 onClick={() => switchLang("fr")}
               >
                 <img
-                  src="/assets/images/french.png"
+                  src="assets/images/french.png"
                   alt="Version française"
                   width={33}
                   className="py-2"
@@ -80,7 +80,7 @@ const Header = ({ switchLang }) => {
                 onClick={() => switchLang("en")}
               >
                 <img
-                  src="/assets/images/english.png"
+                  src="assets/images/english.png"
                   alt="English version"
                   width={33}
                   className="py-2"

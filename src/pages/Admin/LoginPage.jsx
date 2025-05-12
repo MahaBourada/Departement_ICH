@@ -29,7 +29,7 @@ const LoginPage = () => {
     <div className="flex flex-col min-h-screen bg-[url('/assets/vectors/AdminBg.png')] bg-cover bg-no-repeat bg-center text-black">
       <header>
         <img
-          src="/assets/vectors/Logo.svg"
+          src="assets/vectors/Logo.svg"
           alt="Logo de l'université Paris 8"
           width={140}
           className="m-5"

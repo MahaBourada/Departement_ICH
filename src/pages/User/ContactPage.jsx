@@ -23,7 +23,7 @@ const ContactPage = () => {
           </ul>
 
           <img
-            src="/assets/vectors/Contact.svg"
+            src="assets/vectors/Contact.svg"
             alt=""
             width={560}
             className="m-3 my-6"
