@@ -1,6 +1,5 @@
 import db from "../config/db.js";
 import { v4 as uuidv4 } from "uuid";
-import { translateText } from "../utils/translate.js";
 
 export const getAllPages = (req, res) => {
   const sql =
@@ -55,17 +54,6 @@ export const addPage = (req, res) => {
     const idPage = pageResult[0].idPage;
 
     let texteEn = sectionBody.texte_en;
-    if (!texteEn || texteEn.trim() === "") {
-      try {
-        texteEn = await translateText(sectionBody.texte_fr);
-      } catch (translationError) {
-        return res.status(500).json({
-          Error: "Translation failed",
-          details: translationError.message,
-          API: process.env.OPENAI_API_KEY,
-        });
-      }
-    }
 
     const sqlSection =
       "INSERT INTO departement_ich.sections_page (idSection, texte_fr, texte_en, ordre_positionnement, idPage) VALUES (?, ?, ?, ?, ?)";

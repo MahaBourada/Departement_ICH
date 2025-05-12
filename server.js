@@ -7,10 +7,11 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 const app = express();
+const PORT = process.env.PORT;
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_ORIGIN,
     credentials: true,
   })
 );
@@ -21,6 +22,4 @@ app.use("/admin", adminRoutes);
 app.use("/pages", pagesRoutes);
 app.use("/members", membersRoutes);
 
-app.listen(3000, () =>
-  console.log(`Server running on port ${process.env.PORT}`)
-);
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

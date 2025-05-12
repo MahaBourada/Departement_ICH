@@ -3,11 +3,18 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+/* const db = mysql.createConnection({
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "admin",
+  database: process.env.DB_NAME || "departement_ich",
+}); */
+
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+  host: "localhost",
+  user: "root",
+  password: "admin",
+  database: "departement_ich",
 });
 
 db.connect((err) => {
