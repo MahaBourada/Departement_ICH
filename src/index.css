@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+@custom-variant minimal (&:where(.minimal, .minimal *));
+
 @theme {
   --color-background: #F4F4F4;
   --color-main: #A7CAEA;
