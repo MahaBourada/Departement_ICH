@@ -20,10 +20,11 @@ const ThemeSwitch = () => {
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
+
   return (
     <button
       type="button"
-      className="hover:translate-x-[1px] hover:translate-y-[1px] p-2"
+      className="hover:translate-x-[1px] hover:translate-y-[1px] p-1 mr-2 hover:bg-hover-main focus:bg-hover-main rounded-lg"
       onClick={toggleTheme}
       aria-label={theme === "light" ? "Thème sombre" : "Thème clair"}
     >

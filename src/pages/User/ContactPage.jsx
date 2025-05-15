@@ -26,7 +26,7 @@ const ContactPage = () => {
             src="assets/vectors/Contact.svg"
             alt=""
             width={560}
-            className="m-3 my-6"
+            className="m-3 my-6 minimal:hidden"
           />
         </div>
 

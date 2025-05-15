@@ -29,7 +29,7 @@ const NationalePage = () => {
     <main className="flex-grow my-10 mb-20 mx-16">
       <nav
         aria-label="breadcrumb"
-        className="my-1 mb-7 mx-2 p-1.5 w-fit rounded-xl flex items-center font-medium"
+        className="my-1 mb-5 p-1.5 w-fit rounded-xl flex items-center font-medium"
       >
         <Link
           to="/"
@@ -38,11 +38,11 @@ const NationalePage = () => {
           {t("home.link")}
         </Link>
         <ChevronRight size={33} color="#232323" strokeWidth={2} />
-        <span className="px-4 py-2 rounded-xl hover:text-dark-accent hover:bg-bg-transparent hover:underline hover:translate-[1px]">
+        <span className="px-4 py-2 rounded-xl text-dark-accent bg-bg-transparent hover:underline hover:translate-[1px]">
           Collaboration
         </span>
         <ChevronRight size={33} color="#232323" strokeWidth={2} />
-        <span className="px-4 py-2 rounded-xl text-dark-accent bg-bg-transparent underline hover:translate-[1px]">
+        <span className="px-4 py-2 rounded-xl hover:text-dark-accent hover:bg-bg-transparent hover:underline hover:translate-[1px]">
           {t("collaboration.national.title")}
         </span>
       </nav>

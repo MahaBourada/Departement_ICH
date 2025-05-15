@@ -10,7 +10,7 @@ const ConferencesPage = () => {
     <main className="flex-grow my-10 mb-20 mx-16">
       <nav
         aria-label="breadcrumb"
-        className="my-1 mb-7 mx-2 p-1.5 w-fit rounded-xl flex items-center font-medium"
+        className="my-1 mb-5 p-1.5 w-fit rounded-xl flex items-center font-medium"
       >
         <Link
           to="/"
@@ -19,16 +19,15 @@ const ConferencesPage = () => {
           {t("home.link")}
         </Link>
         <ChevronRight size={33} color="#232323" strokeWidth={2} />
-        <span className="px-4 py-2 rounded-xl hover:text-dark-accent hover:bg-bg-transparent hover:underline hover:translate-[1px]">
+        <span className="px-4 py-2 rounded-xl text-dark-accent bg-bg-transparent hover:underline translate-[1px]">
           {t("news.link")}
         </span>
         <ChevronRight size={33} color="#232323" strokeWidth={2} />
-        <Link
-          className="px-4 py-2 rounded-xl text-dark-accent bg-bg-transparent underline hover:translate-[1px]"
-          to="/conferences"
+        <span
+          className="px-4 py-2 rounded-xl hover:text-dark-accent hover:bg-bg-transparent hover:underline hover:translate-[1px]"
         >
           {t("news.conferences.title")}
-        </Link>
+        </span>
       </nav>
 
       <h1 className="font-main font-semibold text-display my-2">
@@ -41,7 +40,7 @@ const ConferencesPage = () => {
         </h2>
 
         <div className="flex">
-          <div className="w-[55%] mr-12 ml-6">
+          <div className="w-[55%] minimal:w-full mr-12 minimal:mr-4 ml-6">
             <div className="h-[0.5px] bg-black my-5 w-full"></div>
 
             <div className="text-body">
@@ -85,7 +84,13 @@ const ConferencesPage = () => {
             <div className="h-[0.5px] bg-black my-5 w-full"></div>
           </div>
 
-          <img src="assets/vectors/Conferences.svg" alt="" width={500} />
+          <img
+            src="assets/vectors/Conferences.svg"
+            alt=""
+            role="presentation"
+            className="minimal:hidden"
+            width={500}
+          />
         </div>
       </div>
 

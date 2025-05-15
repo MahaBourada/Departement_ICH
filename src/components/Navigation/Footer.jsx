@@ -77,7 +77,7 @@ const Footer = ({ switchLang }) => {
         <div className="flex items-center">
           {localStorage.getItem("lang") === "en" ? (
             <button
-              className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px]"
+              className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px] p-2 hover:bg-hover-main focus:bg-hover-main rounded-lg"
               onClick={() => switchLang("fr")}
             >
               <img
@@ -88,7 +88,7 @@ const Footer = ({ switchLang }) => {
             </button>
           ) : (
             <button
-              className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px]"
+              className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px] p-2 hover:bg-hover-main focus:bg-hover-main rounded-lg"
               onClick={() => switchLang("en")}
             >
               <img
@@ -106,8 +106,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline p-2"
-                  : "hover:translate-[1px] hover:underline p-2"
+                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
               }
               to="/"
             >
@@ -117,8 +117,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline p-2"
-                  : "hover:translate-[1px] hover:underline p-2"
+                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
               }
               to="/contact"
             >
@@ -127,13 +127,13 @@ const Footer = ({ switchLang }) => {
           </div>
 
           <div className="flex flex-col px-2">
-            <p className="p-2 font-medium">{t("news.link")}</p>
+            <p className="mx-1 p-2 font-medium">{t("news.link")}</p>
             <NavLink
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline p-2"
-                  : "hover:translate-[1px] hover:underline p-2"
+                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
               }
               to="/conferences"
             >
@@ -147,8 +147,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline p-2"
-                  : "hover:translate-[1px] hover:underline p-2"
+                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
               }
               to="/equipe"
             >
@@ -158,8 +158,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline p-2"
-                  : "hover:translate-[1px] hover:underline p-2"
+                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
               }
               to="/master"
             >
@@ -169,8 +169,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline p-2"
-                  : "hover:translate-[1px] hover:underline p-2"
+                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
               }
               to="/lab-chart"
             >
@@ -180,8 +180,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline p-2"
-                  : "hover:translate-[1px] hover:underline p-2"
+                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
               }
               to="/projets-etudiants"
             >
@@ -191,8 +191,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline p-2"
-                  : "hover:translate-[1px] hover:underline p-2"
+                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
               }
               to="/prix-concours"
             >
@@ -206,8 +206,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline p-2"
-                  : "hover:translate-[1px] hover:underline p-2"
+                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
               }
               to="/collaboration-nationale"
             >
@@ -217,8 +217,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline p-2"
-                  : "hover:translate-[1px] hover:underline p-2"
+                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
               }
               to="/collaboration-internationale"
             >

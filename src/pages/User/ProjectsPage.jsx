@@ -10,7 +10,7 @@ const ProjectsPage = () => {
     <main className="flex-grow my-10 mb-20 mx-16 ">
       <nav
         aria-label="breadcrumb"
-        className="my-1 mb-7 mx-2 p-1.5 w-fit rounded-xl flex items-center font-medium"
+        className="my-1 mb-5 p-1.5 w-fit rounded-xl flex items-center font-medium"
       >
         <Link
           to="/"
@@ -19,11 +19,11 @@ const ProjectsPage = () => {
           {t("home.link")}
         </Link>
         <ChevronRight size={33} color="#232323" strokeWidth={2} />
-        <span className="px-4 py-2 rounded-xl hover:text-dark-accent hover:bg-bg-transparent hover:underline hover:translate-[1px]">
+        <span className="px-4 py-2 rounded-xl text-dark-accent bg-bg-transparent hover:underline hover:translate-[1px]">
           {t("department.link")}
         </span>
         <ChevronRight size={33} color="#232323" strokeWidth={2} />
-        <span className="px-4 py-2 rounded-xl text-dark-accent bg-bg-transparent underline hover:translate-[1px]">
+        <span className="px-4 py-2 rounded-xl hover:text-dark-accent hover:bg-bg-transparent hover:underline hover:translate-[1px]">
           {t("department.projects_title")}
         </span>
       </nav>
@@ -39,13 +39,20 @@ const ProjectsPage = () => {
           <div>
             <h3 className="font-semibold font-main text-header my-2">Wheely</h3>
 
-            <h4 className="font-semibold text-2xl my-2">Membres</h4>
-            <ul className="list-disc mx-7">
-              <li>Alaé Zerdam</li>
-              <li>Amane Senhaji</li>
-              <li>Mohamed Ait Ahcene</li>
-              <li>Rayane Mokhtari</li>
-            </ul>
+            <div className="minimal:hidden block">
+              <h4 className="font-semibold text-2xl my-2">Membres</h4>
+              <ul className="list-disc mx-7">
+                <li>Alaé Zerdam</li>
+                <li>Amane Senhaji</li>
+                <li>Mohamed Ait Ahcene</li>
+                <li>Rayane Mokhtari</li>
+              </ul>
+            </div>
+
+            <div className="minimal:block hidden">
+              <span className="font-semibold">Membres : </span> Alaé Zerdam,
+              Amane Senhaji, Mohamed Ait Ahcene, Rayane Mokhtari
+            </div>
 
             <p className="my-2">
               <span className="font-semibold">Année : </span>2024/2025
@@ -57,19 +64,19 @@ const ProjectsPage = () => {
               src="src/assets/images/wheely1.png"
               alt=""
               width={275}
-              className="mx-4"
+              className="mx-4 minimal:hidden"
             />
             <img
               src="src/assets/images/wheely2.png"
               alt=""
               width={275}
-              className="mx-4"
+              className="mx-4 minimal:hidden"
             />
             <img
               src="src/assets/images/wheely3.png"
               alt=""
               width={275}
-              className="mx-4"
+              className="mx-4 minimal:hidden"
             />
           </div>
         </div>
@@ -112,19 +119,19 @@ const ProjectsPage = () => {
               src="src/assets/images/nao1.png"
               alt=""
               width={275}
-              className="mx-4"
+              className="mx-4 minimal:hidden"
             />
             <img
               src="src/assets/images/nao2.png"
               alt=""
               width={275}
-              className="mx-4"
+              className="mx-4 minimal:hidden"
             />
             <img
               src="src/assets/images/nao3.png"
               alt=""
               width={275}
-              className="mx-4"
+              className="mx-4 minimal:hidden"
             />
           </div>
         </div>
@@ -166,19 +173,19 @@ const ProjectsPage = () => {
               src="src/assets/images/detect1.png"
               alt=""
               width={275}
-              className="mx-4"
+              className="mx-4 minimal:hidden"
             />
             <img
               src="src/assets/images/detect2.png"
               alt=""
               width={275}
-              className="mx-4"
+              className="mx-4 minimal:hidden"
             />
             <img
               src="src/assets/images/detect3.png"
               alt=""
               width={275}
-              className="mx-4"
+              className="mx-4 minimal:hidden"
             />
           </div>
         </div>
@@ -224,19 +231,19 @@ const ProjectsPage = () => {
               src="src/assets/images/eye1.png"
               alt=""
               width={275}
-              className="mx-4"
+              className="mx-4 minimal:hidden"
             />
             <img
               src="src/assets/images/eye2.png"
               alt=""
               width={275}
-              className="mx-4"
+              className="mx-4 minimal:hidden"
             />
             <img
               src="src/assets/images/eye3.png"
               alt=""
               width={275}
-              className="mx-4"
+              className="mx-4 minimal:hidden"
             />
           </div>
         </div>

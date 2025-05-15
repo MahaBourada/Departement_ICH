@@ -25,7 +25,7 @@ const MembersPage = () => {
     <main className="flex-grow my-10 mb-20 mx-16">
       <nav
         aria-label="breadcrumb"
-        className="my-1 mb-7 mx-2 p-1.5 w-fit rounded-xl flex items-center font-medium"
+        className="my-1 mb-5 p-1.5 w-fit rounded-xl flex items-center font-medium"
       >
         <Link
           to="/"
@@ -34,11 +34,11 @@ const MembersPage = () => {
           {t("home.link")}
         </Link>
         <ChevronRight size={33} color="#232323" strokeWidth={2} />
-        <span className="px-4 py-2 rounded-xl hover:text-dark-accent hover:bg-bg-transparent hover:underline hover:translate-[1px]">
+        <span className="px-4 py-2 rounded-xl text-dark-accent bg-bg-transparent hover:underline hover:translate-[1px]">
           {t("department.link")}
         </span>
         <ChevronRight size={33} color="#232323" strokeWidth={2} />
-        <span className="px-4 py-2 rounded-xl text-dark-accent bg-bg-transparent underline hover:translate-[1px]">
+        <span className="px-4 py-2 rounded-xl hover:text-dark-accent hover:bg-bg-transparent hover:underline hover:translate-[1px]">
           {t("department.team.title")}
         </span>
       </nav>
@@ -66,7 +66,7 @@ const MembersPage = () => {
                 key={member.idMembre}
                 to={member.idMembre}
                 state={{ member: member }}
-                className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 hover:translate-[1px] hover:shadow-none"
+                className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 hover:translate-[1px] hover:shadow-none w-full shadow-small"
               >
                 <h3 className="font-main font-medium text-header">
                   {member.prenom + " " + member.nom.toUpperCase()}
@@ -76,7 +76,7 @@ const MembersPage = () => {
                     src="src/assets/images/Anis.png"
                     alt="Photo de Anis ROJBI"
                     width={200}
-                    className="rounded-3xl"
+                    className="rounded-3xl minimal:hidden"
                   />
 
                   <div className="ml-4 my-2">
@@ -119,7 +119,7 @@ const MembersPage = () => {
                 key={member.idMembre}
                 to={member.idMembre}
                 state={{ member: member }}
-                className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 hover:translate-[1px] hover:shadow-none"
+                className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 hover:translate-[1px] hover:shadow-none shadow-small"
               >
                 <h3 className="font-main font-medium text-header">
                   {member.prenom + " " + member.nom.toUpperCase()}
@@ -129,7 +129,7 @@ const MembersPage = () => {
                     src="src/assets/images/Anis.png"
                     alt="Photo de Anis ROJBI"
                     width={200}
-                    className="rounded-3xl"
+                    className="rounded-3xl minimal:hidden"
                   />
 
                   <div className="ml-4 my-2">
@@ -172,7 +172,7 @@ const MembersPage = () => {
                 key={member.idMembre}
                 to={member.idMembre}
                 state={{ member: member }}
-                className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 hover:translate-[1px] hover:shadow-none"
+                className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 hover:translate-[1px] hover:shadow-none shadow-small"
               >
                 <h3 className="font-main font-medium text-header">
                   {member.prenom + " " + member.nom.toUpperCase()}
@@ -182,7 +182,7 @@ const MembersPage = () => {
                     src="src/assets/images/Anis.png"
                     alt="Photo de Anis ROJBI"
                     width={200}
-                    className="rounded-3xl"
+                    className="rounded-3xl minimal:hidden"
                   />
 
                   <div className="ml-4 my-2">
