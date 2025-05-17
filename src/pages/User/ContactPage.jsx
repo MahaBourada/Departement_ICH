@@ -9,14 +9,14 @@ const ContactPage = () => {
   };
 
   return (
-    <main className="flex-grow my-10 mb-20 mx-16 font-body">
+    <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
       <h1 className="font-main font-semibold text-display">Contact</h1>
-      <div className="flex justify-between items-start">
-        <div className="flex flex-col ml-3">
+      <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse">
+        <div className="flex flex-col ml-3 max-large-medium:mt-5 max-large-medium:mx-0">
           <h2 className="font-main font-medium text-header my-2">
             {t("contact.title")}
           </h2>
-          <ul className="list-disc ml-8 leading-9">
+          <ul className="list-disc mx-8 leading-9">
             <li>Université Paris 8</li>
             <li>2, rue de la Liberté, 93526 Saint-Denis cedex</li>
             <li>Bâtiment D - salle 128</li>
@@ -25,20 +25,21 @@ const ContactPage = () => {
           <img
             src="assets/vectors/Contact.svg"
             alt=""
-            width={560}
-            className="m-3 my-6 minimal:hidden"
+            role="presentation"
+            width={400}
+            className="m-3 my-6 mx-auto minimal:hidden "
           />
         </div>
 
         <form
           onSubmit={(e) => onSubmit(e)}
-          className="flex flex-col w-[45%] mr-7"
+          className="flex flex-col w-[45%] max-large-medium:w-full mr-7"
         >
           <h2 className="font-main font-medium text-header my-2">
             {t("contact.form.title")}
           </h2>
-          <div className="flex items-start justify-between mb-3">
-            <div className="flex flex-col w-1/2 mr-3">
+          <div className="flex flex-row items-start justify-between mb-3 max-md:flex-col">
+            <div className="flex flex-col w-1/2 max-md:w-full mr-3">
               <label
                 htmlFor={t("contact.form.firstname_label")}
                 className="text-nav font-main font-medium my-1"
@@ -54,7 +55,7 @@ const ContactPage = () => {
               />
             </div>
 
-            <div className="flex flex-col w-1/2">
+            <div className="flex flex-col w-1/2 max-md:w-full">
               <label
                 htmlFor={t("contact.form.lastname_label")}
                 className="text-nav font-main font-medium my-1"
@@ -123,16 +124,16 @@ const ContactPage = () => {
             ></textarea>
           </div>
 
-          <div className="flex justify-end">
+          <div className="flex flex-row justify-end mt-4 max-md:flex-col-reverse max-md:items-end">
             <button
               type="reset"
-              className="cursor-pointer bg-white border-2 border-black font-main font-medium rounded-2xl px-5 py-3 ml-2 shadow-small hover:translate-[1px] hover:shadow-none"
+              className="cursor-pointer bg-white border-2 border-black font-main font-medium rounded-2xl px-5 py-3 ml-2 shadow-small hover:translate-[1px] hover:shadow-none max-md:w-42 max-md:mx-3"
             >
               {t("contact.form.reset")}
             </button>
             <button
               type="submit"
-              className="cursor-pointer bg-accent font-main font-medium rounded-2xl px-5 py-3 mx-3 shadow-small hover:translate-[1px] hover:shadow-none"
+              className="cursor-pointer bg-accent font-main font-medium rounded-2xl px-5 py-3 mx-3 shadow-small hover:translate-[1px] hover:shadow-none max-md:w-42 max-md:mb-4"
             >
               {t("contact.form.submit")}
             </button>
