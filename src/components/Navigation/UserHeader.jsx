@@ -71,11 +71,11 @@ const Header = ({ switchLang }) => {
   };
 
   return (
-    <header className="flex justify-between items-center font-main text-nav font-medium py-2 px-10 bg-main dark:bg-dark-main dark:text-black">
+    <header className="max-large-medium:hidden flex justify-between items-center font-main large-medium:text-lg lg:text-nav font-medium py-2 px-10 max-lg:px-8 bg-main dark:bg-dark-main dark:text-black">
       <img
         src="assets/vectors/Logo.svg"
         alt="Logo de l'université Paris 8"
-        width={160}
+        width={140}
       />
 
       <div className="flex flex-col items-end">
@@ -112,8 +112,8 @@ const Header = ({ switchLang }) => {
               onClick={toggleTheme}
               aria-label={
                 minimalTheme === "minimal"
-                  ? "Thème non-minimal"
-                  : "Thème minimal"
+                  ? "Thème par défaut"
+                  : "Thème minimaliste"
               }
             >
               {minimalTheme === "minimal" ? (

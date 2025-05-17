@@ -28,6 +28,9 @@
   --text-body: 1.27rem;
 
   --shadow-small: 2px 2px 2px 1px #888;
+
+  --breakpoint-xs: 30rem;
+  --breakpoint-large-medium: 61rem;
 }
 
 .toolbar-button {

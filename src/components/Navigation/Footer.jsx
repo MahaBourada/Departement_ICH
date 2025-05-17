@@ -37,7 +37,7 @@ const Footer = ({ switchLang }) => {
   };
 
   return (
-    <footer className="flex flex-col items-center py-4 px-10 bg-main dark:bg-dark-main dark:text-black">
+    <footer className="max-large-medium:hidden flex flex-col items-center py-4 px-10 bg-main dark:bg-dark-main dark:text-black large-medium:text-lg lg:text-nav">
       <div className="flex justify-between items-center w-full">
         <img
           src="assets/vectors/Logo.svg"
