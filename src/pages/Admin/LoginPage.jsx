@@ -54,7 +54,10 @@ const LoginPage = () => {
             Connexion
           </h1>
         </div>
-        <form onSubmit={handleSubmit} className="flex flex-col w-96 mt-10 max-md:w-[20rem]">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col w-96 mt-10 max-md:w-[20rem]"
+        >
           <div className="flex flex-col my-3 w-full">
             <label
               htmlFor="username"
