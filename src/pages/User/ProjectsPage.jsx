@@ -7,10 +7,10 @@ const ProjectsPage = () => {
   const { t } = useTranslation();
 
   return (
-    <main className="flex-grow my-10 mb-20 mx-16 ">
+    <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
       <nav
-        aria-label="breadcrumb"
-        className="my-1 mb-5 p-1.5 w-fit rounded-xl flex items-center font-medium"
+        aria-label="Fil d'Ariane"
+        className="my-1 mb-5 p-1.5 w-fit rounded-xl flex items-center font-medium max-large-medium:hidden"
       >
         <Link
           to="/"
@@ -32,69 +32,72 @@ const ProjectsPage = () => {
         {t("department.projects_title")}
       </h1>
 
-      <div className="border-black border-[1px] my-5 w-full mx-6"></div>
+      <div className="mx-4 max-md:mx-2">
+        <div className="border-black border-[1px] my-5 w-full"></div>
 
-      <div className="text-body w-full mx-6">
-        <div className="flex items-start justify-between">
-          <div>
-            <h3 className="font-semibold font-main text-header my-2">Wheely</h3>
+        <div className="text-body w-full">
+          <div className="flex flex-row items-start justify-between max-large-large:flex-col">
+            <div>
+              <h3 className="font-semibold font-main text-header my-2">
+                Wheely
+              </h3>
 
-            <div className="minimal:hidden block">
-              <h4 className="font-semibold text-2xl my-2">Membres</h4>
-              <ul className="list-disc mx-7">
-                <li>Alaé Zerdam</li>
-                <li>Amane Senhaji</li>
-                <li>Mohamed Ait Ahcene</li>
-                <li>Rayane Mokhtari</li>
-              </ul>
+              <div className="minimal:hidden block">
+                <h4 className="font-semibold text-2xl my-2">Membres</h4>
+                <ul className="list-disc mx-7">
+                  <li>Alaé Zerdam</li>
+                  <li>Amane Senhaji</li>
+                  <li>Mohamed Ait Ahcene</li>
+                  <li>Rayane Mokhtari</li>
+                </ul>
+              </div>
+
+              <div className="minimal:block hidden">
+                <span className="font-semibold">Membres : </span> Alaé Zerdam,
+                Amane Senhaji, Mohamed Ait Ahcene, Rayane Mokhtari
+              </div>
+
+              <p className="my-2">
+                <span className="font-semibold">Année : </span>2024/2025
+              </p>
             </div>
 
-            <div className="minimal:block hidden">
-              <span className="font-semibold">Membres : </span> Alaé Zerdam,
-              Amane Senhaji, Mohamed Ait Ahcene, Rayane Mokhtari
+            <div className="flex flex-row justify-between items-center max-large-medium:flex-col mx-auto">
+              <img
+                src="src/assets/images/wheely1.png"
+                alt=""
+                width={275}
+                className="mx-4 minimal:hidden max-large-large:my-6 max-large-medium:w-[30rem] max-lg:w-64 max-xl:w-60"
+              />
+              <img
+                src="src/assets/images/wheely2.png"
+                alt=""
+                width={275}
+                className="mx-4 minimal:hidden max-large-medium:mb-6 max-large-medium:w-[30rem] max-lg:w-64 max-xl:w-60"
+              />
+              <img
+                src="src/assets/images/wheely3.png"
+                alt=""
+                width={275}
+                className="mx-4 minimal:hidden max-large-medium:mb-6 max-large-medium:w-[30rem] max-lg:w-64 max-xl:w-60"
+              />
             </div>
-
-            <p className="my-2">
-              <span className="font-semibold">Année : </span>2024/2025
-            </p>
           </div>
 
-          <div className="flex justify-between items-center">
-            <img
-              src="src/assets/images/wheely1.png"
-              alt=""
-              width={275}
-              className="mx-4 minimal:hidden"
-            />
-            <img
-              src="src/assets/images/wheely2.png"
-              alt=""
-              width={275}
-              className="mx-4 minimal:hidden"
-            />
-            <img
-              src="src/assets/images/wheely3.png"
-              alt=""
-              width={275}
-              className="mx-4 minimal:hidden"
-            />
-          </div>
+          <h4 className="font-semibold text-2xl my-2">Objectif</h4>
+          <p className="m-2">
+            Wheely est un assistant intelligent qui permet d'améliorer le niveau
+            de sécurité des utilisateurs conduisant un fauteuil roulant
+            électrique en détectant la fatigue faciale et lancer des appels
+            d'aide d'une façon automatique. La détection de fatigue se base sur
+            les données collectées par la caméra ce qui permettra de lancer des
+            alertes sonores et visuelles afin de solliciter l'aide nécessaire.
+          </p>
         </div>
 
-        <h4 className="font-semibold text-2xl my-2">Objectif</h4>
-        <p className="m-2">
-          Wheely est un assistant intelligent qui permet d'améliorer le niveau
-          de sécurité des utilisateurs conduisant un fauteuil roulant électrique
-          en détectant la fatigue faciale et lancer des appels d'aide d'une
-          façon automatique. La détection de fatigue se base sur les données
-          collectées par la caméra ce qui permettra de lancer des alertes
-          sonores et visuelles afin de solliciter l'aide nécessaire.
-        </p>
+        <div className="border-black border-[1px] my-5 w-full"></div>
       </div>
-
-      <div className="border-black border-[1px] my-5 w-full mx-6"></div>
-
-      <div className="text-body w-full mx-6">
+      {/* <div className="text-body w-full mx-6">
         <div className="flex items-start justify-between">
           <div>
             <h3 className="font-semibold font-main text-header my-2">
@@ -272,7 +275,7 @@ const ProjectsPage = () => {
         </p>
       </div>
 
-      <div className="border-black border-[1px] my-5 w-full mx-6"></div>
+      <div className="border-black border-[1px] my-5 w-full mx-6"></div> */}
     </main>
   );
 };
