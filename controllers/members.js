@@ -1,5 +1,7 @@
 import db from "../config/db.js";
 import { v4 as uuidv4 } from "uuid";
+import fs from "fs";
+import path from "path";
 
 export const getAllMembers = (req, res) => {
   db.query("SELECT * FROM membres_equipe", (err, results) => {
@@ -33,7 +35,7 @@ export const addMember = (req, res) => {
   const memberBody = req.body;
 
   const sql =
-    "INSERT INTO membres_equipe (idMembre, prenom, nom, titre, fonction, section, propos, email, telephone, lieu) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    "INSERT INTO membres_equipe (idMembre, prenom, nom, titre, fonction, section, propos, email, telephone, lieu, image_blob) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
   const values = [
     id,
@@ -46,6 +48,7 @@ export const addMember = (req, res) => {
     memberBody?.email,
     memberBody?.telephone,
     memberBody?.lieu,
+    memberBody?.image_blob,
   ];
   db.query(sql, values, (err, result) => {
     if (err) return res.json({ Error: err });
@@ -58,9 +61,47 @@ export const updateMember = (req, res) => {
   const idMembre = req.params.idMembre;
   const memberBody = req.body;
 
+  let base64Data = memberBody.image_blob;
+
+  let imagePath = null;
+
+  if (base64Data && base64Data.startsWith("data:image")) {
+    // Split the base64 string to get the actual data after comma
+    const matches = base64Data.match(/^data:image\/([a-zA-Z]+);base64,(.+)$/);
+    if (!matches || matches.length !== 3) {
+      return res.status(400).json({ error: "Invalid image base64 data" });
+    }
+
+    const ext = matches[1]; // e.g. jpeg, png
+    const data = matches[2];
+    const buffer = Buffer.from(data, "base64");
+
+    // Create a unique file name
+    const fileName = `membre_${memberBody.nom.toUpperCase()}${
+      memberBody.prenom
+    }_${Date.now()}.${ext}`;
+
+    // Chemin absolu vers dossier uploads (dans le dossier courant)
+    const uploadDir = path.resolve("uploads");
+
+    // Créer dossier uploads s'il n'existe pas
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir);
+    }
+
+    // Chemin complet pour écrire le fichier
+    const fullImagePath = path.join(uploadDir, fileName);
+
+    // Sauvegarder le fichier
+    fs.writeFileSync(fullImagePath, buffer);
+
+    // Stocker le chemin relatif avec slash '/' dans la base
+    memberBody.image_blob = `uploads/${fileName}`;
+  }
+
   const sql = `
       UPDATE departement_ich.membres_equipe
-      SET prenom = ?, nom = ?, titre = ?, fonction = ?, section = ?, propos = ?, email = ?, telephone = ?, lieu = ?
+      SET prenom = ?, nom = ?, titre = ?, fonction = ?, section = ?, propos = ?, email = ?, telephone = ?, lieu = ?, image_blob = ?
       WHERE idMembre = ?
   `;
 
@@ -74,6 +115,7 @@ export const updateMember = (req, res) => {
     memberBody.email,
     memberBody.telephone,
     memberBody.lieu,
+    memberBody.image_blob,
     idMembre,
   ];
 
