@@ -33,10 +33,7 @@ const MembersManagementPage = () => {
     if (member?.idMembre) {
       const initialImage =
         member.image_blob && !member.image_blob.startsWith("data:image")
-          ? `${import.meta.env.VITE_BASE_URL}/${member.image_blob.replace(
-              /\\/g,
-              "/"
-            )}`
+          ? `${import.meta.env.VITE_BASE_URL}/${member.image_blob}`
           : member.image_blob || null;
 
       setValues({

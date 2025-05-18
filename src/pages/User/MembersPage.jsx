@@ -21,6 +21,8 @@ const MembersPage = () => {
     fetchData();
   }, []);
 
+  console.log(members);
+
   return (
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
       <nav
@@ -73,7 +75,9 @@ const MembersPage = () => {
                 </h3>
                 <div className="flex items-start">
                   <img
-                    src="src/assets/images/Anis.png"
+                    src={`${import.meta.env.VITE_BASE_URL}/${
+                      member.image_blob
+                    }`}
                     alt="Photo de Anis ROJBI"
                     width={200}
                     className="rounded-3xl minimal:hidden max-lg:hidden max-xl:w-40"
@@ -126,7 +130,9 @@ const MembersPage = () => {
                 </h3>
                 <div className="flex items-start">
                   <img
-                    src="src/assets/images/Anis.png"
+                    src={`${import.meta.env.VITE_BASE_URL}/${
+                      member.image_blob
+                    }`}
                     alt="Photo de Anis ROJBI"
                     width={200}
                     className="rounded-3xl minimal:hidden max-lg:hidden max-xl:w-40"
@@ -186,7 +192,9 @@ const MembersPage = () => {
                     {/* Image (stick to bottom visually) */}
                     <div className="flex flex-col justify-end">
                       <img
-                        src="src/assets/images/Anis.png"
+                        src={`${import.meta.env.VITE_BASE_URL}/${
+                          member.image_blob
+                        }`}
                         alt={`Photo de ${member.nom}`}
                         width={200}
                         className="rounded-3xl minimal:hidden max-lg:hidden max-xl:w-40"
