@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import Footer from "./components/Navigation/Footer";
 import i18n from "./i18n";
 import ScrollToTop from "react-scroll-to-top";
+import MobileHeader from "./components/Navigation/MobileUserHeader";
 
 const Layout = () => {
   const switchLang = (lang) => {
@@ -18,6 +19,7 @@ const Layout = () => {
   return (
     <div className="App flex flex-col min-h-screen text-body dark:bg-dark-background bg-background bg-big-screen bg-repeat-y font-body text-black dark:text-white">
       <Header switchLang={switchLang} />
+      <MobileHeader switchLang={switchLang} />
       <Outlet />
       <Footer switchLang={switchLang} />
       <ScrollToTop

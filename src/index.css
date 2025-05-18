@@ -28,6 +28,7 @@
   --text-body: 1.27rem;
 
   --shadow-small: 2px 2px 2px 1px #888;
+  --shadow-medium: 0px 3px 5px 1px #999;
 
   --breakpoint-xs: 30rem;
   --breakpoint-large-medium: 61rem;
