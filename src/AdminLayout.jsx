@@ -2,6 +2,7 @@ import React from "react";
 import AdminNavigation from "./components/Navigation/AdminNavigation";
 import { Outlet } from "react-router-dom";
 import AdminHeader from "./components/Navigation/AdminHeader";
+import MobileAdminHeader from "./components/Navigation/MobileAdminHeader";
 
 const Layout = () => {
   return (
@@ -10,6 +11,7 @@ const Layout = () => {
 
       <div className="flex-grow">
         <AdminHeader />
+        <MobileAdminHeader />
 
         <Outlet />
       </div>

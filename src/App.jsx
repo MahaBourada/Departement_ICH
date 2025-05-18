@@ -27,11 +27,8 @@ import PagesListPage from "./pages/Admin/PagesListPage";
 import AddMember from "./pages/Admin/AddMember";
 
 function App() {
-  {
-    /* <Router basename={import.meta.env.VITE_APP_BASE_URL}> */
-  }
   return (
-    <Router>
+    <Router basename={import.meta.env.VITE_APP_BASE_URL}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />

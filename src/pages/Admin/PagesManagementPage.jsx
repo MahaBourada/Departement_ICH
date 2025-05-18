@@ -90,7 +90,7 @@ const PagesManagementPage = () => {
   console.log(sections);
 
   return (
-    <main className="mx-14 mt-20">
+    <main className="mx-14 my-20">
       <h1 className="text-display font-semibold">Gestion de la {title}</h1>
 
       <form onSubmit={handleSubmit} className="flex flex-col mx-5">

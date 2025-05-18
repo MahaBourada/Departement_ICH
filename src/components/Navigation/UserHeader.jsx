@@ -70,10 +70,19 @@ const Header = ({ switchLang }) => {
     setMinimalTheme((prevTheme) => (prevTheme === "" ? "minimal" : ""));
   };
 
+  const handleLinkClick = () => {
+    setShowAct(false);
+    setShowDept(false);
+    setShowColl(false);
+    setShowLang(false);
+
+    window.scrollTo({ top: 0 });
+  };
+
   return (
     <header className="max-large-medium:hidden flex justify-between items-center font-main large-medium:text-lg lg:text-nav font-medium py-2 px-10 max-lg:px-8 bg-main dark:bg-dark-main dark:text-black">
       <img
-        src="assets/vectors/Logo.svg"
+        src="/ich/assets/vectors/Logo.svg"
         alt="Logo de l'université Paris 8"
         width={140}
       />
@@ -162,7 +171,7 @@ const Header = ({ switchLang }) => {
             {showAct && (
               <div className="absolute flex flex-col left-2 mt-1 bg-white shadow-md rounded-md font-normal">
                 <Link
-                  onClick={() => window.scrollTo({ top: 0 })}
+                  onClick={handleLinkClick}
                   to="/conferences"
                   className="hover:bg-gray-200 focus:bg-gray-200 rounded-md px-4 py-2"
                 >
@@ -193,35 +202,35 @@ const Header = ({ switchLang }) => {
             {showDept && (
               <div className="absolute flex flex-col left-2 mt-1 bg-white shadow-md rounded-md font-normal">
                 <Link
-                  onClick={() => window.scrollTo({ top: 0 })}
+                  onClick={handleLinkClick}
                   to="/equipe"
                   className="hover:bg-gray-200 focus:bg-gray-200 rounded-md px-4 py-2"
                 >
                   {t("department.team.link")}
                 </Link>
                 <Link
-                  onClick={() => window.scrollTo({ top: 0 })}
+                  onClick={handleLinkClick}
                   to="/master"
                   className="hover:bg-gray-200 focus:bg-gray-200 rounded-md px-4 py-2"
                 >
                   {t("department.master.link")}
                 </Link>
                 <Link
-                  onClick={() => window.scrollTo({ top: 0 })}
+                  onClick={handleLinkClick}
                   to="/lab-chart"
                   className="hover:bg-gray-200 focus:bg-gray-200 rounded-md px-4 py-2"
                 >
                   {t("department.lab-chart.link")}
                 </Link>
                 <Link
-                  onClick={() => window.scrollTo({ top: 0 })}
+                  onClick={handleLinkClick}
                   to="/projets-etudiants"
                   className="hover:bg-gray-200 focus:bg-gray-200 rounded-md px-4 py-2"
                 >
                   {t("department.projects_title")}
                 </Link>
                 <Link
-                  onClick={() => window.scrollTo({ top: 0 })}
+                  onClick={handleLinkClick}
                   to="/prix-concours"
                   className="hover:bg-gray-200 focus:bg-gray-200 rounded-md px-4 py-2"
                 >
@@ -250,14 +259,14 @@ const Header = ({ switchLang }) => {
             {showColl && (
               <div className="absolute flex flex-col left-2 mt-1 bg-white shadow-md rounded-md font-normal">
                 <Link
-                  onClick={() => window.scrollTo({ top: 0 })}
+                  onClick={handleLinkClick}
                   to="/collaboration-nationale"
                   className="hover:bg-gray-200 focus:bg-gray-200 rounded-md px-4 py-2"
                 >
                   {t("collaboration.national.link")}
                 </Link>
                 <Link
-                  onClick={() => window.scrollTo({ top: 0 })}
+                  onClick={handleLinkClick}
                   to="/collaboration-internationale"
                   className="hover:bg-gray-200 focus:bg-gray-200 rounded-md px-4 py-2"
                 >

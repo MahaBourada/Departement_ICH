@@ -48,7 +48,7 @@ const AdminHeader = () => {
 
   return (
     <header
-      className="m-5 mx-6 ml-auto relative w-fit"
+      className="m-5 mx-6 ml-auto relative w-fit block max-md:hidden"
       ref={actMenuRef}
       aria-label="Profile"
     >
