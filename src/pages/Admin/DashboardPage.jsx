@@ -34,9 +34,9 @@ const DashboardPage = () => {
 
   return (
     <div className="mt-20">
-      <main className="mx-14">
+      <main className="mx-14 max-md:mx-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-display font-semibold ">
+          <h1 className="text-display max-md:text-header font-semibold ">
             Comptes administrateurs
           </h1>
 
@@ -107,7 +107,7 @@ const DashboardPage = () => {
         </table>
         <aside>
           <div>
-            <h1 className="text-display font-semibold">Historique</h1>
+            <h1 className="text-display max-md:text-header font-semibold">Historique</h1>
 
             <div className="mx-3">
               <div className="flex justify-between items-center my-3">
@@ -143,7 +143,7 @@ const DashboardPage = () => {
           </div>
 
           <div className="my-5">
-            <h1 className="text-display font-semibold">Newsletter</h1>
+            <h1 className="text-display max-md:text-header font-semibold">Newsletter</h1>
 
             <div className="mx-3">
               <h2>Meow</h2>

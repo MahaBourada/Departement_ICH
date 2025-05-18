@@ -45,7 +45,7 @@ const MembersListPage = () => {
         </div>
       )}
 
-      <div className="grid grid-cols-2 my-4">
+      <div className="grid grid-cols-2 my-4 max-md:grid-cols-1">
         {members.length > 0 &&
           members.map((member, index) => (
             <Link

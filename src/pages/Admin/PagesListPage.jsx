@@ -23,7 +23,7 @@ const PagesListPage = () => {
         Gestion des pages
       </h1>
 
-      <div className="grid grid-cols-2 mx-14 my-4">
+      <div className="grid grid-cols-2 max-md:grid-cols-1 mx-14 my-4">
         {pages_titles.map((page, index) => (
           <Link
             onClick={() => window.scrollTo({ top: 0 })}
