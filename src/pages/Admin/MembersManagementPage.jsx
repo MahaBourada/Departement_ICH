@@ -31,6 +31,14 @@ const MembersManagementPage = () => {
 
   useEffect(() => {
     if (member?.idMembre) {
+      const initialImage =
+        member.image_blob && !member.image_blob.startsWith("data:image")
+          ? `${import.meta.env.VITE_BASE_URL}/${member.image_blob.replace(
+              /\\/g,
+              "/"
+            )}`
+          : member.image_blob || null;
+
       setValues({
         prenom: member.prenom || "",
         nom: member.nom || "",
@@ -44,9 +52,30 @@ const MembersManagementPage = () => {
         email: member.email || "",
         telephone: member.telephone || "",
         lieu: member.lieu || "",
+        image_blob: member.image_blob || null,
       });
+      setFile(initialImage);
     }
   }, [member]);
+
+  const [file, setFile] = useState();
+
+  console.log(file);
+
+  const handleChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFile(reader.result); // this is the base64 string like 'data:image/png;base64,...'
+        setValues((prev) => ({
+          ...prev,
+          image_blob: reader.result, // store base64 string in your form state
+        }));
+      };
+      reader.readAsDataURL(selectedFile);
+    }
+  };
 
   const [values, setValues] = useState({
     prenom: member?.prenom || "",
@@ -61,6 +90,7 @@ const MembersManagementPage = () => {
     email: member?.email || "",
     telephone: member?.telephone || "",
     lieu: member?.lieu || "",
+    image_blob: file || null,
   });
 
   const handleSubmit = async (e) => {
@@ -73,6 +103,8 @@ const MembersManagementPage = () => {
 
     try {
       await api.put(`/members/${member.idMembre}`, data);
+
+      console.log(data);
     } catch (error) {
       console.error(error);
     }
@@ -88,8 +120,6 @@ const MembersManagementPage = () => {
       console.error(error);
     }
   };
-
-  console.log(values.propos);
 
   return (
     <main className="mx-14 my-20">
@@ -149,6 +179,31 @@ const MembersManagementPage = () => {
               onChange={(e) => setValues({ ...values, nom: e.target.value })}
             />
           </div>
+        </div>
+
+        <div className="flex flex-row items-start justify-between">
+          <div className="flex flex-col mb-3 w-[49%]">
+            <label
+              htmlFor="image"
+              className="text-nav font-main font-medium my-1"
+            >
+              Image *
+            </label>
+            <input
+              type="file"
+              name="image"
+              id="image"
+              onChange={handleChange}
+              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+            />
+          </div>
+          {file && (
+            <img
+              src={file}
+              alt={`Image de ${member.prenom + " " + member.nom}`}
+              className="w-1/4 m-auto p-5"
+            />
+          )}
         </div>
 
         <div className="flex items-start justify-between mb-3">

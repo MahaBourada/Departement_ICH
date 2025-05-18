@@ -30,8 +30,6 @@ const MembersManagementPage = () => {
       propos: JSON.stringify(values.propos || defaultContent),
     };
 
-    console.log(data);
-
     try {
       await api.post("/members", data);
     } catch (error) {
