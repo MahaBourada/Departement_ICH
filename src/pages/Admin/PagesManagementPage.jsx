@@ -76,6 +76,25 @@ const PagesManagementPage = () => {
     }
   };
 
+  console.log(sections)
+
+  const [file, setFile] = useState();
+
+  const handleChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFile(reader.result); // this is the base64 string like 'data:image/png;base64,...'
+        setValues((prev) => ({
+          ...prev,
+          image_blob: reader.result, // store base64 string in your form state
+        }));
+      };
+      reader.readAsDataURL(selectedFile);
+    }
+  };
+
   const defaultContent = [
     {
       type: "paragraph",
@@ -86,8 +105,6 @@ const PagesManagementPage = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
-  console.log(sections);
 
   return (
     <main className="mx-14 my-20">
@@ -289,6 +306,79 @@ const PagesManagementPage = () => {
               </div>
             </div>
           ))}
+
+        <div className="flex flex-row items-start justify-between">
+          <div className="flex flex-col mb-3 w-[49%]">
+            <label
+              htmlFor="image1"
+              className="text-nav font-main font-medium my-1"
+            >
+              Image 1 *
+            </label>
+            <input
+              type="file"
+              name="image1"
+              id="image1"
+              onChange={handleChange}
+              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+            />
+          </div>
+          {file && (
+            <img
+              src={file}
+              //alt={`Image de ${member.prenom + " " + member.nom}`}
+              className="w-1/4 m-auto p-5"
+            />
+          )}
+        </div>
+        <div className="flex flex-row items-start justify-between">
+          <div className="flex flex-col mb-3 w-[49%]">
+            <label
+              htmlFor="image2"
+              className="text-nav font-main font-medium my-1"
+            >
+              Image 2 *
+            </label>
+            <input
+              type="file"
+              name="image2"
+              id="image2"
+              onChange={handleChange}
+              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+            />
+          </div>
+          {file && (
+            <img
+              src={file}
+              //alt={`Image de ${member.prenom + " " + member.nom}`}
+              className="w-1/4 m-auto p-5"
+            />
+          )}
+        </div>
+        <div className="flex flex-row items-start justify-between">
+          <div className="flex flex-col mb-3 w-[49%]">
+            <label
+              htmlFor="image3"
+              className="text-nav font-main font-medium my-1"
+            >
+              Image 3 *
+            </label>
+            <input
+              type="file"
+              name="image3"
+              id="image3"
+              onChange={handleChange}
+              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+            />
+          </div>
+          {file && (
+            <img
+              src={file}
+              //alt={`Image de ${member.prenom + " " + member.nom}`}
+              className="w-1/4 m-auto p-5"
+            />
+          )}
+        </div>
 
         <div className="flex justify-end mt-3">
           <button

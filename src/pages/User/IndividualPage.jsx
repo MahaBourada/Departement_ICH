@@ -1,6 +1,6 @@
 import { ChevronRight, Mail, MapPin, Phone } from "lucide-react";
-import React, { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { serializeSingleToHtml } from "../../utils/slateToHtml";
 import api from "../../api/api";
 import { useTranslation } from "react-i18next";
@@ -117,7 +117,7 @@ const IndividualPage = () => {
         </div>
 
         <img
-          src="/ich/src/assets/images/Anis.png"
+          src={`${import.meta.env.VITE_BASE_URL}/${member.image_blob}`}
           alt="Photo de Anis ROJBI"
           width={350}
           className="rounded-3xl m-4 mx-10"

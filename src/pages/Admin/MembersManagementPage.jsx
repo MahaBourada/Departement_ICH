@@ -57,8 +57,6 @@ const MembersManagementPage = () => {
 
   const [file, setFile] = useState();
 
-  console.log(file);
-
   const handleChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
