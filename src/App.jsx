@@ -36,14 +36,14 @@ function App() {
           <Route path="equipe" element={<MembersPage />} />
           <Route path="equipe/:id" element={<IndividualPage />} />
           <Route path="master" element={<MasterPage />} />
-          <Route path="lab-chart" element={<LabPage />} />
+          {/* <Route path="lab-chart" element={<LabPage />} />
           <Route path="collaboration-nationale" element={<NationalePage />} />
           <Route
             path="collaboration-internationale"
             element={<InternationalePage />}
-          />
+          /> */}
           <Route path="projets-etudiants" element={<ProjectsPage />} />
-          <Route path="prix-concours" element={<PrixPage />} />
+          {/* <Route path="prix-concours" element={<PrixPage />} /> */}
           <Route path="contact" element={<ContactPage />} />
         </Route>
 
@@ -62,12 +62,12 @@ function App() {
             element={<MembersManagementPage />}
           />
 
-          <Route
+          {/* <Route
             path="gestion-conferences"
             element={<ConferencesManagementPage />}
           />
           <Route path="gestion-projets" element={<ProjectsManagementPage />} />
-          <Route path="gestion-prix" element={<PrixManagementPage />} />
+          <Route path="gestion-prix" element={<PrixManagementPage />} /> */}
         </Route>
 
         <Route path="*" element={<MissingPage />} />
