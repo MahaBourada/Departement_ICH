@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import api from "../../api/api.js";
+import MessagePopup from "../../components/MsgPopup.jsx";
 
 const AdminForm = () => {
   const [values, setValues] = useState({
@@ -10,13 +11,42 @@ const AdminForm = () => {
     role: "",
   });
 
+  const [msg, setMsg] = useState("");
+  const [msgShow, setMsgShow] = useState(false);
+  const [msgStatus, setMsgStatus] = useState(0);
+
+  const handleClose = () => {
+    setMsgShow(false);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (
+      !values.firstname ||
+      !values.lastname ||
+      !values.username ||
+      !values.email ||
+      !values.role
+    ) {
+      setMsg("Tous les champs sont obligatoires.");
+      setMsgShow(true);
+      return;
+    }
+
     try {
-      await api.post("/admin", values);
+      const response = await api.post("/admin", values);
+
+      setMsgShow(true);
+      setMsgStatus(200);
+      setMsg(response.data.message);
     } catch (error) {
-      console.error(error);
+      const backendMsg = error?.response?.data?.message;
+
+      if (backendMsg) {
+        setMsg(backendMsg); // Set the backend message from Express
+        setMsgShow(true); // Trigger your popup or message display
+      }
     }
   };
 
@@ -25,6 +55,11 @@ const AdminForm = () => {
       <h1 className="text-display font-semibold ">
         Ajouter un nouveau administrateur
       </h1>
+
+      {msgShow && (
+        <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
+      )}
+
       <form onSubmit={handleSubmit} className="flex flex-col mx-5">
         <div className="flex items-start justify-between mb-3">
           <div className="flex flex-col w-1/2 mr-3">

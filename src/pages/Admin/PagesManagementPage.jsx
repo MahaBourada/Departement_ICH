@@ -2,12 +2,21 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import RichTextEditor from "../../components/RichTextEditor";
 import api from "../../api/api";
+import MessagePopup from "../../components/MsgPopup";
 
 const PagesManagementPage = () => {
   const location = useLocation();
   const { title, link } = location.state || {};
 
   const [sections, setSections] = useState([]);
+
+  const [msg, setMsg] = useState("");
+  const [msgShow, setMsgShow] = useState(false);
+  const [msgStatus, setMsgStatus] = useState(0);
+
+  const handleClose = () => {
+    setMsgShow(false);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,9 +33,19 @@ const PagesManagementPage = () => {
         };
 
         if (section.idSection) {
-          await api.put(`/pages/${section.idSection}`, body);
+          const response = await api.put(`/pages/${section.idSection}`, body);
+
+          setMsgShow(true);
+          setMsgStatus(200);
+          setMsg(response.data.message);
+
+          console.log(response);
         } else {
-          await api.post("/pages", body);
+          const response = await api.post("/pages", body);
+
+          setMsgShow(true);
+          setMsgStatus(200);
+          setMsg(response.data.message);
         }
       }
     } catch (error) {
@@ -76,8 +95,6 @@ const PagesManagementPage = () => {
     }
   };
 
-  console.log(sections)
-
   const [file, setFile] = useState();
 
   const handleChange = (e) => {
@@ -109,6 +126,10 @@ const PagesManagementPage = () => {
   return (
     <main className="mx-14 my-20">
       <h1 className="text-display font-semibold">Gestion de la {title}</h1>
+
+      {msgShow && (
+        <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
+      )}
 
       <form onSubmit={handleSubmit} className="flex flex-col mx-5">
         {/* <div className="mt-4">
@@ -267,7 +288,7 @@ const PagesManagementPage = () => {
           .sort((a, b) => a.position - b.position)
           .map((section, index) => (
             <div key={index}>
-              <div className="mt-4">
+              <div className="mt-6">
                 <label
                   id={`section${index + 1}_fr`}
                   htmlFor={`section${index + 1}_fr`}
@@ -286,7 +307,7 @@ const PagesManagementPage = () => {
                 />
               </div>
 
-              <div className="mt-4">
+              <div className="mt-6">
                 <label
                   id={`section${index + 1}_en`}
                   htmlFor={`section${index + 1}_en`}

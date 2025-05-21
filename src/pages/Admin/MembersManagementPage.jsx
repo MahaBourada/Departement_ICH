@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import RichTextEditor from "../../components/RichTextEditor";
 import api from "../../api/api";
 import { Trash } from "lucide-react";
+import MessagePopup from "../../components/MsgPopup";
 
 const MembersManagementPage = () => {
   const navigate = useNavigate();
@@ -88,6 +89,14 @@ const MembersManagementPage = () => {
     image_blob: file || null,
   });
 
+  const [msg, setMsg] = useState("");
+  const [msgShow, setMsgShow] = useState(false);
+  const [msgStatus, setMsgStatus] = useState(0);
+
+  const handleClose = () => {
+    setMsgShow(false);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -97,9 +106,11 @@ const MembersManagementPage = () => {
     };
 
     try {
-      await api.put(`/members/${member.idMembre}`, data);
+      const response = await api.put(`/members/${member.idMembre}`, data);
 
-      console.log(data);
+      setMsgShow(true);
+      setMsgStatus(200);
+      setMsg(response.data.message);
     } catch (error) {
       console.error(error);
     }
@@ -107,10 +118,14 @@ const MembersManagementPage = () => {
 
   const handleDelete = async (idMembre) => {
     try {
-      await api.delete(`/members/${idMembre}`);
+      const response = await api.delete(`/members/${idMembre}`);
       setTimeout(() => {
         navigate("/admin/gestion-equipe");
       }, 300);
+
+      setMsgShow(true);
+      setMsgStatus(200);
+      setMsg(response.data.message);
     } catch (error) {
       console.error(error);
     }
@@ -122,6 +137,14 @@ const MembersManagementPage = () => {
         <h1 className="text-display font-semibold ">
           Gestion du membre {member.prenom + " " + member.nom}
         </h1>
+
+        {msgShow && (
+          <MessagePopup
+            message={msg}
+            onClose={handleClose}
+            status={msgStatus}
+          />
+        )}
 
         <button
           type="button"

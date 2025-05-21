@@ -57,5 +57,9 @@
       "submit": "Submit",
       "reset": "Reset"
     }
+  },
+  "404": {
+    "text": "Error 404: The page has fled... Or is under construction",
+    "button": "Go back"
   }
 }

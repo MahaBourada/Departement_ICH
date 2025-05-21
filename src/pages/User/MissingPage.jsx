@@ -1,16 +1,22 @@
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 const MissingPage = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
   return (
     <>
       <main className="flex-grow flex items-center justify-evenly max-lg:flex-col my-20 mx-auto text-black">
-        <div className="flex flex-col items-center w-2/5 max-lg:w-fit">
-          <h1 className="font-main text-5xl max-md:text-lg font-semibold mx-10 my-24 max-lg:my-6 leading-relaxed">
-            Erreur 404 : La page a pris la fuite...
+        <div className="flex flex-col items-center w-[55%] max-lg:w-fit">
+          <h1 className="font-main text-5xl max-md:text-lg font-semibold mx-10 mt-24 mb-10 max-lg:my-6 leading-relaxed">
+            {t("404.text")}
           </h1>
-          <button onClick={() => navigate(-1)} className="bg-accent font-main font-medium text-header max-md:text-xl py-5 px-7 max-md:py-4 max-md:px-5 rounded-3xl max-md:rounded-2xl shadow-small hover:underline hover:translate-[1px] hover:shadow-none cursor-pointer">
-            Revenir en arrière
+          <button
+            onClick={() => navigate(-1)}
+            className="bg-accent font-main font-medium text-3xl max-md:text-xl py-5 px-7 max-md:py-4 max-md:px-5 rounded-3xl max-md:rounded-2xl shadow-small hover:underline hover:translate-[1px] hover:shadow-none cursor-pointer"
+          >
+            {t("404.button")}
           </button>
         </div>
         <img

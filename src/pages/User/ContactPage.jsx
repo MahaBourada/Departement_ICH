@@ -1,16 +1,34 @@
-import React from "react";
+import { X } from "lucide-react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import MessagePopup from "../../components/MsgPopup";
 
 const ContactPage = () => {
   const { t } = useTranslation();
+  const [msg, setMsg] = useState("");
+  const [msgShow, setMsgShow] = useState(false);
+  const [msgStatus, setMsgStatus] = useState(0);
+
+  const handleClose = () => {
+    setMsgShow(false);
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
+
+    setMsgShow(true);
+    setMsgStatus(200);
+    setMsg("Message envoyé");
   };
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
       <h1 className="font-main font-semibold text-display">Contact</h1>
+
+      {msgShow && (
+        <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
+      )}
+
       <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse">
         <div className="flex flex-col ml-3 max-large-medium:mt-5 max-large-medium:mx-0">
           <h2 className="font-main font-medium text-header my-2">

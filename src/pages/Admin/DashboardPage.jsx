@@ -2,6 +2,7 @@ import { Pencil, Plus, Trash2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../../api/api";
+import MessagePopup from "../../components/MsgPopup";
 
 const DashboardPage = () => {
   const [adminList, setAdminList] = useState([]);
@@ -20,13 +21,25 @@ const DashboardPage = () => {
     fetchData();
   }, []);
 
+  const [msg, setMsg] = useState("");
+  const [msgShow, setMsgShow] = useState(false);
+  const [msgStatus, setMsgStatus] = useState(0);
+
+  const handleClose = () => {
+    setMsgShow(false);
+  };
+
   const handleDelete = async (idAdmin) => {
     try {
       setAdminList((prevAdminList) =>
         prevAdminList.filter((admin) => admin.idAdmin !== idAdmin)
       );
 
-      await api.delete(`/admin/${idAdmin}`);
+      const response = await api.delete(`/admin/${idAdmin}`);
+
+      setMsgShow(true);
+      setMsgStatus(200);
+      setMsg(response.data.message);
     } catch (error) {
       console.error(error);
     }
@@ -39,6 +52,14 @@ const DashboardPage = () => {
           <h1 className="text-display max-md:text-header font-semibold ">
             Comptes administrateurs
           </h1>
+
+          {msgShow && (
+            <MessagePopup
+              message={msg}
+              onClose={handleClose}
+              status={msgStatus}
+            />
+          )}
 
           <Link
             to="/admin/tableau-de-bord/add-admin"
@@ -107,7 +128,9 @@ const DashboardPage = () => {
         </table>
         <aside>
           <div>
-            <h1 className="text-display max-md:text-header font-semibold">Historique</h1>
+            <h1 className="text-display max-md:text-header font-semibold">
+              Historique
+            </h1>
 
             <div className="mx-3">
               <div className="flex justify-between items-center my-3">
@@ -143,7 +166,9 @@ const DashboardPage = () => {
           </div>
 
           <div className="my-5">
-            <h1 className="text-display max-md:text-header font-semibold">Newsletter</h1>
+            <h1 className="text-display max-md:text-header font-semibold">
+              Newsletter
+            </h1>
 
             <div className="mx-3">
               <h2>Meow</h2>

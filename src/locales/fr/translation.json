@@ -57,5 +57,9 @@
       "submit": "Envoyer",
       "reset": "Réinitialiser"
     }
+  },
+  "404": {
+    "text": "Erreur 404 : La page a pris la fuite... Ou est en construction",
+    "button": "Revenir en arrière"
   }
 }

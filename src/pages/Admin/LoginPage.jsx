@@ -11,8 +11,17 @@ const LoginPage = () => {
     password: "",
   });
 
+  const [msg, setMsg] = useState("");
+  const [msgShow, setMsgShow] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!values.username || !values.password) {
+      setMsg("Tous les champs sont obligatoires.");
+      setMsgShow(true);
+      return;
+    }
 
     try {
       const response = await api.post("/login", values, {
@@ -21,12 +30,17 @@ const LoginPage = () => {
 
       if (response.status === 200) return navigate("/admin/tableau-de-bord");
     } catch (error) {
-      console.error(error);
+      const backendMsg = error?.response?.data?.message;
+
+      if (backendMsg) {
+        setMsg(backendMsg); // Set the backend message from Express
+        setMsgShow(true); // Trigger your popup or message display
+      }
     }
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[url('/assets/vectors/AdminBg.png')] bg-cover bg-no-repeat bg-center text-black">
+    <div className="flex flex-col min-h-screen bg-[url('/assets/vectors/AdminBg.svg')] bg-cover bg-no-repeat bg-center text-black">
       <header>
         <img
           src="assets/vectors/Logo.svg"
@@ -102,6 +116,12 @@ const LoginPage = () => {
           >
             Mot de passe oublié ?
           </button>
+
+          {msgShow && (
+            <p className="text-[#8B0000] text-center text-xl font-medium m-2">
+              {msg}
+            </p>
+          )}
 
           <button
             type="submit"

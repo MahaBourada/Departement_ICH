@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import RichTextEditor from "../../components/RichTextEditor";
 import api from "../../api/api";
+import MessagePopup from "../../components/MsgPopup";
 
 const MembersManagementPage = () => {
   const [values, setValues] = useState({
@@ -13,6 +14,7 @@ const MembersManagementPage = () => {
     email: "",
     telephone: "",
     lieu: "",
+    image_blob: "",
   });
 
   const defaultContent = [
@@ -22,8 +24,57 @@ const MembersManagementPage = () => {
     },
   ];
 
+  const [msg, setMsg] = useState("");
+  const [msgShow, setMsgShow] = useState(false);
+  const [msgStatus, setMsgStatus] = useState(0);
+
+  const handleClose = () => {
+    setMsgShow(false);
+  };
+
+  const [file, setFile] = useState();
+
+  const handleChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFile(reader.result); // this is the base64 string like 'data:image/png;base64,...'
+        setValues((prev) => ({
+          ...prev,
+          image_blob: reader.result, // store base64 string in your form state
+        }));
+      };
+      reader.readAsDataURL(selectedFile);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!values.prenom) {
+      setMsg("Prénom est obligatoire");
+      setMsgShow(true);
+      return;
+    }
+
+    if (!values.nom) {
+      setMsg("Nom est obligatoire");
+      setMsgShow(true);
+      return;
+    }
+
+    if (!values.titre) {
+      setMsg("Titre est obligatoire");
+      setMsgShow(true);
+      return;
+    }
+
+    if (!values.fonction) {
+      setMsg("Fonction est obligatoire");
+      setMsgShow(true);
+      return;
+    }
 
     const data = {
       ...values,
@@ -31,15 +82,28 @@ const MembersManagementPage = () => {
     };
 
     try {
-      await api.post("/members", data);
+      const response = await api.post("/members", data);
+
+      setMsgShow(true);
+      setMsgStatus(200);
+      setMsg(response.data.message);
     } catch (error) {
-      console.error(error);
+      const backendMsg = error?.response?.data?.message;
+
+      if (backendMsg) {
+        setMsg(backendMsg); // Set the backend message from Express
+        setMsgShow(true); // Trigger your popup or message display
+      }
     }
   };
 
   return (
     <main className="mx-14 my-20">
       <h1 className="text-display font-semibold">Ajouter un membre</h1>
+
+      {msgShow && (
+        <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
+      )}
 
       <form onSubmit={handleSubmit} className="flex flex-col mx-5">
         <div className="flex items-start justify-between mb-3">
@@ -76,6 +140,31 @@ const MembersManagementPage = () => {
               onChange={(e) => setValues({ ...values, nom: e.target.value })}
             />
           </div>
+        </div>
+
+        <div className="flex flex-row items-start justify-between">
+          <div className="flex flex-col mb-3 w-[49%]">
+            <label
+              htmlFor="image"
+              className="text-nav font-main font-medium my-1"
+            >
+              Image *
+            </label>
+            <input
+              type="file"
+              name="image"
+              id="image"
+              onChange={handleChange}
+              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+            />
+          </div>
+          {file && (
+            <img
+              src={file}
+              alt={"Image du membre"}
+              className="w-1/4 m-auto p-5"
+            />
+          )}
         </div>
 
         <div className="flex items-start justify-between mb-3">
