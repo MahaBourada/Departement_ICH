@@ -2,8 +2,10 @@ import db from "../config/db.js";
 import { v4 as uuidv4 } from "uuid";
 
 export const getAllPages = (req, res) => {
-  const sql =
-    "SELECT * FROM pages, sections_page WHERE pages.idPage = sections_page.idPage";
+  const sql = `SELECT * 
+              FROM pages
+              LEFT JOIN sections_page ON pages.idPage = sections_page.idPage
+              LEFT JOIN media ON pages.idPage = media.idPage;`;
 
   db.query(sql, (err, results) => {
     if (err) {
@@ -26,10 +28,23 @@ export const getPageById = (req, res) => {
 
     const idPage = pageResult[0].idPage;
 
-    const sql = `SELECT pages.idPage, pages.title, pages.link, sections_page.idSection, sections_page.texte_${lang} AS texte, sections_page.ordre_positionnement 
-                    FROM pages JOIN sections_page 
-                    ON pages.idPage = sections_page.idPage 
-                    WHERE pages.idPage = ?;`;
+    const sql = `SELECT 
+                pages.idPage, 
+                pages.title, 
+                pages.link, 
+                sections_page.idSection, 
+                sections_page.texte_${lang} AS texte, 
+                sections_page.ordre_positionnement,
+                media.idMedia,
+                media.path,
+                media.type,
+                media.alt
+              FROM pages 
+              JOIN sections_page 
+                ON pages.idPage = sections_page.idPage
+              LEFT JOIN media 
+                ON pages.idPage = media.idPage
+              WHERE pages.idPage = ?;`;
 
     db.query(sql, [idPage], (err, results) => {
       if (err) {
@@ -69,7 +84,10 @@ export const addPage = (req, res) => {
     db.query(sqlSection, values, (err, result) => {
       if (err) return res.json({ Error: err });
 
-      return res.json({ Status: "Success", result });
+      return res.json({
+        Status: "Success",
+        message: `Contenu de la page mis à jour`,
+      });
     });
   });
 };
@@ -103,7 +121,10 @@ export const editPage = (req, res) => {
     db.query(sqlSection, values, (err, result) => {
       if (err) return res.json({ Error: err });
 
-      return res.json({ Status: "Success", result });
+      return res.json({
+        Status: "Success",
+        message: `Contenu de la page mis à jour`,
+      });
     });
   });
 };

@@ -34,4 +34,4 @@ app.use("/admin", adminRoutes);
 app.use("/pages", pagesRoutes);
 app.use("/members", membersRoutes);
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running`));

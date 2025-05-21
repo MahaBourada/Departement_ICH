@@ -34,6 +34,44 @@ export const addMember = (req, res) => {
   const id = uuidv4();
   const memberBody = req.body;
 
+  let base64Data = memberBody.image_blob;
+
+  let imagePath = null;
+
+  if (base64Data && base64Data.startsWith("data:image")) {
+    // Split the base64 string to get the actual data after comma
+    const matches = base64Data.match(/^data:image\/([a-zA-Z]+);base64,(.+)$/);
+    if (!matches || matches.length !== 3) {
+      return res.status(400).json({ error: "Invalid image base64 data" });
+    }
+
+    const ext = matches[1]; // e.g. jpeg, png
+    const data = matches[2];
+    const buffer = Buffer.from(data, "base64");
+
+    // Create a unique file name
+    const fileName = `membre_${memberBody.nom.toUpperCase()}${
+      memberBody.prenom
+    }_${Date.now()}.${ext}`;
+
+    // Chemin absolu vers dossier uploads (dans le dossier courant)
+    const uploadDir = path.resolve("uploads");
+
+    // Créer dossier uploads s'il n'existe pas
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir);
+    }
+
+    // Chemin complet pour écrire le fichier
+    const fullImagePath = path.join(uploadDir, fileName);
+
+    // Sauvegarder le fichier
+    fs.writeFileSync(fullImagePath, buffer);
+
+    // Stocker le chemin relatif avec slash '/' dans la base
+    memberBody.image_blob = `uploads/${fileName}`;
+  }
+
   const sql =
     "INSERT INTO membres_equipe (idMembre, prenom, nom, titre, fonction, section, propos, email, telephone, lieu, image_blob) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -53,7 +91,10 @@ export const addMember = (req, res) => {
   db.query(sql, values, (err, result) => {
     if (err) return res.json({ Error: err });
 
-    return res.json({ Status: "Success" });
+    return res.json({
+      Status: "Success",
+      message: `${memberBody.prenom} ${memberBody.nom} ajoutée`,
+    });
   });
 };
 
@@ -122,20 +163,48 @@ export const updateMember = (req, res) => {
   db.query(sql, values, (err, result) => {
     if (err) return res.json({ Error: err });
 
-    return res.json({ Status: "Success", result });
+    return res.json({
+      Status: "Success",
+      message: `Informations de ${memberBody.prenom} ${memberBody.nom} mises à jour`,
+    });
   });
 };
 
 export const deleteMember = (req, res) => {
   const { idMembre } = req.params;
 
-  const sql = "DELETE FROM membres_equipe WHERE idMembre = ?";
+  // Step 1: Retrieve the image path from the database
+  const getImageSql =
+    "SELECT image_blob FROM membres_equipe WHERE idMembre = ?";
 
-  db.query(sql, [idMembre], (err, results) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    } else {
-      res.json({ Success: "Member deleted successfully" });
+  db.query(getImageSql, [idMembre], (err, result) => {
+    if (err) return res.status(500).json({ error: err.message });
+
+    if (result.length === 0) {
+      return res.status(404).json({ error: "Membre introuvable" });
     }
+
+    const imagePath = result[0].image_blob;
+    const absoluteImagePath = path.resolve(imagePath); // Convert relative to absolute
+
+    // Step 2: Delete the database entry
+    const sql = "DELETE FROM membres_equipe WHERE idMembre = ?";
+
+    const deleteSql = "DELETE FROM membres_equipe WHERE idMembre = ?";
+    db.query(deleteSql, [idMembre], (err) => {
+      if (err) return res.status(500).json({ error: err.message });
+
+      // Step 3: Delete the image from the filesystem
+      fs.unlink(absoluteImagePath, (err) => {
+        if (err && err.code !== "ENOENT") {
+          console.error("Erreur suppression image:", err.message);
+        }
+
+        return res.json({
+          Success: "Member deleted successfully",
+          message: "Membre supprimé",
+        });
+      });
+    });
   });
 };

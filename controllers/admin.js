@@ -58,7 +58,10 @@ export const addAdmin = (req, res) => {
 
         sendPasswordEmail(adminBody.email, adminBody.username, password);
 
-        return res.json({ Status: "Success" });
+        return res.json({
+          Status: "Success",
+          message: `Admin ${adminBody.firstname} ${adminBody.lastname} ajouté`,
+        });
       });
     });
   });
@@ -73,7 +76,10 @@ export const deleteAdmin = (req, res) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     } else {
-      res.json({ Success: "Admin deleted successfully" });
+      res.json({
+        Success: "Admin deleted successfully",
+        message: `Admin supprimé`,
+      });
     }
   });
 };
@@ -92,15 +98,15 @@ const sendPasswordEmail = (email, username, password) => {
     to: email,
     subject: "Votre compte administrateur a été créé",
     text: `
-          Bonjour,
+Bonjour,
 
-          Votre compte administrateur a été créé.
+Votre compte administrateur a été créé.
 
-          Voici vos informations d'identification : 
-          Nom d'utilisateur : ${username}
-          Mot de passe : ${password}
+Voici vos informations d'identification : 
+Nom d'utilisateur : ${username}
+Mot de passe : ${password}
 
-          Département ICH
+Département Ingénierie - Cognition - Handicap
           `,
   };
 

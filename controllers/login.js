@@ -20,7 +20,7 @@ export const handleLogin = (req, res) => {
 
     // If no user is found
     if (results.length === 0) {
-      return res.status(401).json({ message: "Incorrect e-mail" });
+      return res.status(401).json({ message: "Nom d'utilisateur incorrect" });
     }
 
     const foundUser = results[0]; // Get the first user result
@@ -29,7 +29,7 @@ export const handleLogin = (req, res) => {
     const match = await bcrypt.compare(password, foundUser.password);
 
     if (!match) {
-      return res.status(401).json({ message: "Incorrect password" });
+      return res.status(401).json({ message: "Mot de passe incorrect" });
     }
 
     // Create JWTs
