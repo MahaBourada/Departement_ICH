@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import api from "../../api/api.js";
 import MessagePopup from "../../components/MsgPopup.jsx";
+import { InputField } from "../../components/Inputs.jsx";
+import { SmallBorderButton, SmallFilledButton } from "../../components/Buttons.jsx";
 
 const AdminForm = () => {
   const [values, setValues] = useState({
@@ -53,7 +55,7 @@ const AdminForm = () => {
   return (
     <main className="mx-14 mt-20">
       <h1 className="text-display font-semibold ">
-        Ajouter un nouveau administrateur
+        Ajouter un nouvel administrateur
       </h1>
 
       {msgShow && (
@@ -63,18 +65,12 @@ const AdminForm = () => {
       <form onSubmit={handleSubmit} className="flex flex-col mx-5">
         <div className="flex items-start justify-between mb-3">
           <div className="flex flex-col w-1/2 mr-3">
-            <label
-              htmlFor="firstname"
-              className="text-nav font-main font-medium my-1"
-            >
-              Prénom *
-            </label>
-            <input
+            <InputField
               type="text"
+              label="Prénom *"
               name="firstname"
-              id="firstname"
               placeholder="Jane"
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              value={values.firstname}
               onChange={(e) =>
                 setValues({ ...values, firstname: e.target.value })
               }
@@ -82,18 +78,12 @@ const AdminForm = () => {
           </div>
 
           <div className="flex flex-col w-1/2">
-            <label
-              htmlFor="lastname"
-              className="text-nav font-main font-medium my-1"
-            >
-              Nom *
-            </label>
-            <input
+            <InputField
               type="text"
+              label="Nom *"
               name="lastname"
-              id="lastname"
               placeholder="DOE"
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              value={values.lastname}
               onChange={(e) =>
                 setValues({ ...values, lastname: e.target.value })
               }
@@ -103,18 +93,12 @@ const AdminForm = () => {
 
         <div className="flex items-start justify-between mb-3">
           <div className="flex flex-col w-1/2 mr-3">
-            <label
-              htmlFor="email"
-              className="text-nav font-main font-medium my-1"
-            >
-              E-mail *
-            </label>
-            <input
+            <InputField
               type="email"
-              name="email"
-              id="email"
+              label="E-mail *"
+              name="lastname"
               placeholder="example@mail.com"
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              value={values.email}
               onChange={(e) => setValues({ ...values, email: e.target.value })}
             />
           </div>
@@ -129,7 +113,7 @@ const AdminForm = () => {
             <select
               name="role"
               id="role"
-              className="bg-white rounded-2xl px-5 py-[0.8rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.95rem] mr-2 outline-gray-500"
               onChange={(e) => setValues({ ...values, role: e.target.value })}
             >
               <option value="">Selectionez une option</option>
@@ -141,18 +125,12 @@ const AdminForm = () => {
 
         <div className="flex items-start justify-between mb-3">
           <div className="flex flex-col w-1/2 mr-3">
-            <label
-              htmlFor="username"
-              className="text-nav font-main font-medium my-1"
-            >
-              Nom d'utilisateur *
-            </label>
-            <input
-              type="text"
+            <InputField
+              type="email"
+              label="Nom d'utilisateur *"
               name="username"
-              id="username"
               placeholder="jdoe"
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              value={values.username}
               onChange={(e) =>
                 setValues({ ...values, username: e.target.value })
               }
@@ -161,18 +139,20 @@ const AdminForm = () => {
         </div>
 
         <div className="flex justify-end mt-3">
-          <button
+          <SmallBorderButton
             type="reset"
-            className="cursor-pointer bg-white border-1 border-black font-main font-medium rounded-2xl px-5 py-3 ml-2 shadow-small hover:translate-[1px] hover:shadow-none"
-          >
-            Réinitialiser
-          </button>
-          <button
+            bgColor="bg-white"
+            color="text-black"
+            borderColor="border-black"
+            text="Réinitialiser"
+          />
+
+          <SmallFilledButton
             type="submit"
-            className="cursor-pointer bg-accent font-main font-medium rounded-2xl px-5 py-3 mx-3 shadow-small hover:translate-[1px] hover:shadow-none"
-          >
-            Ajouter
-          </button>
+            bgColor="bg-accent"
+            color="text-black"
+            text="Ajouter"
+          />
         </div>
       </form>
     </main>

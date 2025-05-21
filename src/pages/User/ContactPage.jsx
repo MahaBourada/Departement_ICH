@@ -2,6 +2,8 @@ import { X } from "lucide-react";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import MessagePopup from "../../components/MsgPopup";
+import { SmallBorderButton, SmallFilledButton } from "../../components/Buttons";
+import { InputField, TextAreaField } from "../../components/Inputs";
 
 const ContactPage = () => {
   const { t } = useTranslation();
@@ -56,55 +58,32 @@ const ContactPage = () => {
           <h2 className="font-main font-medium text-header my-2">
             {t("contact.form.title")}
           </h2>
+
           <div className="flex flex-row items-start justify-between mb-3 max-md:flex-col">
-            <div className="flex flex-col w-1/2 max-md:w-full mr-3">
-              <label
-                htmlFor={t("contact.form.firstname_label")}
-                className="text-nav font-main font-medium my-1"
-              >
-                {t("contact.form.firstname_label")} *
-              </label>
-              <input
+            <div className="w-1/2 max-md:w-full mr-3">
+              <InputField
                 type="text"
-                name={t("contact.form.firstname_label")}
-                id={t("contact.form.firstname_label")}
+                label={t("contact.form.firstname_label") + " *"}
+                name="firstname"
                 placeholder="Jane"
-                className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
               />
             </div>
-
-            <div className="flex flex-col w-1/2 max-md:w-full">
-              <label
-                htmlFor={t("contact.form.lastname_label")}
-                className="text-nav font-main font-medium my-1"
-              >
-                {t("contact.form.lastname_label")} *
-              </label>
-              <input
+            <div className="w-1/2 max-md:w-full">
+              <InputField
                 type="text"
-                name={t("contact.form.lastname_label")}
-                id={t("contact.form.lastname_label")}
+                label={t("contact.form.lastname_label") + " *"}
+                name="lastname"
                 placeholder="DOE"
-                className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
               />
             </div>
           </div>
 
-          <div className="flex flex-col my-3">
-            <label
-              htmlFor="E-mail"
-              className="text-nav font-main font-medium my-1"
-            >
-              E-mail *
-            </label>
-            <input
-              type="email"
-              name="E-mail"
-              id="E-mail"
-              placeholder={t("contact.form.mail_placeholder")}
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
-            />
-          </div>
+          <InputField
+            type="email"
+            label="E-mail *"
+            name="email"
+            placeholder={t("contact.form.mail_placeholder") + " *"}
+          />
 
           <div className="flex flex-col my-3">
             <label
@@ -116,7 +95,7 @@ const ContactPage = () => {
             <select
               name={t("contact.form.object.label")}
               id={t("contact.form.object.label")}
-              className="bg-white rounded-2xl px-5 py-[0.8rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.95rem] mr-2 outline-gray-500"
             >
               <option value="">{t("contact.form.object.placeholder")}</option>
               <option value="feedback">{t("contact.form.object.1")}</option>
@@ -126,35 +105,27 @@ const ContactPage = () => {
             </select>
           </div>
 
-          <div className="flex flex-col my-3">
-            <label
-              htmlFor="Message"
-              className="text-nav font-main font-medium my-1"
-            >
-              Message *
-            </label>
-            <textarea
-              name="Message"
-              id="Message"
-              rows="5"
-              placeholder={t("contact.form.message_placeholder")}
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-3 outline-none shadow-small"
-            ></textarea>
-          </div>
+          <TextAreaField
+            label="Message *"
+            placeholder={t("contact.form.message_placeholder")}
+            name="bodyMessage"
+          />
 
           <div className="flex flex-row justify-end mt-4 max-md:flex-col-reverse max-md:items-end">
-            <button
+            <SmallBorderButton
               type="reset"
-              className="cursor-pointer bg-white border-2 border-black font-main font-medium rounded-2xl px-5 py-3 ml-2 shadow-small hover:translate-[1px] hover:shadow-none max-md:w-42 max-md:mx-3"
-            >
-              {t("contact.form.reset")}
-            </button>
-            <button
+              bgColor="bg-white"
+              color="text-black"
+              borderColor="border-black"
+              text={t("contact.form.reset")}
+            />
+
+            <SmallFilledButton
               type="submit"
-              className="cursor-pointer bg-accent font-main font-medium rounded-2xl px-5 py-3 mx-3 shadow-small hover:translate-[1px] hover:shadow-none max-md:w-42 max-md:mb-4"
-            >
-              {t("contact.form.submit")}
-            </button>
+              bgColor="bg-accent"
+              color="text-black"
+              text={t("contact.form.submit")}
+            />
           </div>
         </form>
       </div>

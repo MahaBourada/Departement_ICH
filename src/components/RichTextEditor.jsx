@@ -48,26 +48,26 @@ const RichTextEditor = ({ value, onChange }) => {
       }}
     >
       <div
-        className="bg-white rounded-2xl mt-3 p-4 border-[1px] shadow-small"
+        className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.85rem] my-4 mr-2 outline-gray-500 text-nav"
         aria-label="Éditeur de texte enrichi"
       >
         <Toolbar aria-label="Barre d'outils de l'éditeur">
-          <MarkButton format="bold" icon={<Bold size={18} />} />
-          <MarkButton format="italic" icon={<Italic size={18} />} />
-          <MarkButton format="underline" icon={<Underline size={18} />} />
-          <MarkButton format="code" icon={<Code size={18} />} />
-          {/* <BlockButton format="heading-one" icon={<Heading1 size={18} />} /> */}
-          <BlockButton format="heading-two" icon={<Heading2 size={18} />} />
-          <BlockButton format="block-quote" icon={<Quote size={18} />} />
+          <MarkButton format="bold" icon={<Bold size={19} />} />
+          <MarkButton format="italic" icon={<Italic size={19} />} />
+          <MarkButton format="underline" icon={<Underline size={19} />} />
+          <MarkButton format="code" icon={<Code size={19} />} />
+          {/* <BlockButton format="heading-one" icon={<Heading1 size={19} />} /> */}
+          <BlockButton format="heading-two" icon={<Heading2 size={19} />} />
+          <BlockButton format="block-quote" icon={<Quote size={19} />} />
           <BlockButton
             format="numbered-list"
-            icon={<ListOrdered size={18} />}
+            icon={<ListOrdered size={19} />}
           />
-          <BlockButton format="bulleted-list" icon={<List size={18} />} />
-          <BlockButton format="left" icon={<AlignLeft size={18} />} />
-          <BlockButton format="center" icon={<AlignCenter size={18} />} />
-          <BlockButton format="right" icon={<AlignRight size={18} />} />
-          <BlockButton format="justify" icon={<AlignJustify size={18} />} />
+          <BlockButton format="bulleted-list" icon={<List size={19} />} />
+          <BlockButton format="left" icon={<AlignLeft size={19} />} />
+          <BlockButton format="center" icon={<AlignCenter size={19} />} />
+          <BlockButton format="right" icon={<AlignRight size={19} />} />
+          <BlockButton format="justify" icon={<AlignJustify size={19} />} />
         </Toolbar>
         <Editable
           aria-label="Zone de saisie de texte"

@@ -6,7 +6,7 @@ import MobileAdminHeader from "./components/Navigation/MobileAdminHeader";
 
 const Layout = () => {
   return (
-    <div className="App flex flex-row min-h-screen text-body dark:bg-dark-background bg-background bg-big-screen bg-repeat-y font-body text-black dark:text-white">
+    <div className="App flex flex-row min-h-screen text-body dark:bg-dark-background bg-white bg-big-screen bg-repeat-y font-body text-black dark:text-white">
       <AdminNavigation />
 
       <div className="flex-grow">

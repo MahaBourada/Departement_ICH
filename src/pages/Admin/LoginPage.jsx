@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../api/api";
 import { ArrowLeft } from "lucide-react";
+import { InputField } from "../../components/Inputs";
+import { BigFilledButton } from "../../components/Buttons";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -72,43 +74,23 @@ const LoginPage = () => {
           onSubmit={handleSubmit}
           className="flex flex-col w-96 mt-10 max-md:w-[20rem]"
         >
-          <div className="flex flex-col my-3 w-full">
-            <label
-              htmlFor="username"
-              className="text-nav font-main font-medium my-1"
-            >
-              Nom d'utilisateur *
-            </label>
-            <input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="jdoe"
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
-              onChange={(e) =>
-                setValues({ ...values, username: e.target.value })
-              }
-            />
-          </div>
+          <InputField
+            type="text"
+            label="Nom d'utilisateur *"
+            name="username"
+            placeholder="jdoe"
+            value={values.username}
+            onChange={(e) => setValues({ ...values, username: e.target.value })}
+          />
 
-          <div className="flex flex-col my-3 w-full">
-            <label
-              htmlFor="password"
-              className="text-nav font-main font-medium my-1"
-            >
-              Mot de passe *
-            </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Ceci est un secret"
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
-              onChange={(e) =>
-                setValues({ ...values, password: e.target.value })
-              }
-            />
-          </div>
+          <InputField
+            type="password"
+            label="Mot de passe *"
+            name="password"
+            placeholder="Ceci est un secret"
+            value={values.password}
+            onChange={(e) => setValues({ ...values, password: e.target.value })}
+          />
 
           <button
             type="button"
@@ -123,12 +105,12 @@ const LoginPage = () => {
             </p>
           )}
 
-          <button
+          <BigFilledButton
             type="submit"
-            className="cursor-pointer bg-accent font-main font-medium rounded-2xl px-5 py-3 my-3 shadow-small hover:translate-[1px] hover:shadow-none w-full"
-          >
-            Connexion
-          </button>
+            bgColor="bg-accent"
+            color="text-black"
+            text="Connexion"
+          />
         </form>
       </main>
     </div>

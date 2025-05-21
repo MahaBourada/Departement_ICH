@@ -3,6 +3,8 @@ import { useLocation } from "react-router-dom";
 import RichTextEditor from "../../components/RichTextEditor";
 import api from "../../api/api";
 import MessagePopup from "../../components/MsgPopup";
+import { SmallBorderButton, SmallFilledButton } from "../../components/Buttons";
+import { ImageField } from "../../components/Inputs";
 
 const PagesManagementPage = () => {
   const location = useLocation();
@@ -292,7 +294,7 @@ const PagesManagementPage = () => {
                 <label
                   id={`section${index + 1}_fr`}
                   htmlFor={`section${index + 1}_fr`}
-                  className="text-2xl font-main font-medium"
+                  className="text-nav font-main font-medium"
                 >
                   Section {index + 1} - Français
                 </label>
@@ -311,7 +313,7 @@ const PagesManagementPage = () => {
                 <label
                   id={`section${index + 1}_en`}
                   htmlFor={`section${index + 1}_en`}
-                  className="text-2xl font-main font-medium"
+                  className="text-nav font-main font-medium"
                 >
                   Section {index + 1} - English
                 </label>
@@ -328,92 +330,45 @@ const PagesManagementPage = () => {
             </div>
           ))}
 
-        <div className="flex flex-row items-start justify-between">
-          <div className="flex flex-col mb-3 w-[49%]">
-            <label
-              htmlFor="image1"
-              className="text-nav font-main font-medium my-1"
-            >
-              Image 1 *
-            </label>
-            <input
-              type="file"
-              name="image1"
-              id="image1"
-              onChange={handleChange}
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
-            />
-          </div>
-          {file && (
-            <img
-              src={file}
-              //alt={`Image de ${member.prenom + " " + member.nom}`}
-              className="w-1/4 m-auto p-5"
-            />
-          )}
-        </div>
-        <div className="flex flex-row items-start justify-between">
-          <div className="flex flex-col mb-3 w-[49%]">
-            <label
-              htmlFor="image2"
-              className="text-nav font-main font-medium my-1"
-            >
-              Image 2 *
-            </label>
-            <input
-              type="file"
-              name="image2"
-              id="image2"
-              onChange={handleChange}
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
-            />
-          </div>
-          {file && (
-            <img
-              src={file}
-              //alt={`Image de ${member.prenom + " " + member.nom}`}
-              className="w-1/4 m-auto p-5"
-            />
-          )}
-        </div>
-        <div className="flex flex-row items-start justify-between">
-          <div className="flex flex-col mb-3 w-[49%]">
-            <label
-              htmlFor="image3"
-              className="text-nav font-main font-medium my-1"
-            >
-              Image 3 *
-            </label>
-            <input
-              type="file"
-              name="image3"
-              id="image3"
-              onChange={handleChange}
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
-            />
-          </div>
-          {file && (
-            <img
-              src={file}
-              //alt={`Image de ${member.prenom + " " + member.nom}`}
-              className="w-1/4 m-auto p-5"
-            />
-          )}
-        </div>
+        <ImageField
+          text="Image 1 *"
+          name="imagePage1"
+          alt="Première image"
+          file={file}
+          onChange={handleChange}
+        />
+
+        <ImageField
+          text="Image 2 *"
+          name="imagePage2"
+          alt="Deuxième image"
+          file={file}
+          onChange={handleChange}
+        />
+
+        <ImageField
+          text="Image 3 *"
+          name="imagePage3"
+          alt="Troisième image"
+          file={file}
+          onChange={handleChange}
+        />
 
         <div className="flex justify-end mt-3">
-          <button
+          <SmallBorderButton
             type="reset"
-            className="cursor-pointer bg-white border-1 border-black font-main font-medium rounded-2xl px-5 py-3 ml-2 shadow-small hover:translate-[1px] hover:shadow-none"
-          >
-            Réinitialiser
-          </button>
-          <button
+            bgColor="bg-white"
+            color="text-black"
+            borderColor="border-black"
+            text="Réinitialiser"
+          />
+
+          <SmallFilledButton
             type="submit"
-            className="cursor-pointer bg-accent font-main font-medium rounded-2xl px-5 py-3 mx-3 shadow-small hover:translate-[1px] hover:shadow-none"
-          >
-            Modifier
-          </button>
+            bgColor="bg-accent"
+            color="text-black"
+            text="Modifier"
+          />
         </div>
       </form>
     </main>

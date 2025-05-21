@@ -68,7 +68,7 @@ const MembersPage = () => {
                 key={member.idMembre}
                 to={member.idMembre}
                 state={{ member: member }}
-                className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:translate-[1px] hover:shadow-none w-full shadow-small"
+                className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:translate-[1px] w-full"
               >
                 <h3 className="font-main font-medium text-header max-md:text-3xl">
                   {member.prenom + " " + member.nom.toUpperCase()}
@@ -123,7 +123,7 @@ const MembersPage = () => {
                 key={member.idMembre}
                 to={member.idMembre}
                 state={{ member: member }}
-                className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:translate-[1px] hover:shadow-none shadow-small"
+                className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:translate-[1px]"
               >
                 <h3 className="font-main font-medium text-header max-md:text-3xl">
                   {member.prenom + " " + member.nom.toUpperCase()}
@@ -178,7 +178,7 @@ const MembersPage = () => {
                 key={member.idMembre}
                 to={member.idMembre}
                 state={{ member }}
-                className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:translate-[1px] hover:shadow-none shadow-small h-full flex flex-col justify-between"
+                className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:translate-[1px] h-full flex flex-col justify-between"
               >
                 {/* Title */}
                 <h3 className="font-main font-medium text-header max-md:text-3xl mb-4">

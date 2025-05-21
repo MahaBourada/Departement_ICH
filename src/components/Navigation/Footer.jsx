@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { InputField } from "../Inputs";
+import { SmallFilledButton } from "../Buttons";
 
 const Footer = ({ switchLang }) => {
   const { t } = useTranslation();
@@ -45,29 +47,22 @@ const Footer = ({ switchLang }) => {
           width={150}
         />
 
-        <form onSubmit={(e) => onSubmit(e)} className="flex flex-col">
-          <label
-            htmlFor="newsletter"
-            className="text-nav font-main font-medium mb-2"
-          >
-            Newsletter
-          </label>
-
-          <div className="ml-2 text-body">
-            <input
+        <form onSubmit={(e) => onSubmit(e)} className="flex flex-row items-end">
+          <div className="my-1">
+            <InputField
               type="email"
+              label="Newsletter"
               name="newsletter"
-              id="newsletter"
-              placeholder="example@mail.com"
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              placeholder={t("contact.form.mail_placeholder")}
             />
-            <button
-              type="submit"
-              className="cursor-pointer bg-accent dark:bg-dark-accent font-main font-medium rounded-2xl px-5 py-3 ml-2 shadow-small hover:translate-[1px] hover:shadow-none"
-            >
-              S'inscrire
-            </button>
           </div>
+
+          <SmallFilledButton
+            type="submit"
+            bgColor="bg-accent"
+            color="text-black"
+            text="S'inscrire"
+          />
         </form>
       </div>
 

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import RichTextEditor from "../../components/RichTextEditor";
 import api from "../../api/api";
 import MessagePopup from "../../components/MsgPopup";
+import { ImageField, InputField } from "../../components/Inputs";
+import { SmallBorderButton, SmallFilledButton } from "../../components/Buttons";
 
 const MembersManagementPage = () => {
   const [values, setValues] = useState({
@@ -108,64 +110,35 @@ const MembersManagementPage = () => {
       <form onSubmit={handleSubmit} className="flex flex-col mx-5">
         <div className="flex items-start justify-between mb-3">
           <div className="flex flex-col w-1/2 mr-2">
-            <label
-              htmlFor="prenom"
-              className="text-nav font-main font-medium my-1"
-            >
-              Prénom *
-            </label>
-            <input
+            <InputField
               type="text"
+              label="Prénom *"
               name="prenom"
-              id="prenom"
               placeholder="Jane"
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              value={values.prenom}
               onChange={(e) => setValues({ ...values, prenom: e.target.value })}
             />
           </div>
 
           <div className="flex flex-col w-1/2 ml-2">
-            <label
-              htmlFor="titre"
-              className="text-nav font-main font-medium my-1"
-            >
-              Nom *
-            </label>
-            <input
+            <InputField
               type="text"
+              label="Nom *"
               name="nom"
-              id="nom"
               placeholder="DOE"
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              value={values.nom}
               onChange={(e) => setValues({ ...values, nom: e.target.value })}
             />
           </div>
         </div>
 
-        <div className="flex flex-row items-start justify-between">
-          <div className="flex flex-col mb-3 w-[49%]">
-            <label
-              htmlFor="image"
-              className="text-nav font-main font-medium my-1"
-            >
-              Image *
-            </label>
-            <input
-              type="file"
-              name="image"
-              id="image"
-              onChange={handleChange}
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
-            />
-          </div>
-          {file && (
-            <img
-              src={file}
-              alt={"Image du membre"}
-              className="w-1/4 m-auto p-5"
-            />
-          )}
-        </div>
+        <ImageField
+          text="Image *"
+          name="imageMembre"
+          alt="Image du membre"
+          file={file}
+          onChange={handleChange}
+        />
 
         <div className="flex items-start justify-between mb-3">
           <div className="flex flex-col w-1/2 mr-2">
@@ -178,7 +151,7 @@ const MembersManagementPage = () => {
             <select
               name="titre"
               id="titre"
-              className="bg-white rounded-2xl px-5 py-[0.8rem] border-[1px] border-black outline-none shadow-small mr-2"
+              className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.95rem] mr-2 outline-none"
               onChange={(e) => setValues({ ...values, titre: e.target.value })}
             >
               <option value="">Selectionez un titre</option>
@@ -191,18 +164,12 @@ const MembersManagementPage = () => {
           </div>
 
           <div className="flex flex-col w-1/2 ml-2">
-            <label
-              htmlFor="fonction"
-              className="text-nav font-main font-medium my-1"
-            >
-              Fonction *
-            </label>
-            <input
+            <InputField
               type="text"
+              label="Fonction *"
               name="fonction"
-              id="fonction"
               placeholder="ex : Maître de conférences"
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              value={values.fonction}
               onChange={(e) =>
                 setValues({ ...values, fonction: e.target.value })
               }
@@ -211,18 +178,12 @@ const MembersManagementPage = () => {
         </div>
 
         <div className="flex flex-col mb-3">
-          <label
-            htmlFor="section"
-            className="text-nav font-main font-medium my-1"
-          >
-            Section disciplinaire *
-          </label>
-          <input
+          <InputField
             type="text"
+            label="Section disciplinaire *"
             name="section"
-            id="section"
-            placeholder="ex : Génie informatique, Automatique, Traitement du signal"
-            className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+            placeholder="ex : 61e section (Génie informatique, Automatique, Traitement du signal)"
+            value={values.section}
             onChange={(e) => setValues({ ...values, section: e.target.value })}
           />
         </div>
@@ -243,70 +204,55 @@ const MembersManagementPage = () => {
 
         <div className="flex items-start justify-between mb-3">
           <div className="flex flex-col w-1/2 mr-3">
-            <label
-              htmlFor="e-mail"
-              className="text-nav font-main font-medium my-1"
-            >
-              E-mail *
-            </label>
-            <input
+            <InputField
               type="email"
+              label="E-mail *"
               name="e-mail"
-              id="e-mail"
-              placeholder="exemple@mail.com"
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              placeholder="example@mail.com"
+              value={values.email}
               onChange={(e) => setValues({ ...values, email: e.target.value })}
             />
           </div>
+
           <div className="flex flex-col w-1/2 mr-3">
-            <label
-              htmlFor="telephone"
-              className="text-nav font-main font-medium my-1"
-            >
-              Téléphone *
-            </label>
-            <input
+            <InputField
               type="tel"
+              label="Téléphone *"
               name="telephone"
-              id="telephone"
               placeholder="0712345678"
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-2 outline-none shadow-small"
+              value={values.telephone}
               onChange={(e) =>
                 setValues({ ...values, telephone: e.target.value })
               }
             />
           </div>
           <div className="flex flex-col w-1/2 mr-3">
-            <label
-              htmlFor="lieu"
-              className="text-nav font-main font-medium my-1"
-            >
-              Lieu *
-            </label>
-            <textarea
+            <InputField
+              type="text"
+              label="Lieu *"
               name="lieu"
-              id="lieu"
-              rows="1"
               placeholder="ex : Bâtiment D - Salle D111"
-              className="bg-white rounded-2xl px-5 py-[0.65rem] border-[1px] border-black mr-3 outline-none shadow-small"
+              value={values.lieu}
               onChange={(e) => setValues({ ...values, lieu: e.target.value })}
             />
           </div>
         </div>
 
         <div className="flex justify-end mt-3">
-          <button
+          <SmallBorderButton
             type="reset"
-            className="cursor-pointer bg-white border-1 border-black font-main font-medium rounded-2xl px-5 py-3 ml-2 shadow-small hover:translate-[1px] hover:shadow-none"
-          >
-            Réinitialiser
-          </button>
-          <button
+            bgColor="bg-white"
+            color="text-black"
+            borderColor="border-black"
+            text="Réinitialiser"
+          />
+
+          <SmallFilledButton
             type="submit"
-            className="cursor-pointer bg-accent font-main font-medium rounded-2xl px-5 py-3 mx-3 shadow-small hover:translate-[1px] hover:shadow-none"
-          >
-            Ajouter
-          </button>
+            bgColor="bg-accent"
+            color="text-black"
+            text="Ajouter"
+          />
         </div>
       </form>
     </main>
