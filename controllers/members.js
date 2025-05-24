@@ -36,8 +36,6 @@ export const addMember = (req, res) => {
 
   let base64Data = memberBody.image_blob;
 
-  let imagePath = null;
-
   if (base64Data && base64Data.startsWith("data:image")) {
     // Split the base64 string to get the actual data after comma
     const matches = base64Data.match(/^data:image\/([a-zA-Z]+);base64,(.+)$/);
@@ -103,8 +101,6 @@ export const updateMember = (req, res) => {
   const memberBody = req.body;
 
   let base64Data = memberBody.image_blob;
-
-  let imagePath = null;
 
   if (base64Data && base64Data.startsWith("data:image")) {
     // Split the base64 string to get the actual data after comma

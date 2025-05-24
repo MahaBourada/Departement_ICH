@@ -4,8 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 export const getAllPages = (req, res) => {
   const sql = `SELECT * 
               FROM pages
-              LEFT JOIN sections_page ON pages.idPage = sections_page.idPage
-              LEFT JOIN media ON pages.idPage = media.idPage;`;
+              JOIN sections_page ON pages.idPage = sections_page.idPage;`;
 
   db.query(sql, (err, results) => {
     if (err) {
@@ -34,16 +33,10 @@ export const getPageById = (req, res) => {
                 pages.link, 
                 sections_page.idSection, 
                 sections_page.texte_${lang} AS texte, 
-                sections_page.ordre_positionnement,
-                media.idMedia,
-                media.path,
-                media.type,
-                media.alt
+                sections_page.ordre_positionnement
               FROM pages 
               JOIN sections_page 
                 ON pages.idPage = sections_page.idPage
-              LEFT JOIN media 
-                ON pages.idPage = media.idPage
               WHERE pages.idPage = ?;`;
 
     db.query(sql, [idPage], (err, results) => {
@@ -68,15 +61,13 @@ export const addPage = (req, res) => {
 
     const idPage = pageResult[0].idPage;
 
-    let texteEn = sectionBody.texte_en;
-
     const sqlSection =
       "INSERT INTO departement_ich.sections_page (idSection, texte_fr, texte_en, ordre_positionnement, idPage) VALUES (?, ?, ?, ?, ?)";
 
     const values = [
       idSection,
       sectionBody.texte_fr,
-      texteEn,
+      sectionBody.texte_en,
       sectionBody.ordre_positionnement,
       idPage,
     ];

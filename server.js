@@ -1,6 +1,7 @@
 import express from "express";
 import adminRoutes from "./routes/admin.js";
 import pagesRoutes from "./routes/pages.js";
+import pagesImagesRoutes from "./routes/pagesImages.js";
 import loginRoutes from "./routes/login.js";
 import membersRoutes from "./routes/members.js";
 import cors from "cors";
@@ -32,6 +33,7 @@ app.use(cookieParser());
 app.use("/login", loginRoutes);
 app.use("/admin", adminRoutes);
 app.use("/pages", pagesRoutes);
+app.use("/pages-images", pagesImagesRoutes);
 app.use("/members", membersRoutes);
 
 app.listen(PORT, () => console.log(`Server running`));
