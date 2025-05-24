@@ -126,7 +126,7 @@ const AdminForm = () => {
         <div className="flex items-start justify-between mb-3">
           <div className="flex flex-col w-1/2 mr-3">
             <InputField
-              type="email"
+              type="text"
               label="Nom d'utilisateur *"
               name="username"
               placeholder="jdoe"

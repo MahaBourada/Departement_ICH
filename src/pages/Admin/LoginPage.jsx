@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../api/api";
 import { ArrowLeft } from "lucide-react";
 import { InputField } from "../../components/Inputs";
 import { BigFilledButton } from "../../components/Buttons";
+import { UserContext } from "../../contexts/UserContext.jsx";
 
 const LoginPage = () => {
+  const { setUser, setAccessToken } = useContext(UserContext);
   const navigate = useNavigate();
 
   const [values, setValues] = useState({
@@ -26,11 +28,17 @@ const LoginPage = () => {
     }
 
     try {
-      const response = await api.post("/login", values, {
+      const response = await api.post("/auth/login", values, {
         withCredentials: true,
       });
 
-      if (response.status === 200) return navigate("/admin/tableau-de-bord");
+      setAccessToken(response.data.accessToken);
+      setUser({
+        first_name: response.data.first_name,
+        last_name: response.data.last_name,
+      });
+
+      navigate("/admin/tableau-de-bord");
     } catch (error) {
       const backendMsg = error?.response?.data?.message;
 

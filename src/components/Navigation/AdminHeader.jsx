@@ -1,7 +1,8 @@
 import { ChevronDown, CircleUserRound } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../api/api";
+import { UserContext } from "../../contexts/UserContext.jsx";
 
 const AdminHeader = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -32,15 +33,20 @@ const AdminHeader = () => {
 
   const navigate = useNavigate();
 
+  const { user, setUser, setAccessToken } = useContext(UserContext);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await api.get("/login", {
+      await api.get("/auth/logout", {
         withCredentials: true,
       });
 
-      if (response.status === 200) return navigate("/admin");
+      setAccessToken(null);
+      setUser(null);
+
+      navigate("/admin");
     } catch (error) {
       console.error(error);
     }
@@ -64,7 +70,9 @@ const AdminHeader = () => {
           strokeWidth={2.5}
           aria-hidden="true"
         />
-        <p className="text-2xl font-semibold mx-2">Anis ROJBI</p>
+        <p className="text-2xl font-semibold mx-2">
+          {user?.first_name + " " + user?.last_name.toUpperCase()}
+        </p>
         <CircleUserRound size={34} color="#232323" aria-hidden="true" />
       </button>
 

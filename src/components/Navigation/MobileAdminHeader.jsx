@@ -1,8 +1,16 @@
-import { CircleUserRound, Image, ImageOff, LogOut, Menu, X } from "lucide-react";
-import React, { useState } from "react";
+import {
+  CircleUserRound,
+  Image,
+  ImageOff,
+  LogOut,
+  Menu,
+  X,
+} from "lucide-react";
+import React, { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import ThemeSwitch from "../ThemeSwitch";
 import api from "../../api/api";
+import { UserContext } from "../../contexts/UserContext.jsx";
 
 const MobileAdminHeader = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -27,15 +35,20 @@ const MobileAdminHeader = () => {
 
   const navigate = useNavigate();
 
+  const { user, setUser, setAccessToken } = useContext(UserContext);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await api.get("/login", {
+      await api.get("/auth/logout", {
         withCredentials: true,
       });
 
-      if (response.status === 200) return navigate("/admin");
+      setAccessToken(null);
+      setUser(null);
+
+      navigate("/admin");
     } catch (error) {
       console.error(error);
     }
@@ -72,7 +85,9 @@ const MobileAdminHeader = () => {
             <div className="flex flex-row justify-between items-center my-3">
               <div className="flex flex-row items-center">
                 <CircleUserRound size={28} color="#232323" aria-hidden="true" />
-                <p className="font-semibold mx-2">Anis ROJBI</p>
+                <p className="font-semibold mx-2">
+                  {user?.first_name + " " + user?.last_name.toUpperCase()}
+                </p>
               </div>
               <button
                 type="button"

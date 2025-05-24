@@ -29,8 +29,6 @@ const HomePage = () => {
     }
   };
 
-  console.log(images);
-
   function getByPosition(images, pos) {
     return images.find((img) => img.ordre_positionnement === pos) || {};
   }

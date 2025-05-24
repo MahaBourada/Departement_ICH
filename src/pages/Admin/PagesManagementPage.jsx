@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import RichTextEditor from "../../components/RichTextEditor";
 import api from "../../api/api";
@@ -6,9 +6,11 @@ import MessagePopup from "../../components/MsgPopup";
 import { SmallBorderButton, SmallFilledButton } from "../../components/Buttons";
 import { ImageField, InputField } from "../../components/Inputs";
 import { getRelativePath } from "../../utils/getRelativePath";
+import { UserContext } from "../../contexts/UserContext";
 
 const PagesManagementPage = () => {
   const location = useLocation();
+  const { accessToken } = useContext(UserContext);
   const { title, link } = location.state || {};
 
   const [sections, setSections] = useState([]);
@@ -37,13 +39,21 @@ const PagesManagementPage = () => {
         };
 
         if (section.idSection) {
-          const response = await api.put(`/pages/${section.idSection}`, body);
+          const response = await api.put(`/pages/${section.idSection}`, body, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          });
 
           setMsgShow(true);
           setMsgStatus(200);
           setMsg(response.data.message);
         } else {
-          const response = await api.post("/pages", body);
+          const response = await api.post("/pages", body, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          });
 
           setMsgShow(true);
           setMsgStatus(200);
@@ -127,14 +137,6 @@ const PagesManagementPage = () => {
     } catch (err) {
       console.error("Error fetching images:", err);
     }
-  };
-
-  const handleImageChange = (idMedia, field, value) => {
-    setImages((prev) =>
-      prev.map((img) =>
-        img.idMedia === idMedia ? { ...img, [field]: value } : img
-      )
-    );
   };
 
   const handleFileChange = (index, e) => {
