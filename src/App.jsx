@@ -11,7 +11,7 @@ import NationalePage from "./pages/User/NationalePage";
 import InternationalePage from "./pages/User/InternationalePage";
 import ProjectsPage from "./pages/User/ProjectsPage";
 import PrixPage from "./pages/User/PrixPage";
-import MissingPage from "./pages/User/MissingPage";
+import MissingPage from "./pages/MissingPage";
 import ContactPage from "./pages/User/ContactPage";
 import IndividualPage from "./pages/User/IndividualPage";
 import LoginPage from "./pages/Admin/LoginPage";

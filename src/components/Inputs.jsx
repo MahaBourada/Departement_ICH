@@ -58,7 +58,7 @@ export const ImageField = ({ text, name, alt, file, onChange }) => {
         </label>
         <input
           type="file"
-          accept="image/png, image/jpeg"
+          accept="image/*"
           name={name}
           id={name}
           onChange={onChange}

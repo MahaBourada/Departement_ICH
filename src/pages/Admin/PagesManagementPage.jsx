@@ -4,13 +4,15 @@ import RichTextEditor from "../../components/RichTextEditor";
 import api from "../../api/api";
 import MessagePopup from "../../components/MsgPopup";
 import { SmallBorderButton, SmallFilledButton } from "../../components/Buttons";
-import { ImageField } from "../../components/Inputs";
+import { ImageField, InputField } from "../../components/Inputs";
+import { getRelativePath } from "../../utils/getRelativePath";
 
 const PagesManagementPage = () => {
   const location = useLocation();
   const { title, link } = location.state || {};
 
   const [sections, setSections] = useState([]);
+  const [images, setImages] = useState([]);
 
   const [msg, setMsg] = useState("");
   const [msgShow, setMsgShow] = useState(false);
@@ -40,8 +42,6 @@ const PagesManagementPage = () => {
           setMsgShow(true);
           setMsgStatus(200);
           setMsg(response.data.message);
-
-          console.log(response);
         } else {
           const response = await api.post("/pages", body);
 
@@ -49,6 +49,16 @@ const PagesManagementPage = () => {
           setMsgStatus(200);
           setMsg(response.data.message);
         }
+      }
+
+      for (let img of images) {
+        await api.put(`/pages-images/${img.idMedia}`, {
+          path: getRelativePath(img.path), // base64 or URL depending on if modified
+          alt_fr: img.alt_fr,
+          alt_en: img.alt_en,
+          ordre_positionnement: img.ordre_positionnement,
+          link: link,
+        });
       }
     } catch (error) {
       console.error(error);
@@ -85,9 +95,7 @@ const PagesManagementPage = () => {
             ? JSON.parse(enSection.texte)
             : defaultContent,
           position:
-            frSection?.ordre_positionnement ??
-            enSection?.ordre_positionnement ??
-            index,
+            frSection?.ordre_positionnement ?? enSection?.ordre_positionnement,
         };
       });
 
@@ -97,23 +105,54 @@ const PagesManagementPage = () => {
     }
   };
 
-  const [file, setFile] = useState();
+  const fetchImages = async () => {
+    try {
+      const [resFr, resEn] = await Promise.all([
+        api.get(`/pages-images/${link}?lang=fr`),
+        api.get(`/pages-images/${link}?lang=en`),
+      ]);
 
-  const handleChange = (e) => {
-    const selectedFile = e.target.files[0];
-    if (selectedFile) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFile(reader.result); // this is the base64 string like 'data:image/png;base64,...'
-        setValues((prev) => ({
-          ...prev,
-          image_blob: reader.result, // store base64 string in your form state
-        }));
-      };
-      reader.readAsDataURL(selectedFile);
+      const frenchAlts = resFr.data;
+      const englishAlts = resEn.data;
+
+      const imageData = frenchAlts.map((imgFr, i) => ({
+        idMedia: imgFr.idMedia,
+        path: `${import.meta.env.VITE_BASE_URL}/${imgFr.path}`,
+        alt_fr: imgFr.alt,
+        alt_en: englishAlts[i]?.alt ?? "",
+        ordre_positionnement: imgFr.ordre_positionnement,
+      }));
+
+      setImages(imageData);
+    } catch (err) {
+      console.error("Error fetching images:", err);
     }
   };
 
+  const handleImageChange = (idMedia, field, value) => {
+    setImages((prev) =>
+      prev.map((img) =>
+        img.idMedia === idMedia ? { ...img, [field]: value } : img
+      )
+    );
+  };
+
+  const handleFileChange = (index, e) => {
+    if (!e || !e.target || !e.target.files || !e.target.files[0]) return;
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImages((prevImages) => {
+        const updated = [...prevImages];
+        if (!updated[index]) return updated; // protect against out-of-bounds
+        updated[index] = { ...updated[index], path: reader.result };
+        return updated;
+      });
+    };
+    reader.readAsDataURL(file);
+  };
+
+  console.log(images);
   const defaultContent = [
     {
       type: "paragraph",
@@ -123,6 +162,7 @@ const PagesManagementPage = () => {
 
   useEffect(() => {
     fetchData();
+    fetchImages();
   }, []);
 
   return (
@@ -330,20 +370,52 @@ const PagesManagementPage = () => {
             </div>
           ))}
 
-        <ImageField
-          text="Image 1 *"
-          name="imagePage1"
-          alt="Première image"
-          file={file}
-          onChange={handleChange}
-        />
+        {images.map((img, i) => (
+          <div key={img.idMedia}>
+            <ImageField
+              text={`Image ${img.ordre_positionnement}`}
+              name={`imagePage${img.ordre_positionnement}`}
+              alt={`Image ${img.ordre_positionnement}`}
+              file={img.path}
+              onChange={(e) => handleFileChange(i, e)}
+            />
+            <InputField
+              type="text"
+              label="Alt en français"
+              placeholder="Texte ALT FR"
+              name={`alt_fr_${i}`}
+              value={img.alt_fr}
+              onChange={(e) =>
+                setImages((prev) => {
+                  const updated = [...prev];
+                  updated[i] = { ...updated[i], alt_fr: e.target.value };
+                  return updated;
+                })
+              }
+            />
+            <InputField
+              type="text"
+              label="Alt en anglais"
+              placeholder="Texte ALT EN"
+              name={`alt_en_${i}`}
+              value={img.alt_en}
+              onChange={(e) =>
+                setImages((prev) => {
+                  const updated = [...prev];
+                  updated[i] = { ...updated[i], alt_en: e.target.value };
+                  return updated;
+                })
+              }
+            />
+          </div>
+        ))}
 
-        <ImageField
+        {/* <ImageField
           text="Image 2 *"
           name="imagePage2"
           alt="Deuxième image"
           file={file}
-          onChange={handleChange}
+          onChange={handleFileChange}
         />
 
         <ImageField
@@ -351,8 +423,8 @@ const PagesManagementPage = () => {
           name="imagePage3"
           alt="Troisième image"
           file={file}
-          onChange={handleChange}
-        />
+          onChange={handleFileChange}
+        /> */}
 
         <div className="flex justify-end mt-3">
           <SmallBorderButton
