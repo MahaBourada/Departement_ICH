@@ -11,19 +11,13 @@ const HomePage = () => {
 
   const fetchData = async () => {
     try {
-      const response = await api.get(`/pages/accueil?lang=${lang}`);
+      const contentResponse = await api.get(`/pages/accueil?lang=${lang}`);
+      const imagesResponse = await api.get(
+        `/pages-images/accueil?lang=${lang}`
+      );
 
-      setPageAccueil(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const fetchImages = async () => {
-    try {
-      const response = await api.get(`/pages-images/accueil?lang=${lang}`);
-
-      setImages(response.data);
+      setPageAccueil(contentResponse.data);
+      setImages(imagesResponse.data);
     } catch (error) {
       console.error(error);
     }
@@ -35,7 +29,6 @@ const HomePage = () => {
 
   useEffect(() => {
     fetchData();
-    fetchImages();
   }, []);
 
   return (

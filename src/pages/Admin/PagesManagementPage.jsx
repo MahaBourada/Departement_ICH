@@ -39,21 +39,23 @@ const PagesManagementPage = () => {
         };
 
         if (section.idSection) {
-          const response = await api.put(`/pages/${section.idSection}`, body, {
+          /* const response = await api.put(`/pages/${section.idSection}`, body, {
             headers: {
               Authorization: `Bearer ${accessToken}`,
             },
-          });
+          }); */
+          const response = await api.put(`/pages/${section.idSection}`, body);
 
           setMsgShow(true);
           setMsgStatus(200);
           setMsg(response.data.message);
         } else {
-          const response = await api.post("/pages", body, {
+          /* const response = await api.post("/pages", body, {
             headers: {
               Authorization: `Bearer ${accessToken}`,
             },
-          });
+          }); */
+          const response = await api.post("/pages", body);
 
           setMsgShow(true);
           setMsgStatus(200);
@@ -154,7 +156,6 @@ const PagesManagementPage = () => {
     reader.readAsDataURL(file);
   };
 
-  console.log(images);
   const defaultContent = [
     {
       type: "paragraph",

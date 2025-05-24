@@ -8,17 +8,26 @@ import { Link } from "react-router-dom";
 const MasterPage = () => {
   const { t } = useTranslation();
   const [pageMaster, setPageMaster] = useState([]);
+  const [images, setImages] = useState([]);
   const lang = localStorage.getItem("lang") || "fr";
 
   const fetchData = async () => {
     try {
-      const response = await api.get(`/pages/master?lang=${lang}`);
+      const contentResponse = await api.get(`/pages/master?lang=${lang}`);
+      const imagesResponse = await api.get(
+        `/pages-images/master?lang=${lang}`
+      );
 
-      setPageMaster(response.data);
+      setPageMaster(contentResponse.data);
+      setImages(imagesResponse.data);
     } catch (error) {
       console.error(error);
     }
   };
+
+  function getByPosition(images, pos) {
+    return images.find((img) => img.ordre_positionnement === pos) || {};
+  }
 
   useEffect(() => {
     fetchData();
@@ -45,7 +54,7 @@ const MasterPage = () => {
           {t("department.master.title")}
         </span>
       </nav>
-      
+
       <h1 className="font-main font-semibold text-display my-2 mb-4">
         {t("department.master.title")}
       </h1>
@@ -80,28 +89,37 @@ const MasterPage = () => {
           </div>
 
           {/* Picture */}
-          <div className="minimal:hidden w-[33rem] h-[33rem] bg-cover bg-center bg-no-repeat bg-[url('/assets/images/unicorn.jpeg')] rounded-[50px] mx-auto max-xs:w-80 max-xs:h-80 max-sm:w-96 max-sm:h-96 max-md:w-[26rem] max-md:h-[26rem] max-xl:w-[28rem] max-xl:h-[26rem] max-md:mt-0 max-lg:mt-8 max-large-medium:mb-10"></div>
+          <div
+            className="minimal:hidden w-[33rem] h-[33rem] bg-cover bg-center bg-no-repeat rounded-[50px] mx-auto max-xs:w-80 max-xs:h-80 max-sm:w-96 max-sm:h-96 max-md:w-[26rem] max-md:h-[26rem] max-xl:w-[28rem] max-xl:h-[26rem] max-md:mt-0 max-lg:mt-8 max-large-medium:mb-10"
+            style={{
+              backgroundImage: `url(${import.meta.env.VITE_BASE_URL}/${
+                getByPosition(images, 1).path
+              })`,
+            }}
+            role="img"
+            aria-label={getByPosition(images, 1).alt}
+          ></div>
         </div>
 
         <div className="max-sm:hidden flex flex-row max-large-medium:flex-col justify-between my-6 minimal:hidden">
-          <img
-            src="assets/images/img2.png"
-            alt=""
-            width={400}
-            className="w-[23rem] h-[23rem] max-large-medium:w-[26rem] max-large-medium:h-[26rem] max-xl:w-[18rem] max-xl:h-[18rem] mx-auto max-large-medium:mb-6"
-          />
-          <img
-            src="assets/images/img3.png"
-            alt=""
-            width={400}
-            className="w-[23rem] h-[23rem] max-large-medium:w-[26rem] max-large-medium:h-[26rem] max-xl:w-[18rem] max-xl:h-[18rem] mx-auto max-large-medium:mb-6"
-          />
-          <img
-            src="assets/images/Nao.png"
-            alt=""
-            width={400}
-            className="w-[23rem] h-[23rem] max-large-medium:w-[26rem] max-large-medium:h-[26rem] max-xl:w-[18rem] max-xl:h-[18rem] mx-auto max-large-medium:mb-6"
-          />
+          {[2, 3, 4].map((pos) => {
+            const img = getByPosition(images, pos);
+            if (!img?.path) return null;
+
+            const fullPath = img.path.startsWith("uploads/")
+              ? `${import.meta.env.VITE_BASE_URL}/${img.path}`
+              : img.path;
+
+            return (
+              <img
+                key={img.idMedia}
+                src={fullPath}
+                alt={img.alt || ""}
+                width={400}
+                className="w-[23rem] h-[23rem] max-large-medium:w-[26rem] max-large-medium:h-[26rem] max-xl:w-[18rem] max-xl:h-[18rem] mx-auto max-large-medium:mb-6"
+              />
+            );
+          })}
         </div>
       </div>
     </main>

@@ -36,12 +36,12 @@ function App() {
           <Route path="equipe" element={<MembersPage />} />
           <Route path="equipe/:id" element={<IndividualPage />} />
           <Route path="master" element={<MasterPage />} />
-          {/* <Route path="lab-chart" element={<LabPage />} />
+          <Route path="lab-chart" element={<LabPage />} />
           <Route path="collaboration-nationale" element={<NationalePage />} />
           <Route
             path="collaboration-internationale"
             element={<InternationalePage />}
-          /> */}
+          />
           <Route path="projets-etudiants" element={<ProjectsPage />} />
           {/* <Route path="prix-concours" element={<PrixPage />} /> */}
           <Route path="contact" element={<ContactPage />} />
