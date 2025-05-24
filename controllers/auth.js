@@ -10,7 +10,7 @@ export const handleLogin = (req, res) => {
   if (!username || !password) {
     return res
       .status(400)
-      .json({ message: "E-mail and password are required" });
+      .json({ message: "Username and password are required" });
   }
 
   // MySQL query to find user by username
@@ -55,14 +55,15 @@ export const handleLogin = (req, res) => {
     // Set the refresh token as a cookie
     res.cookie("jwt", refreshToken, {
       httpOnly: true,
-      sameSite: true, // Allows cross-origin requests
-      secure: true,
+      secure: true, // set to false only in localhost if needed
+      sameSite: true, // or "Lax" for cross-site dev
       maxAge: 24 * 60 * 60 * 1000, // 1 day
     });
 
-    return res.json({
+    res.json({
       accessToken,
-      user: foundUser,
+      first_name: foundUser.first_name,
+      last_name: foundUser.last_name,
     });
   });
 };
@@ -75,4 +76,35 @@ export const handleLogout = async (req, res) => {
   res.clearCookie("jwt", { httpOnly: true, sameSite: "None", secure: true });
 
   res.json({ message: "Cookie cleared" });
+};
+
+export const handleRefreshToken = (req, res) => {
+  const cookies = req.cookies;
+  if (!cookies?.jwt) return res.sendStatus(401);
+
+  const refreshToken = cookies.jwt;
+
+  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
+    if (err) return res.sendStatus(403);
+
+    const username = decoded.username;
+
+    const sql = "SELECT * FROM admin WHERE username = ?";
+    db.query(sql, [username], (err, results) => {
+      if (err || results.length === 0) return res.sendStatus(403);
+
+      const foundUser = results[0];
+      const accessToken = jwt.sign(
+        { UserInfo: { username: foundUser.username } },
+        process.env.ACCESS_TOKEN_SECRET,
+        { expiresIn: "15m" }
+      );
+
+      res.json({
+        accessToken,
+        first_name: foundUser.first_name,
+        last_name: foundUser.last_name,
+      });
+    });
+  });
 };

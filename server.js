@@ -2,7 +2,7 @@ import express from "express";
 import adminRoutes from "./routes/admin.js";
 import pagesRoutes from "./routes/pages.js";
 import pagesImagesRoutes from "./routes/pagesImages.js";
-import loginRoutes from "./routes/login.js";
+import authRoutes from "./routes/auth.js";
 import membersRoutes from "./routes/members.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -10,6 +10,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const app = express();
+app.use(cookieParser());
 
 const PORT = process.env.PORT;
 
@@ -28,9 +29,8 @@ app.use(
     credentials: true,
   })
 );
-app.use(cookieParser());
 
-app.use("/login", loginRoutes);
+app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes);
 app.use("/pages", pagesRoutes);
 app.use("/pages-images", pagesImagesRoutes);
