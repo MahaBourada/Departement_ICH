@@ -50,15 +50,39 @@ const LoginPage = () => {
     }
   };
 
+  const darkTheme = localStorage.getItem("theme");
+
   return (
-    <div className="flex flex-col min-h-screen bg-[url('/assets/vectors/AdminBg.svg')] bg-cover bg-no-repeat bg-center text-black text-dynamic-base leading-9 readerMode:leading-loose">
+    <div
+      className="flex flex-col min-h-screen bg-cover bg-no-repeat bg-center text-black dark:text-gray-300 text-dynamic-base leading-9 readerMode:leading-loose dark:bg-dark-background"
+      style={{
+        backgroundImage: `url('${
+          darkTheme === "light"
+            ? "/ich/assets/vectors/AdminBg.svg"
+            : "/ich/assets/vectors/AdminBgDark.svg"
+        }')`,
+      }}
+    >
       <header className="flex flex-row items-center justify-between w-full">
-        <img
-          src="assets/vectors/Logo.svg"
-          alt="Logo de l'université Paris 8"
-          width={140}
-          className="m-5"
-        />
+        {darkTheme === "dark" ? (
+          <>
+            <img
+              src="/ich/assets/vectors/LogoDark.svg"
+              alt="Logo de l'université Paris 8"
+              width={140}
+              className="m-5"
+            />
+          </>
+        ) : (
+          <>
+            <img
+              src="/ich/assets/vectors/Logo.svg"
+              alt="Logo de l'université Paris 8"
+              width={140}
+              className="m-5"
+            />
+          </>
+        )}
 
         <div className="mx-6">
           <AccessibilityMenu />
@@ -75,7 +99,7 @@ const LoginPage = () => {
             <ArrowLeft
               aria-label="Revenir à l'accueil"
               size={38}
-              color="#232323"
+              color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
               strokeWidth={2.5}
             />
           </Link>

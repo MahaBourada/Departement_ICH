@@ -97,7 +97,7 @@ const ContactPage = () => {
             <select
               name={t("contact.form.object.label")}
               id={t("contact.form.object.label")}
-              className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.95rem] mr-2 outline-gray-500"
+              className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.95rem] mr-2 outline-gray-500 dark:text-black dark:bg-gray-400 dark:border-gray-700"
             >
               <option value="">{t("contact.form.object.placeholder")}</option>
               <option value="feedback">{t("contact.form.object.1")}</option>

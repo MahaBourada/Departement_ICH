@@ -49,7 +49,11 @@ const AccessibilityMenu = () => {
   }, [darkTheme]);
 
   const toggleDarkTheme = () => {
-    setDarkTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    setDarkTheme((prevTheme) => {
+      const newTheme = prevTheme === "light" ? "dark" : "light";
+      if (newTheme === "dark" && readerMode === true) setReaderMode(false);
+      return newTheme;
+    });
   };
 
   // Reader mode
@@ -69,7 +73,13 @@ const AccessibilityMenu = () => {
   }, [readerMode]);
 
   const toggleReaderMode = () => {
-    setReaderMode((prev) => !prev);
+    setReaderMode((prev) => {
+      const newValue = !prev;
+      if (newValue) {
+        setDarkTheme("light"); // force light mode if readerMode is turned on
+      }
+      return newValue;
+    });
   };
 
   // Zoom in / Zoom out / Reset
@@ -94,74 +104,100 @@ const AccessibilityMenu = () => {
   const resetZoom = () => {
     setFontSize(1.25);
   };
+
   return (
     <div className="relative my-1 rounded-lg" ref={showMenuRef}>
       <button
         type="button"
         onClick={() => setShowMenu(!showMenu)}
-        className="cursor-pointer w-fit flex justify-end items-center px-3 py-1.5 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main rounded-lg font-medium"
+        className="cursor-pointer w-fit flex justify-end items-center px-3 py-1.5 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg font-medium"
       >
         <span className="mx-1 text-dynamic-sm">Accessibilité</span>
-        <PersonStanding size={28} color="#232323" strokeWidth={3.2} />
+        <PersonStanding
+          size={28}
+          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          strokeWidth={3.2}
+        />
       </button>
 
       {showMenu && (
-        <div className="absolute right-0 z-50 mt-1 w-fit bg-white rounded-lg shadow-small font-normal">
+        <div className="absolute right-0 z-50 mt-1 w-fit bg-white dark:bg-dark-background rounded-lg shadow-small dark:shadow-gray-900 font-normal">
           <button
             type="button"
-            className="cursor-pointer flex justify-between items-center bg-white hover:bg-gray-200 focus:bg-gray-200 px-3 py-1.5 text-nowrap w-full rounded-lg"
+            className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-gray-200 focus:bg-gray-200 dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
             onClick={toggleDarkTheme}
           >
             {darkTheme === "light" ? (
               <>
                 <span className="mr-2">Mode sombre</span>
-                <Moon size={29} color="#232323" />
+                <Moon
+                  size={29}
+                  color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+                />
               </>
             ) : (
               <>
                 <span className="mr-2">Mode clair</span>
-                <Sun size={29} color="#232323" />
+                <Sun
+                  size={29}
+                  color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+                />
               </>
             )}
           </button>
 
           <button
             type="button"
-            className="cursor-pointer flex justify-between items-center bg-white hover:bg-gray-200 focus:bg-gray-200 px-3 py-1.5 text-nowrap w-full rounded-lg"
+            className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-gray-200 focus:bg-gray-200 dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
             onClick={zoomIn}
           >
             <span>Zoom +</span>
-            <ZoomIn size={29} color="#232323" />
+            <ZoomIn
+              size={29}
+              color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+            />
           </button>
 
           <button
             type="button"
-            className="cursor-pointer flex justify-between items-center bg-white hover:bg-gray-200 focus:bg-gray-200 px-3 py-1.5 text-nowrap w-full rounded-lg"
+            className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-gray-200 focus:bg-gray-200 dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
             onClick={resetZoom}
           >
             <span>Réinitialiser</span>
-            <RotateCcw size={28} color="#232323" />
+            <RotateCcw
+              size={28}
+              color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+            />
           </button>
 
           <button
             type="button"
-            className="cursor-pointer flex justify-between items-center bg-white hover:bg-gray-200 focus:bg-gray-200 px-3 py-1.5 text-nowrap w-full rounded-lg"
+            className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-gray-200 focus:bg-gray-200 dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
             onClick={zoomOut}
           >
             <span>Zoom -</span>
-            <ZoomOut size={29} color="#232323" />
+            <ZoomOut
+              size={29}
+              color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+            />
           </button>
 
           <button
             type="button"
-            className="cursor-pointer flex justify-between items-center bg-white hover:bg-gray-200 focus:bg-gray-200 px-3 py-1.5 text-nowrap w-full rounded-lg"
+            className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-gray-200 focus:bg-gray-200 dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
             onClick={toggleReaderMode}
           >
             <span className="mr-2">Confort de lecture</span>
             {readerMode ? (
-              <BookOpenCheck size={29} color="#232323" />
+              <BookOpenCheck
+                size={29}
+                color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+              />
             ) : (
-              <BookOpen size={29} color="#232323" />
+              <BookOpen
+                size={29}
+                color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+              />
             )}
           </button>
         </div>

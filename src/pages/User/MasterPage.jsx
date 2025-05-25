@@ -31,26 +31,31 @@ const MasterPage = () => {
     fetchData();
   }, []);
 
-  console.log(getByPosition(images, 1).path);
+  const darkTheme = localStorage.getItem("theme");
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
       <nav
         aria-label="Fil d'Ariane"
-        className="my-1 mb-5 p-1.5 py-2 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden"
+        className="my-1 mb-5 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black"
       >
-        <Link
-          to="/"
-          className="px-4 py-2 rounded-xl hover:text-dark-accent hover:bg-bg-transparent hover:underline hover:translate-[1px]"
-        >
+        <Link to="/" className="px-4 py-1 rounded-xl">
           {t("home.link")}
         </Link>
-        <ChevronRight size={33} color="#232323" strokeWidth={2} />
-        <span className="px-4 py-2 rounded-xl text-dark-accent bg-bg-transparent hover:underline hover:translate-[1px]">
+        <ChevronRight
+          size={33}
+          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          strokeWidth={2}
+        />
+        <span className="px-4 py-1 rounded-xl text-dark-accent dark:text-black bg-bg-transparent">
           {t("department.link")}
         </span>
-        <ChevronRight size={33} color="#232323" strokeWidth={2} />
-        <span className="px-4 py-2 rounded-xl hover:text-dark-accent hover:bg-bg-transparent hover:underline hover:translate-[1px]">
+        <ChevronRight
+          size={33}
+          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          strokeWidth={2}
+        />
+        <span className="px-4 py-1 rounded-xl">
           {t("department.master.title")}
         </span>
       </nav>

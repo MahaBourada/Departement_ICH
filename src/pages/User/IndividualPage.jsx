@@ -30,33 +30,37 @@ const IndividualPage = () => {
   const mainPart = match ? match[1].trim() : "";
   const subParts = match ? match[2].split(",").map((s) => s.trim()) : [];
 
-  console.log(serializeSingleToHtml(member.propos));
+  const darkTheme = localStorage.getItem("theme");
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16">
       <nav
         aria-label="Fil d'Ariane"
-        className="my-1 mb-7 mx-2 p-1.5 py-2 w-full bg-gray-200 rounded-xl flex items-center font-medium readerMode:hidden"
+        className="my-1 mb-7 mx-2 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium readerMode:hidden dark:bg-black"
       >
-        <Link
-          to="/"
-          className="px-4 py-2 rounded-xl hover:text-dark-accent hover:bg-bg-transparent hover:underline hover:translate-[1px]"
-        >
+        <Link to="/" className="px-4 py-1 rounded-xl">
           {t("home.link")}
         </Link>
-        <ChevronRight size={33} color="#232323" strokeWidth={2} />
-        <span className="px-4 py-2 rounded-xl hover:text-dark-accent hover:bg-bg-transparent hover:underline hover:translate-[1px]">
-          {t("department.link")}
-        </span>
-        <ChevronRight size={33} color="#232323" strokeWidth={2} />
-        <Link
-          className="px-4 py-2 rounded-xl hover:text-dark-accent hover:bg-bg-transparent underline hover:translate-[1px]"
-          to="/equipe"
-        >
+        <ChevronRight
+          size={33}
+          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          strokeWidth={2}
+        />
+        <span className="px-4 py-1 rounded-xl">{t("department.link")}</span>
+        <ChevronRight
+          size={33}
+          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          strokeWidth={2}
+        />
+        <Link className="px-4 py-1 rounded-xl" to="/equipe">
           {t("department.team.link")}
         </Link>
-        <ChevronRight size={33} color="#232323" strokeWidth={2} />
-        <span className="px-4 py-2 rounded-xl text-dark-accent bg-bg-transparent underline hover:translate-[1px]">
+        <ChevronRight
+          size={33}
+          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          strokeWidth={2}
+        />
+        <span className="px-4 py-1 rounded-xl text-dark-accent dark:text-black bg-bg-transparent">
           {member.prenom + " " + UpperNom}
         </span>
       </nav>
@@ -102,21 +106,30 @@ const IndividualPage = () => {
 
           {member.lieu && (
             <div className="flex items-center my-2">
-              <MapPin size={32} color="#232323" />
+              <MapPin
+                size={32}
+                color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+              />
               <p className="mx-2">{member.lieu}</p>
             </div>
           )}
 
           {member.email && (
             <div className="flex items-center my-4">
-              <Mail size={32} color="#232323" />
+              <Mail
+                size={32}
+                color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+              />
               <p className="mx-2">{member.email}</p>
             </div>
           )}
 
           {member.telephone && (
             <div className="flex items-center my-4">
-              <Phone size={32} color="#232323" />
+              <Phone
+                size={32}
+                color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+              />
               <p className="mx-2">{member.telephone}</p>
             </div>
           )}

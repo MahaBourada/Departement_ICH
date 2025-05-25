@@ -38,14 +38,28 @@ const Footer = ({ switchLang }) => {
     e.preventDefault();
   };
 
+  const darkTheme = localStorage.getItem("theme");
+
   return (
-    <footer className="max-large-medium:hidden flex flex-col items-center py-4 px-10 bg-main dark:bg-dark-main dark:text-black large-medium:text-dynamic-lg lg:text-dynamic-lg">
+    <footer className="max-large-medium:hidden flex flex-col items-center py-4 px-10 bg-main dark:bg-dark-main dark:text-gray-300 large-medium:text-dynamic-lg lg:text-dynamic-lg">
       <div className="flex justify-between items-center w-full">
-        <img
-          src="assets/vectors/Logo.svg"
-          alt="Logo de l'université Paris 8"
-          width={150}
-        />
+        {darkTheme === "dark" ? (
+          <>
+            <img
+              src="/ich/assets/vectors/LogoDark.svg"
+              alt="Logo de l'université Paris 8"
+              width={150}
+            />
+          </>
+        ) : (
+          <>
+            <img
+              src="/ich/assets/vectors/Logo.svg"
+              alt="Logo de l'université Paris 8"
+              width={150}
+            />
+          </>
+        )}
 
         <form onSubmit={(e) => onSubmit(e)} className="flex flex-row items-end">
           <div className="my-1">
@@ -66,13 +80,13 @@ const Footer = ({ switchLang }) => {
         </form>
       </div>
 
-      <div className="border-black border-[1px] my-5 w-full"></div>
+      <div className="border-black dark:border-gray-300 border-[1px] my-5 w-full"></div>
 
       <div className="flex justify-between items-end w-full">
         <div className="flex items-center">
           {localStorage.getItem("lang") === "en" ? (
             <button
-              className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px] p-2 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+              className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px] p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               onClick={() => switchLang("fr")}
             >
               <img
@@ -83,7 +97,7 @@ const Footer = ({ switchLang }) => {
             </button>
           ) : (
             <button
-              className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px] p-2 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+              className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px] p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               onClick={() => switchLang("en")}
             >
               <img
@@ -101,8 +115,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
-                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
               to="/"
             >
@@ -112,8 +126,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
-                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
               to="/contact"
             >
@@ -127,8 +141,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
-                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
               to="/conferences"
             >
@@ -142,8 +156,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
-                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
               to="/equipe"
             >
@@ -153,8 +167,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
-                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
               to="/master"
             >
@@ -164,8 +178,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
-                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
               to="/lab-chart"
             >
@@ -175,8 +189,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
-                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
               to="/projets-etudiants"
             >
@@ -186,8 +200,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
-                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
               to="/prix-concours"
             >
@@ -201,8 +215,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
-                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
               to="/collaboration-nationale"
             >
@@ -212,8 +226,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
-                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
               to="/collaboration-internationale"
             >

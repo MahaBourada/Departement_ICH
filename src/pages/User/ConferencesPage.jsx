@@ -6,24 +6,31 @@ import { Link } from "react-router-dom";
 const ConferencesPage = () => {
   const { t } = useTranslation();
 
+  const darkTheme = localStorage.getItem("theme");
+
   return (
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
       <nav
         aria-label="Fil d'Ariane"
-        className="my-1 mb-5 p-1.5 py-2 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden"
+        className="my-1 mb-5 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black"
       >
-        <Link
-          to="/"
-          className="px-4 py-2 rounded-xl hover:text-dark-accent hover:bg-bg-transparent hover:underline hover:translate-[1px]"
-        >
+        <Link to="/" className="px-4 py-1 rounded-xl">
           {t("home.link")}
         </Link>
-        <ChevronRight size={33} color="#232323" strokeWidth={2} />
-        <span className="px-4 py-2 rounded-xl text-dark-accent bg-bg-transparent hover:underline translate-[1px]">
+        <ChevronRight
+          size={33}
+          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          strokeWidth={2}
+        />
+        <span className="px-4 py-1 rounded-xl text-dark-accent dark:text-black bg-bg-transparent translate-[1px]">
           {t("news.link")}
         </span>
-        <ChevronRight size={33} color="#232323" strokeWidth={2} />
-        <span className="px-4 py-2 rounded-xl hover:text-dark-accent hover:bg-bg-transparent hover:underline hover:translate-[1px]">
+        <ChevronRight
+          size={33}
+          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          strokeWidth={2}
+        />
+        <span className="px-4 py-1 rounded-xl">
           {t("news.conferences.title")}
         </span>
       </nav>
@@ -39,7 +46,7 @@ const ConferencesPage = () => {
 
         <div className="flex">
           <div className="w-[62%] readerMode:w-full max-large-large:w-full minimal:w-full mr-12 minimal:mr-4 ml-6 max-md:mx-2">
-            <div className="h-[0.5px] bg-black my-5 w-full"></div>
+            <div className="h-[0.5px] bg-black dark:bg-gray-300 my-5 w-full"></div>
 
             <div>
               <div className="flex items-start justify-between">
@@ -79,7 +86,7 @@ const ConferencesPage = () => {
                 chaque fois des exemples liés au handicap.
               </p>
             </div>
-            <div className="h-[0.5px] bg-black my-5 w-full"></div>
+            <div className="h-[0.5px] bg-black dark:bg-gray-300 my-5 w-full"></div>
           </div>
 
           <img
@@ -98,7 +105,7 @@ const ConferencesPage = () => {
         </h2>
 
         <div className="mx-6 max-md:mx-2">
-          <div className="h-[0.5px] bg-black my-5 w-full"></div>
+          <div className="h-[0.5px] bg-black dark:bg-gray-300 my-5 w-full"></div>
 
           <div className="w-full">
             <div className="flex items-start justify-between">
@@ -139,7 +146,7 @@ const ConferencesPage = () => {
             </p>
           </div>
 
-          <div className="h-[0.5px] bg-black my-5 w-full"></div>
+          <div className="h-[0.5px] bg-black dark:bg-gray-300 my-5 w-full"></div>
 
           <div className="w-full">
             <div className="flex items-start justify-between">
@@ -179,7 +186,7 @@ const ConferencesPage = () => {
               handicap.
             </p>
           </div>
-          <div className="h-[0.5px] bg-black my-5 w-full"></div>
+          <div className="h-[0.5px] bg-black dark:bg-gray-300 my-5 w-full"></div>
         </div>
       </div>
     </main>

@@ -16,7 +16,7 @@ export const InputField = ({
         name={name}
         id={name}
         placeholder={placeholder}
-        className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.75rem] mr-2 outline-gray-500"
+        className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.75rem] mr-2 outline-gray-500 dark:text-black dark:bg-gray-400 dark:border-gray-700"
         value={value}
         onChange={onChange}
       />
@@ -41,7 +41,7 @@ export const TextAreaField = ({
         id={name}
         rows="5"
         placeholder={placeholder}
-        className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.75rem] mr-2 outline-gray-500"
+        className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.75rem] mr-2 outline-gray-500 dark:text-black dark:bg-gray-400 dark:border-gray-700"
         value={value}
         onChange={onChange}
       />
@@ -62,7 +62,7 @@ export const ImageField = ({ text, name, alt, file, onChange }) => {
           name={name}
           id={name}
           onChange={onChange}
-          className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.75rem] mr-2 outline-gray-500 active:translate-[1px]"
+          className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.75rem] mr-2 outline-gray-500 active:translate-[1px] dark:text-black dark:bg-gray-400 dark:border-gray-700"
         />
       </div>
       {file && <img src={file} alt={alt} className="w-1/4 m-auto p-5" />}

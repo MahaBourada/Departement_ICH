@@ -21,26 +21,31 @@ const MembersPage = () => {
     fetchData();
   }, []);
 
-  console.log(members);
+  const darkTheme = localStorage.getItem("theme");
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
       <nav
         aria-label="Fil d'Ariane"
-        className="my-1 mb-5 p-1.5 py-2 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden"
+        className="my-1 mb-5 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black"
       >
-        <Link
-          to="/"
-          className="px-4 py-2 rounded-xl hover:text-dark-accent hover:bg-bg-transparent hover:underline hover:translate-[1px]"
-        >
+        <Link to="/" className="px-4 py-1 rounded-xl">
           {t("home.link")}
         </Link>
-        <ChevronRight size={33} color="#232323" strokeWidth={2} />
-        <span className="px-4 py-2 rounded-xl text-dark-accent bg-bg-transparent hover:underline hover:translate-[1px]">
+        <ChevronRight
+          size={33}
+          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          strokeWidth={2}
+        />
+        <span className="px-4 py-1 rounded-xl text-dark-accent dark:text-black bg-bg-transparent">
           {t("department.link")}
         </span>
-        <ChevronRight size={33} color="#232323" strokeWidth={2} />
-        <span className="px-4 py-2 rounded-xl hover:text-dark-accent hover:bg-bg-transparent hover:underline hover:translate-[1px]">
+        <ChevronRight
+          size={33}
+          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          strokeWidth={2}
+        />
+        <span className="px-4 py-1 rounded-xl">
           {t("department.team.title")}
         </span>
       </nav>
@@ -68,7 +73,7 @@ const MembersPage = () => {
                 key={member.idMembre}
                 to={member.idMembre}
                 state={{ member: member }}
-                className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:translate-[1px] w-full"
+                className="border-2 border-black dark:border-gray-300 rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:translate-[1px] w-full"
               >
                 <h3 className="font-main font-medium text-dynamic-xl max-md:text-3xl">
                   {member.prenom + " " + member.nom.toUpperCase()}
@@ -125,7 +130,7 @@ const MembersPage = () => {
                 key={member.idMembre}
                 to={member.idMembre}
                 state={{ member: member }}
-                className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:translate-[1px]"
+                className="border-2 border-black dark:border-gray-300 rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:translate-[1px]"
               >
                 <h3 className="font-main font-medium text-dynamic-xl max-md:text-3xl">
                   {member.prenom + " " + member.nom.toUpperCase()}
@@ -135,7 +140,7 @@ const MembersPage = () => {
                     src={`${import.meta.env.VITE_BASE_URL}/${
                       member.image_blob
                     }`}
-                    alt="Photo de Anis ROJBI"
+                    alt={`Photo de ${member.nom}`}
                     width={200}
                     className="rounded-3xl minimal:hidden max-lg:hidden max-xl:w-40"
                   />
@@ -182,7 +187,7 @@ const MembersPage = () => {
                 key={member.idMembre}
                 to={member.idMembre}
                 state={{ member }}
-                className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:translate-[1px] h-full flex flex-col justify-between"
+                className="border-2 border-black dark:border-gray-300 rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:translate-[1px] h-full flex flex-col justify-between"
               >
                 {/* Title */}
                 <h3 className="font-main font-medium text-dynamic-xl max-md:text-3xl mb-4">

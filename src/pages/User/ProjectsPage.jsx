@@ -7,24 +7,31 @@ import projectData from "../../data/projects.json";
 const ProjectsPage = () => {
   const { t } = useTranslation();
 
+  const darkTheme = localStorage.getItem("theme");
+
   return (
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
       <nav
         aria-label="Fil d'Ariane"
-        className="my-1 mb-5 p-1.5 py-2 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden"
+        className="my-1 mb-5 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black"
       >
-        <Link
-          to="/"
-          className="px-4 py-2 rounded-xl hover:text-dark-accent hover:bg-bg-transparent hover:underline hover:translate-[1px]"
-        >
+        <Link to="/" className="px-4 py-1 rounded-xl">
           {t("home.link")}
         </Link>
-        <ChevronRight size={33} color="#232323" strokeWidth={2} />
-        <span className="px-4 py-2 rounded-xl text-dark-accent bg-bg-transparent hover:underline hover:translate-[1px]">
+        <ChevronRight
+          size={33}
+          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          strokeWidth={2}
+        />
+        <span className="px-4 py-1 rounded-xl text-dark-accent bg-bg-transparent dark:text-black">
           {t("department.link")}
         </span>
-        <ChevronRight size={33} color="#232323" strokeWidth={2} />
-        <span className="px-4 py-2 rounded-xl hover:text-dark-accent hover:bg-bg-transparent hover:underline hover:translate-[1px]">
+        <ChevronRight
+          size={33}
+          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          strokeWidth={2}
+        />
+        <span className="px-4 py-1 rounded-xl">
           {t("department.projects.title")}
         </span>
       </nav>
@@ -34,21 +41,21 @@ const ProjectsPage = () => {
       </h1>
 
       <div className="mx-4 max-md:mx-2 readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto">
-        <div className="border-black border-[1px] my-5 w-full"></div>
+        <div className="border-black dark:border-gray-300 border-[1px] my-5 w-full"></div>
 
         {projectData.map((project, index) => (
           <>
             <div className="w-full" key={index}>
               <div className="flex flex-row items-start justify-between max-large-large:flex-col readerMode:flex-col">
                 <div>
-                  <h3 className="font-semibold font-main text-dynamic-xl my-2">
+                  <h2 className="font-semibold font-main text-dynamic-xl my-2">
                     {project.name}
-                  </h3>
+                  </h2>
 
                   <div className="minimal:hidden block">
-                    <h4 className="font-semibold text-dynamic-lg my-2">
+                    <h3 className="font-semibold text-dynamic-lg my-2">
                       {t("department.projects.members")}
-                    </h4>
+                    </h3>
                     <ul className="list-disc mx-7">
                       {project.members.split(",").map((name, index) => (
                         <li key={index}>{name.trim()}</li>
@@ -82,7 +89,7 @@ const ProjectsPage = () => {
               <p className="m-2">{project.objectif}</p>
             </div>
 
-            <div className="border-black border-[1px] my-5 w-full"></div>
+            <div className="border-black dark:border-gray-300 border-[1px] my-5 w-full"></div>
           </>
         ))}
       </div>
