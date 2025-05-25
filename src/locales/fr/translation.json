@@ -66,5 +66,12 @@
   "404": {
     "text": "Erreur 404 : La page a pris la fuite... Ou est en construction",
     "button": "Revenir en arrière"
+  },
+  "accessibility": {
+    "label": "Accessibilité",
+    "dark": "Mode sombre",
+    "light": "Mode clair",
+    "reset": "Réinitialiser",
+    "reader": "Confort de lecture"
   }
 }

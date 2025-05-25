@@ -66,5 +66,12 @@
   "404": {
     "text": "Error 404: The page has fled... Or is under construction",
     "button": "Go back"
+  },
+  "accessibility": {
+    "label": "Accessibility",
+    "dark": "Dark mode",
+    "light": "Light mode",
+    "reset": "Reset",
+    "reader": "Reader mode"
   }
 }

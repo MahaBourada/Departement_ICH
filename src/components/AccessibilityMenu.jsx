@@ -9,8 +9,10 @@ import {
   ZoomOut,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const AccessibilityMenu = () => {
+  const { t } = useTranslation();
   const [showMenu, setShowMenu] = useState(false);
   const showMenuRef = useRef(null);
 
@@ -112,7 +114,7 @@ const AccessibilityMenu = () => {
         onClick={() => setShowMenu(!showMenu)}
         className="cursor-pointer w-fit flex justify-end items-center px-3 py-1.5 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg font-medium"
       >
-        <span className="mx-1 text-dynamic-sm">Accessibilité</span>
+        <span className="mx-1 text-dynamic-sm">{t('accessibility.label')}</span>
         <PersonStanding
           size={28}
           color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
@@ -129,7 +131,7 @@ const AccessibilityMenu = () => {
           >
             {darkTheme === "light" ? (
               <>
-                <span className="mr-2">Mode sombre</span>
+                <span className="mr-2">{t('accessibility.dark')}</span>
                 <Moon
                   size={29}
                   color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
@@ -137,7 +139,7 @@ const AccessibilityMenu = () => {
               </>
             ) : (
               <>
-                <span className="mr-2">Mode clair</span>
+                <span className="mr-2">{t('accessibility.light')}</span>
                 <Sun
                   size={29}
                   color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
@@ -163,7 +165,7 @@ const AccessibilityMenu = () => {
             className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-gray-200 focus:bg-gray-200 dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
             onClick={resetZoom}
           >
-            <span>Réinitialiser</span>
+            <span>{t('accessibility.reset')}</span>
             <RotateCcw
               size={28}
               color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
@@ -187,7 +189,7 @@ const AccessibilityMenu = () => {
             className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-gray-200 focus:bg-gray-200 dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
             onClick={toggleReaderMode}
           >
-            <span className="mr-2">Confort de lecture</span>
+            <span className="mr-2">{t('accessibility.reader')}</span>
             {readerMode ? (
               <BookOpenCheck
                 size={29}

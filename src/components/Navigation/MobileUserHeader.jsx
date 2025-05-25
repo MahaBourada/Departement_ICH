@@ -71,7 +71,7 @@ const MobileUserHeader = ({ switchLang }) => {
   const darkTheme = localStorage.getItem("theme");
 
   return (
-    <header className="sticky top-0 max-large-medium:block hidden px-7 py-5 bg-main dark:bg-dark-main shadow-medium z-50">
+    <header className="sticky top-0 max-large-medium:block hidden px-7 py-5 bg-main dark:bg-dark-main shadow-medium dark:shadow-gray-900 z-50">
       <div className="flex flex-row items-center justify-between">
         <img
           src="/ich/assets/vectors/Logo.svg"
