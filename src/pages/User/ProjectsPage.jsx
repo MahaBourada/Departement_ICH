@@ -40,7 +40,7 @@ const ProjectsPage = () => {
         {t("department.projects.title")}
       </h1>
 
-      <div className="mx-4 max-md:mx-2 readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto">
+      <div className="mx-4 max-md:mx-2 readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full max-large-medium:readerMode:text-xl">
         <div className="border-black dark:border-gray-300 border-[1px] my-5 w-full"></div>
 
         {projectData.map((project, index) => (

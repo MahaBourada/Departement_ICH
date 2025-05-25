@@ -69,7 +69,7 @@ const IndividualPage = () => {
         {member.prenom + " " + UpperNom}
       </h1>
 
-      <div className="flex flex-row items-start justify-between readerMode:flex-col readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto">
+      <div className="flex flex-row items-start justify-between readerMode:flex-col readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full max-large-medium:readerMode:text-xl">
         <div className="m-2">
           <h2 className="font-medium text-dynamic-xl font-main">
             {member.titre}

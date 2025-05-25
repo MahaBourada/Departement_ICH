@@ -45,7 +45,7 @@ const HomePage = () => {
         </h1>
       </div>
 
-      <div className="my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10 readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto">
+      <div className="my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10 readerMode:leading-loose readerMode:text-2xl max-large-medium:readerMode:text-xl readerMode:w-[60ch] max-large-medium:readerMode:w-full readerMode:mx-auto">
         <div
           className="my-7 mt-10"
           dangerouslySetInnerHTML={{ __html: serializeToHtml(pageAccueil, 1) }}

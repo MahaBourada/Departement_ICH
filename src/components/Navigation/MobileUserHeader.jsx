@@ -106,7 +106,7 @@ const MobileUserHeader = ({ switchLang }) => {
                 onClick={() => switchLang("fr")}
               >
                 <img
-                  src="assets/images/french.png"
+                  src="/ich/assets/images/french.png"
                   alt="Version française"
                   width={33}
                   className="py-3"
@@ -118,7 +118,7 @@ const MobileUserHeader = ({ switchLang }) => {
                 onClick={() => switchLang("en")}
               >
                 <img
-                  src="assets/images/english.png"
+                  src="/ich/assets/images/english.png"
                   alt="English version"
                   width={33}
                   className="py-3"
@@ -220,7 +220,7 @@ const MobileUserHeader = ({ switchLang }) => {
                     to="/projets-etudiants"
                     className="hover:bg-gray-200 focus:bg-gray-200 px-4 py-3"
                   >
-                    {t("department.projects_title")}
+                    {t("department.projects.title")}
                   </Link>
                   <Link
                     onClick={handleLinkClick}
