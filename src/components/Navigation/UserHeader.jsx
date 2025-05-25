@@ -79,7 +79,7 @@ const Header = ({ switchLang }) => {
                 <img
                   src="assets/images/french.png"
                   alt="Version française"
-                  width={42}
+                  width={33}
                   className="py-2"
                 />
               </button>
@@ -91,7 +91,7 @@ const Header = ({ switchLang }) => {
                 <img
                   src="assets/images/english.png"
                   alt="English version"
-                  width={42}
+                  width={33}
                   className="py-2"
                 />
               </button>
@@ -192,7 +192,7 @@ const Header = ({ switchLang }) => {
                   to="/projets-etudiants"
                   className="hover:bg-gray-200 focus:bg-gray-200 rounded-md px-4 py-2"
                 >
-                  {t("department.projects_title")}
+                  {t("department.projects.title")}
                 </Link>
                 <Link
                   onClick={handleLinkClick}

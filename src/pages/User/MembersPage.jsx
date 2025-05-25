@@ -27,7 +27,7 @@ const MembersPage = () => {
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
       <nav
         aria-label="Fil d'Ariane"
-        className="my-1 mb-5 p-1.5 w-fit rounded-xl flex items-center font-medium max-large-medium:hidden"
+        className="my-1 mb-5 p-1.5 py-2 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden"
       >
         <Link
           to="/"
@@ -45,15 +45,15 @@ const MembersPage = () => {
         </span>
       </nav>
 
-      <h1 className="font-main font-semibold text-dynamic-2xl my-2 mb-4">
+      <h1 className="font-main font-semibold text-dynamic-2xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("department.team.title")}
       </h1>
 
-      <h2 className="font-medium text-dynamic-xl font-main mx-2 mt-7 mb-4">
+      <h2 className="font-medium text-dynamic-xl font-main mx-2 mt-7 mb-4 readerMode:w-fit readerMode:mx-auto">
         Directeur du département
       </h2>
 
-      <div className="grid grid-cols-2 mb-6 max-md:grid-cols-1">
+      <div className="grid grid-cols-2 mb-6 max-md:grid-cols-1 readerMode:grid-cols-1 readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto">
         {members
           .filter((member) => member.titre === "Directeur du département")
           .map((member) => {
@@ -106,9 +106,11 @@ const MembersPage = () => {
           })}
       </div>
 
-      <h2 className="font-medium text-dynamic-xl font-main mx-2 mt-7 mb-4">Administration</h2>
+      <h2 className="font-medium text-dynamic-xl font-main mx-2 mt-7 mb-4 readerMode:w-fit readerMode:mx-auto">
+        Administration
+      </h2>
 
-      <div className="grid grid-cols-2 mb-6 max-md:grid-cols-1">
+      <div className="grid grid-cols-2 mb-6 max-md:grid-cols-1 readerMode:grid-cols-1 readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto">
         {members
           .filter((member) => member.titre === "Administration")
           .map((member) => {
@@ -161,9 +163,11 @@ const MembersPage = () => {
           })}
       </div>
 
-      <h2 className="font-medium text-dynamic-xl font-main mx-2 mt-7 mb-4">Enseignants</h2>
+      <h2 className="font-medium text-dynamic-xl font-main mx-2 mt-7 mb-4 readerMode:w-fit readerMode:mx-auto">
+        Enseignants
+      </h2>
 
-      <div className="grid grid-cols-2 max-md:grid-cols-1 gap-y-10">
+      <div className="grid grid-cols-2 max-md:grid-cols-1 gap-y-10 readerMode:grid-cols-1 readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto">
         {members
           .filter((member) => member.titre === "Enseignant(e)")
           .map((member) => {

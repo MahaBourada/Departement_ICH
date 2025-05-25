@@ -45,14 +45,14 @@ const HomePage = () => {
         </h1>
       </div>
 
-      <div className="my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10 readerMode:[60ch]">
+      <div className="my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10 readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto">
         <div
-          className="my-7 mt-10 readerMode:w-[60%] readerMode:mx-auto"
+          className="my-7 mt-10"
           dangerouslySetInnerHTML={{ __html: serializeToHtml(pageAccueil, 1) }}
         ></div>
 
-        <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse readerMode:flex-col-reverse readerMode:">
-          <div className="w-[60%] readerMode:mx-auto max-large-medium:w-full mr-10 max-lg:mr-5">
+        <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse readerMode:flex-col-reverse">
+          <div className="w-[60%] readerMode:w-full max-large-medium:w-full mr-10 max-lg:mr-5">
             <div
               dangerouslySetInnerHTML={{
                 __html: serializeToHtml(pageAccueil, 2),
@@ -87,7 +87,7 @@ const HomePage = () => {
           ></div>
         </div>
 
-        <div className="max-sm:hidden flex flex-row max-large-medium:flex-col justify-between my-6">
+        <div className="max-sm:hidden flex flex-row max-large-medium:flex-col justify-between my-6 readerMode:flex-col">
           {[2, 3, 4].map((pos) => {
             const img = getByPosition(images, pos);
             if (!img?.path) return null;
@@ -102,7 +102,7 @@ const HomePage = () => {
                 src={fullPath}
                 alt={img.alt || ""}
                 width={400}
-                className="w-[23rem] h-[23rem] max-large-medium:w-[26rem] max-large-medium:h-[26rem] max-xl:w-[18rem] max-xl:h-[18rem] mx-auto max-large-medium:mb-6"
+                className="w-[23rem] h-[23rem] max-large-medium:w-[26rem] max-large-medium:h-[26rem] max-xl:w-[18rem] max-xl:h-[18rem] mx-auto max-large-medium:mb-6 readerMode:my-4"
               />
             );
           })}

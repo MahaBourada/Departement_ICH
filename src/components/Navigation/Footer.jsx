@@ -78,7 +78,7 @@ const Footer = ({ switchLang }) => {
               <img
                 src="assets/images/french.png"
                 alt="Version française"
-                width={42}
+                width={38}
               />
             </button>
           ) : (
@@ -89,7 +89,7 @@ const Footer = ({ switchLang }) => {
               <img
                 src="assets/images/english.png"
                 alt="English version"
-                width={42}
+                width={38}
               />
             </button>
           )}

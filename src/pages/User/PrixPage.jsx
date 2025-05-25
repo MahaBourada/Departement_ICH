@@ -9,8 +9,8 @@ const PrixPage = () => {
   return (
     <main className="flex-grow my-10 mb-20 mx-16">
       <nav
-        aria-label="breadcrumb"
-        className="my-1 mb-5 p-1.5 w-fit rounded-xl flex items-center font-medium"
+        aria-label="Fil d'Ariane"
+        className="my-1 mb-5 p-1.5 py-2 w-full bg-gray-200 rounded-xl flex items-center font-medium"
       >
         <Link
           to="/"

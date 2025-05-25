@@ -2,6 +2,7 @@ import { ChevronDown, Image, ImageOff, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import AccessibilityMenu from "../AccessibilityMenu";
 
 const MobileUserHeader = ({ switchLang }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -56,25 +57,6 @@ const MobileUserHeader = ({ switchLang }) => {
     };
   }, [showAct, showDept, showColl, showLang]);
 
-  const [minimalTheme, setMinimalTheme] = useState(
-    () => localStorage.getItem("minimal-theme") || ""
-  );
-
-  useEffect(() => {
-    const root = window.document.documentElement;
-    if (minimalTheme === "minimal") {
-      root.classList.add("minimal");
-    } else {
-      root.classList.remove("minimal");
-    }
-
-    localStorage.setItem("minimal-theme", minimalTheme);
-  }, [minimalTheme]);
-
-  const toggleTheme = () => {
-    setMinimalTheme((prevTheme) => (prevTheme === "" ? "minimal" : ""));
-  };
-
   const handleLinkClick = () => {
     setShowMenu(false);
 
@@ -101,7 +83,7 @@ const MobileUserHeader = ({ switchLang }) => {
             showMenu ? "Fermer le menu" : "Ouvrir le menu de navigation"
           }
           onClick={onMenuShow}
-          className="focus:translate-[1px]"
+          className="focus:translate-[1px] cursor-pointer"
         >
           {showMenu ? (
             <X size={36} color="#232323" strokeWidth={3} />
@@ -113,6 +95,48 @@ const MobileUserHeader = ({ switchLang }) => {
 
       {showMenu && (
         <div className="absolute right-0 top-[5.5rem] bg-main dark:bg-dark-main w-[80%] min-h-screen">
+          <div className="mx-auto w-fit">
+            <AccessibilityMenu />
+          </div>
+
+          <div className="flex items-center justify-center">
+            {localStorage.getItem("lang") === "en" ? (
+              <button
+                className="cursor-pointer w-fit flex justify-end items-center px-2 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                onClick={() => switchLang("fr")}
+              >
+                <img
+                  src="assets/images/french.png"
+                  alt="Version française"
+                  width={33}
+                  className="py-3"
+                />
+              </button>
+            ) : (
+              <button
+                className="cursor-pointer w-fit flex justify-end items-center px-2 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                onClick={() => switchLang("en")}
+              >
+                <img
+                  src="assets/images/english.png"
+                  alt="English version"
+                  width={33}
+                  className="py-3"
+                />
+              </button>
+            )}
+
+            <div className="h-7 bg-black w-[1px] rounded-full"></div>
+
+            <Link
+              onClick={handleLinkClick}
+              to="/admin"
+              className="text-[1.125rem] max-large-medium:text-xl font-medium px-2.5 py-1.5 ml-2 mx-1 cursor-pointer hover:translate-[1px] hover:underline p-2 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+            >
+              Mon espace
+            </Link>
+          </div>
+
           <nav className="flex flex-col justify-between w-full mt-0.5">
             <Link
               onClick={handleLinkClick}
@@ -248,66 +272,14 @@ const MobileUserHeader = ({ switchLang }) => {
               onClick={handleLinkClick}
               to="/contact"
               className={`px-5 py-3 hover:bg-hover-main focus:bg-hover-main w-full font-medium hover:underline hover:translate-[1px] ${
-                location.pathname === "/contact" ? "underline bg-hover-main" : ""
+                location.pathname === "/contact"
+                  ? "underline bg-hover-main"
+                  : ""
               }`}
             >
               Contact
             </Link>
           </nav>
-
-          <div className="flex items-center justify-center">
-            {localStorage.getItem("lang") === "en" ? (
-              <button
-                className="cursor-pointer w-fit flex justify-end items-center px-2 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main rounded-lg"
-                onClick={() => switchLang("fr")}
-              >
-                <img
-                  src="assets/images/french.png"
-                  alt="Version française"
-                  width={33}
-                  className="py-3"
-                />
-              </button>
-            ) : (
-              <button
-                className="cursor-pointer w-fit flex justify-end items-center px-2 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main rounded-lg"
-                onClick={() => switchLang("en")}
-              >
-                <img
-                  src="assets/images/english.png"
-                  alt="English version"
-                  width={33}
-                  className="py-3"
-                />
-              </button>
-            )}
-
-            <button
-              className="cursor-pointer w-fit flex justify-end items-center p-1 mx-2 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main rounded-lg"
-              onClick={toggleTheme}
-              aria-label={
-                minimalTheme === "minimal"
-                  ? "Thème par défaut"
-                  : "Thème minimaliste"
-              }
-            >
-              {minimalTheme === "minimal" ? (
-                <Image color="#232323" size={28} />
-              ) : (
-                <ImageOff color="#232323" size={28} />
-              )}
-            </button>
-
-            <div className="h-7 bg-black w-[1px] rounded-full"></div>
-
-            <Link
-              onClick={handleLinkClick}
-              to="/admin"
-              className="text-[1.125rem] max-large-medium:text-xl font-medium px-2.5 py-1.5 ml-2 mx-1 cursor-pointer hover:translate-[1px] hover:underline p-2 hover:bg-hover-main focus:bg-hover-main rounded-lg"
-            >
-              Mon espace
-            </Link>
-          </div>
         </div>
       )}
     </header>

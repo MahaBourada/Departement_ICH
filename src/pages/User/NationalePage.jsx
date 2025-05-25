@@ -43,8 +43,8 @@ const NationalePage = () => {
   return (
     <main className="flex-grow my-10 mb-20 mx-16">
       <nav
-        aria-label="breadcrumb"
-        className="my-1 mb-5 p-1.5 w-fit rounded-xl flex items-center font-medium"
+        aria-label="Fil d'Ariane"
+        className="my-1 mb-5 p-1.5 py-2 w-full bg-gray-200 rounded-xl flex items-center font-medium readerMode:hidden"
       >
         <Link
           to="/"
@@ -62,11 +62,11 @@ const NationalePage = () => {
         </span>
       </nav>
 
-      <h1 className="font-main font-semibold text-dynamic-2xl my-2 mb-4">
+      <h1 className="font-main font-semibold text-dynamic-2xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("collaboration.national.title")}
       </h1>
 
-      <div className="my-10 mb-20 mx-16 font-body max-large-medium:mx-0 max-xl:mx-5">
+      <div className="my-10 mb-20 mx-16 font-body max-large-medium:mx-0 max-xl:mx-5 readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto">
         <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse my-7">
           {img1.path && (
             <img

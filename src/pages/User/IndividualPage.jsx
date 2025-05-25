@@ -35,8 +35,8 @@ const IndividualPage = () => {
   return (
     <main className="flex-grow my-10 mb-20 mx-16">
       <nav
-        aria-label="breadcrumb"
-        className="my-1 mb-7 mx-2 p-1.5 w-fit rounded-xl flex items-center font-medium"
+        aria-label="Fil d'Ariane"
+        className="my-1 mb-7 mx-2 p-1.5 py-2 w-full bg-gray-200 rounded-xl flex items-center font-medium readerMode:hidden"
       >
         <Link
           to="/"
@@ -61,14 +61,18 @@ const IndividualPage = () => {
         </span>
       </nav>
 
-      <h1 className="font-main font-semibold text-dynamic-2xl my-2 mb-4">
+      <h1 className="font-main font-semibold text-dynamic-2xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {member.prenom + " " + UpperNom}
       </h1>
 
-      <div className="flex items-start justify-between">
+      <div className="flex flex-row items-start justify-between readerMode:flex-col readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto">
         <div className="m-2">
-          <h2 className="font-medium text-dynamic-xl font-main">{member.titre}</h2>
-          <h3 className="font-semibold text-dynamic-lg m-2">{member.fonction}</h3>
+          <h2 className="font-medium text-dynamic-xl font-main">
+            {member.titre}
+          </h2>
+          <h3 className="font-semibold text-dynamic-lg m-2">
+            {member.fonction}
+          </h3>
           <p className="mx-2">{mainPart}</p>
           <ul className="list-disc mx-9 leading-9">
             {subParts.map((item, index) => (
@@ -92,7 +96,9 @@ const IndividualPage = () => {
             </>
           )}
 
-          <h2 className="font-medium text-dynamic-xl font-main mt-4">Contact</h2>
+          <h2 className="font-medium text-dynamic-xl font-main mt-4">
+            Contact
+          </h2>
 
           {member.lieu && (
             <div className="flex items-center my-2">

@@ -10,20 +10,13 @@ import React, { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import api from "../../api/api";
 import { UserContext } from "../../contexts/UserContext.jsx";
+import AccessibilityMenu from "../AccessibilityMenu.jsx";
 
 const MobileAdminHeader = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   const onMenuShow = () => {
     setShowMenu((prev) => !prev);
-  };
-
-  const [minimalTheme, setMinimalTheme] = useState(
-    () => localStorage.getItem("minimal-theme") || ""
-  );
-
-  const toggleTheme = () => {
-    setMinimalTheme((prevTheme) => (prevTheme === "" ? "minimal" : ""));
   };
 
   const handleLinkClick = () => {
@@ -98,22 +91,7 @@ const MobileAdminHeader = () => {
             </div>
 
             <div className="h-7 bg-black w-[1px] rounded-full mr-1.5"></div>
-
-            <button
-              className="cursor-pointer w-fit flex justify-end items-center p-1 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main rounded-lg"
-              onClick={toggleTheme}
-              aria-label={
-                minimalTheme === "minimal"
-                  ? "Thème par défaut"
-                  : "Thème minimaliste"
-              }
-            >
-              {minimalTheme === "minimal" ? (
-                <Image color="#232323" size={28} />
-              ) : (
-                <ImageOff color="#232323" size={28} />
-              )}
-            </button>
+            <AccessibilityMenu />
           </div>
 
           <nav className="flex flex-col items-center justify-between w-full mt-0.5">

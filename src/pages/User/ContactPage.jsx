@@ -25,13 +25,15 @@ const ContactPage = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
-      <h1 className="font-main font-semibold text-dynamic-2xl">Contact</h1>
+      <h1 className="font-main font-semibold text-dynamic-2xl readerMode:w-fit readerMode:mx-auto">
+        Contact
+      </h1>
 
       {msgShow && (
         <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
       )}
 
-      <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse">
+      <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse readerMode:flex-col readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto">
         <div className="flex flex-col ml-3 max-large-medium:mt-5 max-large-medium:mx-0">
           <h2 className="font-main font-medium text-dynamic-xl my-5">
             {t("contact.title")}
@@ -47,15 +49,15 @@ const ContactPage = () => {
             alt=""
             role="presentation"
             width={400}
-            className="m-3 my-6 mx-auto minimal:hidden "
+            className="m-3 my-6 mx-auto minimal:hidden readerMode:hidden"
           />
         </div>
 
         <form
           onSubmit={(e) => onSubmit(e)}
-          className="flex flex-col w-[45%] max-large-medium:w-full mr-7"
+          className="flex flex-col w-[45%] readerMode:w-full max-large-medium:w-full mr-7"
         >
-          <h2 className="font-main font-medium text-dynamic-xl my-5">
+          <h2 className="font-main font-medium text-dynamic-xl my-5 readerMode:w-fit readerMode:mx-auto">
             {t("contact.form.title")}
           </h2>
 

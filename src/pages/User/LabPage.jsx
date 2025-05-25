@@ -41,8 +41,8 @@ const LabPage = () => {
   return (
     <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
       <nav
-        aria-label="breadcrumb"
-        className="max-large-medium:hidden my-1 mb-5 p-1.5 w-fit rounded-xl flex items-center font-medium"
+        aria-label="Fil d'Ariane"
+        className="max-large-medium:hidden my-1 mb-5 p-1.5 py-2 w-full bg-gray-200 rounded-xl flex items-center font-medium readerMode:hidden"
       >
         <Link
           to="/"
@@ -60,12 +60,12 @@ const LabPage = () => {
         </span>
       </nav>
 
-      <h1 className="font-main font-semibold text-dynamic-2xl max-large-medium:text-dynamic-xl my-2 mb-4">
+      <h1 className="font-main font-semibold text-dynamic-2xl max-large-medium:text-dynamic-xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("department.lab-chart.title")}
       </h1>
 
-      <div className="my-10 mb-20 mx-16 font-body max-large-medium:mx-0 max-xl:mx-5">
-        <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse my-7">
+      <div className="my-10 mb-20 mx-16 font-body max-large-medium:mx-0 max-xl:mx-5 readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto">
+        <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse my-7 readerMode:flex-col-reverse">
           {img1.path && (
             <img
               src={`${import.meta.env.VITE_BASE_URL}/${
@@ -73,7 +73,7 @@ const LabPage = () => {
               }`}
               alt={getByPosition(images, 1).alt || ""}
               width={400}
-              className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px]"
+              className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] readerMode:mx-auto"
             />
           )}
           <div

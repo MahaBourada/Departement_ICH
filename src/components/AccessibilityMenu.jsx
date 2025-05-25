@@ -99,14 +99,14 @@ const AccessibilityMenu = () => {
       <button
         type="button"
         onClick={() => setShowMenu(!showMenu)}
-        className="cursor-pointer w-fit flex justify-end items-center px-3 py-1.5 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main rounded-lg"
+        className="cursor-pointer w-fit flex justify-end items-center px-3 py-1.5 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main rounded-lg font-medium"
       >
         <span className="mx-1 text-dynamic-sm">Accessibilité</span>
         <PersonStanding size={28} color="#232323" strokeWidth={3.2} />
       </button>
 
       {showMenu && (
-        <div className="absolute right-0 z-50 mt-1 w-fit bg-white rounded-lg shadow-small">
+        <div className="absolute right-0 z-50 mt-1 w-fit bg-white rounded-lg shadow-small font-normal">
           <button
             type="button"
             className="cursor-pointer flex justify-between items-center bg-white hover:bg-gray-200 focus:bg-gray-200 px-3 py-1.5 text-nowrap w-full rounded-lg"

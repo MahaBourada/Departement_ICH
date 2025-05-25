@@ -10,7 +10,7 @@ const ConferencesPage = () => {
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
       <nav
         aria-label="Fil d'Ariane"
-        className="my-1 mb-5 p-1.5 w-fit rounded-xl flex items-center font-medium max-large-medium:hidden"
+        className="my-1 mb-5 p-1.5 py-2 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden"
       >
         <Link
           to="/"
@@ -28,17 +28,17 @@ const ConferencesPage = () => {
         </span>
       </nav>
 
-      <h1 className="font-main font-semibold text-dynamic-2xl my-2">
+      <h1 className="font-main font-semibold text-dynamic-2xl my-2 readerMode:w-fit readerMode:mx-auto">
         {t("news.conferences.title")}
       </h1>
 
-      <div className="mx-4 max-md:mx-2">
+      <div className="mx-4 max-md:mx-2 readerMode:text-2xl readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto">
         <h2 className="font-main font-medium text-dynamic-xl mt-6 mb-2">
           Prochaine conférence
         </h2>
 
         <div className="flex">
-          <div className="w-[62%] max-large-large:w-full minimal:w-full mr-12 minimal:mr-4 ml-6 max-md:mx-2">
+          <div className="w-[62%] readerMode:w-full max-large-large:w-full minimal:w-full mr-12 minimal:mr-4 ml-6 max-md:mx-2">
             <div className="h-[0.5px] bg-black my-5 w-full"></div>
 
             <div>
@@ -86,13 +86,13 @@ const ConferencesPage = () => {
             src="assets/vectors/Conferences.svg"
             alt=""
             role="presentation"
-            className="minimal:hidden max-large-large:hidden m-auto"
+            className="readerMode:hidden max-large-large:hidden m-auto"
             width={350}
           />
         </div>
       </div>
 
-      <div className="mr-10 mx-4 max-md:mr-0 max-md:mx-2">
+      <div className="mr-10 mx-4 max-md:mr-0 max-md:mx-2 readerMode:text-2xl readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto">
         <h2 className="font-main font-medium text-dynamic-xl my-6">
           Conférences passées
         </h2>

@@ -36,8 +36,8 @@ const MasterPage = () => {
   return (
     <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
       <nav
-        aria-label="breadcrumb"
-        className="my-1 mb-5 p-1.5 w-fit rounded-xl flex items-center font-medium max-large-medium:hidden"
+        aria-label="Fil d'Ariane"
+        className="my-1 mb-5 p-1.5 py-2 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden"
       >
         <Link
           to="/"
@@ -55,19 +55,19 @@ const MasterPage = () => {
         </span>
       </nav>
 
-      <h1 className="font-main font-semibold text-dynamic-2xl max-large-medium:text-dynamic-xl my-2 mb-4">
+      <h1 className="font-main font-semibold text-dynamic-2xl max-large-medium:text-dynamic-xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("department.master.title")}
       </h1>
 
-      <div className="my-10 mb-20 mx-16 font-body max-large-medium:mx-0 max-xl:mx-5">
-        <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse my-7">
+      <div className="my-10 mb-20 mx-16 font-body max-large-medium:mx-0 max-xl:mx-5 readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto">
+        <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse my-7 readerMode:flex-col-reverse">
           <img
             src={`${import.meta.env.VITE_BASE_URL}/${
               getByPosition(images, 1).path
             }`}
             alt={getByPosition(images, 1).alt || ""}
             width={400}
-            className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px]"
+            className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] readerMode:mx-auto"
           />
           <div
             className="my-3 mx-7 max-sm:mx-0"
@@ -75,8 +75,8 @@ const MasterPage = () => {
           ></div>
         </div>
 
-        <div className="flex flex-row justify-between items-start max-large-medium:flex-col">
-          <div className="w-[60%] minimal:w-full max-large-medium:w-full mr-10 max-lg:mr-5">
+        <div className="flex flex-row justify-between items-start max-large-medium:flex-col readerMode:flex-col">
+          <div className="w-[60%] readerMode:w-full minimal:w-full max-large-medium:w-full mr-10 max-lg:mr-5">
             <div
               dangerouslySetInnerHTML={{
                 __html: serializeToHtml(pageMaster, 2),
@@ -90,7 +90,7 @@ const MasterPage = () => {
             }`}
             alt={getByPosition(images, 2).alt || ""}
             width={400}
-            className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px]"
+            className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] readerMode:mx-auto readerMode:my-7"
           />
         </div>
 
@@ -101,14 +101,14 @@ const MasterPage = () => {
           }}
         ></div>
 
-        <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse">
+        <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse readerMode:flex-col-reverse">
           <div
             className="my-10"
             dangerouslySetInnerHTML={{
               __html: serializeToHtml(pageMaster, 4),
             }}
           ></div>
-          <div className="m-auto">
+          <div className="m-auto readerMode:flex">
             <img
               src={`${import.meta.env.VITE_BASE_URL}/${
                 getByPosition(images, 3).path

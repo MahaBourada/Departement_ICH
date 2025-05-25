@@ -17,7 +17,7 @@ const Layout = () => {
   };
 
   return (
-    <div className="App flex flex-col min-h-screen text-body dark:bg-dark-background bg-white bg-big-screen bg-repeat-y font-body text-black dark:text-white readerMode:bg-[#faebd7] text-dynamic-base leading-9 readerMode:leading-loose">
+    <div className="App flex flex-col min-h-screen text-body dark:bg-dark-background bg-white bg-big-screen bg-repeat-y font-body text-black dark:text-white text-dynamic-base leading-9 readerMode:leading-loose readerMode:bg-[#faebd7]">
       <Header switchLang={switchLang} />
       <MobileHeader switchLang={switchLang} />
       <Outlet />
