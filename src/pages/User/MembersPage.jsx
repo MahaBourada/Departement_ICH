@@ -45,11 +45,11 @@ const MembersPage = () => {
         </span>
       </nav>
 
-      <h1 className="font-main font-semibold text-display my-2 mb-4">
+      <h1 className="font-main font-semibold text-dynamic-2xl my-2 mb-4">
         {t("department.team.title")}
       </h1>
 
-      <h2 className="font-medium text-header font-main mx-2">
+      <h2 className="font-medium text-dynamic-xl font-main mx-2 mt-7 mb-4">
         Directeur du département
       </h2>
 
@@ -70,7 +70,7 @@ const MembersPage = () => {
                 state={{ member: member }}
                 className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:translate-[1px] w-full"
               >
-                <h3 className="font-main font-medium text-header max-md:text-3xl">
+                <h3 className="font-main font-medium text-dynamic-xl max-md:text-3xl">
                   {member.prenom + " " + member.nom.toUpperCase()}
                 </h3>
                 <div className="flex items-start">
@@ -84,7 +84,7 @@ const MembersPage = () => {
                   />
 
                   <div className="ml-4 my-2 max-md:mx-1">
-                    <h4 className="font-semibold text-2xl my-2">
+                    <h4 className="font-semibold text-dynamic-lg my-2">
                       {member.fonction}
                     </h4>
                     {member.section && (
@@ -106,7 +106,7 @@ const MembersPage = () => {
           })}
       </div>
 
-      <h2 className="font-medium text-header font-main mx-2">Administration</h2>
+      <h2 className="font-medium text-dynamic-xl font-main mx-2 mt-7 mb-4">Administration</h2>
 
       <div className="grid grid-cols-2 mb-6 max-md:grid-cols-1">
         {members
@@ -125,7 +125,7 @@ const MembersPage = () => {
                 state={{ member: member }}
                 className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:translate-[1px]"
               >
-                <h3 className="font-main font-medium text-header max-md:text-3xl">
+                <h3 className="font-main font-medium text-dynamic-xl max-md:text-3xl">
                   {member.prenom + " " + member.nom.toUpperCase()}
                 </h3>
                 <div className="flex items-start">
@@ -139,7 +139,7 @@ const MembersPage = () => {
                   />
 
                   <div className="ml-4 my-2 max-md:mx-1">
-                    <h4 className="font-semibold text-2xl my-2">
+                    <h4 className="font-semibold text-dynamic-lg my-2">
                       {member.fonction}
                     </h4>
                     {member.section && (
@@ -161,7 +161,7 @@ const MembersPage = () => {
           })}
       </div>
 
-      <h2 className="font-medium text-header font-main mx-2">Enseignants</h2>
+      <h2 className="font-medium text-dynamic-xl font-main mx-2 mt-7 mb-4">Enseignants</h2>
 
       <div className="grid grid-cols-2 max-md:grid-cols-1 gap-y-10">
         {members
@@ -181,7 +181,7 @@ const MembersPage = () => {
                 className="border-2 border-black rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:translate-[1px] h-full flex flex-col justify-between"
               >
                 {/* Title */}
-                <h3 className="font-main font-medium text-header max-md:text-3xl mb-4">
+                <h3 className="font-main font-medium text-dynamic-xl max-md:text-3xl mb-4">
                   {member.prenom + " " + member.nom.toUpperCase()}
                 </h3>
 
@@ -202,7 +202,7 @@ const MembersPage = () => {
                     </div>
                     {/* Textual info */}
                     <div className="flex flex-col justify-start flex-grow">
-                      <h4 className="font-semibold text-2xl mb-2">
+                      <h4 className="font-semibold text-dynamic-lg mb-2">
                         {member.fonction}
                       </h4>
                       {member.section && (

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
-@custom-variant minimal (&:where(.minimal, .minimal *));
+@custom-variant readerMode (&:where(.readerMode, .readerMode *));
 
 @theme {
   --color-background: #F4F4F4;
@@ -21,6 +21,7 @@
 
   --font-main: "Poppins", "sans-serif";
   --font-body: "Albert Sans", "sans-serif";
+  --font-base: 1.25rem;
 
   --text-display: 2.5rem;
   --text-header: 2rem;
@@ -32,7 +33,7 @@
 
   --breakpoint-xs: 30rem;
   --breakpoint-large-medium: 61rem;
-  --breakpoint-large-large: 76rem;
+  --breakpoint-large-large: 76rem; 
 }
 
 .toolbar-button {
@@ -61,4 +62,35 @@
 
 .justified-text {
   text-align: justify;
+}
+
+.heading-2 {
+  font-size: calc(var(--font-base, 1.25rem) * 1.4);
+  font-weight: 600;
+  margin: 15px 0;
+}
+
+@media (max-width: 61rem) {
+  .heading-2 {
+    font-size: 1.75rem; /* or the value of text-header */
+  }
+}
+
+.text-dynamic-xsm {
+  font-size: calc(var(--font-base, 1.25rem) / 1.4);
+}
+.text-dynamic-sm {
+  font-size: calc(var(--font-base, 1.25rem) / 1.05);
+}
+.text-dynamic-base {
+  font-size: var(--font-base, 1.25rem);
+}
+.text-dynamic-lg {
+  font-size: calc(var(--font-base, 1.25rem) * 1.2);
+}
+.text-dynamic-xl {
+  font-size: calc(var(--font-base, 1.25rem) * 1.65);
+}
+.text-dynamic-2xl {
+  font-size: calc(var(--font-base, 1.25rem) * 2);
 }

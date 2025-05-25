@@ -27,7 +27,12 @@
       "link": "Lab CHArt",
       "title": "Laboratoire Cognition Humaine et ARTificielle (CHArt)"
     },
-    "projects_title": "Projets étudiants",
+    "projects": {
+      "title": "Projets étudiants",
+      "members": "Membres",
+      "year": "Année",
+      "objective": "Objectif"
+    },
     "awards_title": "Prix & Concours"
   },
   "collaboration": {

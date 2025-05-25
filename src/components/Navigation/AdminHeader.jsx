@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../api/api";
 import { UserContext } from "../../contexts/UserContext.jsx";
+import AccessibilityMenu from "../AccessibilityMenu.jsx";
 
 const AdminHeader = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -54,10 +55,12 @@ const AdminHeader = () => {
 
   return (
     <header
-      className="m-5 mx-6 ml-auto relative w-fit block max-md:hidden"
+      className="m-5 mx-6 ml-auto relative w-fit max-md:hidden flex flex-col items-end justify-between"
       ref={actMenuRef}
       aria-label="Profile"
     >
+      <AccessibilityMenu />
+
       <button
         className="flex items-center justify-between w-fit cursor-pointer"
         role="button"
@@ -70,7 +73,7 @@ const AdminHeader = () => {
           strokeWidth={2.5}
           aria-hidden="true"
         />
-        <p className="text-2xl font-semibold mx-2">
+        <p className="text-dynamic-lg font-semibold mx-2">
           {user?.first_name + " " + user?.last_name.toUpperCase()}
         </p>
         <CircleUserRound size={34} color="#232323" aria-hidden="true" />
@@ -79,7 +82,7 @@ const AdminHeader = () => {
       {showMenu && (
         <form
           onSubmit={handleSubmit}
-          className="absolute flex flex-col right-2 top-9 mt-1 bg-white shadow-md rounded-md font-normal w-full"
+          className="absolute flex flex-col right-0 top-[5.75rem] mt-1 bg-white shadow-small rounded-md font-normal w-full"
         >
           <button
             type="submit"

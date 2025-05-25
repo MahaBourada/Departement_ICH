@@ -1,8 +1,8 @@
-import { ChevronDown, Image, ImageOff, Moon, SunMedium } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import ThemeSwitch from "../ThemeSwitch";
+import AccessibilityMenu from "../AccessibilityMenu";
 
 const Header = ({ switchLang }) => {
   const { t } = useTranslation();
@@ -51,25 +51,6 @@ const Header = ({ switchLang }) => {
     };
   }, [showAct, showDept, showColl, showLang]);
 
-  const [minimalTheme, setMinimalTheme] = useState(
-    () => localStorage.getItem("minimal-theme") || ""
-  );
-
-  useEffect(() => {
-    const root = window.document.documentElement;
-    if (minimalTheme === "minimal") {
-      root.classList.add("minimal");
-    } else {
-      root.classList.remove("minimal");
-    }
-
-    localStorage.setItem("minimal-theme", minimalTheme);
-  }, [minimalTheme]);
-
-  const toggleTheme = () => {
-    setMinimalTheme((prevTheme) => (prevTheme === "" ? "minimal" : ""));
-  };
-
   const handleLinkClick = () => {
     setShowAct(false);
     setShowDept(false);
@@ -80,7 +61,7 @@ const Header = ({ switchLang }) => {
   };
 
   return (
-    <header className="max-large-medium:hidden flex justify-between items-center font-main large-medium:text-lg lg:text-nav font-medium py-2 px-10 max-lg:px-8 bg-main dark:bg-dark-main dark:text-black">
+    <header className="max-large-medium:hidden flex justify-between items-center font-main large-medium:text-dynamic-xl lg:text-dynamic-xl font-medium py-2 px-10 max-lg:px-8 bg-main dark:bg-dark-main dark:text-black">
       <img
         src="/ich/assets/vectors/Logo.svg"
         alt="Logo de l'université Paris 8"
@@ -98,7 +79,7 @@ const Header = ({ switchLang }) => {
                 <img
                   src="assets/images/french.png"
                   alt="Version française"
-                  width={33}
+                  width={42}
                   className="py-2"
                 />
               </button>
@@ -110,29 +91,13 @@ const Header = ({ switchLang }) => {
                 <img
                   src="assets/images/english.png"
                   alt="English version"
-                  width={33}
+                  width={42}
                   className="py-2"
                 />
               </button>
             )}
 
-            <button
-              className="cursor-pointer w-fit flex justify-end items-center p-1 mx-2 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main rounded-lg"
-              onClick={toggleTheme}
-              aria-label={
-                minimalTheme === "minimal"
-                  ? "Thème par défaut"
-                  : "Thème minimaliste"
-              }
-            >
-              {minimalTheme === "minimal" ? (
-                <Image color="#232323" size={28} />
-              ) : (
-                <ImageOff color="#232323" size={28} />
-              )}
-            </button>
-
-            <ThemeSwitch />
+            <AccessibilityMenu />
           </div>
 
           <div className="h-7 bg-black w-[1px] rounded-full"></div>
@@ -140,7 +105,7 @@ const Header = ({ switchLang }) => {
           <Link
             onClick={() => window.scrollTo({ top: 0 })}
             to="/admin"
-            className="text-[1.125rem] px-2.5 py-1.5 ml-2 mx-1 cursor-pointer hover:translate-[1px] hover:underline p-2 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+            className="text-dynamic-sm px-2.5 py-1.5 ml-2 mx-1 cursor-pointer hover:translate-[1px] hover:underline p-2 hover:bg-hover-main focus:bg-hover-main rounded-lg"
           >
             Mon espace
           </Link>

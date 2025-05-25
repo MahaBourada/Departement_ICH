@@ -1,6 +1,5 @@
 import { ChevronDown, Image, ImageOff, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import ThemeSwitch from "../ThemeSwitch";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -298,8 +297,6 @@ const MobileUserHeader = ({ switchLang }) => {
                 <ImageOff color="#232323" size={28} />
               )}
             </button>
-
-            <ThemeSwitch />
 
             <div className="h-7 bg-black w-[1px] rounded-full"></div>
 

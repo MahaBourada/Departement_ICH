@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { InputField } from "../../components/Inputs";
 import { BigFilledButton } from "../../components/Buttons";
 import { UserContext } from "../../contexts/UserContext.jsx";
+import AccessibilityMenu from "../../components/AccessibilityMenu.jsx";
 
 const LoginPage = () => {
   const { setUser, setAccessToken } = useContext(UserContext);
@@ -50,14 +51,18 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[url('/assets/vectors/AdminBg.svg')] bg-cover bg-no-repeat bg-center text-black">
-      <header>
+    <div className="flex flex-col min-h-screen bg-[url('/assets/vectors/AdminBg.svg')] bg-cover bg-no-repeat bg-center text-black text-dynamic-base leading-9 readerMode:leading-loose">
+      <header className="flex flex-row items-center justify-between w-full">
         <img
           src="assets/vectors/Logo.svg"
           alt="Logo de l'université Paris 8"
           width={140}
           className="m-5"
         />
+
+        <div className="mx-6">
+          <AccessibilityMenu />
+        </div>
       </header>
 
       <main className="mx-auto mt-14">

@@ -32,7 +32,7 @@ export const serializeToHtml = (pagesList, position) => {
             case "heading-one":
               return `<h1 ${style}>${children}</h1>`;
             case "heading-two":
-              return `<h2 ${style}>${children}</h2>`;
+              return `<h2 class="heading-2">${children}</h2>`;
             case "list-item":
               return `<li ${style}>${children}</li>`;
             case "numbered-list":

@@ -49,7 +49,7 @@ const DashboardPage = () => {
     <div className="mt-20">
       <main className="mx-14 max-md:mx-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-display max-md:text-header font-semibold ">
+          <h1 className="text-dynamic-2xl max-md:text-dynamic-xl font-semibold ">
             Comptes administrateurs
           </h1>
 
@@ -126,9 +126,9 @@ const DashboardPage = () => {
             ))}
           </tbody>
         </table>
-        <aside>
+        {/* <aside>
           <div>
-            <h1 className="text-display max-md:text-header font-semibold">
+            <h1 className="text-dynamic-2xl max-md:text-dynamic-xl font-semibold">
               Historique
             </h1>
 
@@ -166,7 +166,7 @@ const DashboardPage = () => {
           </div>
 
           <div className="my-5">
-            <h1 className="text-display max-md:text-header font-semibold">
+            <h1 className="text-dynamic-2xl max-md:text-dynamic-xl font-semibold">
               Newsletter
             </h1>
 
@@ -174,7 +174,7 @@ const DashboardPage = () => {
               <h2>Meow</h2>
             </div>
           </div>
-        </aside>
+        </aside> */}
       </main>
     </div>
   );

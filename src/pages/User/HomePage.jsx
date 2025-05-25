@@ -32,10 +32,10 @@ const HomePage = () => {
   }, []);
 
   return (
-    <main className="flex-grow leading-9">
+    <main className="flex-grow">
       <div className="h-72 bg-cover bg-center bg-no-repeat flex items-center justify-center bg-[url('/assets/images/HomeImage.png')] max-md:hidden">
         <h1
-          className="text-white bg-bg-transparent py-6 px-7 max-xl:mx-7 rounded-4xl font-main font-semibold text-display max-large-medium:text-header text-center"
+          className="text-white bg-bg-transparent py-6 px-7 max-xl:mx-7 rounded-4xl font-main font-semibold text-display max-large-medium:text-header text-center leading-10"
           style={{ textShadow: "2px 2px 5px #333" }}
         >
           {t("home.title.1")}
@@ -45,14 +45,14 @@ const HomePage = () => {
         </h1>
       </div>
 
-      <div className="my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
+      <div className="my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10 readerMode:[60ch]">
         <div
-          className="my-7 mt-10"
+          className="my-7 mt-10 readerMode:w-[60%] readerMode:mx-auto"
           dangerouslySetInnerHTML={{ __html: serializeToHtml(pageAccueil, 1) }}
         ></div>
 
-        <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse">
-          <div className="w-[60%] minimal:w-full max-large-medium:w-full mr-10 max-lg:mr-5">
+        <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse readerMode:flex-col-reverse readerMode:">
+          <div className="w-[60%] readerMode:mx-auto max-large-medium:w-full mr-10 max-lg:mr-5">
             <div
               dangerouslySetInnerHTML={{
                 __html: serializeToHtml(pageAccueil, 2),
@@ -76,7 +76,7 @@ const HomePage = () => {
 
           {/* Picture */}
           <div
-            className="minimal:hidden w-[33rem] h-[33rem] bg-cover bg-center bg-no-repeat rounded-[50px] mx-auto max-xs:w-80 max-xs:h-80 max-sm:w-96 max-sm:h-96 max-md:w-[26rem] max-md:h-[26rem] max-xl:w-[28rem] max-xl:h-[26rem] max-md:mt-0 max-lg:mt-8 max-large-medium:mb-10"
+            className="w-[33rem] h-[33rem] bg-cover bg-center bg-no-repeat rounded-[50px] mx-auto max-xs:w-80 max-xs:h-80 max-sm:w-96 max-sm:h-96 max-md:w-[26rem] max-md:h-[26rem] max-xl:w-[28rem] max-xl:h-[26rem] max-md:mt-0 max-lg:mt-8 max-large-medium:mb-10 readerMode:mb-10"
             style={{
               backgroundImage: `url(${import.meta.env.VITE_BASE_URL}/${
                 getByPosition(images, 1).path
@@ -87,7 +87,7 @@ const HomePage = () => {
           ></div>
         </div>
 
-        <div className="max-sm:hidden flex flex-row max-large-medium:flex-col justify-between my-6 minimal:hidden">
+        <div className="max-sm:hidden flex flex-row max-large-medium:flex-col justify-between my-6">
           {[2, 3, 4].map((pos) => {
             const img = getByPosition(images, pos);
             if (!img?.path) return null;

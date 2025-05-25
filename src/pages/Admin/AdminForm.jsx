@@ -54,7 +54,7 @@ const AdminForm = () => {
 
   return (
     <main className="mx-14 mt-20">
-      <h1 className="text-display font-semibold ">
+      <h1 className="text-dynamic-2xl font-semibold ">
         Ajouter un nouvel administrateur
       </h1>
 
@@ -106,7 +106,7 @@ const AdminForm = () => {
           <div className="flex flex-col w-1/2">
             <label
               htmlFor="role"
-              className="text-nav font-main font-medium my-1"
+              className="text-dynamic-lg font-main font-medium my-1"
             >
               Rôle *
             </label>

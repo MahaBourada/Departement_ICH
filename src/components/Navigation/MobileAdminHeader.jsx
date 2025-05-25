@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 import React, { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import ThemeSwitch from "../ThemeSwitch";
 import api from "../../api/api";
 import { UserContext } from "../../contexts/UserContext.jsx";
 
@@ -99,8 +98,6 @@ const MobileAdminHeader = () => {
             </div>
 
             <div className="h-7 bg-black w-[1px] rounded-full mr-1.5"></div>
-
-            <ThemeSwitch />
 
             <button
               className="cursor-pointer w-fit flex justify-end items-center p-1 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main rounded-lg"

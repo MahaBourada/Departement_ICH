@@ -27,7 +27,12 @@
       "link": "CHArt lab",
       "title": "Human and ARTificial Cognition Laboratory (CHArt)"
     },
-    "projects_title": "Students projects",
+    "projects": {
+      "title": "Students projects",
+      "members": "Members",
+      "year": "Year",
+      "objective": "Objective"
+    },
     "awards_title": "Awards & Competitions"
   },
   "collaboration": {

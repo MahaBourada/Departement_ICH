@@ -39,7 +39,7 @@ const Footer = ({ switchLang }) => {
   };
 
   return (
-    <footer className="max-large-medium:hidden flex flex-col items-center py-4 px-10 bg-main dark:bg-dark-main dark:text-black large-medium:text-lg lg:text-nav">
+    <footer className="max-large-medium:hidden flex flex-col items-center py-4 px-10 bg-main dark:bg-dark-main dark:text-black large-medium:text-dynamic-lg lg:text-dynamic-lg">
       <div className="flex justify-between items-center w-full">
         <img
           src="assets/vectors/Logo.svg"
@@ -78,7 +78,7 @@ const Footer = ({ switchLang }) => {
               <img
                 src="assets/images/french.png"
                 alt="Version française"
-                width={33}
+                width={42}
               />
             </button>
           ) : (
@@ -89,13 +89,13 @@ const Footer = ({ switchLang }) => {
               <img
                 src="assets/images/english.png"
                 alt="English version"
-                width={33}
+                width={42}
               />
             </button>
           )}
         </div>
 
-        <nav className="flex justify-between font-main text-nav">
+        <nav className="flex justify-between font-main text-dynamic-base">
           <div className="flex flex-col px-2">
             <NavLink
               onClick={() => window.scrollTo({ top: 0 })}

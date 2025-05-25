@@ -28,12 +28,12 @@ const ConferencesPage = () => {
         </span>
       </nav>
 
-      <h1 className="font-main font-semibold text-display my-2">
+      <h1 className="font-main font-semibold text-dynamic-2xl my-2">
         {t("news.conferences.title")}
       </h1>
 
       <div className="mx-4 max-md:mx-2">
-        <h2 className="font-main font-medium text-header">
+        <h2 className="font-main font-medium text-dynamic-xl mt-6 mb-2">
           Prochaine conférence
         </h2>
 
@@ -41,7 +41,7 @@ const ConferencesPage = () => {
           <div className="w-[62%] max-large-large:w-full minimal:w-full mr-12 minimal:mr-4 ml-6 max-md:mx-2">
             <div className="h-[0.5px] bg-black my-5 w-full"></div>
 
-            <div className="text-body">
+            <div>
               <div className="flex items-start justify-between">
                 <div className="w-[70%]">
                   <h3 className="font-semibold my-2">
@@ -93,14 +93,14 @@ const ConferencesPage = () => {
       </div>
 
       <div className="mr-10 mx-4 max-md:mr-0 max-md:mx-2">
-        <h2 className="font-main font-medium text-header">
+        <h2 className="font-main font-medium text-dynamic-xl my-6">
           Conférences passées
         </h2>
 
         <div className="mx-6 max-md:mx-2">
           <div className="h-[0.5px] bg-black my-5 w-full"></div>
 
-          <div className="text-body w-full">
+          <div className="w-full">
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="font-semibold my-2">
@@ -141,7 +141,7 @@ const ConferencesPage = () => {
 
           <div className="h-[0.5px] bg-black my-5 w-full"></div>
 
-          <div className="text-body w-full">
+          <div className="w-full">
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="font-semibold my-2">

@@ -61,14 +61,14 @@ const IndividualPage = () => {
         </span>
       </nav>
 
-      <h1 className="font-main font-semibold text-display my-2 mb-4">
+      <h1 className="font-main font-semibold text-dynamic-2xl my-2 mb-4">
         {member.prenom + " " + UpperNom}
       </h1>
 
       <div className="flex items-start justify-between">
         <div className="m-2">
-          <h2 className="font-medium text-header font-main">{member.titre}</h2>
-          <h3 className="font-semibold text-2xl m-2">{member.fonction}</h3>
+          <h2 className="font-medium text-dynamic-xl font-main">{member.titre}</h2>
+          <h3 className="font-semibold text-dynamic-lg m-2">{member.fonction}</h3>
           <p className="mx-2">{mainPart}</p>
           <ul className="list-disc mx-9 leading-9">
             {subParts.map((item, index) => (
@@ -80,7 +80,7 @@ const IndividualPage = () => {
 
           {serializeSingleToHtml(member.propos) !== "<p ></p>" && (
             <>
-              <h2 className="font-medium text-header font-main mt-4">
+              <h2 className="font-medium text-dynamic-xl font-main mt-4">
                 A propos
               </h2>
               <div
@@ -92,7 +92,7 @@ const IndividualPage = () => {
             </>
           )}
 
-          <h2 className="font-medium text-header font-main mt-4">Contact</h2>
+          <h2 className="font-medium text-dynamic-xl font-main mt-4">Contact</h2>
 
           {member.lieu && (
             <div className="flex items-center my-2">

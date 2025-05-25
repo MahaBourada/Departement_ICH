@@ -170,7 +170,7 @@ const PagesManagementPage = () => {
 
   return (
     <main className="mx-14 my-20">
-      <h1 className="text-display font-semibold">Gestion de la {title}</h1>
+      <h1 className="text-dynamic-2xl font-semibold">Gestion de la {title}</h1>
 
       {msgShow && (
         <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
@@ -337,7 +337,7 @@ const PagesManagementPage = () => {
                 <label
                   id={`section${index + 1}_fr`}
                   htmlFor={`section${index + 1}_fr`}
-                  className="text-nav font-main font-medium"
+                  className="font-main font-medium"
                 >
                   Section {index + 1} - Français
                 </label>
@@ -356,7 +356,7 @@ const PagesManagementPage = () => {
                 <label
                   id={`section${index + 1}_en`}
                   htmlFor={`section${index + 1}_en`}
-                  className="text-nav font-main font-medium"
+                  className="font-main font-medium"
                 >
                   Section {index + 1} - English
                 </label>

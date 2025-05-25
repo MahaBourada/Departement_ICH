@@ -25,7 +25,7 @@ const ContactPage = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
-      <h1 className="font-main font-semibold text-display">Contact</h1>
+      <h1 className="font-main font-semibold text-dynamic-2xl">Contact</h1>
 
       {msgShow && (
         <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
@@ -33,7 +33,7 @@ const ContactPage = () => {
 
       <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse">
         <div className="flex flex-col ml-3 max-large-medium:mt-5 max-large-medium:mx-0">
-          <h2 className="font-main font-medium text-header my-2">
+          <h2 className="font-main font-medium text-dynamic-xl my-5">
             {t("contact.title")}
           </h2>
           <ul className="list-disc mx-8 leading-9">
@@ -55,7 +55,7 @@ const ContactPage = () => {
           onSubmit={(e) => onSubmit(e)}
           className="flex flex-col w-[45%] max-large-medium:w-full mr-7"
         >
-          <h2 className="font-main font-medium text-header my-2">
+          <h2 className="font-main font-medium text-dynamic-xl my-5">
             {t("contact.form.title")}
           </h2>
 
@@ -88,7 +88,7 @@ const ContactPage = () => {
           <div className="flex flex-col my-3">
             <label
               htmlFor={t("contact.form.object.label")}
-              className="text-nav font-main font-medium my-1"
+              className="font-main font-medium my-1"
             >
               {t("contact.form.object.label")} *
             </label>

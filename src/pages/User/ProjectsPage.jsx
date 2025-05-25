@@ -25,12 +25,12 @@ const ProjectsPage = () => {
         </span>
         <ChevronRight size={33} color="#232323" strokeWidth={2} />
         <span className="px-4 py-2 rounded-xl hover:text-dark-accent hover:bg-bg-transparent hover:underline hover:translate-[1px]">
-          {t("department.projects_title")}
+          {t("department.projects.title")}
         </span>
       </nav>
 
-      <h1 className="font-main font-semibold text-display my-2">
-        {t("department.projects_title")}
+      <h1 className="font-main font-semibold text-dynamic-2xl my-2">
+        {t("department.projects.title")}
       </h1>
 
       <div className="mx-4 max-md:mx-2">
@@ -38,15 +38,17 @@ const ProjectsPage = () => {
 
         {projectData.map((project, index) => (
           <>
-            <div className="text-body w-full" key={index}>
+            <div className="w-full" key={index}>
               <div className="flex flex-row items-start justify-between max-large-large:flex-col">
                 <div>
-                  <h3 className="font-semibold font-main text-header my-2">
+                  <h3 className="font-semibold font-main text-dynamic-xl my-2">
                     {project.name}
                   </h3>
 
                   <div className="minimal:hidden block">
-                    <h4 className="font-semibold text-2xl my-2">Membres</h4>
+                    <h4 className="font-semibold text-dynamic-lg my-2">
+                      {t("department.projects.members")}
+                    </h4>
                     <ul className="list-disc mx-7">
                       {project.members.split(",").map((name, index) => (
                         <li key={index}>{name.trim()}</li>
@@ -54,13 +56,8 @@ const ProjectsPage = () => {
                     </ul>
                   </div>
 
-                  <div className="minimal:block hidden">
-                    <span className="font-semibold">Membres : </span>{" "}
-                    {project.members}
-                  </div>
-
                   <p className="my-2">
-                    <span className="font-semibold">Année : </span>
+                    <span className="font-semibold">{t("department.projects.year")} : </span>
                     {project.year}
                   </p>
                 </div>
@@ -77,7 +74,7 @@ const ProjectsPage = () => {
                 </div>
               </div>
 
-              <h4 className="font-semibold text-2xl my-2">Objectif</h4>
+              <h4 className="font-semibold text-dynamic-lg my-2">{t("department.projects.objective")}</h4>
               <p className="m-2">{project.objectif}</p>
             </div>
 

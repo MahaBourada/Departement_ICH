@@ -101,7 +101,7 @@ const MembersManagementPage = () => {
 
   return (
     <main className="mx-14 my-20">
-      <h1 className="text-display font-semibold">Ajouter un membre</h1>
+      <h1 className="text-dynamic-2xl font-semibold">Ajouter un membre</h1>
 
       {msgShow && (
         <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
@@ -144,7 +144,7 @@ const MembersManagementPage = () => {
           <div className="flex flex-col w-1/2 mr-2">
             <label
               htmlFor="titre"
-              className="text-nav font-main font-medium my-1"
+              className="text-dynamic-lg font-main font-medium my-1"
             >
               Titre *
             </label>
@@ -191,7 +191,7 @@ const MembersManagementPage = () => {
         <div className="flex flex-col mb-3 mr-2">
           <label
             htmlFor="à propos"
-            className="text-nav font-main font-medium my-1"
+            className="text-dynamic-lg font-main font-medium my-1"
           >
             A propos *
           </label>
