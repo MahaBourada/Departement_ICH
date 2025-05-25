@@ -68,6 +68,8 @@ const MobileUserHeader = ({ switchLang }) => {
     window.scrollTo({ top: 0 });
   };
 
+  const darkTheme = localStorage.getItem("theme");
+
   return (
     <header className="sticky top-0 max-large-medium:block hidden px-7 py-5 bg-main dark:bg-dark-main shadow-medium z-50">
       <div className="flex flex-row items-center justify-between">
@@ -86,9 +88,17 @@ const MobileUserHeader = ({ switchLang }) => {
           className="focus:translate-[1px] cursor-pointer"
         >
           {showMenu ? (
-            <X size={36} color="#232323" strokeWidth={3} />
+            <X
+              size={36}
+              color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+              strokeWidth={3}
+            />
           ) : (
-            <Menu size={36} color="#232323" strokeWidth={3} />
+            <Menu
+              size={36}
+              color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+              strokeWidth={3}
+            />
           )}
         </button>
       </div>
@@ -102,7 +112,7 @@ const MobileUserHeader = ({ switchLang }) => {
           <div className="flex items-center justify-center">
             {localStorage.getItem("lang") === "en" ? (
               <button
-                className="cursor-pointer w-fit flex justify-end items-center px-2 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                className="cursor-pointer w-fit flex justify-end items-center px-2 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
                 onClick={() => switchLang("fr")}
               >
                 <img
@@ -114,7 +124,7 @@ const MobileUserHeader = ({ switchLang }) => {
               </button>
             ) : (
               <button
-                className="cursor-pointer w-fit flex justify-end items-center px-2 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main rounded-lg"
+                className="cursor-pointer w-fit flex justify-end items-center px-2 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
                 onClick={() => switchLang("en")}
               >
                 <img
@@ -131,7 +141,7 @@ const MobileUserHeader = ({ switchLang }) => {
             <Link
               onClick={handleLinkClick}
               to="/admin"
-              className="text-[1.125rem] max-large-medium:text-xl font-medium px-2.5 py-1.5 ml-2 mx-1 cursor-pointer hover:translate-[1px] hover:underline p-2 hover:bg-hover-main focus:bg-hover-main rounded-lg"
+              className="text-[1.125rem] max-large-medium:text-xl font-medium px-2.5 py-1.5 ml-2 mx-1 cursor-pointer hover:translate-[1px] hover:underline p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
             >
               Mon espace
             </Link>
@@ -141,8 +151,10 @@ const MobileUserHeader = ({ switchLang }) => {
             <Link
               onClick={handleLinkClick}
               to="/"
-              className={`px-5 py-3 w-full font-medium hover:bg-hover-main focus:bg-hover-main hover:underline hover:translate-[1px] ${
-                location.pathname === "/" ? "underline bg-hover-main" : ""
+              className={`px-5 py-3 w-full font-medium hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 hover:underline hover:translate-[1px] ${
+                location.pathname === "/"
+                  ? "underline bg-hover-main dark:bg-gray-900"
+                  : ""
               }`}
             >
               {t("home.link")}
@@ -150,15 +162,19 @@ const MobileUserHeader = ({ switchLang }) => {
 
             <div ref={actMenuRef}>
               <button
-                className={`cursor-pointer flex justify-between items-center w-full font-medium px-4 py-3 hover:bg-hover-main focus:bg-hover-main hover:underline hover:translate-[1px] ${
+                className={`cursor-pointer flex justify-between items-center w-full font-medium px-4 py-3 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 hover:underline hover:translate-[1px] ${
                   ["/conferences"].includes(location.pathname)
-                    ? "underline bg-hover-main"
+                    ? "underline bg-hover-main dark:bg-gray-900"
                     : ""
                 }`}
                 onClick={() => setShowAct(!showAct)}
               >
                 <p className="mx-1">{t("news.link")}</p>
-                <ChevronDown size={26} color="#232323" strokeWidth={2.5} />
+                <ChevronDown
+                  size={26}
+                  color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+                  strokeWidth={2.5}
+                />
               </button>
 
               {showAct && (
@@ -166,7 +182,7 @@ const MobileUserHeader = ({ switchLang }) => {
                   <Link
                     onClick={handleLinkClick}
                     to="/conferences"
-                    className="hover:bg-gray-200 focus:bg-gray-200 px-4 py-3"
+                    className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-gray-900 dark:hover:bg-gray-900 px-4 py-3"
                   >
                     {t("news.conferences.link")}
                   </Link>
@@ -176,7 +192,7 @@ const MobileUserHeader = ({ switchLang }) => {
 
             <div ref={deptMenuRef}>
               <button
-                className={`cursor-pointer flex justify-between items-center w-full font-medium px-4 py-3 hover:bg-hover-main focus:bg-hover-main hover:underline hover:translate-[1px] ${
+                className={`cursor-pointer flex justify-between items-center w-full font-medium px-4 py-3 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 hover:underline hover:translate-[1px] ${
                   [
                     "/equipe",
                     "/master",
@@ -184,48 +200,52 @@ const MobileUserHeader = ({ switchLang }) => {
                     "/projets-etudiants",
                     "/prix-concours",
                   ].includes(location.pathname)
-                    ? "underline bg-hover-main"
+                    ? "underline bg-hover-main dark:bg-gray-900"
                     : ""
                 }`}
                 onClick={() => setShowDept(!showDept)}
               >
                 <p className="mx-1">{t("department.link")}</p>
-                <ChevronDown size={26} color="#232323" strokeWidth={2.5} />
+                <ChevronDown
+                  size={26}
+                  color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+                  strokeWidth={2.5}
+                />
               </button>
               {showDept && (
                 <div className="flex flex-col left-2 bg-white font-normal">
                   <Link
                     onClick={handleLinkClick}
                     to="/equipe"
-                    className="hover:bg-gray-200 focus:bg-gray-200 px-4 py-3"
+                    className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-gray-900 dark:hover:bg-gray-900 px-4 py-3"
                   >
                     {t("department.team.link")}
                   </Link>
                   <Link
                     onClick={handleLinkClick}
                     to="/master"
-                    className="hover:bg-gray-200 focus:bg-gray-200 px-4 py-3"
+                    className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-gray-900 dark:hover:bg-gray-900 px-4 py-3"
                   >
                     {t("department.master.link")}
                   </Link>
                   <Link
                     onClick={handleLinkClick}
                     to="/lab-chart"
-                    className="hover:bg-gray-200 focus:bg-gray-200 px-4 py-3"
+                    className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-gray-900 dark:hover:bg-gray-900 px-4 py-3"
                   >
                     {t("department.lab-chart.link")}
                   </Link>
                   <Link
                     onClick={handleLinkClick}
                     to="/projets-etudiants"
-                    className="hover:bg-gray-200 focus:bg-gray-200 px-4 py-3"
+                    className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-gray-900 dark:hover:bg-gray-900 px-4 py-3"
                   >
                     {t("department.projects.title")}
                   </Link>
                   <Link
                     onClick={handleLinkClick}
                     to="/prix-concours"
-                    className="hover:bg-gray-200 focus:bg-gray-200 px-4 py-3"
+                    className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-gray-900 dark:hover:bg-gray-900 px-4 py-3"
                   >
                     {t("department.awards_title")}
                   </Link>
@@ -235,18 +255,22 @@ const MobileUserHeader = ({ switchLang }) => {
 
             <div ref={collMenuRef}>
               <button
-                className={`cursor-pointer flex justify-between items-center w-full font-medium px-4 py-3 hover:bg-hover-main focus:bg-hover-main hover:underline hover:translate-[1px] ${
+                className={`cursor-pointer flex justify-between items-center w-full font-medium px-4 py-3 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 hover:underline hover:translate-[1px] ${
                   [
                     "/collaboration-nationale",
                     "/collaboration-internationale",
                   ].includes(location.pathname)
-                    ? "underline bg-hover-main"
+                    ? "underline bg-hover-main dark:bg-gray-900"
                     : ""
                 }`}
                 onClick={() => setShowColl(!showColl)}
               >
                 <p className="mx-1">Collaboration</p>
-                <ChevronDown size={26} color="#232323" strokeWidth={2.5} />
+                <ChevronDown
+                  size={26}
+                  color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+                  strokeWidth={2.5}
+                />
               </button>
 
               {showColl && (
@@ -254,14 +278,14 @@ const MobileUserHeader = ({ switchLang }) => {
                   <Link
                     onClick={handleLinkClick}
                     to="/collaboration-nationale"
-                    className="hover:bg-gray-200 focus:bg-gray-200 px-4 py-3"
+                    className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-gray-900 dark:hover:bg-gray-900 px-4 py-3"
                   >
                     {t("collaboration.national.link")}
                   </Link>
                   <Link
                     onClick={handleLinkClick}
                     to="/collaboration-internationale"
-                    className="hover:bg-gray-200 focus:bg-gray-200 px-4 py-3"
+                    className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-gray-900 dark:hover:bg-gray-900 px-4 py-3"
                   >
                     {t("collaboration.international.link")}
                   </Link>
@@ -271,9 +295,9 @@ const MobileUserHeader = ({ switchLang }) => {
             <Link
               onClick={handleLinkClick}
               to="/contact"
-              className={`px-5 py-3 hover:bg-hover-main focus:bg-hover-main w-full font-medium hover:underline hover:translate-[1px] ${
+              className={`px-5 py-3 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 w-full font-medium hover:underline hover:translate-[1px] ${
                 location.pathname === "/contact"
-                  ? "underline bg-hover-main"
+                  ? "underline bg-hover-main dark:bg-gray-900"
                   : ""
               }`}
             >
