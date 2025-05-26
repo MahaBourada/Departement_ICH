@@ -53,6 +53,7 @@ const AccessibilityMenu = () => {
   const toggleDarkTheme = () => {
     setDarkTheme((prevTheme) => {
       const newTheme = prevTheme === "light" ? "dark" : "light";
+
       if (newTheme === "dark" && readerMode === true) setReaderMode(false);
       return newTheme;
     });
@@ -96,15 +97,15 @@ const AccessibilityMenu = () => {
   }, [fontSize]);
 
   const zoomIn = () => {
-    setFontSize((prev) => Math.min(prev * 1.1, 1.5));
+    setFontSize((prev) => Math.min(prev * 1.1, 1.85));
   };
 
   const zoomOut = () => {
-    setFontSize((prev) => Math.max(prev / 1.1, 1.25));
+    setFontSize((prev) => Math.max(prev / 1.1, 1.4));
   };
 
   const resetZoom = () => {
-    setFontSize(1.25);
+    setFontSize(1.4);
   };
 
   return (
@@ -112,12 +113,12 @@ const AccessibilityMenu = () => {
       <button
         type="button"
         onClick={() => setShowMenu(!showMenu)}
-        className="cursor-pointer w-fit flex justify-end items-center px-3 py-1.5 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg font-medium"
+        className="cursor-pointer w-fit flex justify-end items-center text-dynamic-sm px-3 py-1.5 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg font-medium"
       >
-        <span className="mx-1 text-dynamic-sm">{t('accessibility.label')}</span>
+        <span className="mx-1">{t("accessibility.label")}</span>
         <PersonStanding
           size={28}
-          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          className="text-[#232323] dark:text-gray-300"
           strokeWidth={3.2}
         />
       </button>
@@ -131,18 +132,18 @@ const AccessibilityMenu = () => {
           >
             {darkTheme === "light" ? (
               <>
-                <span className="mr-2">{t('accessibility.dark')}</span>
+                <span className="mr-2">{t("accessibility.dark")}</span>
                 <Moon
                   size={29}
-                  color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+                  className="text-[#232323] dark:text-gray-300"
                 />
               </>
             ) : (
               <>
-                <span className="mr-2">{t('accessibility.light')}</span>
+                <span className="mr-2">{t("accessibility.light")}</span>
                 <Sun
                   size={29}
-                  color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+                  className="text-[#232323] dark:text-gray-300"
                 />
               </>
             )}
@@ -156,7 +157,7 @@ const AccessibilityMenu = () => {
             <span>Zoom +</span>
             <ZoomIn
               size={29}
-              color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+              className="text-[#232323] dark:text-gray-300"
             />
           </button>
 
@@ -165,10 +166,10 @@ const AccessibilityMenu = () => {
             className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-gray-200 focus:bg-gray-200 dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
             onClick={resetZoom}
           >
-            <span>{t('accessibility.reset')}</span>
+            <span>{t("accessibility.reset")}</span>
             <RotateCcw
               size={28}
-              color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+              className="text-[#232323] dark:text-gray-300"
             />
           </button>
 
@@ -180,7 +181,7 @@ const AccessibilityMenu = () => {
             <span>Zoom -</span>
             <ZoomOut
               size={29}
-              color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+              className="text-[#232323] dark:text-gray-300"
             />
           </button>
 
@@ -189,16 +190,16 @@ const AccessibilityMenu = () => {
             className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-gray-200 focus:bg-gray-200 dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
             onClick={toggleReaderMode}
           >
-            <span className="mr-2">{t('accessibility.reader')}</span>
+            <span className="mr-2">{t("accessibility.reader")}</span>
             {readerMode ? (
               <BookOpenCheck
                 size={29}
-                color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+                className="text-[#232323] dark:text-gray-300"
               />
             ) : (
               <BookOpen
                 size={29}
-                color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+                className="text-[#232323] dark:text-gray-300"
               />
             )}
           </button>

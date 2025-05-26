@@ -10,7 +10,7 @@
     "link": "Actualités",
     "conferences": {
       "link": "Conférences",
-      "title": "Calendrier des conférences"
+      "title": "Calendrier du cycle de conférences"
     }
   },
   "department": {
@@ -48,7 +48,6 @@
   "contact": {
     "title": "Localisation",
     "form": {
-      "title": "Un problème ? Contactez-nous",
       "firstname_label": "Prénom",
       "lastname_label": "Nom",
       "mail_placeholder": "exemple@mail.com",

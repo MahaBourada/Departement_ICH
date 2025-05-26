@@ -53,36 +53,20 @@ const LoginPage = () => {
   const darkTheme = localStorage.getItem("theme");
 
   return (
-    <div
-      className="flex flex-col min-h-screen bg-cover bg-no-repeat bg-center text-black dark:text-gray-300 text-dynamic-base leading-9 readerMode:leading-loose dark:bg-dark-background"
-      style={{
-        backgroundImage: `url('${
-          darkTheme === "light"
-            ? "/ich/assets/vectors/AdminBg.svg"
-            : "/ich/assets/vectors/AdminBgDark.svg"
-        }')`,
-      }}
-    >
+    <div className="flex flex-col min-h-screen bg-[url('/ich/assets/vectors/AdminBg.svg')] dark:bg-[url('/ich/assets/vectors/AdminBgDark.svg')] bg-cover bg-no-repeat bg-center text-black dark:text-gray-300 text-dynamic-base leading-11 readerMode:leading-loose dark:bg-dark-background">
       <header className="flex flex-row items-center justify-between w-full">
-        {darkTheme === "dark" ? (
-          <>
-            <img
-              src="/ich/assets/vectors/LogoDark.svg"
-              alt="Logo de l'université Paris 8"
-              width={140}
-              className="m-5"
-            />
-          </>
-        ) : (
-          <>
-            <img
-              src="/ich/assets/vectors/Logo.svg"
-              alt="Logo de l'université Paris 8"
-              width={140}
-              className="m-5"
-            />
-          </>
-        )}
+        <img
+          src="/ich/assets/vectors/Logo.svg"
+          alt="Logo de l'université Paris 8"
+          width={160}
+          className="m-5 block dark:hidden"
+        />
+        <img
+          src="/ich/assets/vectors/LogoDark.svg"
+          alt="Logo de l'université Paris 8"
+          width={160}
+          className="m-5 hidden dark:block"
+        />
 
         <div className="mx-6">
           <AccessibilityMenu />
@@ -99,8 +83,8 @@ const LoginPage = () => {
             <ArrowLeft
               aria-label="Revenir à l'accueil"
               size={38}
-              color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
               strokeWidth={2.5}
+              className="text-[#232323] dark:text-gray-300"
             />
           </Link>
           <h1 className="m-auto text-center text-display font-medium font-main">

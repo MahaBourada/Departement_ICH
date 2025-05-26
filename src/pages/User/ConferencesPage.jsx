@@ -6,20 +6,18 @@ import { Link } from "react-router-dom";
 const ConferencesPage = () => {
   const { t } = useTranslation();
 
-  const darkTheme = localStorage.getItem("theme");
-
   return (
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
       <nav
         aria-label="Fil d'Ariane"
-        className="my-1 mb-5 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black"
+        className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black"
       >
         <Link to="/" className="px-4 py-1 rounded-xl">
           {t("home.link")}
         </Link>
         <ChevronRight
           size={33}
-          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
         <span className="px-4 py-1 rounded-xl text-dark-accent dark:text-black bg-bg-transparent translate-[1px]">
@@ -27,7 +25,7 @@ const ConferencesPage = () => {
         </span>
         <ChevronRight
           size={33}
-          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
         <span className="px-4 py-1 rounded-xl">
@@ -39,7 +37,7 @@ const ConferencesPage = () => {
         {t("news.conferences.title")}
       </h1>
 
-      <div className="mx-4 max-md:mx-2 readerMode:text-2xl max-large-medium:readerMode:text-xl readerMode:leading-loose readerMode:w-[60ch] max-large-medium:readerMode:w-full readerMode:mx-auto">
+      <div className="mx-4 max-md:mx-2 readerMode:leading-loose readerMode:w-[60ch] max-large-medium:readerMode:w-full readerMode:mx-auto">
         <h2 className="font-main font-medium text-dynamic-xl mt-6 mb-2">
           Prochaine conférence
         </h2>
@@ -99,7 +97,7 @@ const ConferencesPage = () => {
         </div>
       </div>
 
-      <div className="mr-10 mx-4 max-md:mr-0 max-md:mx-2 max-large-medium:readerMode:text-xl readerMode:leading-loose readerMode:w-[60ch] max-large-medium:readerMode:w-full readerMode:mx-auto">
+      <div className="mr-10 mx-4 max-md:mr-0 max-md:mx-2  readerMode:leading-loose readerMode:w-[60ch] max-large-medium:readerMode:w-full readerMode:mx-auto">
         <h2 className="font-main font-medium text-dynamic-xl my-6">
           Conférences passées
         </h2>

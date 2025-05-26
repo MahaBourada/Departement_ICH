@@ -46,14 +46,14 @@ const InternationalePage = () => {
     <main className="flex-grow my-10 mb-20 mx-16">
       <nav
         aria-label="Fil d'Ariane"
-        className="my-1 mb-5 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium readerMode:hidden dark:bg-black"
+        className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium readerMode:hidden dark:bg-black"
       >
         <Link to="/" className="px-4 py-1 rounded-xl">
           {t("home.link")}
         </Link>
         <ChevronRight
           size={33}
-          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
         <span className="px-4 py-1 rounded-xl text-dark-accent dark:text-black bg-bg-transparent">
@@ -61,7 +61,7 @@ const InternationalePage = () => {
         </span>
         <ChevronRight
           size={33}
-          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
         <span className="px-4 py-1 rounded-xl">
@@ -73,7 +73,7 @@ const InternationalePage = () => {
         {t("collaboration.international.title")}
       </h1>
 
-      <div className="my-10 mb-20 mx-16 font-body max-large-medium:mx-0 max-xl:mx-5 readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full max-large-medium:readerMode:text-xl">
+      <div className="my-10 mb-20 mx-16 font-body max-large-medium:mx-0 max-xl:mx-5 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
         <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse my-7">
           {img1.path && (
             <img

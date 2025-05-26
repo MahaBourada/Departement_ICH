@@ -12,14 +12,14 @@ const PrixPage = () => {
     <main className="flex-grow my-10 mb-20 mx-16">
       <nav
         aria-label="Fil d'Ariane"
-        className="my-1 mb-5 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium dark:bg-black"
+        className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium dark:bg-black"
       >
         <Link to="/" className="px-4 py-1 rounded-xl">
           {t("home.link")}
         </Link>
         <ChevronRight
           size={33}
-          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
         <span className="px-4 py-1 rounded-xl text-dark-accent dark:text-black bg-bg-transparent">
@@ -27,7 +27,7 @@ const PrixPage = () => {
         </span>
         <ChevronRight
           size={33}
-          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
         <span className="px-4 py-1 rounded-xl">

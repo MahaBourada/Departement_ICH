@@ -17,15 +17,24 @@ const Layout = () => {
   };
 
   return (
-    <div className="App flex flex-col min-h-screen text-body dark:bg-dark-background bg-white bg-big-screen bg-repeat-y font-body text-black dark:text-white text-dynamic-base leading-9 readerMode:leading-loose readerMode:bg-[#faebd7]">
+    <div className="App flex flex-col min-h-screen text-justify dark:bg-dark-background bg-white bg-big-screen bg-repeat-y font-body text-black dark:text-white text-dynamic-base leading-11 readerMode:leading-loose readerMode:bg-[#faebd7]">
       <Header switchLang={switchLang} />
       <MobileHeader switchLang={switchLang} />
       <Outlet />
       <Footer switchLang={switchLang} />
       <ScrollToTop
-        aria-label="Haut de page"
+        aria-label={
+          localStorage.getItem("lang") === "fr" ? "Haut de page" : "Scroll up"
+        }
         role="button"
         tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }
+        }}
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         smooth
         style={{
           boxShadow: "none",

@@ -64,23 +64,18 @@ const Header = ({ switchLang }) => {
 
   return (
     <header className="max-large-medium:hidden flex justify-between items-center font-main large-medium:text-dynamic-xl lg:text-dynamic-xl font-medium py-2 px-10 max-lg:px-8 bg-main dark:bg-dark-main dark:text-gray-300">
-      {darkTheme === "dark" ? (
-        <>
-          <img
-            src="/ich/assets/vectors/LogoDark.svg"
-            alt="Logo de l'université Paris 8"
-            width={140}
-          />
-        </>
-      ) : (
-        <>
-          <img
-            src="/ich/assets/vectors/Logo.svg"
-            alt="Logo de l'université Paris 8"
-            width={140}
-          />
-        </>
-      )}
+      <img
+          src="/ich/assets/vectors/Logo.svg"
+          alt="Logo de l'université Paris 8"
+          width={160}
+          className="m-5 block dark:hidden"
+        />
+        <img
+          src="/ich/assets/vectors/LogoDark.svg"
+          alt="Logo de l'université Paris 8"
+          width={160}
+          className="m-5 hidden dark:block"
+        />
 
       <div className="flex flex-col items-end">
         <div className="flex items-center mb-3">
@@ -146,7 +141,7 @@ const Header = ({ switchLang }) => {
               <p className="mx-1">{t("news.link")}</p>
               <ChevronDown
                 size={26}
-                color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+                className="text-[#232323] dark:text-gray-300"
                 strokeWidth={2.5}
               />
             </button>
@@ -182,7 +177,7 @@ const Header = ({ switchLang }) => {
               <p className="mx-1">{t("department.link")}</p>
               <ChevronDown
                 size={26}
-                color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+                className="text-[#232323] dark:text-gray-300"
                 strokeWidth={2.5}
               />
             </button>
@@ -242,7 +237,7 @@ const Header = ({ switchLang }) => {
               <p className="mx-1">Collaboration</p>
               <ChevronDown
                 size={26}
-                color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+                className="text-[#232323] dark:text-gray-300"
                 strokeWidth={2.5}
               />
             </button>

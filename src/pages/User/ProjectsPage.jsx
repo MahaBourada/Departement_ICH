@@ -13,14 +13,14 @@ const ProjectsPage = () => {
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
       <nav
         aria-label="Fil d'Ariane"
-        className="my-1 mb-5 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black"
+        className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black"
       >
         <Link to="/" className="px-4 py-1 rounded-xl">
           {t("home.link")}
         </Link>
         <ChevronRight
           size={33}
-          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
         <span className="px-4 py-1 rounded-xl text-dark-accent bg-bg-transparent dark:text-black">
@@ -28,7 +28,7 @@ const ProjectsPage = () => {
         </span>
         <ChevronRight
           size={33}
-          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
         <span className="px-4 py-1 rounded-xl">
@@ -40,7 +40,7 @@ const ProjectsPage = () => {
         {t("department.projects.title")}
       </h1>
 
-      <div className="mx-4 max-md:mx-2 readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full max-large-medium:readerMode:text-xl">
+      <div className="mx-4 max-md:mx-2 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
         <div className="border-black dark:border-gray-300 border-[1px] my-5 w-full"></div>
 
         {projectData.map((project, index) => (

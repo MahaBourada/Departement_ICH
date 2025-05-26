@@ -30,26 +30,24 @@ const IndividualPage = () => {
   const mainPart = match ? match[1].trim() : "";
   const subParts = match ? match[2].split(",").map((s) => s.trim()) : [];
 
-  const darkTheme = localStorage.getItem("theme");
-
   return (
     <main className="flex-grow my-10 mb-20 mx-16">
       <nav
         aria-label="Fil d'Ariane"
-        className="my-1 mb-7 mx-2 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium readerMode:hidden dark:bg-black"
+        className="mb-10 my-1 mx-2 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium readerMode:hidden dark:bg-black"
       >
         <Link to="/" className="px-4 py-1 rounded-xl">
           {t("home.link")}
         </Link>
         <ChevronRight
           size={33}
-          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
         <span className="px-4 py-1 rounded-xl">{t("department.link")}</span>
         <ChevronRight
           size={33}
-          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
         <Link className="px-4 py-1 rounded-xl" to="/equipe">
@@ -57,7 +55,7 @@ const IndividualPage = () => {
         </Link>
         <ChevronRight
           size={33}
-          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
         <span className="px-4 py-1 rounded-xl text-dark-accent dark:text-black bg-bg-transparent">
@@ -69,7 +67,7 @@ const IndividualPage = () => {
         {member.prenom + " " + UpperNom}
       </h1>
 
-      <div className="flex flex-row items-start justify-between readerMode:flex-col readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full max-large-medium:readerMode:text-xl">
+      <div className="flex flex-row items-start justify-between readerMode:flex-col readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
         <div className="m-2">
           <h2 className="font-medium text-dynamic-xl font-main">
             {member.titre}
@@ -108,7 +106,7 @@ const IndividualPage = () => {
             <div className="flex items-center my-2">
               <MapPin
                 size={32}
-                color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+                className="text-[#232323] dark:text-gray-300"
               />
               <p className="mx-2">{member.lieu}</p>
             </div>
@@ -118,7 +116,7 @@ const IndividualPage = () => {
             <div className="flex items-center my-4">
               <Mail
                 size={32}
-                color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+                className="text-[#232323] dark:text-gray-300"
               />
               <p className="mx-2">{member.email}</p>
             </div>
@@ -128,7 +126,7 @@ const IndividualPage = () => {
             <div className="flex items-center my-4">
               <Phone
                 size={32}
-                color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+                className="text-[#232323] dark:text-gray-300"
               />
               <p className="mx-2">{member.telephone}</p>
             </div>
@@ -139,7 +137,7 @@ const IndividualPage = () => {
           src={`${import.meta.env.VITE_BASE_URL}/${member.image_blob}`}
           alt="Photo de Anis ROJBI"
           width={350}
-          className="rounded-3xl m-4 mx-10"
+          className="rounded-3xl m-4 mx-10 readerMode:mx-auto"
         />
       </div>
     </main>

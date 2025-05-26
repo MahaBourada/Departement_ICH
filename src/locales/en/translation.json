@@ -10,7 +10,7 @@
     "link": "News",
     "conferences": {
       "link": "Conferences",
-      "title": "Conferences schedule"
+      "title": "Conference cycle calendar"
     }
   },
   "department": {
@@ -48,7 +48,6 @@
   "contact": {
     "title": "Location",
     "form": {
-      "title": "Have a problem ? Contact us",
       "firstname_label": "First name",
       "lastname_label": "Last name",
       "mail_placeholder": "example@mail.com",

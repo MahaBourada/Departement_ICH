@@ -77,7 +77,16 @@ const MobileUserHeader = ({ switchLang }) => {
           src="/ich/assets/vectors/Logo.svg"
           alt="Logo de l'université Paris 8"
           width={100}
+          className="block dark:hidden"
         />
+
+        <img
+          src="/ich/assets/vectors/LogoDark.svg"
+          alt="Logo de l'université Paris 8"
+          width={100}
+          className="hidden dark:block"
+        />
+
         <button
           type="button"
           aria-controls="menu"
@@ -90,13 +99,13 @@ const MobileUserHeader = ({ switchLang }) => {
           {showMenu ? (
             <X
               size={36}
-              color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+              className="text-[#232323] dark:text-gray-300"
               strokeWidth={3}
             />
           ) : (
             <Menu
               size={36}
-              color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+              className="text-[#232323] dark:text-gray-300"
               strokeWidth={3}
             />
           )}
@@ -172,7 +181,7 @@ const MobileUserHeader = ({ switchLang }) => {
                 <p className="mx-1">{t("news.link")}</p>
                 <ChevronDown
                   size={26}
-                  color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+                  className="text-[#232323] dark:text-gray-300"
                   strokeWidth={2.5}
                 />
               </button>
@@ -208,7 +217,7 @@ const MobileUserHeader = ({ switchLang }) => {
                 <p className="mx-1">{t("department.link")}</p>
                 <ChevronDown
                   size={26}
-                  color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+                  className="text-[#232323] dark:text-gray-300"
                   strokeWidth={2.5}
                 />
               </button>
@@ -268,7 +277,7 @@ const MobileUserHeader = ({ switchLang }) => {
                 <p className="mx-1">Collaboration</p>
                 <ChevronDown
                   size={26}
-                  color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+                  className="text-[#232323] dark:text-gray-300"
                   strokeWidth={2.5}
                 />
               </button>

@@ -37,14 +37,14 @@ const MasterPage = () => {
     <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
       <nav
         aria-label="Fil d'Ariane"
-        className="my-1 mb-5 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black"
+        className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black"
       >
         <Link to="/" className="px-4 py-1 rounded-xl">
           {t("home.link")}
         </Link>
         <ChevronRight
           size={33}
-          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
         <span className="px-4 py-1 rounded-xl text-dark-accent dark:text-black bg-bg-transparent">
@@ -52,7 +52,7 @@ const MasterPage = () => {
         </span>
         <ChevronRight
           size={33}
-          color={darkTheme === "dark" ? "#d1d5dc" : "#232323"}
+          className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
         <span className="px-4 py-1 rounded-xl">
@@ -64,7 +64,7 @@ const MasterPage = () => {
         {t("department.master.title")}
       </h1>
 
-      <div className="my-10 mb-20 mx-16 font-body max-large-medium:mx-0 max-xl:mx-5 readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full max-large-medium:readerMode:text-xl">
+      <div className="my-10 mb-20 mx-16 font-body max-large-medium:mx-0 max-xl:mx-5 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
         <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse my-7 readerMode:flex-col-reverse">
           <img
             src={`${import.meta.env.VITE_BASE_URL}/${
@@ -72,7 +72,7 @@ const MasterPage = () => {
             }`}
             alt={getByPosition(images, 1).alt || ""}
             width={400}
-            className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] readerMode:mx-auto"
+            className="aspect-[1/1] object-contain minimal:hidden w-[19rem] h-[19rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] readerMode:mx-auto"
           />
           <div
             className="my-3 mx-7 max-sm:mx-0"
@@ -81,7 +81,7 @@ const MasterPage = () => {
         </div>
 
         <div className="flex flex-row justify-between items-start max-large-medium:flex-col readerMode:flex-col">
-          <div className="w-[60%] readerMode:w-full minimal:w-full max-large-medium:w-full mr-10 max-lg:mr-5">
+          <div className="w-[60%] readerMode:w-full minimal:w-full max-large-medium:w-full mr-2 max-lg:mr-5">
             <div
               dangerouslySetInnerHTML={{
                 __html: serializeToHtml(pageMaster, 2),
@@ -95,7 +95,7 @@ const MasterPage = () => {
             }`}
             alt={getByPosition(images, 2).alt || ""}
             width={400}
-            className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] readerMode:mx-auto readerMode:my-7"
+            className="minimal:hidden w-fit h-[23rem] max-sm:h-fit max-sm:rounded-2xl max-large-medium:h-[25rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] readerMode:mx-auto readerMode:my-7"
           />
         </div>
 

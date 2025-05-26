@@ -43,23 +43,18 @@ const Footer = ({ switchLang }) => {
   return (
     <footer className="max-large-medium:hidden flex flex-col items-center py-4 px-10 bg-main dark:bg-dark-main dark:text-gray-300 large-medium:text-dynamic-lg lg:text-dynamic-lg">
       <div className="flex justify-between items-center w-full">
-        {darkTheme === "dark" ? (
-          <>
-            <img
-              src="/ich/assets/vectors/LogoDark.svg"
-              alt="Logo de l'université Paris 8"
-              width={150}
-            />
-          </>
-        ) : (
-          <>
-            <img
-              src="/ich/assets/vectors/Logo.svg"
-              alt="Logo de l'université Paris 8"
-              width={150}
-            />
-          </>
-        )}
+        <img
+          src="/ich/assets/vectors/LogoDark.svg"
+          alt="Logo de l'université Paris 8"
+          width={180}
+          className="m-5 hidden dark:block"
+        />
+        <img
+          src="/ich/assets/vectors/Logo.svg"
+          alt="Logo de l'université Paris 8"
+          width={180}
+          className="m-5 block dark:hidden"
+        />
 
         <form onSubmit={(e) => onSubmit(e)} className="flex flex-row items-end">
           <div className="my-1">

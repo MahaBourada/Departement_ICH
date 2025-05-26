@@ -33,7 +33,7 @@ const HomePage = () => {
 
   return (
     <main className="flex-grow">
-      <div className="h-72 bg-cover bg-center bg-no-repeat flex items-center justify-center bg-[url('/assets/images/HomeImage.png')] max-md:hidden">
+      <div className="h-72 bg-cover bg-center bg-no-repeat flex items-center justify-center bg-[url('/ich/assets/images/HomeImage.png')] max-md:hidden">
         <h1
           className="text-white bg-bg-transparent py-6 px-7 max-xl:mx-7 rounded-4xl font-main font-semibold text-display max-large-medium:text-header text-center leading-10"
           style={{ textShadow: "2px 2px 5px #333" }}
@@ -45,7 +45,7 @@ const HomePage = () => {
         </h1>
       </div>
 
-      <div className="my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10 readerMode:leading-loose readerMode:text-2xl max-large-medium:readerMode:text-xl readerMode:w-[60ch] max-large-medium:readerMode:w-full readerMode:mx-auto">
+      <div className="my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10 readerMode:leading-loose readerMode:w-[60ch] max-large-medium:readerMode:w-full readerMode:mx-auto">
         <div
           className="my-7 mt-10"
           dangerouslySetInnerHTML={{ __html: serializeToHtml(pageAccueil, 1) }}
@@ -82,8 +82,7 @@ const HomePage = () => {
                 getByPosition(images, 1).path
               })`,
             }}
-            role="img"
-            aria-label={getByPosition(images, 1).alt}
+            alt={getByPosition(images, 1).alt || ""}
           ></div>
         </div>
 

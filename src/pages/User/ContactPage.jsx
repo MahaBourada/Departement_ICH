@@ -33,7 +33,7 @@ const ContactPage = () => {
         <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
       )}
 
-      <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse readerMode:flex-col readerMode:leading-loose readerMode:text-2xl max-large-medium:readerMode:text-xl readerMode:w-[60ch] max-large-medium:readerMode:w-full readerMode:mx-auto">
+      <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse readerMode:flex-col readerMode:leading-loose readerMode:w-[60ch] max-large-medium:readerMode:w-full readerMode:mx-auto">
         <div className="flex flex-col ml-3 max-large-medium:mt-5 max-large-medium:mx-0">
           <h2 className="font-main font-medium text-dynamic-xl my-5">
             {t("contact.title")}
@@ -57,10 +57,6 @@ const ContactPage = () => {
           onSubmit={(e) => onSubmit(e)}
           className="flex flex-col w-[45%] readerMode:w-full max-large-medium:w-full mr-7"
         >
-          <h2 className="font-main font-medium text-dynamic-xl my-5 readerMode:w-fit readerMode:mx-auto">
-            {t("contact.form.title")}
-          </h2>
-
           <div className="flex flex-row items-start justify-between mb-3 max-md:flex-col">
             <div className="w-1/2 max-md:w-full mr-3">
               <InputField

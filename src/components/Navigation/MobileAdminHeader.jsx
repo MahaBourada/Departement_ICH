@@ -53,7 +53,15 @@ const MobileAdminHeader = () => {
           src="/ich/assets/vectors/Logo.svg"
           alt="Logo de l'université Paris 8"
           width={100}
+          className="block dark:hidden"
         />
+        <img
+          src="/ich/assets/vectors/LogoDark.svg"
+          alt="Logo de l'université Paris 8"
+          width={100}
+          className="hidden dark:block"
+        />
+
         <button
           type="button"
           aria-controls="menu"
