@@ -34,7 +34,10 @@ const PagesListPage = () => {
           >
             <div className=" flex justify-between items-center font-main font-medium bg-admin-nav-bg p-6 rounded-3xl">
               <p>{page.title}</p>
-              <ExternalLink size={26} color="#232323" />
+              <ExternalLink
+                size={26}
+                className="text-[#232323] dark:text-gray-300"
+              />
             </div>
           </Link>
         ))}

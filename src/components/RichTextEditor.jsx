@@ -48,7 +48,7 @@ const RichTextEditor = ({ value, onChange }) => {
       }}
     >
       <div
-        className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.85rem] my-4 mr-2 outline-gray-500 text-dynamic-body leading-10"
+        className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.85rem] my-4 mr-2 outline-gray-500 text-dynamic-body leading-10 text-gray-800 dark:text-black"
         aria-label="Éditeur de texte enrichi"
       >
         <Toolbar aria-label="Barre d'outils de l'éditeur">

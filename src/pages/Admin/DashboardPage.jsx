@@ -68,7 +68,7 @@ const DashboardPage = () => {
             <Plus
               aria-label="Ajouter un admin"
               size={36}
-              color="#232323"
+              className="text-[#232323] dark:text-gray-300"
               strokeWidth={2.8}
             />
           </Link>
@@ -106,7 +106,7 @@ const DashboardPage = () => {
                       <Pencil
                         aria-label="Mettre à jour un admin"
                         size={26}
-                        color="#232323"
+                        className="text-[#232323] dark:text-gray-300"
                       />
                     </button>
                     <button
@@ -117,7 +117,7 @@ const DashboardPage = () => {
                       <Trash2
                         aria-label="Supprimer un admin"
                         size={26}
-                        color="#8B0000"
+                        className="text-[#8B0000] dark:text-red-400"
                       />
                     </button>
                   </div>

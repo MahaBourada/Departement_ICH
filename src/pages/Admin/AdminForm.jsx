@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import api from "../../api/api.js";
 import MessagePopup from "../../components/MsgPopup.jsx";
 import { InputField } from "../../components/Inputs.jsx";
-import { SmallBorderButton, SmallFilledButton } from "../../components/Buttons.jsx";
+import {
+  SmallBorderButton,
+  SmallFilledButton,
+} from "../../components/Buttons.jsx";
 
 const AdminForm = () => {
   const [values, setValues] = useState({
@@ -62,7 +65,7 @@ const AdminForm = () => {
         <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
       )}
 
-      <form onSubmit={handleSubmit} className="flex flex-col mx-5">
+      <form onSubmit={handleSubmit} className="flex flex-col m-5">
         <div className="flex items-start justify-between mb-3">
           <div className="flex flex-col w-1/2 mr-3">
             <InputField
@@ -106,14 +109,14 @@ const AdminForm = () => {
           <div className="flex flex-col w-1/2">
             <label
               htmlFor="role"
-              className="text-dynamic-lg font-main font-medium my-1"
+              className="font-main font-medium my-1"
             >
               Rôle *
             </label>
             <select
               name="role"
               id="role"
-              className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.95rem] mr-2 outline-gray-500"
+              className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.95rem] mr-2 outline-gray-500 dark:text-black dark:bg-gray-400 dark:border-gray-700"
               onChange={(e) => setValues({ ...values, role: e.target.value })}
             >
               <option value="">Selectionez une option</option>

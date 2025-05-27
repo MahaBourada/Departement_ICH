@@ -72,9 +72,17 @@ const MobileAdminHeader = () => {
           className="focus:translate-[1px]"
         >
           {showMenu ? (
-            <X size={36} color="#232323" strokeWidth={3} />
+            <X
+              size={36}
+              className="text-[#232323] dark:text-gray-300"
+              strokeWidth={3}
+            />
           ) : (
-            <Menu size={36} color="#232323" strokeWidth={3} />
+            <Menu
+              size={36}
+              className="text-[#232323] dark:text-gray-300"
+              strokeWidth={3}
+            />
           )}
         </button>
       </div>
@@ -84,7 +92,11 @@ const MobileAdminHeader = () => {
           <div className="flex items-center justify-center w-full">
             <div className="flex flex-row justify-between items-center my-3">
               <div className="flex flex-row items-center">
-                <CircleUserRound size={28} color="#232323" aria-hidden="true" />
+                <CircleUserRound
+                  size={28}
+                  className="text-[#232323] dark:text-gray-300"
+                  aria-hidden="true"
+                />
                 <p className="font-semibold mx-2">
                   {user?.first_name + " " + user?.last_name.toUpperCase()}
                 </p>
@@ -107,8 +119,8 @@ const MobileAdminHeader = () => {
               onClick={handleLinkClick}
               to="/admin/tableau-de-bord"
               className={({ isActive }) =>
-                `px-5 py-3 w-full text-center font-medium hover:bg-hover-main focus:bg-hover-main hover:underline hover:translate-[1px] ${
-                  isActive ? "underline bg-hover-main" : ""
+                `px-5 py-3 w-full text-center font-medium hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900  hover:underline hover:translate-[1px] ${
+                  isActive ? "underline bg-hover-main dark:bg-gray-900" : ""
                 }`
               }
             >
@@ -119,8 +131,8 @@ const MobileAdminHeader = () => {
               onClick={handleLinkClick}
               to="/admin/gestion-pages"
               className={({ isActive }) =>
-                `px-5 py-3 w-full text-center font-medium hover:bg-hover-main focus:bg-hover-main hover:underline hover:translate-[1px] ${
-                  isActive ? "underline bg-hover-main" : ""
+                `px-5 py-3 w-full text-center font-medium hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900  hover:underline hover:translate-[1px] ${
+                  isActive ? "underline bg-hover-main dark:bg-gray-900" : ""
                 }`
               }
             >
@@ -131,8 +143,8 @@ const MobileAdminHeader = () => {
               onClick={handleLinkClick}
               to="/admin/gestion-equipe"
               className={({ isActive }) =>
-                `px-5 py-3 w-full text-center font-medium hover:bg-hover-main focus:bg-hover-main hover:underline hover:translate-[1px] ${
-                  isActive ? "underline bg-hover-main" : ""
+                `px-5 py-3 w-full text-center font-medium hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900  hover:underline hover:translate-[1px] ${
+                  isActive ? "underline bg-hover-main dark:bg-gray-900" : ""
                 }`
               }
             >
@@ -143,8 +155,8 @@ const MobileAdminHeader = () => {
               onClick={handleLinkClick}
               to="/admin/gestion-conferences"
               className={({ isActive }) =>
-                `px-5 py-3 w-full text-center font-medium hover:bg-hover-main focus:bg-hover-main hover:underline hover:translate-[1px] ${
-                  isActive ? "underline bg-hover-main" : ""
+                `px-5 py-3 w-full text-center font-medium hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900  hover:underline hover:translate-[1px] ${
+                  isActive ? "underline bg-hover-main dark:bg-gray-900" : ""
                 }`
               }
             >
@@ -155,8 +167,8 @@ const MobileAdminHeader = () => {
               onClick={handleLinkClick}
               to="/admin/gestion-projets"
               className={({ isActive }) =>
-                `px-5 py-3 w-full text-center font-medium hover:bg-hover-main focus:bg-hover-main hover:underline hover:translate-[1px] ${
-                  isActive ? "underline bg-hover-main" : ""
+                `px-5 py-3 w-full text-center font-medium hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900  hover:underline hover:translate-[1px] ${
+                  isActive ? "underline bg-hover-main dark:bg-gray-900" : ""
                 }`
               }
             >
@@ -167,8 +179,8 @@ const MobileAdminHeader = () => {
               onClick={handleLinkClick}
               to="/admin/gestion-prix"
               className={({ isActive }) =>
-                `px-5 py-3 w-full text-center font-medium hover:bg-hover-main focus:bg-hover-main hover:underline hover:translate-[1px] ${
-                  isActive ? "underline bg-hover-main" : ""
+                `px-5 py-3 w-full text-center font-medium hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900  hover:underline hover:translate-[1px] ${
+                  isActive ? "underline bg-hover-main dark:bg-gray-900" : ""
                 }`
               }
             >

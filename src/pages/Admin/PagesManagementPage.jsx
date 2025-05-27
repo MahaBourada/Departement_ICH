@@ -176,7 +176,7 @@ const PagesManagementPage = () => {
         <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
       )}
 
-      <form onSubmit={handleSubmit} className="flex flex-col mx-5">
+      <form onSubmit={handleSubmit} className="flex flex-col m-5">
         {/* <div className="mt-4">
           <label
             id="section1_fr"

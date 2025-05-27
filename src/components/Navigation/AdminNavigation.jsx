@@ -1,18 +1,16 @@
 import {
   Code,
   House,
-  LogOut,
   MonitorDot,
   PanelsTopLeft,
   Presentation,
   UsersRound,
 } from "lucide-react";
-import React from "react";
 import { NavLink } from "react-router-dom";
 
 const AdminNavigation = () => {
   return (
-    <nav className="bg-main h-screen sticky top-0 left-0 flex flex-col max-md:hidden">
+    <nav className="bg-main dark:bg-dark-main h-screen sticky top-0 left-0 flex flex-col max-md:hidden">
       <div className="flex-grow">
         <img
           src="/ich/assets/vectors/Logo.svg"
@@ -25,19 +23,15 @@ const AdminNavigation = () => {
           <NavLink
             to="/admin/tableau-de-bord"
             className={({ isActive }) =>
-              `flex items-center my-3  px-4 py-3 rounded-2xl hover:translate-[1px] hover:underline mx-7 ${
+              `flex items-center my-3 px-4 py-3 rounded-2xl hover:translate-[1px] hover:underline mx-7 ${
                 isActive
-                  ? "bg-admin-nav-bg text-admin-nav"
-                  : "bg-none text-black"
+                  ? "bg-admin-nav-bg text-admin-nav dark:text-black"
+                  : "bg-none text-black dark:text-gray-300"
               }`
             }
           >
-            {({ isActive }) => (
-              <>
-                <House size={32} color={isActive ? "#B04404" : "#232323"} />
-                <p className="mx-2">Accueil</p>
-              </>
-            )}
+            <House size={32} />
+            <p className="mx-2">Accueil</p>
           </NavLink>
 
           <NavLink
@@ -45,20 +39,13 @@ const AdminNavigation = () => {
             className={({ isActive }) =>
               `flex items-center my-3  px-4 py-3 rounded-2xl hover:translate-[1px] hover:underline mx-7 ${
                 isActive
-                  ? "bg-admin-nav-bg text-admin-nav"
-                  : "bg-none text-black"
+                  ? "bg-admin-nav-bg text-admin-nav dark:text-black"
+                  : "bg-none text-black dark:text-gray-300"
               }`
             }
           >
-            {({ isActive }) => (
-              <>
-                <PanelsTopLeft
-                  size={32}
-                  color={isActive ? "#B04404" : "#232323"}
-                />
-                <p className="mx-2">Pages</p>
-              </>
-            )}
+            <PanelsTopLeft size={32} />
+            <p className="mx-2">Pages</p>
           </NavLink>
 
           <NavLink
@@ -66,20 +53,13 @@ const AdminNavigation = () => {
             className={({ isActive }) =>
               `flex items-center my-3  px-4 py-3 rounded-2xl hover:translate-[1px] hover:underline mx-7 ${
                 isActive
-                  ? "bg-admin-nav-bg text-admin-nav"
-                  : "bg-none text-black"
+                  ? "bg-admin-nav-bg text-admin-nav dark:text-black"
+                  : "bg-none text-black dark:text-gray-300"
               }`
             }
           >
-            {({ isActive }) => (
-              <>
-                <UsersRound
-                  size={32}
-                  color={isActive ? "#B04404" : "#232323"}
-                />
-                <p className="mx-2">Équipe</p>
-              </>
-            )}
+            <UsersRound size={32} />
+            <p className="mx-2">Équipe</p>
           </NavLink>
 
           <NavLink
@@ -87,20 +67,13 @@ const AdminNavigation = () => {
             className={({ isActive }) =>
               `flex items-center my-3  px-4 py-3 rounded-2xl hover:translate-[1px] hover:underline mx-7 ${
                 isActive
-                  ? "bg-admin-nav-bg text-admin-nav"
-                  : "bg-none text-black"
+                  ? "bg-admin-nav-bg text-admin-nav dark:text-black"
+                  : "bg-none text-black dark:text-gray-300"
               }`
             }
           >
-            {({ isActive }) => (
-              <>
-                <MonitorDot
-                  size={32}
-                  color={isActive ? "#B04404" : "#232323"}
-                />
-                <p className="mx-2">Conférences</p>
-              </>
-            )}
+            <MonitorDot size={32} />
+            <p className="mx-2">Conférences</p>
           </NavLink>
 
           <NavLink
@@ -108,20 +81,13 @@ const AdminNavigation = () => {
             className={({ isActive }) =>
               `flex items-center my-3  px-4 py-3 rounded-2xl hover:translate-[1px] hover:underline mx-7 ${
                 isActive
-                  ? "bg-admin-nav-bg text-admin-nav"
-                  : "bg-none text-black"
+                  ? "bg-admin-nav-bg text-admin-nav dark:text-black"
+                  : "bg-none text-black dark:text-gray-300"
               }`
             }
           >
-            {({ isActive }) => (
-              <>
-                <Presentation
-                  size={32}
-                  color={isActive ? "#B04404" : "#232323"}
-                />
-                <p className="mx-2">Projets</p>
-              </>
-            )}
+            <Presentation size={32} />
+            <p className="mx-2">Projets</p>
           </NavLink>
 
           <NavLink
@@ -129,17 +95,13 @@ const AdminNavigation = () => {
             className={({ isActive }) =>
               `flex items-center my-3  px-4 py-3 rounded-2xl hover:translate-[1px] hover:underline mx-7 ${
                 isActive
-                  ? "bg-admin-nav-bg text-admin-nav"
-                  : "bg-none text-black"
+                  ? "bg-admin-nav-bg text-admin-nav dark:text-black"
+                  : "bg-none text-black dark:text-gray-300"
               }`
             }
           >
-            {({ isActive }) => (
-              <>
-                <Code size={32} color={isActive ? "#B04404" : "#232323"} />
-                <p className="mx-2">Prix</p>
-              </>
-            )}
+            <Code size={32} />
+            <p className="mx-2">Prix</p>
           </NavLink>
         </div>
       </div>

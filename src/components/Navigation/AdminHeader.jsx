@@ -69,24 +69,28 @@ const AdminHeader = () => {
       >
         <ChevronDown
           size={32}
-          color="#232323"
+          className="text-[#232323] dark:text-gray-300"
           strokeWidth={2.5}
           aria-hidden="true"
         />
         <p className="text-dynamic-lg font-semibold mx-2">
           {user?.first_name + " " + user?.last_name.toUpperCase()}
         </p>
-        <CircleUserRound size={34} color="#232323" aria-hidden="true" />
+        <CircleUserRound
+          size={34}
+          className="text-[#232323] dark:text-gray-300"
+          aria-hidden="true"
+        />
       </button>
 
       {showMenu && (
         <form
           onSubmit={handleSubmit}
-          className="absolute flex flex-col right-0 top-[5.75rem] mt-1 bg-white shadow-small rounded-md font-normal w-full"
+          className="absolute flex flex-col right-0 top-[5.75rem] mt-1 bg-white dark:bg-dark-background shadow-small dark:shadow-gray-900 rounded-md font-normal w-full"
         >
           <button
             type="submit"
-            className="hover:bg-gray-200 rounded-md px-4 py-2 cursor-pointer"
+            className="hover:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main  rounded-md px-4 py-2 cursor-pointer"
           >
             Déconnexion
           </button>

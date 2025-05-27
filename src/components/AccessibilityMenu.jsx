@@ -87,8 +87,8 @@ const AccessibilityMenu = () => {
 
   // Zoom in / Zoom out / Reset
   const [fontSize, setFontSize] = useState(() => {
-    // Get from localStorage or default to 1.25
-    return parseFloat(localStorage.getItem("fontSize")) || 1.25;
+    // Get from localStorage or default to 1.4
+    return parseFloat(localStorage.getItem("fontSize")) || 1.4;
   });
 
   useEffect(() => {

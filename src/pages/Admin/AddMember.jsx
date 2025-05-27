@@ -107,7 +107,7 @@ const MembersManagementPage = () => {
         <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
       )}
 
-      <form onSubmit={handleSubmit} className="flex flex-col mx-5">
+      <form onSubmit={handleSubmit} className="flex flex-col m-5">
         <div className="flex items-start justify-between mb-3">
           <div className="flex flex-col w-1/2 mr-2">
             <InputField
@@ -151,7 +151,7 @@ const MembersManagementPage = () => {
             <select
               name="titre"
               id="titre"
-              className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.95rem] mr-2 outline-none"
+              className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.95rem] mr-2 outline-gray-500 dark:text-black dark:bg-gray-400 dark:border-gray-700"
               onChange={(e) => setValues({ ...values, titre: e.target.value })}
             >
               <option value="">Selectionez un titre</option>

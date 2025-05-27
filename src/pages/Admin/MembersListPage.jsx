@@ -33,7 +33,7 @@ const MembersListPage = () => {
           <Plus
             aria-label="Ajouter un membre"
             size={36}
-            color="#232323"
+            className="text-[#232323] dark:text-gray-300"
             strokeWidth={2.8}
           />
         </Link>
@@ -57,7 +57,10 @@ const MembersListPage = () => {
             >
               <div className=" flex justify-between items-center font-main font-medium bg-admin-nav-bg p-6 rounded-3xl">
                 <p>{member.prenom + " " + member.nom.toUpperCase()}</p>
-                <ExternalLink size={26} color="#232323" />
+                <ExternalLink
+                  size={26}
+                  className="text-[#232323] dark:text-gray-300"
+                />
               </div>
             </Link>
           ))}

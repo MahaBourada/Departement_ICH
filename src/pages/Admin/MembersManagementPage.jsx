@@ -39,7 +39,7 @@ const MembersManagementPage = () => {
           ? `${import.meta.env.VITE_BASE_URL}/${member.image_blob}`
           : member.image_blob || null;
 
-          console.log(initialImage)
+      console.log(initialImage);
 
       setValues({
         prenom: member.prenom || "",
@@ -158,13 +158,13 @@ const MembersManagementPage = () => {
           <Trash2
             aria-label="Ajouter un membre"
             size={36}
-            color="#8E0000"
+            className="text-[#8B0000] dark:text-red-400"
             strokeWidth={2.25}
           />
         </button>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col mx-5">
+      <form onSubmit={handleSubmit} className="flex flex-col m-5">
         <div className="flex items-start justify-between mb-3">
           <div className="flex flex-col w-1/2 mr-2">
             <InputField
@@ -208,7 +208,7 @@ const MembersManagementPage = () => {
             <select
               name="titre"
               id="titre"
-              className="bg-gray-100 border-gray-300 border-2 rounded-xl px-5 py-[0.95rem] mr-2 outline-gray-500"
+              className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.95rem] mr-2 outline-gray-500 dark:text-black dark:bg-gray-400 dark:border-gray-700"
               value={values.titre}
               onChange={(e) => setValues({ ...values, titre: e.target.value })}
             >
