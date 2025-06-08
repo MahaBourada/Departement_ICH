@@ -21,13 +21,11 @@ const MembersPage = () => {
     fetchData();
   }, []);
 
-  const darkTheme = localStorage.getItem("theme");
-
   return (
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
       <nav
-        aria-label="Fil d'Ariane"
-        className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black"
+        aria-label={t("breadcrumb")}
+        className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black text-breadcrumb"
       >
         <Link to="/" className="px-4 py-1 rounded-xl">
           {t("home.link")}
@@ -50,11 +48,11 @@ const MembersPage = () => {
         </span>
       </nav>
 
-      <h1 className="font-main font-semibold text-dynamic-2xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main font-semibold text-display my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("department.team.title")}
       </h1>
 
-      <h2 className="font-medium text-dynamic-xl font-main mx-2 mt-7 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <h2 className="font-medium text-header font-main mx-2 mt-7 mb-4 readerMode:w-fit readerMode:mx-auto">
         Directeur du département
       </h2>
 
@@ -111,7 +109,7 @@ const MembersPage = () => {
           })}
       </div>
 
-      <h2 className="font-medium text-dynamic-xl font-main mx-2 mt-7 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <h2 className="font-medium text-header font-main mx-2 mt-7 mb-4 readerMode:w-fit readerMode:mx-auto">
         Administration
       </h2>
 
@@ -168,7 +166,7 @@ const MembersPage = () => {
           })}
       </div>
 
-      <h2 className="font-medium text-dynamic-xl font-main mx-2 mt-7 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <h2 className="font-medium text-header font-main mx-2 mt-7 mb-4 readerMode:w-fit readerMode:mx-auto">
         Enseignants
       </h2>
 

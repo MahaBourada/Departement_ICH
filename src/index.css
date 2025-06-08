@@ -17,7 +17,7 @@
   
   --color-dark-background: #2F2F2F;
   --color-dark-main: #3E4B56;
-  --color-dark-accent: #B9683C;
+  --color-dark-accent: #662400;
   --color-bg-transparent: rgba(255,159,103, 0.45);
 
   --font-main: "Poppins", "sans-serif";
@@ -25,9 +25,9 @@
   --font-base: 1.35rem;
 
   --text-display: 2.5rem;
-  --text-header: 2rem;
-  --text-nav: 1.3rem;
-  --text-body: 1.27rem;
+  --text-header: 2.2rem;
+  --text-nav: 1.35rem;
+  --text-breadcrumb: 1.4rem;
 
   --shadow-small: 2px 2px 2px 1px #888;
   --shadow-medium: 0px 3px 5px 1px #999;

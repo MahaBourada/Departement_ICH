@@ -137,7 +137,7 @@ const MembersManagementPage = () => {
 
   return (
     <main className="mx-14 my-20">
-      <div className="flex items-center justify-between text-dynamic-2xl font-semibold">
+      <div className="flex items-center justify-between text-display font-semibold">
         <h1 className="font-semibold ">
           Gestion du membre {member.prenom + " " + member.nom}
         </h1>

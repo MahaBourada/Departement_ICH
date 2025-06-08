@@ -170,7 +170,7 @@ const PagesManagementPage = () => {
 
   return (
     <main className="mx-14 my-20">
-      <h1 className="text-dynamic-2xl font-semibold">Gestion de la {title}</h1>
+      <h1 className="text-display font-semibold">Gestion de la {title}</h1>
 
       {msgShow && (
         <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />

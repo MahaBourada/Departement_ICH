@@ -25,7 +25,7 @@ const ContactPage = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
-      <h1 className="font-main font-semibold text-dynamic-2xl readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main font-semibold text-display readerMode:w-fit readerMode:mx-auto">
         Contact
       </h1>
 
@@ -35,7 +35,7 @@ const ContactPage = () => {
 
       <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse readerMode:flex-col readerMode:leading-loose readerMode:w-[60ch] max-large-medium:readerMode:w-full readerMode:mx-auto">
         <div className="flex flex-col ml-3 max-large-medium:mt-5 max-large-medium:mx-0">
-          <h2 className="font-main font-medium text-dynamic-xl my-5">
+          <h2 className="font-main font-medium text-header my-5">
             {t("contact.title")}
           </h2>
           <ul className="list-disc mx-8 leading-9">

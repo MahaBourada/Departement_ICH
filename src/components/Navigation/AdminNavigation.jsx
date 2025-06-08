@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
 
 const AdminNavigation = () => {
   return (
-    <nav className="bg-main dark:bg-dark-main h-screen sticky top-0 left-0 flex flex-col max-md:hidden">
+    <nav className="bg-main dark:bg-dark-main h-screen sticky top-0 left-0 flex flex-col max-md:hidden text-nav">
       <div className="flex-grow">
         <img
           src="/ich/assets/vectors/Logo.svg"

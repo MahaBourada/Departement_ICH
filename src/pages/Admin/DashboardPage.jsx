@@ -49,7 +49,7 @@ const DashboardPage = () => {
     <div className="mt-20">
       <main className="mx-14 max-md:mx-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-dynamic-2xl max-md:text-dynamic-xl font-semibold ">
+          <h1 className="text-display font-semibold ">
             Comptes administrateurs
           </h1>
 
@@ -74,7 +74,7 @@ const DashboardPage = () => {
           </Link>
         </div>
 
-        <table className="w-full mx-3">
+        <table className="w-full mx-3 my-5">
           <thead>
             <tr className="border-b-[0.5px] text-start">
               <th className="py-3 text-start">Utilisateur</th>

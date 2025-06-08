@@ -7,13 +7,11 @@ import projectData from "../../data/projects.json";
 const ProjectsPage = () => {
   const { t } = useTranslation();
 
-  const darkTheme = localStorage.getItem("theme");
-
   return (
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
       <nav
-        aria-label="Fil d'Ariane"
-        className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black"
+        aria-label={t("breadcrumb")}
+        className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black text-breadcrumb"
       >
         <Link to="/" className="px-4 py-1 rounded-xl">
           {t("home.link")}
@@ -24,7 +22,7 @@ const ProjectsPage = () => {
           strokeWidth={2}
         />
         <span className="px-4 py-1 rounded-xl text-dark-accent bg-bg-transparent dark:text-black">
-          {t("department.link")}
+          {t("formation.link")}
         </span>
         <ChevronRight
           size={33}
@@ -32,12 +30,12 @@ const ProjectsPage = () => {
           strokeWidth={2}
         />
         <span className="px-4 py-1 rounded-xl">
-          {t("department.projects.title")}
+          {t("formation.projects.title")}
         </span>
       </nav>
 
-      <h1 className="font-main font-semibold text-dynamic-2xl my-2 readerMode:w-fit readerMode:mx-auto">
-        {t("department.projects.title")}
+      <h1 className="font-main font-semibold text-display my-2 readerMode:w-fit readerMode:mx-auto">
+        {t("formation.projects.title")}
       </h1>
 
       <div className="mx-4 max-md:mx-2 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
@@ -54,7 +52,7 @@ const ProjectsPage = () => {
 
                   <div className="minimal:hidden block">
                     <h3 className="font-semibold text-dynamic-lg my-2">
-                      {t("department.projects.members")}
+                      {t("formation.projects.members")}
                     </h3>
                     <ul className="list-disc mx-7">
                       {project.members.split(",").map((name, index) => (
@@ -65,7 +63,7 @@ const ProjectsPage = () => {
 
                   <p className="my-2">
                     <span className="font-semibold">
-                      {t("department.projects.year")} :{" "}
+                      {t("formation.projects.year")} :{" "}
                     </span>
                     {project.year}
                   </p>
@@ -84,7 +82,7 @@ const ProjectsPage = () => {
               </div>
 
               <h4 className="font-semibold text-dynamic-lg my-2">
-                {t("department.projects.objective")}
+                {t("formation.projects.objective")}
               </h4>
               <p className="m-2">{project.objectif}</p>
             </div>

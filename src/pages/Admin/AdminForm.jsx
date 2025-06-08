@@ -57,7 +57,7 @@ const AdminForm = () => {
 
   return (
     <main className="mx-14 mt-20">
-      <h1 className="text-dynamic-2xl font-semibold ">
+      <h1 className="text-display font-semibold ">
         Ajouter un nouvel administrateur
       </h1>
 

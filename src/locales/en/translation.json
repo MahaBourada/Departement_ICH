@@ -71,6 +71,7 @@
     "text": "Error 404: The page has fled... Or is under construction",
     "button": "Go back"
   },
+  "breadcrumb": "Breadcrumb",
   "accessibility": {
     "label": "Accessibility",
     "dark": "Dark mode",

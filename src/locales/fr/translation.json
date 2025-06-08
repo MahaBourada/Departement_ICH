@@ -71,6 +71,7 @@
     "text": "Erreur 404 : La page a pris la fuite... Ou est en construction",
     "button": "Revenir en arrière"
   },
+  "breadcrumb": "Fil d'Ariane",
   "accessibility": {
     "label": "Accessibilité",
     "dark": "Mode sombre",

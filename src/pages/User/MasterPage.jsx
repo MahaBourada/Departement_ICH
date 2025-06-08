@@ -31,13 +31,11 @@ const MasterPage = () => {
     fetchData();
   }, []);
 
-  const darkTheme = localStorage.getItem("theme");
-
   return (
     <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
       <nav
-        aria-label="Fil d'Ariane"
-        className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black"
+        aria-label={t("breadcrumb")}
+        className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black text-breadcrumb"
       >
         <Link to="/" className="px-4 py-1 rounded-xl">
           {t("home.link")}
@@ -48,7 +46,7 @@ const MasterPage = () => {
           strokeWidth={2}
         />
         <span className="px-4 py-1 rounded-xl text-dark-accent dark:text-black bg-bg-transparent">
-          {t("department.link")}
+          {t("formation.link")}
         </span>
         <ChevronRight
           size={33}
@@ -56,12 +54,12 @@ const MasterPage = () => {
           strokeWidth={2}
         />
         <span className="px-4 py-1 rounded-xl">
-          {t("department.master.title")}
+          {t("formation.master.title")}
         </span>
       </nav>
 
-      <h1 className="font-main font-semibold text-dynamic-2xl max-large-medium:text-dynamic-xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
-        {t("department.master.title")}
+      <h1 className="font-main font-semibold text-display max-large-medium:text-dynamic-xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
+        {t("formation.master.title")}
       </h1>
 
       <div className="my-10 mb-20 mx-16 font-body max-large-medium:mx-0 max-xl:mx-5 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
