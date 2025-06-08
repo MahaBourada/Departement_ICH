@@ -22,11 +22,11 @@
 
   --font-main: "Poppins", "sans-serif";
   --font-body: "Albert Sans", "sans-serif";
-  --font-base: 1.4rem;
+  --font-base: 1.35rem;
 
   --text-display: 2.5rem;
   --text-header: 2rem;
-  --text-nav: 1.2rem;
+  --text-nav: 1.3rem;
   --text-body: 1.27rem;
 
   --shadow-small: 2px 2px 2px 1px #888;
@@ -84,7 +84,7 @@
   font-size: calc(var(--font-base, 1.25rem) / 1.05);
 }
 .text-dynamic-base {
-  font-size: var(--font-base, 1.4rem);
+  font-size: var(--font-base, 1.35rem);
 }
 .text-dynamic-lg {
   font-size: calc(var(--font-base, 1.25rem) * 1.2);

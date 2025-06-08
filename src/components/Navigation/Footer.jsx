@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { InputField } from "../Inputs";
 import { SmallFilledButton } from "../Buttons";
+import AccessibilityMenu from "../AccessibilityMenu";
 
 const Footer = ({ switchLang }) => {
   const { t } = useTranslation();
@@ -41,7 +42,7 @@ const Footer = ({ switchLang }) => {
   const darkTheme = localStorage.getItem("theme");
 
   return (
-    <footer className="max-large-medium:hidden flex flex-col items-center py-4 px-10 bg-main dark:bg-dark-main dark:text-gray-300 large-medium:text-dynamic-lg lg:text-dynamic-lg">
+    <footer className="max-large-medium:hidden flex flex-col items-center py-4 px-10 bg-main dark:bg-dark-main dark:text-gray-300 large-medium:text-nav">
       <div className="flex justify-between items-center w-full">
         <img
           src="/ich/assets/vectors/LogoDark.svg"
@@ -102,9 +103,13 @@ const Footer = ({ switchLang }) => {
               />
             </button>
           )}
+
+          <div className="h-7 bg-black dark:bg-gray-300 w-[1px] rounded-full"></div>
+
+          <AccessibilityMenu position="bottom-[3.8rem] left-0" />
         </div>
 
-        <nav className="flex justify-between font-main text-dynamic-base">
+        <nav className="flex justify-between font-main text-nav">
           <div className="flex flex-col px-2">
             <NavLink
               onClick={() => window.scrollTo({ top: 0 })}
@@ -131,7 +136,7 @@ const Footer = ({ switchLang }) => {
           </div>
 
           <div className="flex flex-col px-2">
-            <p className="mx-1 p-2 font-medium">{t("news.link")}</p>
+            <p className="mx-1 p-2 font-medium">{t("department.link")}</p>
             <NavLink
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
@@ -139,14 +144,25 @@ const Footer = ({ switchLang }) => {
                   ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
                   : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
-              to="/conferences"
+              to="/departement/actualites"
             >
-              {t("news.conferences.link")}
+              {t("department.news.link")}
+            </NavLink>
+            <NavLink
+              onClick={() => window.scrollTo({ top: 0 })}
+              className={({ isActive }) =>
+                isActive
+                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+              }
+              to="/departement/equipe"
+            >
+              {t("department.team.link")}
             </NavLink>
           </div>
 
           <div className="flex flex-col px-2">
-            <p className="p-2 font-medium">{t("department.link")}</p>
+            <p className="p-2 font-medium">{t("formation.link")}</p>
             <NavLink
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
@@ -154,9 +170,9 @@ const Footer = ({ switchLang }) => {
                   ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
                   : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
-              to="/equipe"
+              to="/formation/master"
             >
-              {t("department.team.link")}
+              {t("formation.master.link")}
             </NavLink>
             <NavLink
               onClick={() => window.scrollTo({ top: 0 })}
@@ -165,9 +181,9 @@ const Footer = ({ switchLang }) => {
                   ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
                   : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
-              to="/master"
+              to="/formation/projets-etudiants"
             >
-              {t("department.master.link")}
+              {t("formation.projects.title")}
             </NavLink>
             <NavLink
               onClick={() => window.scrollTo({ top: 0 })}
@@ -178,8 +194,12 @@ const Footer = ({ switchLang }) => {
               }
               to="/lab-chart"
             >
-              {t("department.lab-chart.link")}
+              {t("formation.awards_title")}
             </NavLink>
+          </div>
+
+          <div className="flex flex-col px-2">
+            <p className="p-2 font-medium">{t("research.link")}</p>
             <NavLink
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
@@ -187,20 +207,9 @@ const Footer = ({ switchLang }) => {
                   ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
                   : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
-              to="/projets-etudiants"
+              to="/recherche/lab-chart"
             >
-              {t("department.projects_title")}
-            </NavLink>
-            <NavLink
-              onClick={() => window.scrollTo({ top: 0 })}
-              className={({ isActive }) =>
-                isActive
-                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-              }
-              to="/prix-concours"
-            >
-              {t("department.awards_title")}
+              {t("research.lab-chart.link")}
             </NavLink>
           </div>
 

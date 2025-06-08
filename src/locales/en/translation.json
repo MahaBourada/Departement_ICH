@@ -75,7 +75,7 @@
     "label": "Accessibility",
     "dark": "Dark mode",
     "light": "Light mode",
-    "reset": "Reset",
+    "reset": "Reset zoom",
     "reader": "Reader mode"
   }
 }

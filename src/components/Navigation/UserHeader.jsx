@@ -67,7 +67,7 @@ const Header = ({ switchLang }) => {
   };
 
   return (
-    <header className="max-large-medium:hidden flex justify-between items-center font-main large-medium:text-dynamic-xl lg:text-dynamic-xl font-medium py-2 px-10 max-lg:px-8 bg-main dark:bg-dark-main dark:text-gray-300">
+    <header className="max-large-medium:hidden flex justify-between items-center font-main large-medium:text-nav font-medium py-2 px-10 max-lg:px-8 bg-main dark:bg-dark-main dark:text-gray-300">
       <img
         src="/ich/assets/vectors/Logo.svg"
         alt="Logo de l'université Paris 8"
@@ -118,7 +118,7 @@ const Header = ({ switchLang }) => {
           <Link
             onClick={() => window.scrollTo({ top: 0 })}
             to="/admin"
-            className="text-dynamic-sm px-2.5 py-1.5 ml-2 mx-1 cursor-pointer hover:translate-[1px] hover:underline p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+            className="text-nav px-2.5 py-1.5 ml-2 mx-1 cursor-pointer hover:translate-[1px] hover:underline p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
           >
             Mon espace
           </Link>
@@ -154,18 +154,18 @@ const Header = ({ switchLang }) => {
               />
             </button>
             {showDept && (
-              <div className="absolute flex flex-col left-2 mt-1 bg-white dark:bg-dark-background shadow-md rounded-md font-normal">
+              <div className="absolute w-[95%] flex flex-col left-2 mt-1 bg-white dark:bg-dark-background shadow-md rounded-md font-normal">
                 <Link
                   onClick={handleLinkClick}
                   to="/departement/actualites"
-                  className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
+                  className="block w-full hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
                 >
                   {t("department.news.link")}
                 </Link>
                 <Link
                   onClick={handleLinkClick}
                   to="/departement/equipe"
-                  className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
+                  className="block w-full hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
                 >
                   {t("department.team.link")}
                 </Link>
@@ -195,25 +195,25 @@ const Header = ({ switchLang }) => {
             </button>
 
             {showFormation && (
-              <div className="absolute flex flex-col left-2 mt-1 bg-white dark:bg-dark-background shadow-md rounded-md font-normal">
+              <div className="absolute min-w-max flex flex-col left-2 mt-1 bg-white dark:bg-dark-background shadow-md rounded-md font-normal">
                 <Link
                   onClick={handleLinkClick}
                   to="/formation/master"
-                  className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
+                  className="block w-full hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
                 >
                   {t("formation.master.link")}
                 </Link>
                 <Link
                   onClick={handleLinkClick}
                   to="/formation/projets-etudiants"
-                  className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
+                  className="block w-full hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
                 >
                   {t("formation.projects.title")}
                 </Link>
                 <Link
                   onClick={handleLinkClick}
                   to="/formation/prix-concours"
-                  className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
+                  className="block w-full hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
                 >
                   {t("formation.awards_title")}
                 </Link>
@@ -224,7 +224,9 @@ const Header = ({ switchLang }) => {
           <div className="relative" ref={rechercheMenuRef}>
             <button
               className={`cursor-pointer flex justify-between items-center mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg hover:underline hover:translate-[1px] ${
-                ["/recherche/lab-chart"].includes(location.pathname) ? "underline" : ""
+                ["/recherche/lab-chart"].includes(location.pathname)
+                  ? "underline"
+                  : ""
               }`}
               onClick={() => setShowRecherche(!showRecherche)}
             >
@@ -237,11 +239,11 @@ const Header = ({ switchLang }) => {
             </button>
 
             {showRecherche && (
-              <div className="absolute flex flex-col left-2 mt-1 bg-white dark:bg-dark-background shadow-md rounded-md font-normal">
+              <div className="absolute w-[95%] flex flex-col left-2 mt-1 bg-white dark:bg-dark-background shadow-md rounded-md font-normal">
                 <Link
                   onClick={handleLinkClick}
                   to="/recherche/lab-chart"
-                  className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
+                  className="block w-full hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
                 >
                   {t("research.lab-chart.link")}
                 </Link>
@@ -270,18 +272,18 @@ const Header = ({ switchLang }) => {
             </button>
 
             {showColl && (
-              <div className="absolute flex flex-col left-2 mt-1 bg-white dark:bg-dark-background shadow-md rounded-md font-normal">
+              <div className="absolute w-[95%] flex flex-col left-2 mt-1 bg-white dark:bg-dark-background shadow-md rounded-md font-normal">
                 <Link
                   onClick={handleLinkClick}
                   to="/collaboration-nationale"
-                  className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
+                  className="block w-full hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
                 >
                   {t("collaboration.national.link")}
                 </Link>
                 <Link
                   onClick={handleLinkClick}
                   to="/collaboration-internationale"
-                  className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
+                  className="block w-full hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
                 >
                   {t("collaboration.international.link")}
                 </Link>

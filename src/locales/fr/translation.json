@@ -19,7 +19,7 @@
   "formation": {
     "link": "Formation",
     "master": {
-      "link": "Master",
+      "link": "Master MIASHS",
       "title": "Master MIASHS - Parcours Technologie et handicap"
     },
     "jobs": {
@@ -75,7 +75,7 @@
     "label": "Accessibilité",
     "dark": "Mode sombre",
     "light": "Mode clair",
-    "reset": "Réinitialiser",
+    "reset": "Réinitialiser zoom",
     "reader": "Confort de lecture"
   }
 }

@@ -11,7 +11,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const AccessibilityMenu = () => {
+const AccessibilityMenu = ({ position }) => {
   const { t } = useTranslation();
   const [showMenu, setShowMenu] = useState(false);
   const showMenuRef = useRef(null);
@@ -91,29 +91,35 @@ const AccessibilityMenu = () => {
     return parseFloat(localStorage.getItem("fontSize")) || 1.4;
   });
 
+  const MIN_FONT_SIZE = 1.35;
+  const MAX_FONT_SIZE = 1.85;
+
+  const isZoomInDisabled = fontSize >= MAX_FONT_SIZE;
+  const isZoomOutDisabled = fontSize <= MIN_FONT_SIZE;
+
   useEffect(() => {
     document.documentElement.style.setProperty("--font-base", `${fontSize}rem`);
     localStorage.setItem("fontSize", fontSize); // Persist
   }, [fontSize]);
 
   const zoomIn = () => {
-    setFontSize((prev) => Math.min(prev * 1.1, 1.85));
+    setFontSize((prev) => Math.min(prev * 1.1, MAX_FONT_SIZE));
   };
 
   const zoomOut = () => {
-    setFontSize((prev) => Math.max(prev / 1.1, 1.4));
+    setFontSize((prev) => Math.max(prev / 1.1, MIN_FONT_SIZE));
   };
 
   const resetZoom = () => {
-    setFontSize(1.4);
+    setFontSize(MIN_FONT_SIZE);
   };
 
   return (
-    <div className="relative my-1 rounded-lg" ref={showMenuRef}>
+    <div className="relative my-1 rounded-lg text-nav" ref={showMenuRef}>
       <button
         type="button"
         onClick={() => setShowMenu(!showMenu)}
-        className="cursor-pointer w-fit flex justify-end items-center text-dynamic-sm px-3 py-1.5 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg font-medium"
+        className="cursor-pointer w-fit flex justify-end items-center px-3 py-1.5 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg font-medium"
       >
         <span className="mx-1">{t("accessibility.label")}</span>
         <PersonStanding
@@ -124,7 +130,7 @@ const AccessibilityMenu = () => {
       </button>
 
       {showMenu && (
-        <div className="absolute right-0 z-50 mt-1 w-fit bg-white dark:bg-dark-background rounded-lg shadow-small dark:shadow-gray-900 font-normal">
+        <div className={`absolute right-0 ${position} z-50 mt-1 w-fit bg-white dark:bg-dark-background rounded-lg shadow-small dark:shadow-gray-900 font-normal`}>
           <button
             type="button"
             className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-gray-200 focus:bg-gray-200 dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
@@ -133,32 +139,28 @@ const AccessibilityMenu = () => {
             {darkTheme === "light" ? (
               <>
                 <span className="mr-2">{t("accessibility.dark")}</span>
-                <Moon
-                  size={29}
-                  className="text-[#232323] dark:text-gray-300"
-                />
+                <Moon size={29} className="text-[#232323] dark:text-gray-300" />
               </>
             ) : (
               <>
                 <span className="mr-2">{t("accessibility.light")}</span>
-                <Sun
-                  size={29}
-                  className="text-[#232323] dark:text-gray-300"
-                />
+                <Sun size={29} className="text-[#232323] dark:text-gray-300" />
               </>
             )}
           </button>
 
           <button
             type="button"
-            className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-gray-200 focus:bg-gray-200 dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
+            className={`flex justify-between items-center bg-white dark:bg-dark-background px-3 py-1.5 text-nowrap w-full rounded-lg ${
+              isZoomInDisabled
+                ? "opacity-55 cursor-not-allowed"
+                : "cursor-pointer hover:bg-gray-200 focus:bg-gray-200 dark:hover:bg-dark-main dark:focus:bg-dark-main"
+            }`}
             onClick={zoomIn}
+            disabled={isZoomInDisabled}
           >
             <span>Zoom +</span>
-            <ZoomIn
-              size={29}
-              className="text-[#232323] dark:text-gray-300"
-            />
+            <ZoomIn size={29} className="text-[#232323] dark:text-gray-300" />
           </button>
 
           <button
@@ -175,14 +177,16 @@ const AccessibilityMenu = () => {
 
           <button
             type="button"
-            className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-gray-200 focus:bg-gray-200 dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
+            className={`flex justify-between items-center bg-white dark:bg-dark-background px-3 py-1.5 text-nowrap w-full rounded-lg ${
+              isZoomOutDisabled
+                ? "opacity-55 cursor-not-allowed"
+                : "cursor-pointer hover:bg-gray-200 focus:bg-gray-200 dark:hover:bg-dark-main dark:focus:bg-dark-main"
+            }`}
             onClick={zoomOut}
+            disabled={isZoomOutDisabled}
           >
             <span>Zoom -</span>
-            <ZoomOut
-              size={29}
-              className="text-[#232323] dark:text-gray-300"
-            />
+            <ZoomOut size={29} className="text-[#232323] dark:text-gray-300" />
           </button>
 
           <button
