@@ -85,7 +85,7 @@ const Footer = ({ switchLang }) => {
               onClick={() => switchLang("fr")}
             >
               <img
-                src="assets/images/french.png"
+                src="/ich/assets/images/french.png"
                 alt="Version française"
                 width={38}
               />
@@ -96,7 +96,7 @@ const Footer = ({ switchLang }) => {
               onClick={() => switchLang("en")}
             >
               <img
-                src="assets/images/english.png"
+                src="/ich/assets/images/english.png"
                 alt="English version"
                 width={38}
               />

@@ -6,26 +6,24 @@
       "2": "UFR eriTES"
     }
   },
-  "news": {
-    "link": "Actualités",
-    "conferences": {
-      "link": "Conférences",
-      "title": "Calendrier du cycle de conférences"
-    }
-  },
   "department": {
-    "link": "Département ICH",
+    "link": "Département",
+    "news": {
+      "link": "Actualités"
+    },
     "team": {
       "link": "Equipe",
       "title": "Équipe du département"
-    },
+    }
+  },
+  "formation": {
+    "link": "Formation",
     "master": {
-      "link": "Master MIASHS",
+      "link": "Master",
       "title": "Master MIASHS - Parcours Technologie et handicap"
     },
-    "lab-chart": {
-      "link": "Lab CHArt",
-      "title": "Laboratoire Cognition Humaine et ARTificielle (CHArt)"
+    "jobs": {
+      "link": "Emplois"
     },
     "projects": {
       "title": "Projets étudiants",
@@ -34,6 +32,13 @@
       "objective": "Objectif"
     },
     "awards_title": "Prix & Concours"
+  },
+  "research": {
+    "link": "Recherche",
+    "lab-chart": {
+      "link": "Lab CHArt",
+      "title": "Laboratoire Cognition Humaine et ARTificielle (CHArt)"
+    }
   },
   "collaboration": {
     "national": {

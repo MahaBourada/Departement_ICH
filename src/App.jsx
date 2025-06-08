@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./UserLayout";
 import AdminLayout from "./AdminLayout";
 import HomePage from "./pages/User/HomePage";
-import ConferencesPage from "./pages/User/ConferencesPage";
 import MembersPage from "./pages/User/MembersPage";
 import MasterPage from "./pages/User/MasterPage";
 import LabPage from "./pages/User/LabPage";
@@ -19,7 +18,6 @@ import Dashboard from "./pages/Admin/DashboardPage";
 import PagesManagementPage from "./pages/Admin/PagesManagementPage";
 import MembersListPage from "./pages/Admin/MembersListPage";
 import MembersManagementPage from "./pages/Admin/MembersManagementPage";
-import ConferencesManagementPage from "./pages/Admin/ConferencesManagementPage";
 import ProjectsManagementPage from "./pages/Admin/ProjectsManagementPage";
 import PrixManagementPage from "./pages/Admin/PrixManagementPage";
 import AdminForm from "./pages/Admin/AdminForm";
@@ -32,18 +30,20 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
-          <Route path="conferences" element={<ConferencesPage />} />
-          <Route path="equipe" element={<MembersPage />} />
-          <Route path="equipe/:id" element={<IndividualPage />} />
-          <Route path="master" element={<MasterPage />} />
-          <Route path="lab-chart" element={<LabPage />} />
+          <Route path="departement/equipe" element={<MembersPage />} />
+          <Route path="departement/equipe/:id" element={<IndividualPage />} />
+
+          <Route path="formation/master" element={<MasterPage />} />
+          <Route path="formation/projets-etudiants" element={<ProjectsPage />} />
+          {/* <Route path="formation/prix-concours" element={<PrixPage />} /> */}
+
+          <Route path="recherche/lab-chart" element={<LabPage />} />
+
           <Route path="collaboration-nationale" element={<NationalePage />} />
           <Route
             path="collaboration-internationale"
             element={<InternationalePage />}
           />
-          <Route path="projets-etudiants" element={<ProjectsPage />} />
-          {/* <Route path="prix-concours" element={<PrixPage />} /> */}
           <Route path="contact" element={<ContactPage />} />
         </Route>
 

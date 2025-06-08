@@ -8,13 +8,15 @@ const Header = ({ switchLang }) => {
   const { t } = useTranslation();
   const location = useLocation();
 
-  const [showAct, setShowAct] = useState(false);
+  const [showFormation, setShowFormation] = useState(false);
   const [showDept, setShowDept] = useState(false);
+  const [showRecherche, setShowRecherche] = useState(false);
   const [showColl, setShowColl] = useState(false);
   const [showLang, setShowLang] = useState(false);
 
-  const actMenuRef = useRef(null);
+  const formationMenuRef = useRef(null);
   const deptMenuRef = useRef(null);
+  const rechercheMenuRef = useRef(null);
   const collMenuRef = useRef(null);
   const langMenuRef = useRef(null);
 
@@ -26,11 +28,14 @@ const Header = ({ switchLang }) => {
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
-      if (showAct) {
-        handleClickOutside(event, setShowAct, actMenuRef);
+      if (showFormation) {
+        handleClickOutside(event, setShowFormation, formationMenuRef);
       }
       if (showDept) {
         handleClickOutside(event, setShowDept, deptMenuRef);
+      }
+      if (showRecherche) {
+        handleClickOutside(event, setShowRecherche, rechercheMenuRef);
       }
       if (showColl) {
         handleClickOutside(event, setShowColl, collMenuRef);
@@ -40,7 +45,7 @@ const Header = ({ switchLang }) => {
       }
     };
 
-    if (showAct || showDept || showColl || showLang) {
+    if (showFormation || showDept || showRecherche || showColl || showLang) {
       document.addEventListener("mousedown", handleOutsideClick);
     } else {
       document.removeEventListener("mousedown", handleOutsideClick);
@@ -49,33 +54,32 @@ const Header = ({ switchLang }) => {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, [showAct, showDept, showColl, showLang]);
+  }, [showFormation, showDept, showRecherche, showColl, showLang]);
 
   const handleLinkClick = () => {
-    setShowAct(false);
+    setShowFormation(false);
     setShowDept(false);
+    setShowRecherche(false);
     setShowColl(false);
     setShowLang(false);
 
     window.scrollTo({ top: 0 });
   };
 
-  const darkTheme = localStorage.getItem("theme");
-
   return (
     <header className="max-large-medium:hidden flex justify-between items-center font-main large-medium:text-dynamic-xl lg:text-dynamic-xl font-medium py-2 px-10 max-lg:px-8 bg-main dark:bg-dark-main dark:text-gray-300">
       <img
-          src="/ich/assets/vectors/Logo.svg"
-          alt="Logo de l'université Paris 8"
-          width={160}
-          className="m-5 block dark:hidden"
-        />
-        <img
-          src="/ich/assets/vectors/LogoDark.svg"
-          alt="Logo de l'université Paris 8"
-          width={160}
-          className="m-5 hidden dark:block"
-        />
+        src="/ich/assets/vectors/Logo.svg"
+        alt="Logo de l'université Paris 8"
+        width={160}
+        className="m-5 block dark:hidden"
+      />
+      <img
+        src="/ich/assets/vectors/LogoDark.svg"
+        alt="Logo de l'université Paris 8"
+        width={160}
+        className="m-5 hidden dark:block"
+      />
 
       <div className="flex flex-col items-end">
         <div className="flex items-center mb-3">
@@ -86,7 +90,7 @@ const Header = ({ switchLang }) => {
                 onClick={() => switchLang("fr")}
               >
                 <img
-                  src="assets/images/french.png"
+                  src="/ich/assets/images/french.png"
                   alt="Version française"
                   width={33}
                   className="py-2"
@@ -98,7 +102,7 @@ const Header = ({ switchLang }) => {
                 onClick={() => switchLang("en")}
               >
                 <img
-                  src="assets/images/english.png"
+                  src="/ich/assets/images/english.png"
                   alt="English version"
                   width={33}
                   className="py-2"
@@ -131,44 +135,12 @@ const Header = ({ switchLang }) => {
             {t("home.link")}
           </Link>
 
-          <div className="relative" ref={actMenuRef}>
-            <button
-              className={`cursor-pointer flex justify-between items-center mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg hover:underline hover:translate-[1px] ${
-                ["/conferences"].includes(location.pathname) ? "underline" : ""
-              }`}
-              onClick={() => setShowAct(!showAct)}
-            >
-              <p className="mx-1">{t("news.link")}</p>
-              <ChevronDown
-                size={26}
-                className="text-[#232323] dark:text-gray-300"
-                strokeWidth={2.5}
-              />
-            </button>
-
-            {showAct && (
-              <div className="absolute flex flex-col left-2 mt-1 bg-white dark:bg-dark-background shadow-md rounded-md font-normal">
-                <Link
-                  onClick={handleLinkClick}
-                  to="/conferences"
-                  className="dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
-                >
-                  {t("news.conferences.link")}
-                </Link>
-              </div>
-            )}
-          </div>
-
           <div className="relative" ref={deptMenuRef}>
             <button
               className={`cursor-pointer flex justify-between items-center mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg hover:underline hover:translate-[1px] ${
-                [
-                  "/equipe",
-                  "/master",
-                  "/lab-chart",
-                  "/projets-etudiants",
-                  "/prix-concours",
-                ].includes(location.pathname)
+                ["/departement/actualites", "/departement/equipe"].includes(
+                  location.pathname
+                )
                   ? "underline"
                   : ""
               }`}
@@ -185,38 +157,93 @@ const Header = ({ switchLang }) => {
               <div className="absolute flex flex-col left-2 mt-1 bg-white dark:bg-dark-background shadow-md rounded-md font-normal">
                 <Link
                   onClick={handleLinkClick}
-                  to="/equipe"
+                  to="/departement/actualites"
+                  className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
+                >
+                  {t("department.news.link")}
+                </Link>
+                <Link
+                  onClick={handleLinkClick}
+                  to="/departement/equipe"
                   className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
                 >
                   {t("department.team.link")}
                 </Link>
+              </div>
+            )}
+          </div>
+
+          <div className="relative" ref={formationMenuRef}>
+            <button
+              className={`cursor-pointer flex justify-between items-center mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg hover:underline hover:translate-[1px] ${
+                [
+                  "/formation/master",
+                  "/formation/projets-etudiants",
+                  "/formation/prix-concours",
+                ].includes(location.pathname)
+                  ? "underline"
+                  : ""
+              }`}
+              onClick={() => setShowFormation(!showFormation)}
+            >
+              <p className="mx-1">{t("formation.link")}</p>
+              <ChevronDown
+                size={26}
+                className="text-[#232323] dark:text-gray-300"
+                strokeWidth={2.5}
+              />
+            </button>
+
+            {showFormation && (
+              <div className="absolute flex flex-col left-2 mt-1 bg-white dark:bg-dark-background shadow-md rounded-md font-normal">
                 <Link
                   onClick={handleLinkClick}
-                  to="/master"
+                  to="/formation/master"
                   className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
                 >
-                  {t("department.master.link")}
+                  {t("formation.master.link")}
                 </Link>
                 <Link
                   onClick={handleLinkClick}
-                  to="/lab-chart"
+                  to="/formation/projets-etudiants"
                   className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
                 >
-                  {t("department.lab-chart.link")}
+                  {t("formation.projects.title")}
                 </Link>
                 <Link
                   onClick={handleLinkClick}
-                  to="/projets-etudiants"
+                  to="/formation/prix-concours"
                   className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
                 >
-                  {t("department.projects.title")}
+                  {t("formation.awards_title")}
                 </Link>
+              </div>
+            )}
+          </div>
+
+          <div className="relative" ref={rechercheMenuRef}>
+            <button
+              className={`cursor-pointer flex justify-between items-center mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg hover:underline hover:translate-[1px] ${
+                ["/recherche/lab-chart"].includes(location.pathname) ? "underline" : ""
+              }`}
+              onClick={() => setShowRecherche(!showRecherche)}
+            >
+              <p className="mx-1">{t("research.link")}</p>
+              <ChevronDown
+                size={26}
+                className="text-[#232323] dark:text-gray-300"
+                strokeWidth={2.5}
+              />
+            </button>
+
+            {showRecherche && (
+              <div className="absolute flex flex-col left-2 mt-1 bg-white dark:bg-dark-background shadow-md rounded-md font-normal">
                 <Link
                   onClick={handleLinkClick}
-                  to="/prix-concours"
+                  to="/recherche/lab-chart"
                   className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2"
                 >
-                  {t("department.awards_title")}
+                  {t("research.lab-chart.link")}
                 </Link>
               </div>
             )}

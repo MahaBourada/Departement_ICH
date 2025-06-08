@@ -97,40 +97,6 @@ const IndividualPage = () => {
               ></div>
             </>
           )}
-
-          <h2 className="font-medium text-dynamic-xl font-main mt-4">
-            Contact
-          </h2>
-
-          {member.lieu && (
-            <div className="flex items-center my-2">
-              <MapPin
-                size={32}
-                className="text-[#232323] dark:text-gray-300"
-              />
-              <p className="mx-2">{member.lieu}</p>
-            </div>
-          )}
-
-          {member.email && (
-            <div className="flex items-center my-4">
-              <Mail
-                size={32}
-                className="text-[#232323] dark:text-gray-300"
-              />
-              <p className="mx-2">{member.email}</p>
-            </div>
-          )}
-
-          {member.telephone && (
-            <div className="flex items-center my-4">
-              <Phone
-                size={32}
-                className="text-[#232323] dark:text-gray-300"
-              />
-              <p className="mx-2">{member.telephone}</p>
-            </div>
-          )}
         </div>
 
         <img

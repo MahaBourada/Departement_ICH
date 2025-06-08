@@ -6,26 +6,24 @@
       "2": "eriTES faculty"
     }
   },
-  "news": {
-    "link": "News",
-    "conferences": {
-      "link": "Conferences",
-      "title": "Conference cycle calendar"
-    }
-  },
   "department": {
-    "link": "ICH department",
+    "link": "Department",
+    "news": {
+      "link": "News"
+    },
     "team": {
       "link": "Team",
       "title": "Department team"
-    },
+    }
+  },
+  "formation": {
+    "link": "Education",
     "master": {
       "link": "MIASHS Master",
       "title": "Master's in MIASHS - Specialization in Technology and Disability"
     },
-    "lab-chart": {
-      "link": "CHArt lab",
-      "title": "Human and ARTificial Cognition Laboratory (CHArt)"
+    "jobs": {
+      "link": "Jobs"
     },
     "projects": {
       "title": "Students projects",
@@ -34,6 +32,13 @@
       "objective": "Objective"
     },
     "awards_title": "Awards & Competitions"
+  },
+  "research": {
+    "link": "Research",
+    "lab-chart": {
+      "link": "CHArt lab",
+      "title": "Human and ARTificial Cognition Laboratory (CHArt)"
+    }
   },
   "collaboration": {
     "national": {
