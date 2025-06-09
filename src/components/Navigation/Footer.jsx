@@ -42,7 +42,7 @@ const Footer = ({ switchLang }) => {
   const darkTheme = localStorage.getItem("theme");
 
   return (
-    <footer className="max-large-medium:hidden flex flex-col items-center py-4 px-10 bg-main dark:bg-dark-main dark:text-gray-300 large-medium:text-nav">
+    <footer className="max-large-medium:hidden flex flex-col items-center py-4 px-10 bg-main dark:bg-dark-main dark:text-gray-300 large-medium:text-nav leading-normal">
       <div className="flex justify-between items-center w-full">
         <img
           src="/ich/assets/vectors/LogoDark.svg"
@@ -82,7 +82,7 @@ const Footer = ({ switchLang }) => {
         <div className="flex items-center">
           {localStorage.getItem("lang") === "en" ? (
             <button
-              className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px] p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+              className="cursor-pointer w-fit flex justify-end items-center mx-1 hover:underline hover:translate-[1px] p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               onClick={() => switchLang("fr")}
             >
               <img
@@ -93,7 +93,7 @@ const Footer = ({ switchLang }) => {
             </button>
           ) : (
             <button
-              className="cursor-pointer w-fit flex justify-end items-center mx-2 hover:underline hover:translate-[1px] p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+              className="cursor-pointer w-fit flex justify-end items-center mx-1 hover:underline hover:translate-[1px] p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               onClick={() => switchLang("en")}
             >
               <img
@@ -104,7 +104,7 @@ const Footer = ({ switchLang }) => {
             </button>
           )}
 
-          <div className="h-7 bg-black dark:bg-gray-300 w-[1px] rounded-full"></div>
+          <div className="h-7 bg-black dark:bg-gray-300 w-[1px] rounded-full mx-1"></div>
 
           <AccessibilityMenu position="bottom-[3.8rem] left-0" />
         </div>
@@ -241,7 +241,7 @@ const Footer = ({ switchLang }) => {
         </nav>
       </div>
 
-      <div className="flex justify-between items-center mt-5">
+      <div className="flex justify-between items-center mt-10">
         <p className="mx-1">Accessibilité</p>
         <p className="mx-1">|</p>
         <p className="mx-1">Crédits</p>

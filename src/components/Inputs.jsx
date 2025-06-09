@@ -7,7 +7,7 @@ export const InputField = ({
   value,
 }) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col leading-normal">
       <label htmlFor={name} className="font-main font-medium my-1">
         {label}
       </label>
@@ -32,7 +32,7 @@ export const TextAreaField = ({
   value,
 }) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col leading-normal">
       <label htmlFor={name} className="font-main font-medium my-1">
         {label}
       </label>
@@ -51,7 +51,7 @@ export const TextAreaField = ({
 
 export const ImageField = ({ text, name, alt, file, onChange }) => {
   return (
-    <div className="flex flex-row items-start justify-between">
+    <div className="flex flex-row items-start justify-between leading-normal">
       <div className="flex flex-col mb-3 w-[49%]">
         <label htmlFor={name} className="font-main font-medium my-1">
           {text}

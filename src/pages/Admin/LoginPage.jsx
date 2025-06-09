@@ -50,11 +50,9 @@ const LoginPage = () => {
     }
   };
 
-  const darkTheme = localStorage.getItem("theme");
-
   return (
     <div className="flex flex-col min-h-screen bg-[url('/ich/assets/vectors/AdminBg.svg')] dark:bg-[url('/ich/assets/vectors/AdminBgDark.svg')] bg-cover bg-no-repeat bg-center text-black dark:text-gray-300 text-dynamic-base leading-11 readerMode:leading-loose dark:bg-dark-background">
-      <header className="flex flex-row items-center justify-between w-full">
+      <header className="flex flex-row items-center justify-between w-full leading-normal">
         <img
           src="/ich/assets/vectors/Logo.svg"
           alt="Logo de l'université Paris 8"
@@ -77,7 +75,7 @@ const LoginPage = () => {
         <div className="flex justify-between items-center">
           <Link
             onClick={() => window.scrollTo({ top: 0 })}
-            to="/"
+            to={-1}
             className="hover:translate-[1px]"
           >
             <ArrowLeft
@@ -103,6 +101,8 @@ const LoginPage = () => {
             value={values.username}
             onChange={(e) => setValues({ ...values, username: e.target.value })}
           />
+
+          <div className="my-2"></div>
 
           <InputField
             type="password"

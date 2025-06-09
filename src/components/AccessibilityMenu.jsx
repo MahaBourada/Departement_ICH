@@ -115,11 +115,11 @@ const AccessibilityMenu = ({ position }) => {
   };
 
   return (
-    <div className="relative my-1 rounded-lg text-nav" ref={showMenuRef}>
+    <div className="relative my-1 rounded-lg font-body text-nav leading-normal" ref={showMenuRef}>
       <button
         type="button"
         onClick={() => setShowMenu(!showMenu)}
-        className="cursor-pointer w-fit flex justify-end items-center px-3 py-1.5 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg font-medium"
+        className="cursor-pointer w-fit flex justify-end items-center px-2 mx-1 py-1.5 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg font-medium"
       >
         <span className="mx-1">{t("accessibility.label")}</span>
         <PersonStanding

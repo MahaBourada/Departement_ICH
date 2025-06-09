@@ -67,7 +67,7 @@ const Header = ({ switchLang }) => {
   };
 
   return (
-    <header className="max-large-medium:hidden flex justify-between items-center font-main large-medium:text-nav font-medium py-2 px-10 max-lg:px-8 bg-main dark:bg-dark-main dark:text-gray-300">
+    <header className="max-large-medium:hidden flex justify-between items-center font-main large-medium:text-nav font-medium py-2 px-10 max-lg:px-8 bg-main dark:bg-dark-main dark:text-gray-300 leading-normal">
       <img
         src="/ich/assets/vectors/Logo.svg"
         alt="Logo de l'université Paris 8"
@@ -86,7 +86,7 @@ const Header = ({ switchLang }) => {
           <div className="flex items-center">
             {localStorage.getItem("lang") === "en" ? (
               <button
-                className="cursor-pointer w-fit flex justify-end items-center px-2 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                className="cursor-pointer w-fit flex justify-end items-center px-2 mx-1 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
                 onClick={() => switchLang("fr")}
               >
                 <img
@@ -98,7 +98,7 @@ const Header = ({ switchLang }) => {
               </button>
             ) : (
               <button
-                className="cursor-pointer w-fit flex justify-end items-center px-2 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                className="cursor-pointer w-fit flex justify-end items-center px-2 mx-1 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
                 onClick={() => switchLang("en")}
               >
                 <img
@@ -113,12 +113,12 @@ const Header = ({ switchLang }) => {
             <AccessibilityMenu />
           </div>
 
-          <div className="h-7 bg-black dark:bg-gray-300 w-[1px] rounded-full"></div>
+          <div className="h-7 bg-black dark:bg-gray-300 w-[1px] rounded-full mx-2"></div>
 
           <Link
             onClick={() => window.scrollTo({ top: 0 })}
             to="/admin"
-            className="text-nav px-2.5 py-1.5 ml-2 mx-1 cursor-pointer hover:translate-[1px] hover:underline p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+            className="text-nav px-2.5 py-1.5 mx-1 cursor-pointer hover:translate-[1px] hover:underline p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
           >
             Mon espace
           </Link>
