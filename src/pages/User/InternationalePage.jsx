@@ -44,7 +44,7 @@ const InternationalePage = () => {
     <main className="flex-grow my-10 mb-20 mx-16">
       <nav
         aria-label= {t("breadcrumb")}
-        className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium readerMode:hidden dark:bg-black text-breadcrumb"
+        className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium readerMode:hidden dark:bg-black leading-loose text-breadcrumb"
       >
         <Link to="/" className="px-4 py-1 rounded-xl">
           {t("home.link")}
@@ -54,7 +54,7 @@ const InternationalePage = () => {
           className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
-        <span className="px-4 py-1 rounded-xl text-dark-accent dark:text-black bg-bg-transparent">
+        <span className="px-4 py-1 rounded-xl text-[#663114] dark:text-black bg-bg-transparent">
           Collaboration
         </span>
         <ChevronRight

@@ -38,7 +38,7 @@ const ContactPage = () => {
           <h2 className="font-main font-medium text-header my-5">
             {t("contact.title")}
           </h2>
-          <ul className="list-disc mx-8 leading-9">
+          <ul className="list-disc mx-8">
             <li>Université Paris 8</li>
             <li>2, rue de la Liberté, 93526 Saint-Denis cedex</li>
             <li>Bâtiment D - salle 128</li>

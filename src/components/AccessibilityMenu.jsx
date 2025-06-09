@@ -91,31 +91,50 @@ const AccessibilityMenu = ({ position }) => {
     return parseFloat(localStorage.getItem("fontSize")) || 1.4;
   });
 
+  const [leading, setLeading] = useState(() => {
+    // Get from localStorage or default to 1.4
+    return parseFloat(localStorage.getItem("leading")) || 1.5;
+  });
+
   const MIN_FONT_SIZE = 1.35;
   const MAX_FONT_SIZE = 1.85;
+
+  const MIN_LEADING = 2.75;
+  const MAX_LEADING = 5;
 
   const isZoomInDisabled = fontSize >= MAX_FONT_SIZE;
   const isZoomOutDisabled = fontSize <= MIN_FONT_SIZE;
 
   useEffect(() => {
     document.documentElement.style.setProperty("--font-base", `${fontSize}rem`);
+    document.documentElement.style.setProperty(
+      "--leading-base",
+      `${leading}rem`
+    );
     localStorage.setItem("fontSize", fontSize); // Persist
-  }, [fontSize]);
+    localStorage.setItem("leading", leading); // Persist
+  }, [fontSize, leading]);
 
   const zoomIn = () => {
     setFontSize((prev) => Math.min(prev * 1.1, MAX_FONT_SIZE));
+    setLeading((prev) => Math.min(prev * 1.1, MAX_LEADING));
   };
 
   const zoomOut = () => {
     setFontSize((prev) => Math.max(prev / 1.1, MIN_FONT_SIZE));
+    setLeading((prev) => Math.max(prev / 1.1, MIN_LEADING));
   };
 
   const resetZoom = () => {
     setFontSize(MIN_FONT_SIZE);
+    setLeading(MIN_LEADING);
   };
 
   return (
-    <div className="relative my-1 rounded-lg font-body text-nav leading-normal" ref={showMenuRef}>
+    <div
+      className="relative my-1 rounded-lg font-body text-nav leading-normal"
+      ref={showMenuRef}
+    >
       <button
         type="button"
         onClick={() => setShowMenu(!showMenu)}
@@ -130,7 +149,9 @@ const AccessibilityMenu = ({ position }) => {
       </button>
 
       {showMenu && (
-        <div className={`absolute right-0 ${position} z-50 mt-1 w-fit bg-white dark:bg-dark-background rounded-lg shadow-small dark:shadow-gray-900 font-normal`}>
+        <div
+          className={`absolute right-0 ${position} z-50 mt-1 w-fit bg-white dark:bg-dark-background rounded-lg shadow-small dark:shadow-gray-900 font-normal`}
+        >
           <button
             type="button"
             className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-gray-200 focus:bg-gray-200 dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"

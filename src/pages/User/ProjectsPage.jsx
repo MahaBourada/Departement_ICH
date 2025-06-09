@@ -11,7 +11,7 @@ const ProjectsPage = () => {
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
       <nav
         aria-label={t("breadcrumb")}
-        className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black text-breadcrumb"
+        className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black leading-loose text-breadcrumb"
       >
         <Link to="/" className="px-4 py-1 rounded-xl">
           {t("home.link")}
@@ -21,7 +21,7 @@ const ProjectsPage = () => {
           className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
-        <span className="px-4 py-1 rounded-xl text-dark-accent bg-bg-transparent dark:text-black">
+        <span className="px-4 py-1 rounded-xl text-[#663114] bg-bg-transparent dark:text-black">
           {t("formation.link")}
         </span>
         <ChevronRight

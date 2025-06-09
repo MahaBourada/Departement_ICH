@@ -22,7 +22,9 @@
 
   --font-main: "Poppins", "sans-serif";
   --font-body: "Albert Sans", "sans-serif";
+
   --font-base: 1.35rem;
+  --leading-base: 2.75rem;
 
   --text-display: 2.5rem;
   --text-header: 2.2rem;
@@ -94,4 +96,8 @@
 }
 .text-dynamic-2xl {
   font-size: calc(var(--font-base, 1.25rem) * 2);
+}
+
+.leading-dynamic-base {
+  line-height: var(--leading-base);
 }

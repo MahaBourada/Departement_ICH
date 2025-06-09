@@ -25,7 +25,7 @@ const MembersPage = () => {
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
       <nav
         aria-label={t("breadcrumb")}
-        className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black text-breadcrumb"
+        className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black leading-loose text-breadcrumb"
       >
         <Link to="/" className="px-4 py-1 rounded-xl">
           {t("home.link")}
@@ -35,7 +35,7 @@ const MembersPage = () => {
           className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
-        <span className="px-4 py-1 rounded-xl text-dark-accent dark:text-black bg-bg-transparent">
+        <span className="px-4 py-1 rounded-xl text-[#663114] dark:text-black bg-bg-transparent">
           {t("department.link")}
         </span>
         <ChevronRight
@@ -93,7 +93,7 @@ const MembersPage = () => {
                     {member.section && (
                       <>
                         <p className="mx-2">{mainPart}</p>
-                        <ul className="list-disc mx-9 leading-9">
+                        <ul className="list-disc mx-9">
                           {subParts.map((item, index) => (
                             <li key={index}>
                               {item.charAt(0).toLowerCase() + item.slice(1)}
@@ -150,7 +150,7 @@ const MembersPage = () => {
                     {member.section && (
                       <>
                         <p className="mx-2">{mainPart}</p>
-                        <ul className="list-disc mx-9 leading-9">
+                        <ul className="list-disc mx-9">
                           {subParts.map((item, index) => (
                             <li key={index}>
                               {item.charAt(0).toLowerCase() + item.slice(1)}
@@ -207,7 +207,7 @@ const MembersPage = () => {
                     {member.section && (
                       <>
                         <p className="mx-2">{mainPart}</p>
-                        <ul className="list-disc mx-9 leading-9">
+                        <ul className="list-disc mx-9">
                           {subParts.map((item, index) => (
                             <li key={index}>
                               {item.charAt(0).toLowerCase() + item.slice(1)}

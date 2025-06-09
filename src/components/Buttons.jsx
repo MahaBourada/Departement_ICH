@@ -30,7 +30,7 @@ export const SmallBorderButton = ({
   return (
     <button
       type={type}
-      className={`cursor-pointer ${bgColor} ${color} border-2 ${borderColor} font-main font-medium rounded-xl h-fit px-5 py-2.5 mx-2 my-1 hover:translate-[1px] hover:shadow-none max-md:w-42 max-md:mx-3 text-nav leading-normal`}
+      className={`cursor-pointer ${bgColor} ${color} border-2 ${borderColor} font-main font-medium rounded-xl h-fit px-5 py-2.5 mx-2 my-1 hover:bg-gray-300 max-md:w-42 max-md:mx-3 text-nav leading-normal`}
     >
       {text}
     </button>
