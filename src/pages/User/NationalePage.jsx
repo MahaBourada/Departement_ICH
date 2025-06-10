@@ -4,6 +4,7 @@ import { serializeToHtml } from "../../utils/slateToHtml";
 import { useTranslation } from "react-i18next";
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 
 const NationalePage = () => {
   const { t } = useTranslation();
@@ -27,14 +28,22 @@ const NationalePage = () => {
     }
   };
 
-  function getByPosition(images, pos) {
+  /* function getTextByPosition(contents, pos) {
+    return contents.find((content) => content.ordre_positionnement === pos).texte || {};
+  }
+
+  const text1 = getTextByPosition(pageNational, 1);
+
+  console.log(text1) */
+
+  function getImageByPosition(images, pos) {
     return images.find((img) => img.ordre_positionnement === pos) || {};
   }
 
-  const img1 = getByPosition(images, 1);
-  const img2 = getByPosition(images, 2);
-  const img3 = getByPosition(images, 3);
-  const img4 = getByPosition(images, 4);
+  const img1 = getImageByPosition(images, 1);
+  const img2 = getImageByPosition(images, 2);
+  const img3 = getImageByPosition(images, 3);
+  const img4 = getImageByPosition(images, 4);
 
   useEffect(() => {
     fetchData();
@@ -76,21 +85,27 @@ const NationalePage = () => {
           {img1.path && (
             <img
               src={`${import.meta.env.VITE_BASE_URL}/${
-                getByPosition(images, 1).path
+                getImageByPosition(images, 1).path
               }`}
-              alt={getByPosition(images, 1).alt || ""}
+              alt={getImageByPosition(images, 1).alt || ""}
               width={400}
               className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px]"
             />
           )}
-          <div
+          {/* <div
             className={`my-3 ${
               img2.path ? "mx-7" : "mx-0"
             }  max-sm:mx-0 minimal:mx-0`}
             dangerouslySetInnerHTML={{
               __html: serializeToHtml(pageNational, 1),
             }}
-          ></div>
+          ></div> */}
+          <ReactMarkdown
+            className={`my-3 ${
+              img2.path ? "mx-7" : "mx-0"
+            }  max-sm:mx-0 minimal:mx-0 markdown`}
+            children={String(pageNational[0]?.texte)}
+          />
         </div>
 
         <div className="flex flex-row justify-between items-center max-large-medium:flex-col">
@@ -99,45 +114,41 @@ const NationalePage = () => {
               img2.path ? "w-[60%]" : "w-full"
             } minimal:w-full max-large-medium:w-full mr-10 max-lg:mr-5`}
           >
-            <div
-              dangerouslySetInnerHTML={{
-                __html: serializeToHtml(pageNational, 2),
-              }}
-            ></div>
+            <ReactMarkdown
+              className="markdown"
+              children={String(pageNational[1]?.texte)}
+            />
           </div>
           {img2.path && (
             <img
               src={`${import.meta.env.VITE_BASE_URL}/${
-                getByPosition(images, 2).path
+                getImageByPosition(images, 2).path
               }`}
-              alt={getByPosition(images, 2).alt || ""}
+              alt={getImageByPosition(images, 2).alt || ""}
               width={400}
               className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px]"
             />
           )}
         </div>
 
-        <div
-          className="my-10"
-          dangerouslySetInnerHTML={{
-            __html: serializeToHtml(pageNational, 3),
-          }}
-        ></div>
+        <ReactMarkdown
+          className="markdown my-10"
+          children={String(pageNational[2]?.texte)}
+        />
 
         <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse">
-          <div
-            className="my-10 w-[80%] minimal:w-full"
-            dangerouslySetInnerHTML={{
-              __html: serializeToHtml(pageNational, 4),
-            }}
-          ></div>
+          <ReactMarkdown
+            className="markdown my-10 w-[80%] minimal:w-full"
+            children={String(pageNational[3]?.texte)}
+          />
+
           <div className="m-auto">
             {img3.path && (
               <img
                 src={`${import.meta.env.VITE_BASE_URL}/${
-                  getByPosition(images, 3).path
+                  getImageByPosition(images, 3).path
                 }`}
-                alt={getByPosition(images, 3).alt || ""}
+                alt={getImageByPosition(images, 3).alt || ""}
                 width={400}
                 className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] my-5"
               />
@@ -145,9 +156,9 @@ const NationalePage = () => {
             {img4.path && (
               <img
                 src={`${import.meta.env.VITE_BASE_URL}/${
-                  getByPosition(images, 4).path
+                  getImageByPosition(images, 4).path
                 }`}
-                alt={getByPosition(images, 4).alt || ""}
+                alt={getImageByPosition(images, 4).alt || ""}
                 width={400}
                 className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] my-5"
               />

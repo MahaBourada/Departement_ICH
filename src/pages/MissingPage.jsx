@@ -14,7 +14,7 @@ const MissingPage = () => {
           </h1>
           <button
             onClick={() => navigate(-1)}
-            className="bg-accent font-main font-medium text-2xl max-md:text-lg py-5 px-7 max-md:py-4 max-md:px-5 rounded-2xl max-md:rounded-xl hover:underline hover:translate-[1px] cursor-pointer"
+            className="bg-accent hover:bg-dark-accent font-main font-medium text-2xl max-md:text-lg py-5 px-7 max-md:py-4 max-md:px-5 rounded-2xl max-md:rounded-xl cursor-pointer"
           >
             {t("404.button")}
           </button>

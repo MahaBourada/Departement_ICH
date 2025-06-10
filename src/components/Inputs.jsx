@@ -39,7 +39,7 @@ export const TextAreaField = ({
       <textarea
         name={name}
         id={name}
-        rows="5"
+        rows={5}
         placeholder={placeholder}
         className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.75rem] mr-2 outline-gray-500 dark:text-black dark:bg-gray-400 dark:border-gray-700"
         value={value}

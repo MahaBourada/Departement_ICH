@@ -4,6 +4,7 @@ import { serializeToHtml } from "../../utils/slateToHtml";
 import { useTranslation } from "react-i18next";
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 
 const MasterPage = () => {
   const { t } = useTranslation();
@@ -72,19 +73,18 @@ const MasterPage = () => {
             width={400}
             className="aspect-[1/1] object-contain minimal:hidden w-[19rem] h-[19rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] readerMode:mx-auto"
           />
-          <div
-            className="my-3 mx-7 max-sm:mx-0"
-            dangerouslySetInnerHTML={{ __html: serializeToHtml(pageMaster, 1) }}
-          ></div>
+          <ReactMarkdown
+            className="my-3 mx-7 max-sm:mx-0 markdown"
+            children={String(pageMaster[0]?.texte)}
+          />
         </div>
 
         <div className="flex flex-row justify-between items-start max-large-medium:flex-col readerMode:flex-col">
           <div className="w-[60%] readerMode:w-full minimal:w-full max-large-medium:w-full mr-2 max-lg:mr-5">
-            <div
-              dangerouslySetInnerHTML={{
-                __html: serializeToHtml(pageMaster, 2),
-              }}
-            ></div>
+            <ReactMarkdown
+              className="markdown"
+              children={String(pageMaster[1]?.texte)}
+            />
           </div>
 
           <img
@@ -97,20 +97,17 @@ const MasterPage = () => {
           />
         </div>
 
-        <div
-          className="my-10"
-          dangerouslySetInnerHTML={{
-            __html: serializeToHtml(pageMaster, 3),
-          }}
-        ></div>
+        <ReactMarkdown
+          className="my-10 markdown"
+          children={String(pageMaster[2]?.texte)}
+        />
 
         <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse readerMode:flex-col-reverse">
-          <div
-            className="my-10"
-            dangerouslySetInnerHTML={{
-              __html: serializeToHtml(pageMaster, 4),
-            }}
-          ></div>
+          <ReactMarkdown
+            className="my-10 markdown"
+            children={String(pageMaster[3]?.texte)}
+          />
+
           <div className="m-auto readerMode:flex">
             <img
               src={`${import.meta.env.VITE_BASE_URL}/${

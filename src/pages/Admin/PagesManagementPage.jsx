@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import RichTextEditor from "../../components/RichTextEditor";
 import api from "../../api/api";
 import MessagePopup from "../../components/MsgPopup";
 import { SmallBorderButton, SmallFilledButton } from "../../components/Buttons";
@@ -10,7 +9,7 @@ import { UserContext } from "../../contexts/UserContext";
 
 const PagesManagementPage = () => {
   const location = useLocation();
-  const { accessToken } = useContext(UserContext);
+  // const { accessToken } = useContext(UserContext);
   const { title, link } = location.state || {};
 
   const [sections, setSections] = useState([]);
@@ -33,8 +32,8 @@ const PagesManagementPage = () => {
         const body = {
           link,
           idSection: section.idSection,
-          texte_fr: JSON.stringify(section.content_fr),
-          texte_en: JSON.stringify(section.content_en),
+          texte_fr: section.content_fr,
+          texte_en: section.content_en,
           ordre_positionnement: i + 1,
         };
 
@@ -100,12 +99,8 @@ const PagesManagementPage = () => {
         return {
           idSection: frSection?.idSection ?? enSection?.idSection ?? null,
           link,
-          content_fr: frSection?.texte
-            ? JSON.parse(frSection.texte)
-            : defaultContent,
-          content_en: enSection?.texte
-            ? JSON.parse(enSection.texte)
-            : defaultContent,
+          content_fr: frSection?.texte,
+          content_en: enSection?.texte,
           position:
             frSection?.ordre_positionnement ?? enSection?.ordre_positionnement,
         };
@@ -156,13 +151,6 @@ const PagesManagementPage = () => {
     reader.readAsDataURL(file);
   };
 
-  const defaultContent = [
-    {
-      type: "paragraph",
-      children: [{ text: "" }],
-    },
-  ];
-
   useEffect(() => {
     fetchData();
     fetchImages();
@@ -176,196 +164,72 @@ const PagesManagementPage = () => {
         <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
       )}
 
-      <form onSubmit={handleSubmit} className="flex flex-col m-5">
-        {/* <div className="mt-4">
-          <label
-            id="section1_fr"
-            htmlFor="section1_fr"
-            className="text-2xl font-main font-medium"
-          >
-            Première section *
-          </label>
-          <RichTextEditor
-            aria-labelledby="section1_fr"
-            value={sections[0].content_fr}
-            onChange={(newValue) => {
-              const updated = [...sections];
-              updated[0].content_fr = newValue;
-              setSections(updated);
-            }}
-          />
-        </div>
+      <p className="leading-normal inline-block m-6">
+        Veuillez utiliser la syntaxe{" "}
+        <strong className="font-semibold">Markdown</strong> pour rédiger le
+        contenu des pages.
+        <br />
+        Voici le lien vers l'aide-mémoire Markdown :&nbsp;
+        <a
+          className="mx-1 underline hover:p-0.5 hover:no-underline hover:bg-hover-main rounded-md"
+          href="https://www.markdownguide.org/cheat-sheet/"
+          title="https://www.markdownguide.org/cheat-sheet/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Markdown Cheat Sheet
+        </a>
+        <br />
+        <strong className="font-semibold">Remarque :</strong> évitez d'utiliser
+        le symbole <code>#</code> pour les titres de niveau&nbsp;1 (heading 1),
+        car cela peut provoquer une erreur d'accessibilité dans la hiérarchie
+        des titres du site.
+      </p>
 
-        <div className="mt-4">
-          <label
-            id="section1_en"
-            htmlFor="section1_en"
-            className="text-2xl font-main font-medium"
-          >
-            Traduction de la première section *
-          </label>
-          <RichTextEditor
-            aria-labelledby="section1_en"
-            value={sections[0].content_en}
-            onChange={(newValue) => {
-              const updated = [...sections];
-              updated[0].content_en = newValue;
-              setSections(updated);
-            }}
-          />
-        </div>
-
-        <div className="mt-4">
-          <label
-            id="section2_fr"
-            htmlFor="section2_fr"
-            className="text-2xl font-main font-medium"
-          >
-            Deuxième section *
-          </label>
-          <RichTextEditor
-            aria-labelledby="section2_fr"
-            value={sections[1].content_fr}
-            onChange={(newValue) => {
-              const updated = [...sections];
-              updated[1].content_fr = newValue;
-              setSections(updated);
-            }}
-          />
-        </div>
-
-        <div className="mt-4">
-          <label
-            id="section2_en"
-            htmlFor="section2_en"
-            className="text-2xl font-main font-medium"
-          >
-            Traduction de la deuxième section *
-          </label>
-          <RichTextEditor
-            aria-labelledby="section2_en"
-            value={sections[1].content_en}
-            onChange={(newValue) => {
-              const updated = [...sections];
-              updated[1].content_en = newValue;
-              setSections(updated);
-            }}
-          />
-        </div>
-
-        <div className="mt-4">
-          <label
-            id="section3_fr"
-            htmlFor="section3_fr"
-            className="text-2xl font-main font-medium"
-          >
-            Troisième section *
-          </label>
-          <RichTextEditor
-            aria-labelledby="section3_fr"
-            value={sections[2].content_fr}
-            onChange={(newValue) => {
-              const updated = [...sections];
-              updated[2].content_fr = newValue;
-              setSections(updated);
-            }}
-          />
-        </div>
-
-        <div className="mt-4">
-          <label
-            id="section3_en"
-            htmlFor="section3_en"
-            className="text-2xl font-main font-medium"
-          >
-            Traduction de la troisième section *
-          </label>
-          <RichTextEditor
-            aria-labelledby="section3_en"
-            value={sections[2].content_en}
-            onChange={(newValue) => {
-              const updated = [...sections];
-              updated[2].content_en = newValue;
-              setSections(updated);
-            }}
-          />
-        </div>
-
-        <div className="mt-4">
-          <label
-            id="section4_fr"
-            htmlFor="section4_fr"
-            className="text-2xl font-main font-medium"
-          >
-            Quatrième section *
-          </label>
-          <RichTextEditor
-            aria-labelledby="section4_fr"
-            value={sections[3].content_fr}
-            onChange={(newValue) => {
-              const updated = [...sections];
-              updated[3].content_fr = newValue;
-              setSections(updated);
-            }}
-          />
-        </div>
-
-        <div className="mt-4">
-          <label
-            id="section4_en"
-            htmlFor="section4_en"
-            className="text-2xl font-main font-medium"
-          >
-            Traduction de la quatrième section *
-          </label>
-          <RichTextEditor
-            aria-labelledby="section4_en"
-            value={sections[3].content_en}
-            onChange={(newValue) => {
-              const updated = [...sections];
-              updated[3].content_en = newValue;
-              setSections(updated);
-            }}
-          />
-        </div> */}
-
+      <form onSubmit={handleSubmit} className="flex flex-col mx-5">
         {[...sections]
           .sort((a, b) => a.position - b.position)
           .map((section, index) => (
-            <div key={index}>
-              <div className="mt-6">
+            <div key={section.idSection || index}>
+              <div className="flex flex-col leading-normal mb-3">
                 <label
-                  id={`section${index + 1}_fr`}
                   htmlFor={`section${index + 1}_fr`}
-                  className="font-main font-medium"
+                  className="font-main font-medium my-2"
                 >
-                  Section {index + 1} - Français
+                  {`Section ${index + 1} - Français`}
                 </label>
-                <RichTextEditor
-                  aria-labelledby={`section${index + 1}_fr`}
+                <textarea
+                  name={`section${index + 1}_fr`}
+                  id={`section${index + 1}_fr`}
+                  rows={10}
+                  placeholder="Veuillez rédiger votre texte en utilisant la syntaxe Markdown."
+                  className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.75rem] mr-2 outline-gray-500 dark:text-black dark:bg-gray-400 dark:border-gray-700"
                   value={section.content_fr}
-                  onChange={(newValue) => {
+                  onChange={(e) => {
                     const updated = [...sections];
-                    updated[index].content_fr = newValue;
+                    updated[index].content_fr = e.target.value;
                     setSections(updated);
                   }}
                 />
               </div>
 
-              <div className="mt-6">
+              <div className="flex flex-col leading-normal my-5">
                 <label
-                  id={`section${index + 1}_en`}
                   htmlFor={`section${index + 1}_en`}
-                  className="font-main font-medium"
+                  className="font-main font-medium my-2"
                 >
-                  Section {index + 1} - English
+                  {`Section ${index + 1} - Anglais`}
                 </label>
-                <RichTextEditor
-                  aria-labelledby={`section${index + 1}_en`}
+                <textarea
+                  name={`section${index + 1}_en`}
+                  id={`section${index + 1}_en`}
+                  rows={10}
+                  placeholder="Veuillez rédiger votre texte en utilisant la syntaxe Markdown."
+                  className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.75rem] mr-2 outline-gray-500 dark:text-black dark:bg-gray-400 dark:border-gray-700"
                   value={section.content_en}
-                  onChange={(newValue) => {
+                  onChange={(e) => {
                     const updated = [...sections];
-                    updated[index].content_en = newValue;
+                    updated[index].content_en = e.target.value;
                     setSections(updated);
                   }}
                 />
@@ -412,22 +276,6 @@ const PagesManagementPage = () => {
             />
           </div>
         ))}
-
-        {/* <ImageField
-          text="Image 2 *"
-          name="imagePage2"
-          alt="Deuxième image"
-          file={file}
-          onChange={handleFileChange}
-        />
-
-        <ImageField
-          text="Image 3 *"
-          name="imagePage3"
-          alt="Troisième image"
-          file={file}
-          onChange={handleFileChange}
-        /> */}
 
         <div className="flex justify-end mt-3">
           <SmallBorderButton

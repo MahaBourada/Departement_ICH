@@ -4,6 +4,7 @@ import { serializeToHtml } from "../../utils/slateToHtml";
 import { useTranslation } from "react-i18next";
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 
 const InternationalePage = () => {
   const { t } = useTranslation();
@@ -43,7 +44,7 @@ const InternationalePage = () => {
   return (
     <main className="flex-grow my-10 mb-20 mx-16">
       <nav
-        aria-label= {t("breadcrumb")}
+        aria-label={t("breadcrumb")}
         className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium readerMode:hidden dark:bg-black leading-loose text-breadcrumb"
       >
         <Link to="/" className="px-4 py-1 rounded-xl">
@@ -83,14 +84,12 @@ const InternationalePage = () => {
               className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px]"
             />
           )}
-          <div
+          <ReactMarkdown
             className={`my-3 ${
               img2.path ? "mx-7" : "mx-0"
-            }  max-sm:mx-0 minimal:mx-0`}
-            dangerouslySetInnerHTML={{
-              __html: serializeToHtml(pageInternational, 1),
-            }}
-          ></div>
+            }  max-sm:mx-0 minimal:mx-0 markdown`}
+            children={String(pageInternational[0]?.texte)}
+          />
         </div>
 
         <div className="flex flex-row justify-between items-center max-large-medium:flex-col">
@@ -99,11 +98,10 @@ const InternationalePage = () => {
               img2.path ? "w-[60%]" : "w-full"
             } minimal:w-full max-large-medium:w-full mr-10 max-lg:mr-5`}
           >
-            <div
-              dangerouslySetInnerHTML={{
-                __html: serializeToHtml(pageInternational, 2),
-              }}
-            ></div>
+            <ReactMarkdown
+              className="markdown"
+              children={String(pageInternational[1]?.texte)}
+            />
           </div>
           {img2.path && (
             <img
@@ -117,20 +115,17 @@ const InternationalePage = () => {
           )}
         </div>
 
-        <div
-          className="my-10"
-          dangerouslySetInnerHTML={{
-            __html: serializeToHtml(pageInternational, 3),
-          }}
-        ></div>
+        <ReactMarkdown
+          className="markdown my-10"
+          children={String(pageInternational[2]?.texte)}
+        />
 
         <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse">
-          <div
-            className="my-10 w-[80%] minimal:w-full"
-            dangerouslySetInnerHTML={{
-              __html: serializeToHtml(pageInternational, 4),
-            }}
-          ></div>
+          <ReactMarkdown
+            className="markdown my-10 w-[80%] minimal:w-full"
+            children={String(pageInternational[3]?.texte)}
+          />
+
           <div className="m-auto">
             {img3.path && (
               <img

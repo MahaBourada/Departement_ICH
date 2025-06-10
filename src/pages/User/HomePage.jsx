@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../../api/api";
-import { serializeToHtml } from "../../utils/slateToHtml";
 import { useTranslation } from "react-i18next";
+import ReactMarkdown from "react-markdown";
 
 const HomePage = () => {
   const { t } = useTranslation();
@@ -46,32 +46,27 @@ const HomePage = () => {
       </div>
 
       <div className="my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10 readerMode:leading-loose readerMode:w-[60ch] max-large-medium:readerMode:w-full readerMode:mx-auto">
-        <div
-          className="my-7 mt-10"
-          dangerouslySetInnerHTML={{ __html: serializeToHtml(pageAccueil, 1) }}
-        ></div>
+        <ReactMarkdown
+          className="my-7 mt-10 markdown"
+          children={String(pageAccueil[0]?.texte)}
+        />
 
         <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse readerMode:flex-col-reverse">
           <div className="w-[60%] readerMode:w-full max-large-medium:w-full mr-10 max-lg:mr-5">
-            <div
-              dangerouslySetInnerHTML={{
-                __html: serializeToHtml(pageAccueil, 2),
-              }}
-            ></div>
+            <ReactMarkdown
+              className="markdown"
+              children={String(pageAccueil[1]?.texte)}
+            />
 
-            <div
-              className="my-10"
-              dangerouslySetInnerHTML={{
-                __html: serializeToHtml(pageAccueil, 3),
-              }}
-            ></div>
+            <ReactMarkdown
+              className="markdown my-10"
+              children={String(pageAccueil[2]?.texte)}
+            />
 
-            <div
-              className="my-10"
-              dangerouslySetInnerHTML={{
-                __html: serializeToHtml(pageAccueil, 4),
-              }}
-            ></div>
+            <ReactMarkdown
+              className="markdown my-10"
+              children={String(pageAccueil[3]?.texte)}
+            />
           </div>
 
           {/* Picture */}

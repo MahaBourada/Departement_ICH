@@ -67,7 +67,7 @@ const AdminHeader = () => {
         tabIndex={0}
         onClick={() => setShowMenu(!showMenu)}
       >
-        <p className="text-3xl font-semibold mx-2">
+        <p className="text-2xl font-semibold mx-2">
           {user?.first_name + " " + user?.last_name.toUpperCase()}
         </p>
         <ChevronDown
