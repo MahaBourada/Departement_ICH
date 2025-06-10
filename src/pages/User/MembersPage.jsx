@@ -25,11 +25,11 @@ const MembersPage = () => {
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
       <nav
         aria-label={t("breadcrumb")}
-        className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black leading-loose text-breadcrumb"
+        className="mb-10 my-1 p-1.5 py-1 w-full bg-bg-crumb rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-dark-bg-crumb leading-loose text-breadcrumb"
       >
         <Link
           to="/"
-          className="px-4 py-1 rounded-xl hover:underline hover:bg-[#c9cbcf]"
+          className="px-4 py-1 rounded-xl hover:underline hover:bg-hover-crumb dark:hover:bg-dark-hover-crumb"
         >
           {t("home.link")}
         </Link>
@@ -44,7 +44,7 @@ const MembersPage = () => {
           className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
-        <span className="px-4 py-1 rounded-xl text-[#663114] dark:text-black bg-bg-transparent">
+        <span className="px-4 py-1 rounded-xl text-[#663114] dark:text-dark-white bg-bg-transparent dark:bg-dark-bg-transparent">
           {t("department.team.title")}
         </span>
       </nav>

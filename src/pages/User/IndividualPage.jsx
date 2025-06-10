@@ -34,11 +34,11 @@ const IndividualPage = () => {
     <main className="flex-grow my-10 mb-20 mx-16">
       <nav
         aria-label={t("breadcrumb")}
-        className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black leading-loose text-breadcrumb"
+        className="mb-10 my-1 p-1.5 py-1 w-full bg-bg-crumb rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black leading-loose text-breadcrumb"
       >
         <Link
           to="/"
-          className="px-4 py-1 rounded-xl hover:underline hover:bg-[#c9cbcf]"
+          className="px-4 py-1 rounded-xl hover:underline hover:bg-hover-crumb"
         >
           {t("home.link")}
         </Link>
@@ -54,7 +54,7 @@ const IndividualPage = () => {
           strokeWidth={2}
         />
         <Link
-          className="px-4 py-1 rounded-xl hover:underline hover:bg-[#c9cbcf]"
+          className="px-4 py-1 rounded-xl hover:underline hover:bg-hover-crumb"
           to="/departement/equipe"
         >
           {t("department.team.title")}

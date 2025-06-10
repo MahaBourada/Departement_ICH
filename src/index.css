@@ -16,8 +16,15 @@
   --color-bg-transparent: rgba(255,159,103, 0.45);
   
   --color-dark-background: #2F2F2F;
+  --color-dark-white: #EDEDED;
   --color-dark-main: #3E4B56;
   --color-dark-accent: #E97E3F;
+  --color-dark-bg-transparent: rgba(151,56,0, 0.65);
+
+  --color-bg-crumb: #D1D2D5;
+  --color-hover-crumb: #B2B4B8;
+  --color-dark-hover-crumb: #393F45;
+  --color-dark-bg-crumb: #4D545A;
 
   --font-main: "Poppins", "sans-serif";
   --font-body: "Albert Sans", "sans-serif";

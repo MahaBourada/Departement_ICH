@@ -54,7 +54,6 @@ const AccessibilityMenu = ({ position }) => {
     setDarkTheme((prevTheme) => {
       const newTheme = prevTheme === "light" ? "dark" : "light";
 
-      if (newTheme === "dark" && readerMode === true) setReaderMode(false);
       return newTheme;
     });
   };
@@ -78,9 +77,7 @@ const AccessibilityMenu = ({ position }) => {
   const toggleReaderMode = () => {
     setReaderMode((prev) => {
       const newValue = !prev;
-      if (newValue) {
-        setDarkTheme("light"); // force light mode if readerMode is turned on
-      }
+
       return newValue;
     });
   };
@@ -138,7 +135,7 @@ const AccessibilityMenu = ({ position }) => {
       <button
         type="button"
         onClick={() => setShowMenu(!showMenu)}
-        className="cursor-pointer w-fit flex justify-end items-center px-2 mx-1 py-1.5 hover:underline hover:translate-[1px] hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg font-medium"
+        className="cursor-pointer w-fit flex justify-end items-center px-2 mx-1 py-1.5 hover:underline hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg font-medium"
       >
         <span className="mx-1">{t("accessibility.label")}</span>
         <PersonStanding
@@ -154,7 +151,7 @@ const AccessibilityMenu = ({ position }) => {
         >
           <button
             type="button"
-            className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-gray-200 focus:bg-gray-200 dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
+            className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-bg-crumb focus:bg-bg-crumb dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
             onClick={toggleDarkTheme}
           >
             {darkTheme === "light" ? (
@@ -175,7 +172,7 @@ const AccessibilityMenu = ({ position }) => {
             className={`flex justify-between items-center bg-white dark:bg-dark-background px-3 py-1.5 text-nowrap w-full rounded-lg ${
               isZoomInDisabled
                 ? "opacity-55 cursor-not-allowed"
-                : "cursor-pointer hover:bg-gray-200 focus:bg-gray-200 dark:hover:bg-dark-main dark:focus:bg-dark-main"
+                : "cursor-pointer hover:bg-bg-crumb focus:bg-bg-crumb dark:hover:bg-dark-main dark:focus:bg-dark-main"
             }`}
             onClick={zoomIn}
             disabled={isZoomInDisabled}
@@ -186,7 +183,7 @@ const AccessibilityMenu = ({ position }) => {
 
           <button
             type="button"
-            className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-gray-200 focus:bg-gray-200 dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
+            className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-bg-crumb focus:bg-bg-crumb dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
             onClick={resetZoom}
           >
             <span>{t("accessibility.reset")}</span>
@@ -201,7 +198,7 @@ const AccessibilityMenu = ({ position }) => {
             className={`flex justify-between items-center bg-white dark:bg-dark-background px-3 py-1.5 text-nowrap w-full rounded-lg ${
               isZoomOutDisabled
                 ? "opacity-55 cursor-not-allowed"
-                : "cursor-pointer hover:bg-gray-200 focus:bg-gray-200 dark:hover:bg-dark-main dark:focus:bg-dark-main"
+                : "cursor-pointer hover:bg-bg-crumb focus:bg-bg-crumb dark:hover:bg-dark-main dark:focus:bg-dark-main"
             }`}
             onClick={zoomOut}
             disabled={isZoomOutDisabled}
@@ -212,7 +209,7 @@ const AccessibilityMenu = ({ position }) => {
 
           <button
             type="button"
-            className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-gray-200 focus:bg-gray-200 dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
+            className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-bg-crumb focus:bg-bg-crumb dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
             onClick={toggleReaderMode}
           >
             <span className="mr-2">{t("accessibility.reader")}</span>

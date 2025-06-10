@@ -82,7 +82,7 @@ const Footer = ({ switchLang }) => {
         <div className="flex items-center">
           {localStorage.getItem("lang") === "en" ? (
             <button
-              className="cursor-pointer w-fit flex justify-end items-center mx-1 hover:underline hover:translate-[1px] p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+              className="cursor-pointer w-fit flex justify-end items-center mx-1 hover:underline p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               onClick={() => switchLang("fr")}
             >
               <img
@@ -93,7 +93,7 @@ const Footer = ({ switchLang }) => {
             </button>
           ) : (
             <button
-              className="cursor-pointer w-fit flex justify-end items-center mx-1 hover:underline hover:translate-[1px] p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+              className="cursor-pointer w-fit flex justify-end items-center mx-1 hover:underline p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               onClick={() => switchLang("en")}
             >
               <img
@@ -116,7 +116,7 @@ const Footer = ({ switchLang }) => {
               className={({ isActive }) =>
                 isActive
                   ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
               to="/"
             >
@@ -127,7 +127,7 @@ const Footer = ({ switchLang }) => {
               className={({ isActive }) =>
                 isActive
                   ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
               to="/contact"
             >
@@ -142,7 +142,7 @@ const Footer = ({ switchLang }) => {
               className={({ isActive }) =>
                 isActive
                   ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
               to="/departement/actualites"
             >
@@ -153,7 +153,7 @@ const Footer = ({ switchLang }) => {
               className={({ isActive }) =>
                 isActive
                   ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
               to="/departement/equipe"
             >
@@ -168,7 +168,7 @@ const Footer = ({ switchLang }) => {
               className={({ isActive }) =>
                 isActive
                   ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
               to="/formation/master"
             >
@@ -179,7 +179,7 @@ const Footer = ({ switchLang }) => {
               className={({ isActive }) =>
                 isActive
                   ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
               to="/formation/projets-etudiants"
             >
@@ -190,7 +190,7 @@ const Footer = ({ switchLang }) => {
               className={({ isActive }) =>
                 isActive
                   ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
               to="/lab-chart"
             >
@@ -205,7 +205,7 @@ const Footer = ({ switchLang }) => {
               className={({ isActive }) =>
                 isActive
                   ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
               to="/recherche/lab-chart"
             >
@@ -220,7 +220,7 @@ const Footer = ({ switchLang }) => {
               className={({ isActive }) =>
                 isActive
                   ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
               to="/collaboration-nationale"
             >
@@ -231,7 +231,7 @@ const Footer = ({ switchLang }) => {
               className={({ isActive }) =>
                 isActive
                   ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-                  : "hover:translate-[1px] hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
               to="/collaboration-internationale"
             >
