@@ -34,7 +34,10 @@ function App() {
           <Route path="departement/equipe/:id" element={<IndividualPage />} />
 
           <Route path="formation/master" element={<MasterPage />} />
-          <Route path="formation/projets-etudiants" element={<ProjectsPage />} />
+          <Route
+            path="formation/projets-etudiants"
+            element={<ProjectsPage />}
+          />
           {/* <Route path="formation/prix-concours" element={<PrixPage />} /> */}
 
           <Route path="recherche/lab-chart" element={<LabPage />} />
@@ -61,12 +64,12 @@ function App() {
             path="gestion-equipe/:id"
             element={<MembersManagementPage />}
           />
+          <Route path="gestion-projets" element={<ProjectsManagementPage />} />
 
           {/* <Route
             path="gestion-conferences"
             element={<ConferencesManagementPage />}
           />
-          <Route path="gestion-projets" element={<ProjectsManagementPage />} />
           <Route path="gestion-prix" element={<PrixManagementPage />} /> */}
         </Route>
 

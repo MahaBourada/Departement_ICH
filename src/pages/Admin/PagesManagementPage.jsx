@@ -171,7 +171,7 @@ const PagesManagementPage = () => {
         <br />
         Voici le lien vers l'aide-mémoire Markdown :&nbsp;
         <a
-          className="mx-1 underline hover:p-0.5 hover:no-underline hover:bg-hover-main rounded-md"
+          className="underline hover:p-0.5 hover:no-underline hover:bg-hover-main rounded-md"
           href="https://www.markdownguide.org/cheat-sheet/"
           title="https://www.markdownguide.org/cheat-sheet/"
           target="_blank"
