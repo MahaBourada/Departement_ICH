@@ -28,14 +28,6 @@ const NationalePage = () => {
     }
   };
 
-  /* function getTextByPosition(contents, pos) {
-    return contents.find((content) => content.ordre_positionnement === pos).texte || {};
-  }
-
-  const text1 = getTextByPosition(pageNational, 1);
-
-  console.log(text1) */
-
   function getImageByPosition(images, pos) {
     return images.find((img) => img.ordre_positionnement === pos) || {};
   }
@@ -55,7 +47,10 @@ const NationalePage = () => {
         aria-label={t("breadcrumb")}
         className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium readerMode:hidden dark:bg-black leading-loose text-breadcrumb"
       >
-        <Link to="/" className="px-4 py-1 rounded-xl">
+        <Link
+          to="/"
+          className="px-4 py-1 rounded-xl hover:underline hover:bg-[#c9cbcf]"
+        >
           {t("home.link")}
         </Link>
         <ChevronRight
@@ -63,15 +58,13 @@ const NationalePage = () => {
           className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
-        <span className="px-4 py-1 rounded-xl text-[#663114] dark:text-black bg-bg-transparent">
-          Collaboration
-        </span>
+        <span className="px-4 py-1 rounded-xl">Collaborations</span>
         <ChevronRight
           size={33}
           className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
-        <span className="px-4 py-1 rounded-xl">
+        <span className="px-4 py-1 rounded-xl text-[#663114] dark:text-black bg-bg-transparent">
           {t("collaboration.national.title")}
         </span>
       </nav>
@@ -92,14 +85,6 @@ const NationalePage = () => {
               className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px]"
             />
           )}
-          {/* <div
-            className={`my-3 ${
-              img2.path ? "mx-7" : "mx-0"
-            }  max-sm:mx-0 minimal:mx-0`}
-            dangerouslySetInnerHTML={{
-              __html: serializeToHtml(pageNational, 1),
-            }}
-          ></div> */}
           <ReactMarkdown
             className={`my-3 ${
               img2.path ? "mx-7" : "mx-0"

@@ -27,7 +27,10 @@ const MembersPage = () => {
         aria-label={t("breadcrumb")}
         className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black leading-loose text-breadcrumb"
       >
-        <Link to="/" className="px-4 py-1 rounded-xl">
+        <Link
+          to="/"
+          className="px-4 py-1 rounded-xl hover:underline hover:bg-[#c9cbcf]"
+        >
           {t("home.link")}
         </Link>
         <ChevronRight
@@ -35,15 +38,13 @@ const MembersPage = () => {
           className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
-        <span className="px-4 py-1 rounded-xl text-[#663114] dark:text-black bg-bg-transparent">
-          {t("department.link")}
-        </span>
+        <span className="px-4 py-1 rounded-xl">{t("department.link")}</span>
         <ChevronRight
           size={33}
           className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
-        <span className="px-4 py-1 rounded-xl">
+        <span className="px-4 py-1 rounded-xl text-[#663114] dark:text-black bg-bg-transparent">
           {t("department.team.title")}
         </span>
       </nav>
@@ -68,6 +69,7 @@ const MembersPage = () => {
               : [];
             return (
               <Link
+                onClick={() => window.scrollTo({ top: 0 })}
                 key={member.idMembre}
                 to={member.idMembre}
                 state={{ member: member }}
@@ -125,6 +127,7 @@ const MembersPage = () => {
               : [];
             return (
               <Link
+                onClick={() => window.scrollTo({ top: 0 })}
                 key={member.idMembre}
                 to={member.idMembre}
                 state={{ member: member }}
@@ -182,6 +185,7 @@ const MembersPage = () => {
               : [];
             return (
               <Link
+                onClick={() => window.scrollTo({ top: 0 })}
                 key={member.idMembre}
                 to={member.idMembre}
                 state={{ member: member }}

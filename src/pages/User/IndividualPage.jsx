@@ -33,10 +33,13 @@ const IndividualPage = () => {
   return (
     <main className="flex-grow my-10 mb-20 mx-16">
       <nav
-        aria-label="Fil d'Ariane"
-        className="mb-10 my-1 mx-2 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium readerMode:hidden dark:bg-black"
+        aria-label={t("breadcrumb")}
+        className="mb-10 my-1 p-1.5 py-1 w-full bg-gray-200 rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black leading-loose text-breadcrumb"
       >
-        <Link to="/" className="px-4 py-1 rounded-xl">
+        <Link
+          to="/"
+          className="px-4 py-1 rounded-xl hover:underline hover:bg-[#c9cbcf]"
+        >
           {t("home.link")}
         </Link>
         <ChevronRight
@@ -50,15 +53,18 @@ const IndividualPage = () => {
           className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
-        <Link className="px-4 py-1 rounded-xl" to="/equipe">
-          {t("department.team.link")}
+        <Link
+          className="px-4 py-1 rounded-xl hover:underline hover:bg-[#c9cbcf]"
+          to="/departement/equipe"
+        >
+          {t("department.team.title")}
         </Link>
         <ChevronRight
           size={33}
           className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
-        <span className="px-4 py-1 rounded-xl text-dark-accent dark:text-black bg-bg-transparent">
+        <span className="px-4 py-1 rounded-xl text-[#663114] dark:text-black bg-bg-transparent">
           {member.prenom + " " + UpperNom}
         </span>
       </nav>
@@ -76,7 +82,7 @@ const IndividualPage = () => {
             {member.fonction}
           </h3>
           <p className="mx-2">{mainPart}</p>
-          <ul className="list-disc mx-9 leading-9">
+          <ul className="list-disc mx-9">
             {subParts.map((item, index) => (
               <li key={index}>
                 {item.charAt(0).toLowerCase() + item.slice(1)}
