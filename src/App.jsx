@@ -18,11 +18,13 @@ import Dashboard from "./pages/Admin/DashboardPage";
 import PagesManagementPage from "./pages/Admin/PagesManagementPage";
 import MembersListPage from "./pages/Admin/MembersListPage";
 import MembersManagementPage from "./pages/Admin/MembersManagementPage";
-import ProjectsManagementPage from "./pages/Admin/ProjectsManagementPage";
+import ProjectsListPage from "./pages/Admin/ProjectsListPage";
 import PrixManagementPage from "./pages/Admin/PrixManagementPage";
 import AdminForm from "./pages/Admin/AdminForm";
 import PagesListPage from "./pages/Admin/PagesListPage";
 import AddMember from "./pages/Admin/AddMember";
+import AddProject from "./pages/Admin/AddProject";
+import ProjectsManagementPage from "./pages/Admin/ProjectsManagementPage";
 
 function App() {
   return (
@@ -64,7 +66,15 @@ function App() {
             path="gestion-equipe/:id"
             element={<MembersManagementPage />}
           />
-          <Route path="gestion-projets" element={<ProjectsManagementPage />} />
+          <Route path="gestion-projets" element={<ProjectsListPage />} />
+          <Route
+            path="gestion-projets/ajouter-projet"
+            element={<AddProject />}
+          />
+          <Route
+            path="gestion-projets/:id"
+            element={<ProjectsManagementPage />}
+          />
 
           {/* <Route
             path="gestion-conferences"

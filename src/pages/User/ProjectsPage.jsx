@@ -1,11 +1,26 @@
 import { ChevronRight } from "lucide-react";
-import React from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import projectData from "../../data/projects.json";
+import api from "../../api/api";
+import ReactMarkdown from "react-markdown";
 
 const ProjectsPage = () => {
   const { t } = useTranslation();
+  const [projects, setProjects] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await api.get("/projects");
+      setProjects(response.data);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  console.log(projects);
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
@@ -42,13 +57,13 @@ const ProjectsPage = () => {
       <div className="mx-4 max-md:mx-2 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
         <div className="border-black dark:border-gray-300 border-[1px] my-5 w-full"></div>
 
-        {projectData.map((project, index) => (
+        {projects.map((project, index) => (
           <>
-            <div className="w-full" key={index}>
+            <div className="w-full" key={project.idProjet}>
               <div className="flex flex-row items-start justify-between max-large-large:flex-col readerMode:flex-col">
                 <div>
                   <h2 className="font-semibold font-main text-dynamic-xl my-2">
-                    {project.name}
+                    {project.titre}
                   </h2>
 
                   <div className="minimal:hidden block">
@@ -56,8 +71,10 @@ const ProjectsPage = () => {
                       {t("formation.projects.members")}
                     </h3>
                     <ul className="list-disc mx-7">
-                      {project.members.split(",").map((name, index) => (
-                        <li key={index}>{name.trim()}</li>
+                      {project.membres.map((membre, index) => (
+                        <li key={index}>
+                          {membre.prenom + " " + membre.nom.toUpperCase()}
+                        </li>
                       ))}
                     </ul>
                   </div>
@@ -66,17 +83,17 @@ const ProjectsPage = () => {
                     <span className="font-semibold">
                       {t("formation.projects.year")} :{" "}
                     </span>
-                    {project.year}
+                    {project.annee}
                   </p>
                 </div>
 
                 <div className="flex flex-row justify-between items-center max-large-medium:flex-col max-large-large:mx-auto readerMode:flex-col readerMode:mx-auto">
                   {project.images.map((image, index) => (
                     <img
-                      src={image}
-                      alt=""
+                      src={`${import.meta.env.VITE_BASE_URL}/${image.path}`}
+                      alt={image.alt}
                       width={275}
-                      className="mx-4 minimal:hidden max-large-large:my-6 max-large-medium:w-[30rem] max-lg:w-64 max-xl:w-60 readerMode:my-4"
+                      className="mx-4 minimal:hidden max-large-large:my-6 max-large-medium:w-[30rem] max-large-medium:h-[30rem] max-lg:w-64 max-lg:h-64 max-xl:w-60 max-xl:h-60 readerMode:my-4 rounded-3xl "
                     />
                   ))}
                 </div>
@@ -85,7 +102,10 @@ const ProjectsPage = () => {
               <h4 className="font-semibold text-dynamic-lg my-2">
                 {t("formation.projects.objective")}
               </h4>
-              <p className="m-2">{project.objectif}</p>
+              <ReactMarkdown
+                className="m-2"
+                children={String(project.objectif)}
+              />
             </div>
 
             <div className="border-black dark:border-gray-300 border-[1px] my-5 w-full"></div>
