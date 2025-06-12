@@ -4,6 +4,7 @@ import pagesRoutes from "./routes/pages.js";
 import pagesImagesRoutes from "./routes/pagesImages.js";
 import authRoutes from "./routes/auth.js";
 import membersRoutes from "./routes/members.js";
+import projectsRoutes from "./routes/projects.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import path from "path";
@@ -35,5 +36,6 @@ app.use("/admin", adminRoutes);
 app.use("/pages", pagesRoutes);
 app.use("/pages-images", pagesImagesRoutes);
 app.use("/members", membersRoutes);
+app.use("/projects", projectsRoutes);
 
 app.listen(PORT, () => console.log(`Server running`));

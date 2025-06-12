@@ -10,19 +10,21 @@ dotenv.config();
   database: process.env.DB_NAME || "departement_ich",
 }); */
 
-const db = mysql.createConnection({
+const pool = mysql.createPool({
+  connectionLimit: 10,
   host: "localhost",
   user: "root",
   password: "admin",
   database: "departement_ich",
 });
 
-db.connect((err) => {
+pool.getConnection((err, connection) => {
   if (err) {
     console.error("Database connection failed:", err);
     return;
   }
   console.log("Connected to MySQL database");
+  connection.release();
 });
 
-export default db;
+export default pool;
