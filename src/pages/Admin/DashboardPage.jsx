@@ -77,17 +77,23 @@ const DashboardPage = () => {
         <table className="w-full mx-3 my-5">
           <thead>
             <tr className="border-b-[0.5px] text-start">
-              <th className="py-3 text-start">Utilisateur</th>
-              <th className="py-3 text-start">Rôle</th>
-              <th className="py-3 text-start">Créé le</th>
-              <th className="py-3 text-start">Opérations</th>
+              <th className="py-3 text-start w-1/4">Admin</th>
+              <th className="py-3 text-start w-1/4">Nom d'utilisateur</th>
+              <th className="py-3 text-start w-1/4">Rôle</th>
+              <th className="py-3 text-start w-1/4">Créé le</th>
+              <th className="py-3 text-start w-fit">Opérations</th>
             </tr>
           </thead>
           <tbody>
             {adminList.map((admin) => (
               <tr key={admin.idAdmin} className="border-b-[0.5px]">
                 <td className="py-3 text-start">
-                  {admin.first_name + " " + admin.last_name.toUpperCase()}
+                  <p className="line-clamp-1">
+                    {admin.first_name + " " + admin.last_name.toUpperCase()}
+                  </p>
+                </td>
+                <td className="py-3 text-start">
+                  <p className="line-clamp-1">{admin.username}</p>
                 </td>
                 <td className="py-3 text-start">{admin.type}</td>
                 <td className="py-3 text-start">
@@ -97,9 +103,10 @@ const DashboardPage = () => {
                     year: "numeric",
                   })}
                 </td>
-                <td className="py-3 w-fit mx-auto">
-                  <div className="flex justify-center items-center">
-                    <button
+                <td className="h-full px-4">
+                  <div className="flex items-center justify-center space-x-2">
+                    <Link
+                      //to={`/admin/gestion-projets/${project.idProjet}`}
                       type="button"
                       className="cursor-pointer hover:translate-[1px] mr-1"
                     >
@@ -108,7 +115,7 @@ const DashboardPage = () => {
                         size={26}
                         className="text-[#232323] dark:text-gray-300"
                       />
-                    </button>
+                    </Link>
                     <button
                       type="button"
                       className="cursor-pointer hover:translate-[1px] ml-1"

@@ -17,6 +17,18 @@ const ProjectsListPage = () => {
     fetchData();
   }, []);
 
+  const handleDelete = async (idProjet) => {
+    try {
+      setProjects((prev) =>
+        prev.filter((project) => project.idProjet !== idProjet)
+      );
+
+      await api.delete(`projects/${idProjet}`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <main className="mx-14 my-20">
       <div className="flex items-center justify-between text-display font-semibold">
@@ -72,7 +84,7 @@ const ProjectsListPage = () => {
                     className="cursor-pointer hover:translate-[1px] mr-1"
                   >
                     <Pencil
-                      aria-label="Mettre à jour un admin"
+                      aria-label="Mettre à jour un projet"
                       size={26}
                       className="text-[#232323] dark:text-gray-300"
                     />
@@ -83,7 +95,7 @@ const ProjectsListPage = () => {
                     onClick={() => handleDelete(project.idProjet)}
                   >
                     <Trash2
-                      aria-label="Supprimer un admin"
+                      aria-label="Supprimer un projet"
                       size={26}
                       className="text-[#8B0000] dark:text-red-400"
                     />

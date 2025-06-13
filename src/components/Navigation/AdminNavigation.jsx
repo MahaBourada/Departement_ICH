@@ -62,7 +62,7 @@ const AdminNavigation = () => {
             <p className="mx-2">Équipe</p>
           </NavLink>
 
-          <NavLink
+          {/* <NavLink
             to="/admin/gestion-conferences"
             className={({ isActive }) =>
               `flex items-center my-3  px-4 py-3 rounded-2xl hover:translate-[1px] hover:underline mx-7 ${
@@ -74,7 +74,7 @@ const AdminNavigation = () => {
           >
             <MonitorDot size={32} />
             <p className="mx-2">Conférences</p>
-          </NavLink>
+          </NavLink> */}
 
           <NavLink
             to="/admin/gestion-projets"
