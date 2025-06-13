@@ -184,9 +184,8 @@ export const deleteMember = (req, res) => {
     const absoluteImagePath = path.resolve(imagePath); // Convert relative to absolute
 
     // Step 2: Delete the database entry
-    const sql = "DELETE FROM membres_equipe WHERE idMembre = ?";
-
     const deleteSql = "DELETE FROM membres_equipe WHERE idMembre = ?";
+
     db.query(deleteSql, [idMembre], (err) => {
       if (err) return res.status(500).json({ error: err.message });
 
