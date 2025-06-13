@@ -504,19 +504,70 @@ export const updateProject = (req, res) => {
   });
 };
 
-export const deleteProject = (req, res) => {
-  const { idAdmin } = req.params;
+export const deleteProject = async (req, res) => {
+  const { idProjet } = req.params;
 
-  const sql = "DELETE FROM admin WHERE idAdmin = ?";
+  db.getConnection((err, connection) => {
+    if (err) return res.status(500).json({ status: "Error 1", message: err });
 
-  db.query(sql, [idAdmin], (err, results) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    } else {
-      res.json({
-        Success: "Admin deleted successfully",
-        message: `Admin supprimé`,
-      });
-    }
+    connection.beginTransaction(async (err) => {
+      if (err) return res.status(500).json({ status: "Error 2", message: err });
+      try {
+        // Get image paths to delete from filesystem
+        const images = await query(
+          connection,
+          "SELECT path FROM media WHERE idProjet = ?",
+          [idProjet]
+        );
+
+        // Delete image files from /uploads
+        for (const image of images) {
+          if (image.path) {
+            const fullPath = path.resolve(image.path);
+            if (fs.existsSync(fullPath)) {
+              fs.unlinkSync(fullPath);
+            }
+          }
+        }
+
+        // Delete related media from DB
+        await query(connection, "DELETE FROM media WHERE idProjet = ?", [
+          idProjet,
+        ]);
+
+        // Delete related project members, tags, etc.
+        await query(
+          connection,
+          "DELETE FROM membres_projet WHERE idProjet = ?",
+          [idProjet]
+        );
+
+        // Delete the project itself
+        await query(connection, "DELETE FROM projets WHERE idProjet = ?", [
+          idProjet,
+        ]);
+
+        connection.commit((err) => {
+          if (err) {
+            connection.rollback(() => {
+              res
+                .status(500)
+                .json({ status: "Error 3", message: "Erreur lors du commit" });
+            });
+          } else {
+            res.status(200).json({
+              status: "Success",
+              message: `Projet supprimé`,
+            });
+          }
+        });
+      } catch (err) {
+        connection.rollback(() => {
+          res.status(500).json({ status: "Error 4", message: err.message });
+        });
+      } finally {
+        connection.release();
+      }
+    });
   });
 };
