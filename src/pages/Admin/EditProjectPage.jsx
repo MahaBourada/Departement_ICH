@@ -1,12 +1,29 @@
-import React, { useEffect, useState } from "react";
-import RichTextEditor from "../../components/RichTextEditor";
-import api from "../../api/api";
-import MessagePopup from "../../components/MsgPopup";
+import { useParams } from "react-router-dom";
 import { ImageField, InputField, TextAreaField } from "../../components/Inputs";
 import { SmallBorderButton, SmallFilledButton } from "../../components/Buttons";
+import MessagePopup from "../../components/MsgPopup";
 import { Plus, Trash2 } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import api from "../../api/api.js";
 
-const ProjectsManagementPage = () => {
+const EditProjectPage = () => {
+  const { id } = useParams();
+  const [project, setProject] = useState({});
+
+  const fetchData = async () => {
+    try {
+      const response = await api.get(`/projects/${id}`);
+
+      setProject(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const [images, setImages] = useState([
     { ordre_positionnement: 1, path: "", alt_fr: "", alt_en: "" },
     { ordre_positionnement: 2, path: "", alt_fr: "", alt_en: "" },
@@ -15,17 +32,32 @@ const ProjectsManagementPage = () => {
 
   const [membres, setMembres] = useState([{ prenom: "", nom: "" }]);
 
+  const [values, setValues] = useState({});
+
   useEffect(() => {
     setValues((prev) => ({ ...prev, membres }));
   }, [membres]);
 
-  const [values, setValues] = useState({
-    titre: "",
-    objectif: "",
-    annee: "",
-    membres: [],
-    images: [],
-  });
+  useEffect(() => {
+    if (project) {
+      setValues({
+        titre: project.titre,
+        annee: project.annee,
+        objectif_fr: project.objectif_fr,
+        objectif_en: project.objectif_en,
+      });
+      setMembres(project.membres || []);
+      // Ensure images array is always length 3
+      const imgs = [];
+      for (let i = 0; i < 3; i++) {
+        imgs[i] =
+          project.images && project.images[i]
+            ? project.images[i]
+            : { path: "", alt_fr: "", alt_en: "", ordre_positionnement: i + 1 };
+      }
+      setImages(imgs);
+    }
+  }, [project]);
 
   const [msg, setMsg] = useState("");
   const [msgShow, setMsgShow] = useState(false);
@@ -50,6 +82,28 @@ const ProjectsManagementPage = () => {
     reader.readAsDataURL(file);
   };
 
+  const handleRemoveImage = (index) => {
+    setImages((prevImages) => {
+      const updated = [...prevImages];
+      if (!updated[index]) return updated;
+      const { idMedia, ...rest } = updated[index];
+      updated[index] = {
+        ...rest,
+        path: "",
+        alt_fr: "",
+        alt_en: "",
+      };
+      return updated;
+    });
+
+    // Clear the actual file input value
+    if (inputRefs.current[index]) {
+      inputRefs.current[index].value = "";
+    }
+  };
+
+  const inputRefs = useRef([]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -66,7 +120,7 @@ const ProjectsManagementPage = () => {
     };
 
     try {
-      const response = await api.post("/projects", data);
+      const response = await api.put(`/projects/${id}`, data);
 
       setMsgShow(true);
       setMsgStatus(200);
@@ -83,7 +137,9 @@ const ProjectsManagementPage = () => {
 
   return (
     <main className="mx-14 my-20">
-      <h1 className="text-display font-semibold">Ajouter un projet</h1>
+      <h1 className="text-dynamic-2xl font-semibold">
+        Gestion du projet {project.titre}
+      </h1>
 
       {msgShow && (
         <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
@@ -96,7 +152,7 @@ const ProjectsManagementPage = () => {
         <br />
         Voici le lien vers l'aide-mémoire Markdown :&nbsp;
         <a
-          className="underline hover:p-0.5 hover:no-underline hover:bg-hover-main rounded-md"
+          className="underline p-0.5 hover:no-underline hover:bg-hover-main rounded-md"
           href="https://www.markdownguide.org/cheat-sheet/"
           title="https://www.markdownguide.org/cheat-sheet/"
           target="_blank"
@@ -135,19 +191,15 @@ const ProjectsManagementPage = () => {
           name="objectif_fr"
           placeholder="Mini description du projet en français"
           value={values.objectif_fr}
-          onChange={(e) =>
-            setValues({ ...values, objectif_fr: e.target.value })
-          }
+          onChange={(e) => setValues({ ...values, objectif_fr: e.target.value })}
         />
-
+        
         <TextAreaField
           label="Objectif en anglais *"
           name="objectif_en"
           placeholder="Mini description du projet en anglais"
           value={values.objectif_en}
-          onChange={(e) =>
-            setValues({ ...values, objectif_en: e.target.value })
-          }
+          onChange={(e) => setValues({ ...values, objectif_en: e.target.value })}
         />
 
         <p className="text-dynamic-base font-medium font-main">
@@ -169,7 +221,7 @@ const ProjectsManagementPage = () => {
                 className="cursor-pointer hover:translate-[1px]"
               >
                 <Trash2
-                  aria-label="Ajouter un membre"
+                  aria-label="Supprimer un membre du projet"
                   size={30}
                   className="text-[#8B0000] dark:text-red-400"
                   strokeWidth={2.25}
@@ -183,7 +235,7 @@ const ProjectsManagementPage = () => {
                   type="text"
                   label="Prénom *"
                   placeholder={`Prénom du membre ${index + 1}`}
-                  name="prenom"
+                  name={`prenom${index + 1}`}
                   value={membre.prenom}
                   onChange={(e) =>
                     setMembres((prev) => {
@@ -202,7 +254,7 @@ const ProjectsManagementPage = () => {
                 <InputField
                   type="text"
                   label="Nom *"
-                  name="nom"
+                  name={`nom${index + 1}`}
                   placeholder={`Nom du membre ${index + 1}`}
                   value={membre.nom}
                   onChange={(e) =>
@@ -245,11 +297,17 @@ const ProjectsManagementPage = () => {
         {images.map((img, i) => (
           <div key={i}>
             <ImageField
-              text={`Image ${img.ordre_positionnement}`}
-              name={`imagePage${img.ordre_positionnement}`}
-              alt={`Image ${img.ordre_positionnement}`}
-              file={img.path}
+              text={`Image ${i + 1}`}
+              name={`imagePage${i + 1}`}
+              alt={`Image ${i + 1}`}
+              file={
+                img.path.startsWith("data:image")
+                  ? img.path
+                  : `${import.meta.env.VITE_BASE_URL}/${img.path}`
+              }
               onChange={(e) => handleFileChange(i, e)}
+              onRemove={() => handleRemoveImage(i)}
+              inputRef={(el) => (inputRefs.current[i] = el)}
             />
             <InputField
               type="text"
@@ -295,7 +353,7 @@ const ProjectsManagementPage = () => {
             type="submit"
             bgColor="bg-accent"
             color="text-black"
-            text="Ajouter"
+            text="Modifier"
           />
         </div>
       </form>
@@ -303,4 +361,4 @@ const ProjectsManagementPage = () => {
   );
 };
 
-export default ProjectsManagementPage;
+export default EditProjectPage;

@@ -24,7 +24,7 @@ import AdminForm from "./pages/Admin/AdminForm";
 import PagesListPage from "./pages/Admin/PagesListPage";
 import AddMember from "./pages/Admin/AddMember";
 import AddProject from "./pages/Admin/AddProject";
-import ProjectsManagementPage from "./pages/Admin/ProjectsManagementPage";
+import EditProjectPage from "./pages/Admin/EditProjectPage";
 
 function App() {
   return (
@@ -73,7 +73,7 @@ function App() {
           />
           <Route
             path="gestion-projets/:id"
-            element={<ProjectsManagementPage />}
+            element={<EditProjectPage />}
           />
 
           {/* <Route

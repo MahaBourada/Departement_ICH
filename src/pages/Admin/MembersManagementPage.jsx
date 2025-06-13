@@ -39,8 +39,6 @@ const MembersManagementPage = () => {
           ? `${import.meta.env.VITE_BASE_URL}/${member.image_blob}`
           : member.image_blob || null;
 
-      console.log(initialImage);
-
       setValues({
         prenom: member.prenom || "",
         nom: member.nom || "",

@@ -8,10 +8,11 @@ import ReactMarkdown from "react-markdown";
 const ProjectsPage = () => {
   const { t } = useTranslation();
   const [projects, setProjects] = useState([]);
+  const lang = localStorage.getItem("lang") || "fr";
 
   const fetchData = async () => {
     try {
-      const response = await api.get("/projects");
+      const response = await api.get(`/projects?lang=${lang}`);
       setProjects(response.data);
     } catch (error) {}
   };
@@ -19,8 +20,6 @@ const ProjectsPage = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
-  console.log(projects);
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">

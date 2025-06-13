@@ -80,7 +80,7 @@ const DashboardPage = () => {
               <th className="py-3 text-start">Utilisateur</th>
               <th className="py-3 text-start">Rôle</th>
               <th className="py-3 text-start">Créé le</th>
-              <th className="py-3 text-start">Options</th>
+              <th className="py-3 text-start">Opérations</th>
             </tr>
           </thead>
           <tbody>
