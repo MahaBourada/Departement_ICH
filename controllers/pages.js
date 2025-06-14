@@ -139,40 +139,6 @@ export const getPageByTitle = (req, res) => {
   });
 };
 
-export const addPage = (req, res) => {
-  const idSection = uuidv4();
-  const sectionBody = req.body;
-
-  const sqlPageId = "SELECT idPage FROM pages WHERE link = ?";
-
-  db.query(sqlPageId, [sectionBody.link], async (err, pageResult) => {
-    if (err) return res.json({ Error: err });
-    if (pageResult.length === 0) return res.json({ Error: err });
-
-    const idPage = pageResult[0].idPage;
-
-    const sqlSection =
-      "INSERT INTO departement_ich.sections_page (idSection, texte_fr, texte_en, ordre_positionnement, idPage) VALUES (?, ?, ?, ?, ?)";
-
-    const values = [
-      idSection,
-      sectionBody.texte_fr,
-      sectionBody.texte_en,
-      sectionBody.ordre_positionnement,
-      idPage,
-    ];
-
-    db.query(sqlSection, values, (err, result) => {
-      if (err) return res.json({ Error: err });
-
-      return res.json({
-        Status: "Success",
-        message: `Contenu de la page mis à jour`,
-      });
-    });
-  });
-};
-
 export const updatePage = (req, res) => {
   const idPage = req.params.idPage;
   const sections = req.body;

@@ -3,7 +3,6 @@ import {
   getAllPages,
   updatePage,
   getPageById,
-  addPage,
   getPageByTitle,
 } from "../controllers/pages.js";
 import { verifyJWT } from "../middleware/verifyJWT .js";
@@ -13,7 +12,6 @@ const router = express.Router();
 router.get("/", getAllPages);
 router.get("/:idPage", getPageById);
 router.get("/title/:pageTitle", getPageByTitle);
-router.post("/", addPage);
 router.put("/:idPage", updatePage);
 /* router.post("/", verifyJWT, addPage);
 router.put("/:idSection", verifyJWT, updatePage); */
