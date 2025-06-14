@@ -1,14 +1,10 @@
 import express from "express";
-import {
-  addImage,
-  editImage,
-  getImagesByPageId,
-} from "../controllers/pagesImages.js";
+import { updateImages, getImagesByPageId, getImagesByPageTitle } from "../controllers/pagesImages.js";
 
 const router = express.Router();
 
-router.get("/:pageTitle", getImagesByPageId);
-router.post("/", addImage);
-router.put("/:idMedia", editImage);
+router.get("/:idPage", getImagesByPageId);
+router.get("/title/:pageTitle", getImagesByPageTitle);
+router.put("/:idPage", updateImages);
 
 export default router;

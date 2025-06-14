@@ -215,7 +215,9 @@ export const addProject = (req, res) => {
             const buffer = Buffer.from(data, "base64");
 
             // Create a unique file name
-            const fileName = `projet_${projectBody.titre}_${Date.now()}.${ext}`;
+            const fileName = `projet_${
+              projectBody.titre
+            }_${uuidv4()}_${Date.now()}.${ext}`;
 
             // Chemin absolu vers dossier uploads (dans le dossier courant)
             const uploadDir = path.resolve("uploads");
