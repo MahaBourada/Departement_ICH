@@ -81,7 +81,7 @@ const MembersPage = () => {
                 <div className="flex flex-row items-start max-lg:flex-col-reverse max-lg:justify-between max-lg:h-full">
                   <img
                     src={`${import.meta.env.VITE_BASE_URL}/${
-                      member.image_blob
+                      member.image
                     }`}
                     alt={`Photo de ${member.nom}`}
                     width={200}
@@ -139,7 +139,7 @@ const MembersPage = () => {
                 <div className="flex flex-row items-start max-lg:flex-col-reverse max-lg:justify-between max-lg:h-full">
                   <img
                     src={`${import.meta.env.VITE_BASE_URL}/${
-                      member.image_blob
+                      member.image
                     }`}
                     alt={`Photo de ${member.nom}`}
                     width={200}
@@ -197,7 +197,7 @@ const MembersPage = () => {
                 <div className="flex flex-row items-start max-lg:flex-col-reverse max-lg:justify-between max-lg:h-full">
                   <img
                     src={`${import.meta.env.VITE_BASE_URL}/${
-                      member.image_blob
+                      member.image
                     }`}
                     alt={`Photo de ${member.nom}`}
                     width={200}

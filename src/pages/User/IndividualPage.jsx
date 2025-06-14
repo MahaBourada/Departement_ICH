@@ -104,7 +104,7 @@ const IndividualPage = () => {
         </div>
 
         <img
-          src={`${import.meta.env.VITE_BASE_URL}/${member.image_blob}`}
+          src={`${import.meta.env.VITE_BASE_URL}/${member.image}`}
           alt={`Photo de ${member.prenom} ${UpperNom}`}
           width={350}
           className="rounded-3xl m-4 mx-10 readerMode:mx-auto"

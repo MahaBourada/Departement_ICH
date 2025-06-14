@@ -11,7 +11,6 @@ import {
 import { SmallBorderButton, SmallFilledButton } from "../../components/Buttons";
 
 const UpdateMember = () => {
-  const navigate = useNavigate();
   const { id } = useParams();
   const [member, setMember] = useState({});
 
@@ -19,6 +18,7 @@ const UpdateMember = () => {
     try {
       const response = await api.get(`/members/${id}`);
       setMember(response.data);
+      setImage(response.data.image);
     } catch (error) {
       console.error(error);
     }
@@ -31,9 +31,9 @@ const UpdateMember = () => {
   useEffect(() => {
     if (member?.idMembre) {
       const initialImage =
-        member.image_blob && !member.image_blob.startsWith("data:image")
-          ? `${import.meta.env.VITE_BASE_URL}/${member.image_blob}`
-          : member.image_blob || null;
+        member.image && !member.image.startsWith("data:image")
+          ? `${import.meta.env.VITE_BASE_URL}/${member.image}`
+          : member.image || null;
 
       setValues({
         prenom: member.prenom || "",
@@ -42,27 +42,31 @@ const UpdateMember = () => {
         fonction: member.fonction || "",
         section: member.section || "",
         propos: member.propos || "",
-        image_blob: member.image_blob || "",
+        image: member.image || "",
       });
-      setFile(initialImage);
+      setImage(initialImage);
     }
   }, [member]);
 
-  const [file, setFile] = useState();
+  const [image, setImage] = useState();
 
   const handleChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setFile(reader.result); // this is the base64 string like 'data:image/png;base64,...'
+        setImage(reader.result); // this is the base64 string like 'data:image/png;base64,...'
         setValues((prev) => ({
           ...prev,
-          image_blob: reader.result, // store base64 string in your form state
+          image: reader.result, // store base64 string in your form state
         }));
       };
       reader.readAsDataURL(selectedFile);
     }
+  };
+
+  const handleRemoveImage = (index) => {
+    setImage("");
   };
 
   const [values, setValues] = useState({
@@ -72,7 +76,7 @@ const UpdateMember = () => {
     fonction: member?.fonction || "",
     section: member?.section || "",
     propos: member?.propos || "",
-    image_blob: file || "",
+    image: member?.image || "",
   });
 
   const [msg, setMsg] = useState("");
@@ -88,7 +92,10 @@ const UpdateMember = () => {
 
     const data = {
       ...values,
+      image: image
     };
+
+    console.log(data)
 
     try {
       const response = await api.put(`/members/${member.idMembre}`, data);
@@ -142,8 +149,9 @@ const UpdateMember = () => {
           text="Image *"
           name="imageMembre"
           alt={`Image de ${member.prenom + " " + member.nom}`}
-          file={file}
+          file={image}
           onChange={handleChange}
+          onRemove={handleRemoveImage}
         />
 
         <p id="fonction-section-note" className="text-gray-700 mb-2">

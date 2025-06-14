@@ -75,7 +75,7 @@ const LoginPage = () => {
         <div className="flex justify-between items-center">
           <Link
             onClick={() => window.scrollTo({ top: 0 })}
-            to={-1}
+            to="/"
             className="hover:translate-[1px]"
           >
             <ArrowLeft

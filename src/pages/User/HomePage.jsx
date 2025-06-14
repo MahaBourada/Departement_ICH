@@ -95,8 +95,8 @@ const HomePage = () => {
                 key={img.idMedia}
                 src={fullPath}
                 alt={img.alt || ""}
-                width={300}
-                className="w-[23rem] h-auto rounded-4xl max-large-medium:w-[26rem] max-large-medium:h-[26rem] max-xl:w-[18rem] max-xl:h-[18rem] mx-auto max-large-medium:mb-6 readerMode:my-4"
+                width={400}
+                className="w-[23rem] h-[23rem] rounded-3xl max-large-medium:w-[26rem] max-large-medium:h-[26rem] max-xl:w-[18rem] max-xl:h-[18rem] mx-auto max-large-medium:mb-6 readerMode:my-4"
               />
             );
           })}
