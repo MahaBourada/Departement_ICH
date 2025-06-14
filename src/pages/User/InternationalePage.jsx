@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import api from "../../api/api";
-import { serializeToHtml } from "../../utils/slateToHtml";
 import { useTranslation } from "react-i18next";
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";

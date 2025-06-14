@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
-import { ImageField, InputField, TextAreaField } from "../../components/Inputs";
-import { SmallBorderButton, SmallFilledButton } from "../../components/Buttons";
-import MessagePopup from "../../components/MsgPopup";
+import { ImageField, InputField, TextAreaField } from "../../components/Inputs.jsx";
+import { SmallBorderButton, SmallFilledButton } from "../../components/Buttons.jsx";
+import MessagePopup from "../../components/MsgPopup.jsx";
 import { Plus, Trash2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import api from "../../api/api.js";
 
-const EditProjectPage = () => {
+const UpdateProject = () => {
   const { id } = useParams();
   const [project, setProject] = useState({});
 
@@ -361,4 +361,4 @@ const EditProjectPage = () => {
   );
 };
 
-export default EditProjectPage;
+export default UpdateProject;

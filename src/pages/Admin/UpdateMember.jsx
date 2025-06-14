@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import RichTextEditor from "../../components/RichTextEditor";
 import api from "../../api/api";
-import { Trash2 } from "lucide-react";
 import MessagePopup from "../../components/MsgPopup";
-import { ImageField, InputField, TextAreaField } from "../../components/Inputs";
+import {
+  ImageField,
+  InputField,
+  SelectField,
+  TextAreaField,
+} from "../../components/Inputs";
 import { SmallBorderButton, SmallFilledButton } from "../../components/Buttons";
 
-const MembersManagementPage = () => {
+const UpdateMember = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [member, setMember] = useState({});
@@ -23,14 +26,7 @@ const MembersManagementPage = () => {
 
   useEffect(() => {
     fetchData();
-  }, [id]);
-
-  const defaultContent = [
-    {
-      type: "paragraph",
-      children: [{ text: "" }],
-    },
-  ];
+  }, []);
 
   useEffect(() => {
     if (member?.idMembre) {
@@ -45,13 +41,7 @@ const MembersManagementPage = () => {
         titre: member.titre || "",
         fonction: member.fonction || "",
         section: member.section || "",
-        propos:
-          typeof member?.propos === "string" && member.propos.trim() !== ""
-            ? JSON.parse(member.propos)
-            : defaultContent,
-        email: member.email || "",
-        telephone: member.telephone || "",
-        lieu: member.lieu || "",
+        propos: member.propos || "",
         image_blob: member.image_blob || "",
       });
       setFile(initialImage);
@@ -81,13 +71,7 @@ const MembersManagementPage = () => {
     titre: member?.titre || "",
     fonction: member?.fonction || "",
     section: member?.section || "",
-    propos:
-      typeof member?.propos === "string" && member.propos.trim() !== ""
-        ? JSON.parse(member.propos)
-        : defaultContent,
-    email: member?.email || "",
-    telephone: member?.telephone || "",
-    lieu: member?.lieu || "",
+    propos: member?.propos || "",
     image_blob: file || "",
   });
 
@@ -104,7 +88,6 @@ const MembersManagementPage = () => {
 
     const data = {
       ...values,
-      propos: JSON.stringify(values.propos || defaultContent),
     };
 
     try {
@@ -118,49 +101,15 @@ const MembersManagementPage = () => {
     }
   };
 
-  const handleDelete = async (idMembre) => {
-    try {
-      const response = await api.delete(`/members/${idMembre}`);
-      setTimeout(() => {
-        navigate("/admin/gestion-equipe");
-      }, 300);
-
-      setMsgShow(true);
-      setMsgStatus(200);
-      setMsg(response.data.message);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   return (
     <main className="mx-14 my-20">
-      <div className="flex items-center justify-between text-display font-semibold">
-        <h1 className="font-semibold ">
-          Gestion du membre {member.prenom + " " + member.nom}
-        </h1>
+      <h1 className="text-display font-semibold">
+        Gestion du membre {member.prenom + " " + member.nom}
+      </h1>
 
-        {msgShow && (
-          <MessagePopup
-            message={msg}
-            onClose={handleClose}
-            status={msgStatus}
-          />
-        )}
-
-        <button
-          type="button"
-          onClick={() => handleDelete(member.idMembre)}
-          className="hover:translate-[1px] cursor-pointer mx-7"
-        >
-          <Trash2
-            aria-label="Ajouter un membre"
-            size={36}
-            className="text-[#8B0000] dark:text-red-400"
-            strokeWidth={2.25}
-          />
-        </button>
-      </div>
+      {msgShow && (
+        <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
+      )}
 
       <form onSubmit={handleSubmit} className="flex flex-col m-5">
         <div className="flex items-start justify-between mb-3">
@@ -196,28 +145,18 @@ const MembersManagementPage = () => {
         />
 
         <div className="flex items-start justify-between mb-3">
-          <div className="flex flex-col w-1/2 mr-2">
-            <label
-              htmlFor="titre"
-              className="text-nav font-main font-medium my-1"
-            >
-              Titre *
-            </label>
-            <select
-              name="titre"
-              id="titre"
-              className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.95rem] mr-2 outline-gray-500 dark:text-black dark:bg-gray-400 dark:border-gray-700"
-              value={values.titre}
-              onChange={(e) => setValues({ ...values, titre: e.target.value })}
-            >
-              <option value="">Selectionez un titre</option>
-              <option value="Directeur du département">
-                Directeur du département
-              </option>
-              <option value="Administration">Administration</option>
-              <option value="Enseignant(e)">Enseignant(e)</option>
-            </select>
-          </div>
+          <SelectField
+            label="Titre *"
+            placeholder="Selectionez un titre"
+            name="titre"
+            onChange={(e) => setValues({ ...values, titre: e.target.value })}
+            initialValue={values.titre}
+            values={[
+              "Directeur du département",
+              "Administration",
+              "Enseignant(e)",
+            ]}
+          />
 
           <div className="flex flex-col w-1/2 ml-2">
             <InputField
@@ -244,56 +183,13 @@ const MembersManagementPage = () => {
           />
         </div>
 
-        <div className="flex flex-col mb-3 mr-2">
-          <label
-            htmlFor="à propos"
-            className="text-nav font-main font-medium my-1"
-          >
-            A propos *
-          </label>
-          <RichTextEditor
-            aria-labelledby="A propos"
-            value={values.propos}
-            onChange={(val) => setValues({ ...values, propos: val })}
-          />
-        </div>
-
-        <div className="flex items-start justify-between mb-3">
-          <div className="flex flex-col w-1/2 mr-3">
-            <InputField
-              type="email"
-              label="E-mail *"
-              name="e-mail"
-              placeholder="example@mail.com"
-              value={values.email}
-              onChange={(e) => setValues({ ...values, email: e.target.value })}
-            />
-          </div>
-
-          <div className="flex flex-col w-1/2 mr-3">
-            <InputField
-              type="tel"
-              label="Téléphone *"
-              name="telephone"
-              placeholder="0712345678"
-              value={values.telephone}
-              onChange={(e) =>
-                setValues({ ...values, telephone: e.target.value })
-              }
-            />
-          </div>
-
-          <div className="flex flex-col w-1/2 mr-3">
-            <InputField
-              type="text"
-              label="Lieu *"
-              name="lieu"
-              placeholder="ex : Bâtiment D - Salle D111"
-              value={values.lieu}
-              onChange={(e) => setValues({ ...values, lieu: e.target.value })}
-            />
-          </div>
-        </div>
+        <TextAreaField
+          label="A propos"
+          name="propos"
+          placeholder="Mini description du membre"
+          value={values.propos}
+          onChange={(e) => setValues({ ...values, propos: e.target.value })}
+        />
 
         <div className="flex justify-end mt-3">
           <SmallBorderButton
@@ -316,4 +212,4 @@ const MembersManagementPage = () => {
   );
 };
 
-export default MembersManagementPage;
+export default UpdateMember;

@@ -17,14 +17,14 @@ import LoginPage from "./pages/Admin/LoginPage";
 import Dashboard from "./pages/Admin/DashboardPage";
 import PagesManagementPage from "./pages/Admin/PagesManagementPage";
 import MembersListPage from "./pages/Admin/MembersListPage";
-import MembersManagementPage from "./pages/Admin/MembersManagementPage";
+import UpdateMember from "./pages/Admin/UpdateMember";
 import ProjectsListPage from "./pages/Admin/ProjectsListPage";
 import PrixManagementPage from "./pages/Admin/PrixManagementPage";
-import AdminForm from "./pages/Admin/AdminForm";
+import AddAdmin from "./pages/Admin/AddAdmin";
 import PagesListPage from "./pages/Admin/PagesListPage";
 import AddMember from "./pages/Admin/AddMember";
 import AddProject from "./pages/Admin/AddProject";
-import EditProjectPage from "./pages/Admin/EditProjectPage";
+import UpdateProject from "./pages/Admin/UpdateProject";
 
 function App() {
   return (
@@ -55,26 +55,20 @@ function App() {
         <Route path="/admin" element={<LoginPage />} />
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="tableau-de-bord" element={<Dashboard />} />
-          <Route path="tableau-de-bord/add-admin" element={<AdminForm />} />
+          <Route path="tableau-de-bord/add-admin" element={<AddAdmin />} />
 
           <Route path="gestion-pages" element={<PagesListPage />} />
           <Route path="gestion-pages/:page" element={<PagesManagementPage />} />
 
           <Route path="gestion-equipe" element={<MembersListPage />} />
           <Route path="gestion-equipe/ajouter-membre" element={<AddMember />} />
-          <Route
-            path="gestion-equipe/:id"
-            element={<MembersManagementPage />}
-          />
+          <Route path="gestion-equipe/:id" element={<UpdateMember />} />
           <Route path="gestion-projets" element={<ProjectsListPage />} />
           <Route
             path="gestion-projets/ajouter-projet"
             element={<AddProject />}
           />
-          <Route
-            path="gestion-projets/:id"
-            element={<EditProjectPage />}
-          />
+          <Route path="gestion-projets/:id" element={<UpdateProject />} />
 
           {/* <Route
             path="gestion-conferences"

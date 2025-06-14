@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import RichTextEditor from "../../components/RichTextEditor";
 import api from "../../api/api";
 import MessagePopup from "../../components/MsgPopup";
 import { ImageField, InputField, TextAreaField } from "../../components/Inputs";

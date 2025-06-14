@@ -47,6 +47,12 @@ const ProjectsListPage = () => {
         </Link>
       </div>
 
+      {projects.length === 0 && (
+        <div className="m-auto w-fit mt-20 text-3xl font-medium">
+          <h2>Aucun projet enregistré</h2>
+        </div>
+      )}
+
       <table className="w-full mx-3 my-5">
         <caption className="sr-only">
           Liste des projets avec année et membres

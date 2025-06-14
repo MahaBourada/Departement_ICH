@@ -7,7 +7,7 @@ import {
   SmallFilledButton,
 } from "../../components/Buttons.jsx";
 
-const AdminForm = () => {
+const AddAdmin = () => {
   const [values, setValues] = useState({
     firstname: "",
     lastname: "",
@@ -107,10 +107,7 @@ const AdminForm = () => {
           </div>
 
           <div className="flex flex-col w-1/2">
-            <label
-              htmlFor="role"
-              className="font-main font-medium my-1"
-            >
+            <label htmlFor="role" className="font-main font-medium my-1">
               Rôle *
             </label>
             <select
@@ -162,4 +159,4 @@ const AdminForm = () => {
   );
 };
 
-export default AdminForm;
+export default AddAdmin;

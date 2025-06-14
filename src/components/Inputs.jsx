@@ -51,6 +51,37 @@ export const TextAreaField = ({
   );
 };
 
+export const SelectField = ({
+  label,
+  placeholder,
+  name,
+  onChange,
+  initialValue,
+  values,
+}) => {
+  return (
+    <div className="flex flex-col leading-normal w-1/2 mr-2 my-4">
+      <label htmlFor={name} className="font-main font-medium my-2">
+        {label}
+      </label>
+      <select
+        name={name}
+        id={name}
+        className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.9rem] mr-2 outline-gray-500 dark:text-black dark:bg-gray-400 dark:border-gray-700"
+        value={initialValue}
+        onChange={onChange}
+      >
+        <option value="">{placeholder}</option>
+        {values.map((value, index) => (
+          <option key={index} value={value}>
+            {value}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+};
+
 export const ImageField = ({
   text,
   name,

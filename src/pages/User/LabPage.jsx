@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import api from "../../api/api";
-import { serializeToHtml } from "../../utils/slateToHtml";
 import { useTranslation } from "react-i18next";
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -45,7 +44,10 @@ const LabPage = () => {
         aria-label={t("breadcrumb")}
         className="mb-10 max-large-medium:hidden my-1 p-1.5 py-1 w-full bg-bg-crumb rounded-xl flex items-center font-medium readerMode:hidden dark:bg-black leading-loose text-breadcrumb"
       >
-        <Link to="/" className="px-4 py-1 rounded-xl hover:underline hover:bg-hover-crumb">
+        <Link
+          to="/"
+          className="px-4 py-1 rounded-xl hover:underline hover:bg-hover-crumb"
+        >
           {t("home.link")}
         </Link>
         <ChevronRight
@@ -53,9 +55,7 @@ const LabPage = () => {
           className="text-[#232323] dark:text-gray-300"
           strokeWidth={2}
         />
-        <span className="px-4 py-1 rounded-xl">
-          {t("research.link")}
-        </span>
+        <span className="px-4 py-1 rounded-xl">{t("research.link")}</span>
         <ChevronRight
           size={33}
           className="text-[#232323] dark:text-gray-300"
@@ -125,7 +125,7 @@ const LabPage = () => {
 
           <div
             className={`m-auto ${
-              serializeToHtml(pageLab, 4) === ""
+              pageLab[3]?.texte === ""
                 ? "flex flex-col"
                 : "flex flex-row max-large-medium:flex-col"
             }`}

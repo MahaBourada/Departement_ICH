@@ -1,9 +1,9 @@
-import { ChevronRight, Mail, MapPin, Phone } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { serializeSingleToHtml } from "../../utils/slateToHtml";
 import api from "../../api/api";
 import { useTranslation } from "react-i18next";
+import ReactMarkdown from "react-markdown";
 
 const IndividualPage = () => {
   const { t } = useTranslation();
@@ -90,24 +90,22 @@ const IndividualPage = () => {
             ))}
           </ul>
 
-          {serializeSingleToHtml(member.propos) !== "<p ></p>" && (
+          {member.propos && (
             <>
               <h2 className="font-medium text-dynamic-xl font-main mt-4">
                 A propos
               </h2>
-              <div
-                className="my-2"
-                dangerouslySetInnerHTML={{
-                  __html: serializeSingleToHtml(member.propos),
-                }}
-              ></div>
+              <ReactMarkdown
+                className="my-2 markdown"
+                children={String(member.propos)}
+              />
             </>
           )}
         </div>
 
         <img
           src={`${import.meta.env.VITE_BASE_URL}/${member.image_blob}`}
-          alt="Photo de Anis ROJBI"
+          alt={`Photo de ${member.prenom} ${UpperNom}`}
           width={350}
           className="rounded-3xl m-4 mx-10 readerMode:mx-auto"
         />
