@@ -17,7 +17,7 @@ const AddMember = () => {
     fonction: "",
     section: "",
     propos: "",
-    image_blob: "",
+    image: "",
   });
 
   const [msg, setMsg] = useState("");
@@ -38,7 +38,7 @@ const AddMember = () => {
         setFile(reader.result); // this is the base64 string like 'data:image/png;base64,...'
         setValues((prev) => ({
           ...prev,
-          image_blob: reader.result, // store base64 string in your form state
+          image: reader.result, // store base64 string in your form state
         }));
       };
       reader.readAsDataURL(selectedFile);
