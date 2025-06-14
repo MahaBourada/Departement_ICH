@@ -102,8 +102,6 @@ const LoginPage = () => {
             onChange={(e) => setValues({ ...values, username: e.target.value })}
           />
 
-          <div className="my-2"></div>
-
           <InputField
             type="password"
             label="Mot de passe *"

@@ -63,14 +63,15 @@ const DashboardPage = () => {
 
           <Link
             to="/admin/tableau-de-bord/add-admin"
-            className="hover:translate-[1px] cursor-pointer mx-4"
+            className="flex flex-row items-center cursor-pointer bg-accent dark:bg-dark-accent text-black font-main font-medium rounded-xl h-fit px-5 py-2.5 mx-2 my-1 hover:bg-dark-accent max-md:w-42 max-md:mx-3 text-nav leading-normal"
           >
             <Plus
               aria-label="Ajouter un admin"
-              size={36}
-              className="text-[#232323] dark:text-gray-300"
+              size={30}
+              className="text-[#232323] mr-2"
               strokeWidth={2.8}
             />
+            <p>Ajouter un admin</p>
           </Link>
         </div>
 
@@ -108,22 +109,22 @@ const DashboardPage = () => {
                     <Link
                       //to={`/admin/gestion-projets/${project.idProjet}`}
                       type="button"
-                      className="cursor-pointer hover:translate-[1px] mr-1"
+                      className="cursor-pointer mr-2 p-0.5 rounded-md hover:bg-neutral-300"
                     >
                       <Pencil
                         aria-label="Mettre à jour un admin"
-                        size={26}
+                        size={30}
                         className="text-[#232323] dark:text-gray-300"
                       />
                     </Link>
                     <button
                       type="button"
-                      className="cursor-pointer hover:translate-[1px] ml-1"
+                      className="cursor-pointer ml-2 p-0.5 rounded-md hover:bg-neutral-300"
                       onClick={() => handleDelete(admin.idAdmin)}
                     >
                       <Trash2
                         aria-label="Supprimer un admin"
-                        size={26}
+                        size={30}
                         className="text-[#8B0000] dark:text-red-400"
                       />
                     </button>

@@ -98,9 +98,9 @@ const ProjectsPage = () => {
                 </div>
               </div>
 
-              <h4 className="font-semibold text-dynamic-lg my-2">
+              <h3 className="font-semibold text-dynamic-lg my-2">
                 {t("formation.projects.objective")}
-              </h4>
+              </h3>
               <ReactMarkdown
                 className="m-2"
                 children={String(project.objectif)}

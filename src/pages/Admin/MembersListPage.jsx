@@ -49,15 +49,17 @@ const MembersListPage = () => {
         <h1 className="font-semibold ">Gestion de l'équipe du département</h1>
 
         <Link
+          onClick={() => window.scrollTo({ top: 0 })}
           to="/admin/gestion-equipe/ajouter-membre"
-          className="hover:translate-[1px] cursor-pointer mx-4"
+          className="flex flex-row items-center cursor-pointer bg-accent dark:bg-dark-accent text-black font-main font-medium rounded-xl h-fit px-5 py-2.5 mx-2 my-1 hover:bg-dark-accent max-md:w-42 max-md:mx-3 text-nav leading-normal"
         >
           <Plus
             aria-label="Ajouter un membre"
-            size={36}
-            className="text-[#232323] dark:text-gray-300"
+            size={30}
+            className="text-[#232323] mr-2"
             strokeWidth={2.8}
           />
+          <p>Ajouter un membre</p>
         </Link>
       </div>
 
@@ -105,24 +107,29 @@ const MembersListPage = () => {
                 <td className="h-full px-4">
                   <div className="flex items-center justify-center space-x-2">
                     <Link
+                      onClick={() => window.scrollTo({ top: 0 })}
                       to={`/admin/gestion-equipe/${member.idMembre}`}
                       type="button"
-                      className="cursor-pointer hover:translate-[1px] mr-1"
+                      className="cursor-pointer mr-2 p-0.5 rounded-md hover:bg-neutral-300"
                     >
                       <Pencil
-                        aria-label="Mettre à jour un projet"
-                        size={26}
+                        aria-label={`Mettre à jour ${
+                          member.prenom
+                        } ${member.nom.toUpperCase()}`}
+                        size={30}
                         className="text-[#232323] dark:text-gray-300"
                       />
                     </Link>
                     <button
                       type="button"
-                      className="cursor-pointer hover:translate-[1px] ml-1"
+                      className="cursor-pointer ml-2 p-0.5 rounded-md hover:bg-neutral-300"
                       onClick={() => handleDelete(member.idMembre)}
                     >
                       <Trash2
-                        aria-label="Supprimer un projet"
-                        size={26}
+                        aria-label={`Supprimer ${
+                          member.prenom
+                        } ${member.nom.toUpperCase()}`}
+                        size={30}
                         className="text-[#8B0000] dark:text-red-400"
                       />
                     </button>

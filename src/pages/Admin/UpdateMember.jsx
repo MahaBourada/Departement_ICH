@@ -115,6 +115,7 @@ const UpdateMember = () => {
         <div className="flex items-start justify-between mb-3">
           <div className="flex flex-col w-1/2 mr-2">
             <InputField
+              isRequired={true}
               type="text"
               label="Prénom *"
               name="prenom"
@@ -126,6 +127,7 @@ const UpdateMember = () => {
 
           <div className="flex flex-col w-1/2 ml-2">
             <InputField
+              isRequired={true}
               type="text"
               label="Nom *"
               name="nom"
@@ -144,22 +146,36 @@ const UpdateMember = () => {
           onChange={handleChange}
         />
 
+        <p id="fonction-section-note" className="text-gray-700 mb-2">
+          Les champs <strong>Fonction</strong> et{" "}
+          <strong>Section disciplinaire</strong> sont obligatoires uniquement si
+          le titre est <em>Directeur du département</em> ou{" "}
+          <em>Enseignant(e)</em>.
+        </p>
+
         <div className="flex items-start justify-between mb-3">
-          <SelectField
-            label="Titre *"
-            placeholder="Selectionez un titre"
-            name="titre"
-            onChange={(e) => setValues({ ...values, titre: e.target.value })}
-            initialValue={values.titre}
-            values={[
-              "Directeur du département",
-              "Administration",
-              "Enseignant(e)",
-            ]}
-          />
+          <div className="flex flex-col w-1/2 mr-2">
+            <SelectField
+              isRequired={true}
+              label="Titre *"
+              placeholder="Selectionez un titre"
+              name="titre"
+              onChange={(e) => setValues({ ...values, titre: e.target.value })}
+              initialValue={values.titre}
+              values={[
+                "Directeur du département",
+                "Administration",
+                "Enseignant(e)",
+              ]}
+            />
+          </div>
 
           <div className="flex flex-col w-1/2 ml-2">
             <InputField
+              isRequired={
+                values.titre === "Directeur du département" ||
+                values.titre === "Enseignant(e)"
+              }
               type="text"
               label="Fonction *"
               name="fonction"
@@ -174,6 +190,10 @@ const UpdateMember = () => {
 
         <div className="flex flex-col mb-3">
           <InputField
+            isRequired={
+              values.titre === "Directeur du département" ||
+              values.titre === "Enseignant(e)"
+            }
             type="text"
             label="Section disciplinaire *"
             name="section"

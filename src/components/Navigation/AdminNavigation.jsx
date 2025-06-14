@@ -23,7 +23,7 @@ const AdminNavigation = () => {
           <NavLink
             to="/admin/tableau-de-bord"
             className={({ isActive }) =>
-              `flex items-center my-3 px-4 py-3 rounded-2xl hover:translate-[1px] hover:underline mx-7 ${
+              `flex items-center my-3 px-4 py-3 rounded-2xl hover:bg-admin-nav-bg hover:underline mx-7 ${
                 isActive
                   ? "bg-admin-nav-bg text-[#663114] dark:text-black"
                   : "bg-none text-black dark:text-gray-300"
@@ -37,7 +37,7 @@ const AdminNavigation = () => {
           <NavLink
             to="/admin/gestion-pages"
             className={({ isActive }) =>
-              `flex items-center my-3  px-4 py-3 rounded-2xl hover:translate-[1px] hover:underline mx-7 ${
+              `flex items-center my-3  px-4 py-3 rounded-2xl hover:bg-admin-nav-bg hover:underline mx-7 ${
                 isActive
                   ? "bg-admin-nav-bg text-[#663114] dark:text-black"
                   : "bg-none text-black dark:text-gray-300"
@@ -51,7 +51,7 @@ const AdminNavigation = () => {
           <NavLink
             to="/admin/gestion-equipe"
             className={({ isActive }) =>
-              `flex items-center my-3  px-4 py-3 rounded-2xl hover:translate-[1px] hover:underline mx-7 ${
+              `flex items-center my-3  px-4 py-3 rounded-2xl hover:bg-admin-nav-bg hover:underline mx-7 ${
                 isActive
                   ? "bg-admin-nav-bg text-[#663114] dark:text-black"
                   : "bg-none text-black dark:text-gray-300"
@@ -62,24 +62,10 @@ const AdminNavigation = () => {
             <p className="mx-2">Équipe</p>
           </NavLink>
 
-          {/* <NavLink
-            to="/admin/gestion-conferences"
-            className={({ isActive }) =>
-              `flex items-center my-3  px-4 py-3 rounded-2xl hover:translate-[1px] hover:underline mx-7 ${
-                isActive
-                  ? "bg-admin-nav-bg text-[#663114] dark:text-black"
-                  : "bg-none text-black dark:text-gray-300"
-              }`
-            }
-          >
-            <MonitorDot size={32} />
-            <p className="mx-2">Conférences</p>
-          </NavLink> */}
-
           <NavLink
             to="/admin/gestion-projets"
             className={({ isActive }) =>
-              `flex items-center my-3  px-4 py-3 rounded-2xl hover:translate-[1px] hover:underline mx-7 ${
+              `flex items-center my-3  px-4 py-3 rounded-2xl hover:bg-admin-nav-bg hover:underline mx-7 ${
                 isActive
                   ? "bg-admin-nav-bg text-[#663114] dark:text-black"
                   : "bg-none text-black dark:text-gray-300"
@@ -93,7 +79,7 @@ const AdminNavigation = () => {
           <NavLink
             to="/admin/gestion-prix"
             className={({ isActive }) =>
-              `flex items-center my-3  px-4 py-3 rounded-2xl hover:translate-[1px] hover:underline mx-7 ${
+              `flex items-center my-3  px-4 py-3 rounded-2xl hover:bg-admin-nav-bg hover:underline mx-7 ${
                 isActive
                   ? "bg-admin-nav-bg text-[#663114] dark:text-black"
                   : "bg-none text-black dark:text-gray-300"

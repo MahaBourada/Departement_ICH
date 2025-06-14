@@ -1,8 +1,24 @@
-import { ExternalLink } from "lucide-react";
-import React from "react";
+import { Pencil } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import api from "../../api/api";
 
 const PagesListPage = () => {
+  const [pages, setPages] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await api.get("pages");
+      setPages(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const pages_titles = [
     { title: "Page d'accueil", link: "accueil" },
     { title: "Page de master", link: "master" },
@@ -24,20 +40,17 @@ const PagesListPage = () => {
       </h1>
 
       <div className="grid grid-cols-2 max-large-medium:grid-cols-1 mx-14 my-4">
-        {pages_titles.map((page, index) => (
+        {pages.map((page, index) => (
           <Link
             onClick={() => window.scrollTo({ top: 0 })}
+            aria-label={`Mettre à jour la ${page.title}`}
             key={index}
-            to={`/admin/gestion-pages/${page.link}`}
-            state={{ title: page.title, link: page.link }}
-            className="mx-4 my-2 hover:translate-[1px] hover:underline"
+            to={`/admin/gestion-pages/${page.idPage}`}
+            className="mx-4 my-2 bg-admin-nav-bg p-6 rounded-3xl hover:bg-dark-accent hover:underline"
           >
-            <div className=" flex justify-between items-center font-main font-medium bg-admin-nav-bg p-6 rounded-3xl">
+            <div className=" flex justify-between items-center font-main font-medium ">
               <p>{page.title}</p>
-              <ExternalLink
-                size={26}
-                className="text-[#232323] dark:text-gray-300"
-              />
+              <Pencil size={26} className="text-[#232323] dark:text-gray-300" />
             </div>
           </Link>
         ))}

@@ -15,7 +15,7 @@ import ContactPage from "./pages/User/ContactPage";
 import IndividualPage from "./pages/User/IndividualPage";
 import LoginPage from "./pages/Admin/LoginPage";
 import Dashboard from "./pages/Admin/DashboardPage";
-import PagesManagementPage from "./pages/Admin/PagesManagementPage";
+import UpdatePage from "./pages/Admin/UpdatePage";
 import MembersListPage from "./pages/Admin/MembersListPage";
 import UpdateMember from "./pages/Admin/UpdateMember";
 import ProjectsListPage from "./pages/Admin/ProjectsListPage";
@@ -58,7 +58,7 @@ function App() {
           <Route path="tableau-de-bord/add-admin" element={<AddAdmin />} />
 
           <Route path="gestion-pages" element={<PagesListPage />} />
-          <Route path="gestion-pages/:page" element={<PagesManagementPage />} />
+          <Route path="gestion-pages/:idPage" element={<UpdatePage />} />
 
           <Route path="gestion-equipe" element={<MembersListPage />} />
           <Route path="gestion-equipe/ajouter-membre" element={<AddMember />} />

@@ -7,6 +7,7 @@ export const InputField = ({
   name,
   onChange,
   value,
+  isRequired,
 }) => {
   return (
     <div className="flex flex-col leading-normal my-4">
@@ -14,6 +15,7 @@ export const InputField = ({
         {label}
       </label>
       <input
+        required={isRequired}
         type={type}
         name={name}
         id={name}
@@ -32,6 +34,7 @@ export const TextAreaField = ({
   name,
   onChange,
   value,
+  isRequired,
 }) => {
   return (
     <div className="flex flex-col leading-normal my-2">
@@ -39,6 +42,7 @@ export const TextAreaField = ({
         {label}
       </label>
       <textarea
+        required={isRequired}
         name={name}
         id={name}
         rows={5}
@@ -58,13 +62,15 @@ export const SelectField = ({
   onChange,
   initialValue,
   values,
+  isRequired,
 }) => {
   return (
-    <div className="flex flex-col leading-normal w-1/2 mr-2 my-4">
+    <div className="flex flex-col leading-normal my-4">
       <label htmlFor={name} className="font-main font-medium my-2">
         {label}
       </label>
       <select
+        required={isRequired}
         name={name}
         id={name}
         className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.9rem] mr-2 outline-gray-500 dark:text-black dark:bg-gray-400 dark:border-gray-700"
@@ -99,15 +105,15 @@ export const ImageField = ({
             {text}
           </label>
           <button
-            className="cursor-pointer hover:translate-[1px]"
+            className="cursor-pointer p-0.5 rounded-md hover:bg-neutral-300"
             type="button"
             onClick={onRemove}
           >
             <Trash2
-              aria-label="Supprimer un membre du projet"
+              aria-label="Supprimer l'image"
               size={30}
               className="text-[#8B0000] dark:text-red-400"
-              strokeWidth={2.25}
+              strokeWidth={2}
             />
           </button>
         </div>

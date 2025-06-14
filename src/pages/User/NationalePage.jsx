@@ -14,10 +14,10 @@ const NationalePage = () => {
   const fetchData = async () => {
     try {
       const contentResponse = await api.get(
-        `/pages/collaboration-nationale?lang=${lang}`
+        `/pages/title/collaboration-nationale?lang=${lang}`
       );
       const imagesResponse = await api.get(
-        `/pages-images/collaboration-nationale?lang=${lang}`
+        `/pages-images/title/collaboration-nationale?lang=${lang}`
       );
 
       setPageNational(contentResponse.data);

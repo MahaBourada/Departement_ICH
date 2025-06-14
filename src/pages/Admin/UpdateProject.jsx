@@ -1,8 +1,15 @@
 import { useParams } from "react-router-dom";
-import { ImageField, InputField, TextAreaField } from "../../components/Inputs.jsx";
-import { SmallBorderButton, SmallFilledButton } from "../../components/Buttons.jsx";
+import {
+  ImageField,
+  InputField,
+  TextAreaField,
+} from "../../components/Inputs.jsx";
+import {
+  SmallBorderButton,
+  SmallFilledButton,
+} from "../../components/Buttons.jsx";
 import MessagePopup from "../../components/MsgPopup.jsx";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import api from "../../api/api.js";
 
@@ -82,6 +89,8 @@ const UpdateProject = () => {
     reader.readAsDataURL(file);
   };
 
+  const inputRefs = useRef([]);
+
   const handleRemoveImage = (index) => {
     setImages((prevImages) => {
       const updated = [...prevImages];
@@ -101,8 +110,6 @@ const UpdateProject = () => {
       inputRefs.current[index].value = "";
     }
   };
-
-  const inputRefs = useRef([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -147,12 +154,12 @@ const UpdateProject = () => {
 
       <p className="leading-normal inline-block my-6">
         Veuillez utiliser la syntaxe{" "}
-        <strong className="font-semibold">Markdown</strong> pour rédiger le
-        contenu des pages.
+        <strong className="font-semibold">Markdown</strong> pour rédiger la
+        saisie de l'objectif.
         <br />
         Voici le lien vers l'aide-mémoire Markdown :&nbsp;
         <a
-          className="underline p-0.5 hover:no-underline hover:bg-hover-main rounded-md"
+          className="underline hover:p-0.5 hover:no-underline hover:bg-hover-main rounded-md"
           href="https://www.markdownguide.org/cheat-sheet/"
           title="https://www.markdownguide.org/cheat-sheet/"
           target="_blank"
@@ -162,13 +169,15 @@ const UpdateProject = () => {
         </a>
         <br />
         <strong className="font-semibold">Remarque :</strong> évitez d'utiliser
-        le symbole <code>#</code> pour les titres de niveau&nbsp;1 (heading 1),
-        car cela peut provoquer une erreur d'accessibilité dans la hiérarchie
-        des titres du site.
+        le.s symbole.s <code>#</code> pour les titres de
+        niveau&nbsp;1,&nbsp;2,&nbsp;3 (heading 1, heading 2, heading 3), car
+        cela peut provoquer une erreur d'accessibilité dans la hiérarchie des
+        titres du site.
       </p>
 
       <form onSubmit={handleSubmit} className="flex flex-col m-5">
         <InputField
+          isRequired={true}
           type="text"
           label="Titre *"
           name="titre"
@@ -178,6 +187,7 @@ const UpdateProject = () => {
         />
 
         <InputField
+          isRequired={true}
           type="text"
           label="Année *"
           name="annee"
@@ -187,44 +197,46 @@ const UpdateProject = () => {
         />
 
         <TextAreaField
+          isRequired={true}
           label="Objectif en français *"
           name="objectif_fr"
           placeholder="Mini description du projet en français"
           value={values.objectif_fr}
-          onChange={(e) => setValues({ ...values, objectif_fr: e.target.value })}
+          onChange={(e) =>
+            setValues({ ...values, objectif_fr: e.target.value })
+          }
         />
-        
+
         <TextAreaField
+          isRequired={true}
           label="Objectif en anglais *"
           name="objectif_en"
           placeholder="Mini description du projet en anglais"
           value={values.objectif_en}
-          onChange={(e) => setValues({ ...values, objectif_en: e.target.value })}
+          onChange={(e) =>
+            setValues({ ...values, objectif_en: e.target.value })
+          }
         />
 
-        <p className="text-dynamic-base font-medium font-main">
-          Ajout des membres
-        </p>
+        <p className="font-medium font-main my-4">Ajout des membres</p>
 
         {membres.map((membre, index) => (
           <div key={index}>
-            <div className="flex items-center justify-between my-3">
-              <p className="text-dynamic-base font-medium font-main">
-                Membre {index + 1}
-              </p>
+            <div className="flex items-center justify-between">
+              <p className="font-medium font-main">Membre {index + 1}</p>
 
               <button
                 type="button"
                 onClick={() => {
                   setMembres((prev) => prev.filter((_, idx) => idx !== index));
                 }}
-                className="cursor-pointer hover:translate-[1px]"
+                className="cursor-pointer p-0.5 rounded-md hover:bg-neutral-300"
               >
                 <Trash2
                   aria-label="Supprimer un membre du projet"
                   size={30}
                   className="text-[#8B0000] dark:text-red-400"
-                  strokeWidth={2.25}
+                  strokeWidth={2}
                 />
               </button>
             </div>
@@ -232,6 +244,7 @@ const UpdateProject = () => {
             <div className="flex items-start justify-between mb-3">
               <div className="flex flex-col w-1/2 mr-2">
                 <InputField
+                  isRequired={membres.length > 0}
                   type="text"
                   label="Prénom *"
                   placeholder={`Prénom du membre ${index + 1}`}
@@ -252,6 +265,7 @@ const UpdateProject = () => {
 
               <div className="flex flex-col w-1/2 ml-2">
                 <InputField
+                  isRequired={membres.length > 0}
                   type="text"
                   label="Nom *"
                   name={`nom${index + 1}`}
@@ -282,15 +296,33 @@ const UpdateProject = () => {
               }
             }}
             disabled={membres.length >= 5}
-            className="flex items-center cursor-pointer hover:translate-[1px]"
+            className={`flex items-center text-black dark:text-dark-white border-2 border-black dark:border-dark-white font-main font-medium rounded-xl h-fit px-5 py-2.5 mx-2 my-1 max-md:w-42 max-md:mx-3 text-nav leading-normal 
+                      ${
+                        membres.length >= 5
+                          ? "cursor-not-allowed opacity-75"
+                          : "cursor-pointer hover:bg-neutral-300"
+                      }`}
           >
-            <Plus
-              aria-label="Ajouter un membre du projet"
-              size={30}
-              className="text-[#232323] dark:text-gray-300"
-              strokeWidth={2.8}
-            />
-            <p>Ajouter un membre</p>
+            {membres.length >= 5 ? (
+              <X
+                aria-label="Nombre maximal de membres atteint"
+                size={32}
+                className="text-[#232323] dark:text-gray-300 mr-2"
+                strokeWidth={2.8}
+              />
+            ) : (
+              <Plus
+                aria-label="Ajouter un membre au projet"
+                size={32}
+                className="text-[#232323] dark:text-gray-300 mr-2"
+                strokeWidth={2.8}
+              />
+            )}
+            <p>
+              {membres.length >= 5
+                ? "Vous ne pouvez pas ajouter plus de 5 membres."
+                : "Ajouter un membre au projet"}
+            </p>
           </button>
         </div>
 

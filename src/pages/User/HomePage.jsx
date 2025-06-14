@@ -11,9 +11,9 @@ const HomePage = () => {
 
   const fetchData = async () => {
     try {
-      const contentResponse = await api.get(`/pages/accueil?lang=${lang}`);
+      const contentResponse = await api.get(`/pages/title/accueil?lang=${lang}`);
       const imagesResponse = await api.get(
-        `/pages-images/accueil?lang=${lang}`
+        `/pages-images/title/accueil?lang=${lang}`
       );
 
       setPageAccueil(contentResponse.data);
@@ -95,8 +95,8 @@ const HomePage = () => {
                 key={img.idMedia}
                 src={fullPath}
                 alt={img.alt || ""}
-                width={400}
-                className="w-[23rem] h-[23rem] max-large-medium:w-[26rem] max-large-medium:h-[26rem] max-xl:w-[18rem] max-xl:h-[18rem] mx-auto max-large-medium:mb-6 readerMode:my-4"
+                width={300}
+                className="w-[23rem] h-auto rounded-4xl max-large-medium:w-[26rem] max-large-medium:h-[26rem] max-xl:w-[18rem] max-xl:h-[18rem] mx-auto max-large-medium:mb-6 readerMode:my-4"
               />
             );
           })}

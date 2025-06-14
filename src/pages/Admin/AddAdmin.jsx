@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import api from "../../api/api.js";
 import MessagePopup from "../../components/MsgPopup.jsx";
-import { InputField } from "../../components/Inputs.jsx";
+import { InputField, SelectField } from "../../components/Inputs.jsx";
 import {
   SmallBorderButton,
   SmallFilledButton,
@@ -56,7 +56,7 @@ const AddAdmin = () => {
   };
 
   return (
-    <main className="mx-14 mt-20">
+    <main className="mx-14 my-20">
       <h1 className="text-display font-semibold ">
         Ajouter un nouvel administrateur
       </h1>
@@ -66,9 +66,10 @@ const AddAdmin = () => {
       )}
 
       <form onSubmit={handleSubmit} className="flex flex-col m-5">
-        <div className="flex items-start justify-between mb-3">
+        <div className="flex items-start justify-between">
           <div className="flex flex-col w-1/2 mr-3">
             <InputField
+              isRequired={true}
               type="text"
               label="Prénom *"
               name="firstname"
@@ -82,6 +83,7 @@ const AddAdmin = () => {
 
           <div className="flex flex-col w-1/2">
             <InputField
+              isRequired={true}
               type="text"
               label="Nom *"
               name="lastname"
@@ -94,9 +96,10 @@ const AddAdmin = () => {
           </div>
         </div>
 
-        <div className="flex items-start justify-between mb-3">
+        <div className="flex items-start justify-between">
           <div className="flex flex-col w-1/2 mr-3">
             <InputField
+              isRequired={true}
               type="email"
               label="E-mail *"
               name="lastname"
@@ -107,25 +110,21 @@ const AddAdmin = () => {
           </div>
 
           <div className="flex flex-col w-1/2">
-            <label htmlFor="role" className="font-main font-medium my-1">
-              Rôle *
-            </label>
-            <select
+            <SelectField
+              isRequired={true}
+              label="Rôle *"
+              placeholder="Sélectionnez une option"
               name="role"
-              id="role"
-              className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.95rem] mr-2 outline-gray-500 dark:text-black dark:bg-gray-400 dark:border-gray-700"
               onChange={(e) => setValues({ ...values, role: e.target.value })}
-            >
-              <option value="">Selectionez une option</option>
-              <option value="Super admin">Super admin</option>
-              <option value="Admin">Admin</option>
-            </select>
+              values={["Super admin", "Admin"]}
+            />
           </div>
         </div>
 
-        <div className="flex items-start justify-between mb-3">
+        <div className="flex items-start justify-between">
           <div className="flex flex-col w-1/2 mr-3">
             <InputField
+              isRequired={true}
               type="text"
               label="Nom d'utilisateur *"
               name="username"

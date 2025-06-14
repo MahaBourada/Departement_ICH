@@ -13,9 +13,11 @@ const LabPage = () => {
 
   const fetchData = async () => {
     try {
-      const contentResponse = await api.get(`/pages/lab-chart?lang=${lang}`);
+      const contentResponse = await api.get(
+        `/pages/title/lab-chart?lang=${lang}`
+      );
       const imagesResponse = await api.get(
-        `/pages-images/lab-chart?lang=${lang}`
+        `/pages-images/title/lab-chart?lang=${lang}`
       );
 
       setPageLab(contentResponse.data);
@@ -25,14 +27,25 @@ const LabPage = () => {
     }
   };
 
-  function getByPosition(images, pos) {
+  function getSectionByPosition(sections, pos) {
+    return (
+      sections.find((section) => section.ordre_positionnement === pos) || {}
+    );
+  }
+
+  const section1 = getSectionByPosition(pageLab, 1);
+  const section2 = getSectionByPosition(pageLab, 2);
+  const section3 = getSectionByPosition(pageLab, 3);
+  const section4 = getSectionByPosition(pageLab, 4);
+
+  function getImageByPosition(images, pos) {
     return images.find((img) => img.ordre_positionnement === pos) || {};
   }
 
-  const img1 = getByPosition(images, 1);
-  const img2 = getByPosition(images, 2);
-  const img3 = getByPosition(images, 3);
-  const img4 = getByPosition(images, 4);
+  const img1 = getImageByPosition(images, 1);
+  const img2 = getImageByPosition(images, 2);
+  const img3 = getImageByPosition(images, 3);
+  const img4 = getImageByPosition(images, 4);
 
   useEffect(() => {
     fetchData();
@@ -75,9 +88,9 @@ const LabPage = () => {
           {img1.path && (
             <img
               src={`${import.meta.env.VITE_BASE_URL}/${
-                getByPosition(images, 1).path
+                getImageByPosition(images, 1).path
               }`}
-              alt={getByPosition(images, 1).alt || ""}
+              alt={getImageByPosition(images, 1).alt || ""}
               width={400}
               className="minimal:hidden w-[19rem] h-[19rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] readerMode:mx-auto"
             />
@@ -85,7 +98,7 @@ const LabPage = () => {
 
           <ReactMarkdown
             className="my-3 mx-7 max-sm:mx-0 markdown"
-            children={String(pageLab[0]?.texte)}
+            children={String(section1.texte)}
           />
         </div>
 
@@ -97,15 +110,15 @@ const LabPage = () => {
           >
             <ReactMarkdown
               className="markdown"
-              children={String(pageLab[1]?.texte)}
+              children={String(section2.texte)}
             />
           </div>
           {img2.path && (
             <img
               src={`${import.meta.env.VITE_BASE_URL}/${
-                getByPosition(images, 2).path
+                getImageByPosition(images, 2).path
               }`}
-              alt={getByPosition(images, 2).alt || ""}
+              alt={getImageByPosition(images, 2).alt || ""}
               width={400}
               className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px]"
             />
@@ -114,14 +127,16 @@ const LabPage = () => {
 
         <ReactMarkdown
           className="markdown my-10"
-          children={String(pageLab[2]?.texte)}
+          children={String(section3.texte)}
         />
 
         <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse">
-          <ReactMarkdown
-            className="markdown my-10"
-            children={String(pageLab[3]?.texte)}
-          />
+          {section4.texte && (
+            <ReactMarkdown
+              className="markdown my-10"
+              children={String(section4.texte)}
+            />
+          )}
 
           <div
             className={`m-auto ${
@@ -133,9 +148,9 @@ const LabPage = () => {
             {img3.path && (
               <img
                 src={`${import.meta.env.VITE_BASE_URL}/${
-                  getByPosition(images, 3).path
+                  getImageByPosition(images, 3).path
                 }`}
-                alt={getByPosition(images, 3).alt || ""}
+                alt={getImageByPosition(images, 3).alt || ""}
                 width={400}
                 className="minimal:hidden w-[27rem] h-[27rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] my-5"
               />
@@ -143,9 +158,9 @@ const LabPage = () => {
             {img4.path && (
               <img
                 src={`${import.meta.env.VITE_BASE_URL}/${
-                  getByPosition(images, 4).path
+                  getImageByPosition(images, 4).path
                 }`}
-                alt={getByPosition(images, 4).alt || ""}
+                alt={getImageByPosition(images, 4).alt || ""}
                 width={400}
                 className="minimal:hidden w-[27rem] h-[27rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] my-5"
               />

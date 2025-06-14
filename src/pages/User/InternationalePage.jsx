@@ -14,10 +14,10 @@ const InternationalePage = () => {
   const fetchData = async () => {
     try {
       const contentResponse = await api.get(
-        `/pages/collaboration-internationale?lang=${lang}`
+        `/pages/title/collaboration-internationale?lang=${lang}`
       );
       const imagesResponse = await api.get(
-        `/pages-images/collaboration-internationale?lang=${lang}`
+        `/pages-images/title/collaboration-internationale?lang=${lang}`
       );
 
       setPageInternational(contentResponse.data);

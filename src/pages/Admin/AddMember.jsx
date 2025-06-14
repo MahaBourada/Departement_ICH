@@ -104,6 +104,7 @@ const AddMember = () => {
         <div className="flex items-start justify-between mb-3">
           <div className="flex flex-col w-1/2 mr-2">
             <InputField
+              isRequired={true}
               type="text"
               label="Prénom *"
               name="prenom"
@@ -115,6 +116,7 @@ const AddMember = () => {
 
           <div className="flex flex-col w-1/2 ml-2">
             <InputField
+              isRequired={true}
               type="text"
               label="Nom *"
               name="nom"
@@ -133,41 +135,61 @@ const AddMember = () => {
           onChange={handleChange}
         />
 
+        <p id="fonction-section-note" className="text-gray-700 mb-2">
+          Les champs <strong>Fonction</strong> et{" "}
+          <strong>Section disciplinaire</strong> sont obligatoires uniquement si
+          le titre est <em>Directeur du département</em> ou{" "}
+          <em>Enseignant(e)</em>.
+        </p>
+
         <div className="flex items-start justify-between mb-3">
-          <SelectField
-            label="Titre *"
-            placeholder="Selectionez un titre"
-            name="titre"
-            onChange={(e) => setValues({ ...values, titre: e.target.value })}
-            values={[
-              "Directeur du département",
-              "Administration",
-              "Enseignant(e)",
-            ]}
-          />
+          <div className="flex flex-col w-1/2 mr-2">
+            <SelectField
+              isRequired={true}
+              label="Titre *"
+              placeholder="Selectionez un titre"
+              name="titre"
+              onChange={(e) => setValues({ ...values, titre: e.target.value })}
+              values={[
+                "Directeur du département",
+                "Administration",
+                "Enseignant(e)",
+              ]}
+            />
+          </div>
 
           <div className="flex flex-col w-1/2 ml-2">
             <InputField
+              isRequired={
+                values.titre === "Directeur du département" ||
+                values.titre === "Enseignant(e)"
+              }
               type="text"
-              label="Fonction *"
+              label="Fonction"
               name="fonction"
               placeholder="ex : Maître de conférences"
               value={values.fonction}
               onChange={(e) =>
                 setValues({ ...values, fonction: e.target.value })
               }
+              aria-describedby="fonction-section-note"
             />
           </div>
         </div>
 
         <div className="flex flex-col mb-3">
           <InputField
+            isRequired={
+              values.titre === "Directeur du département" ||
+              values.titre === "Enseignant(e)"
+            }
             type="text"
-            label="Section disciplinaire *"
+            label="Section disciplinaire"
             name="section"
             placeholder="ex : 61e section (CNU) : Génie informatique, Automatique, Traitement du signal"
             value={values.section}
             onChange={(e) => setValues({ ...values, section: e.target.value })}
+            aria-describedby="fonction-section-note"
           />
         </div>
 

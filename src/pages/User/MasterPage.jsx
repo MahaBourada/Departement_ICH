@@ -13,8 +13,8 @@ const MasterPage = () => {
 
   const fetchData = async () => {
     try {
-      const contentResponse = await api.get(`/pages/master?lang=${lang}`);
-      const imagesResponse = await api.get(`/pages-images/master?lang=${lang}`);
+      const contentResponse = await api.get(`/pages/title/master?lang=${lang}`);
+      const imagesResponse = await api.get(`/pages-images/title/master?lang=${lang}`);
 
       setPageMaster(contentResponse.data);
       setImages(imagesResponse.data);
