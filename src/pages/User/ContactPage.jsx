@@ -1,12 +1,24 @@
-import { X } from "lucide-react";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import MessagePopup from "../../components/MsgPopup";
 import { SmallBorderButton, SmallFilledButton } from "../../components/Buttons";
-import { InputField, TextAreaField } from "../../components/Inputs";
+import {
+  InputField,
+  SelectField,
+  TextAreaField,
+} from "../../components/Inputs";
+import api from "../../api/api";
 
 const ContactPage = () => {
   const { t } = useTranslation();
+  const [values, setValues] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    subject: "",
+    bodyMessage: "",
+  });
+
   const [msg, setMsg] = useState("");
   const [msgShow, setMsgShow] = useState(false);
   const [msgStatus, setMsgStatus] = useState(0);
@@ -15,12 +27,24 @@ const ContactPage = () => {
     setMsgShow(false);
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-
+    setMsgStatus(1);
     setMsgShow(true);
-    setMsgStatus(200);
-    setMsg("Message envoyé");
+
+    try {
+      await api.post("/contact", values);
+
+      setMsgStatus(200);
+      setMsgShow(true);
+      setMsg("Message envoyé");
+    } catch (error) {
+      console.error(error);
+
+      setMsgStatus(0);
+      setMsgShow(true);
+      setMsg("Erreur lors de l'envoi");
+    }
   };
 
   return (
@@ -54,59 +78,69 @@ const ContactPage = () => {
         </div>
 
         <form
+          id="contactForm"
           onSubmit={(e) => onSubmit(e)}
           className="flex flex-col w-[45%] readerMode:w-full max-large-medium:w-full mr-7"
+          method="POST"
         >
           <div className="flex flex-row items-start justify-between mb-3 max-md:flex-col">
             <div className="w-1/2 max-md:w-full mr-3">
               <InputField
+                isRequired={true}
                 type="text"
                 label={t("contact.form.firstname_label") + " *"}
                 name="firstname"
                 placeholder="Jane"
+                value={values.firstName}
+                onChange={(e) =>
+                  setValues({ ...values, firstName: e.target.value })
+                }
               />
             </div>
             <div className="w-1/2 max-md:w-full">
               <InputField
+                isRequired={true}
                 type="text"
                 label={t("contact.form.lastname_label") + " *"}
                 name="lastname"
                 placeholder="DOE"
+                value={values.lastName}
+                onChange={(e) =>
+                  setValues({ ...values, lastName: e.target.value })
+                }
               />
             </div>
           </div>
 
           <InputField
+            isRequired={true}
             type="email"
             label="E-mail *"
             name="email"
             placeholder={t("contact.form.mail_placeholder") + " *"}
+            value={values.email}
+            onChange={(e) => setValues({ ...values, email: e.target.value })}
           />
 
-          <div className="flex flex-col my-3">
-            <label
-              htmlFor={t("contact.form.object.label")}
-              className="font-main font-medium my-1"
-            >
-              {t("contact.form.object.label")} *
-            </label>
-            <select
-              name={t("contact.form.object.label")}
-              id={t("contact.form.object.label")}
-              className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.95rem] mr-2 outline-gray-500 dark:text-black dark:bg-gray-400 dark:border-gray-700"
-            >
-              <option value="">{t("contact.form.object.placeholder")}</option>
-              <option value="feedback">{t("contact.form.object.1")}</option>
-              <option value="reneseignements">
-                {t("contact.form.object.2")}
-              </option>
-            </select>
-          </div>
+          <SelectField
+            isRequired={true}
+            label={t("contact.form.subject.label") + " *"}
+            placeholder={t("contact.form.subject.placeholder")}
+            name="subject"
+            value={values.subject}
+            onChange={(e) => setValues({ ...values, subject: e.target.value })}
+            values={[t("contact.form.subject.1"), t("contact.form.subject.2")]}
+          />
 
           <TextAreaField
+            isRequired={true}
             label="Message *"
             placeholder={t("contact.form.message_placeholder")}
             name="bodyMessage"
+            value={values.bodyMessage}
+            onChange={(e) =>
+              setValues({ ...values, bodyMessage: e.target.value })
+            }
           />
 
           <div className="flex flex-row justify-end mt-4 max-md:flex-col-reverse max-md:items-end">

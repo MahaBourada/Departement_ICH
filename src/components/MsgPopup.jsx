@@ -1,19 +1,19 @@
 // components/MessagePopup.jsx
 import { X } from "lucide-react";
 import { useEffect } from "react";
+import { SyncLoader } from "react-spinners";
 
 const MessagePopup = ({ message, status, onClose }) => {
   useEffect(() => {
-    if (!message) return; // Do nothing if no message
+    // Only auto-close if status is success or error
+    if (status === 200 || status === 0) {
+      const timer = setTimeout(() => {
+        onClose();
+      }, 4000);
 
-    const timer = setTimeout(() => {
-      onClose();
-    }, 4000);
-
-    return () => clearTimeout(timer);
-  }, [message, onClose]); // include dependencies
-
-  if (!message) return null;
+      return () => clearTimeout(timer);
+    }
+  }, [status, onClose]); // include dependencies
 
   return (
     <div
@@ -28,14 +28,26 @@ const MessagePopup = ({ message, status, onClose }) => {
           <X aria-label="Fermer" size={30} color="#232323" strokeWidth={3} />
         </button>
       </div>
-      {status == 200 ? (
+      {status === 1 ? (
+        <>
+          <div className="flex justify-center items-center py-6">
+            <SyncLoader
+              color={"#0A0A0A"}
+              size={20}
+              aria-label="Chargement du Spinner"
+            />
+          </div>
+        </>
+      ) : status === 200 ? (
         <>
           <img
             src="/ich/assets/vectors/Success.svg"
             alt="Succès"
             className="m-auto w-36"
           />
-          <p className="font-main text-5xl font-semibold text-center py-3 text-[#008609]">Succès</p>
+          <p className="font-main text-5xl font-semibold text-center py-3 text-[#008609]">
+            Succès
+          </p>
         </>
       ) : (
         <>
@@ -44,10 +56,15 @@ const MessagePopup = ({ message, status, onClose }) => {
             alt="Erreur"
             className="m-auto w-36"
           />
-          <p className="font-main text-5xl font-semibold text-center py-3 text-[#8B0000]">Erreur</p>
+          <p className="font-main text-5xl font-semibold text-center py-3 text-[#8B0000]">
+            Erreur
+          </p>
         </>
       )}
-      <p className="py-5 m-auto text-center text-wrap">{message}</p>
+
+      <p className="py-5 m-auto text-center text-wrap">
+        {status === 1 ? "Envoi en cours..." : message}
+      </p>
     </div>
   );
 };

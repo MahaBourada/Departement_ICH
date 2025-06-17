@@ -56,7 +56,7 @@
       "firstname_label": "Prénom",
       "lastname_label": "Nom",
       "mail_placeholder": "exemple@mail.com",
-      "object": {
+      "subject": {
         "label": "Objet",
         "placeholder": "Sélectionnez une option",
         "1": "Feedback",
