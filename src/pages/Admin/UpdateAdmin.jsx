@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../../api/api.js";
 import MessagePopup from "../../components/MsgPopup.jsx";
 import { InputField, SelectField } from "../../components/Inputs.jsx";
@@ -6,14 +6,18 @@ import {
   SmallBorderButton,
   SmallFilledButton,
 } from "../../components/Buttons.jsx";
+import Switch from "@mui/material/Switch";
+import { useParams } from "react-router-dom";
 
-const AddAdmin = () => {
+const UpdateAdmin = () => {
+  const { id } = useParams();
   const [values, setValues] = useState({
     firstname: "",
     lastname: "",
     email: "",
     username: "",
     role: "",
+    regpass: false,
   });
 
   const [msg, setMsg] = useState("");
@@ -24,12 +28,32 @@ const AddAdmin = () => {
     setMsgShow(false);
   };
 
+  const fetchData = async () => {
+    try {
+      const response = await api.get(`/admin/${id}`);
+
+      setValues({
+        ...response.data,
+        regpass: false,
+      });
+    } catch (error) {
+      setMsgShow(true);
+      setMsgStatus(0);
+      setMsg(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (
       !values.firstname ||
       !values.lastname ||
+      !values.username ||
       !values.email ||
       !values.role
     ) {
@@ -38,10 +62,10 @@ const AddAdmin = () => {
       return;
     }
 
-    const { username, ...data } = values;
+    const { createdAt, username, ...data } = values;
 
     try {
-      const response = await api.post("/admin", data);
+      const response = await api.put(`/admin/${id}`, data);
 
       setMsgShow(true);
       setMsgStatus(200);
@@ -59,7 +83,8 @@ const AddAdmin = () => {
   return (
     <main className="mx-14 my-20">
       <h1 className="text-display font-semibold ">
-        Ajouter un nouvel administrateur
+        Gestion de l'administrateur {values.firstname}{" "}
+        {values.lastname.toUpperCase()} ({values.username})
       </h1>
 
       {msgShow && (
@@ -116,10 +141,42 @@ const AddAdmin = () => {
               label="Rôle *"
               placeholder="Sélectionnez une option"
               name="role"
+              initialValue={values.role}
               onChange={(e) => setValues({ ...values, role: e.target.value })}
               values={["Super admin", "Admin"]}
             />
           </div>
+        </div>
+
+        <div className="w-1/2 mr-3 leading-normal my-4">
+          <div className="flex flex-row items-center justify-between my-2">
+            <label
+              id="etiquette-switch-mdp"
+              htmlFor="switch-mdp"
+              className="font-main font-medium"
+            >
+              Régénérer le mot de passe
+            </label>
+
+            <Switch
+              id="switch-mdp"
+              checked={values.regpass}
+              onChange={(e) =>
+                setValues({ ...values, regpass: e.target.checked })
+              }
+              size="medium"
+              inputProps={{
+                "aria-labelledby": "etiquette-switch-mdp",
+                "aria-describedby": "switch-mdp-desc",
+                role: "switch",
+              }}
+            />
+          </div>
+
+          <p id="switch-mdp-desc" className="text-gray-800 my-1 mx-2">
+            Activez pour générer automatiquement un nouveau mot de passe
+            temporaire.
+          </p>
         </div>
 
         <div className="flex justify-end mt-3">
@@ -135,7 +192,7 @@ const AddAdmin = () => {
             type="submit"
             bgColor="bg-accent"
             color="text-black"
-            text="Ajouter"
+            text="Modifier"
           />
         </div>
       </form>
@@ -143,4 +200,4 @@ const AddAdmin = () => {
   );
 };
 
-export default AddAdmin;
+export default UpdateAdmin;

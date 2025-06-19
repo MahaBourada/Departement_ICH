@@ -25,6 +25,7 @@ import PagesListPage from "./pages/Admin/PagesListPage";
 import AddMember from "./pages/Admin/AddMember";
 import AddProject from "./pages/Admin/AddProject";
 import UpdateProject from "./pages/Admin/UpdateProject";
+import UpdateAdmin from "./pages/Admin/UpdateAdmin";
 
 function App() {
   return (
@@ -55,7 +56,11 @@ function App() {
         <Route path="/admin" element={<LoginPage />} />
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="tableau-de-bord" element={<Dashboard />} />
-          <Route path="tableau-de-bord/add-admin" element={<AddAdmin />} />
+          <Route path="tableau-de-bord/ajouter-admin" element={<AddAdmin />} />
+          <Route
+            path="tableau-de-bord/gestion-admin/:id"
+            element={<UpdateAdmin />}
+          />
 
           <Route path="gestion-pages" element={<PagesListPage />} />
           <Route path="gestion-pages/:idPage" element={<UpdatePage />} />

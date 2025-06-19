@@ -62,7 +62,7 @@ const DashboardPage = () => {
           )}
 
           <Link
-            to="/admin/tableau-de-bord/add-admin"
+            to="/admin/tableau-de-bord/ajouter-admin"
             className="flex flex-row items-center cursor-pointer bg-accent dark:bg-dark-accent text-black font-main font-medium rounded-xl h-fit px-5 py-2.5 mx-2 my-1 hover:bg-dark-accent max-md:w-42 max-md:mx-3 text-nav leading-normal"
           >
             <Plus
@@ -107,7 +107,7 @@ const DashboardPage = () => {
                 <td className="h-full px-4">
                   <div className="flex items-center justify-center space-x-2">
                     <Link
-                      //to={`/admin/gestion-projets/${project.idProjet}`}
+                      to={`/admin/tableau-de-bord/gestion-admin/${admin.idAdmin}`}
                       type="button"
                       className="cursor-pointer mr-2 p-0.5 rounded-md hover:bg-neutral-300"
                     >
@@ -179,7 +179,7 @@ const DashboardPage = () => {
             </h1>
 
             <div className="mx-3">
-              <h2>Meow</h2>
+              <h2></h2>
             </div>
           </div>
         </aside> */}
