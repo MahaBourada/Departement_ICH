@@ -17,6 +17,27 @@ export const getAllAdmins = (req, res) => {
   );
 };
 
+export const getAdminById = (req, res) => {
+  const id = req.params.idAdmin;
+
+  const sql = `SELECT first_name AS firstname, last_name AS lastname, username, createdAt, email, type AS role 
+              FROM admin
+              JOIN roles ON admin.idRole = roles.idRole 
+              WHERE admin.idAdmin = ?`;
+
+  db.query(sql, [id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Admin not found" });
+    }
+
+    res.json(results[0]);
+  });
+};
+
 export const addAdmin = (req, res) => {
   const password = generator.generate({
     length: 10,
@@ -36,6 +57,10 @@ export const addAdmin = (req, res) => {
 
     const idRole = roleResult[0].idRole;
 
+    const username =
+      adminBody.firstname.trim().slice(0, 1).toLowerCase() +
+      adminBody.lastname.trim().toLowerCase();
+
     const sqlAdmin =
       "INSERT INTO admin (idAdmin, first_name, last_name, username, password, email, createdAt, idRole) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -46,7 +71,7 @@ export const addAdmin = (req, res) => {
         id,
         adminBody.firstname,
         adminBody.lastname,
-        adminBody.username,
+        username,
         hash,
         adminBody.email,
         date,
@@ -64,6 +89,67 @@ export const addAdmin = (req, res) => {
         });
       });
     });
+  });
+};
+
+export const updateAdmin = (req, res) => {
+  const { firstname, lastname, email, role, regpass } = req.body;
+  const { idAdmin } = req.params;
+
+  const username =
+    firstname.trim().slice(0, 1).toLowerCase() + lastname.trim().toLowerCase();
+
+  const roleSql = `SELECT idRole FROM roles WHERE type = ?`;
+
+  db.query(roleSql, [role], (err, results) => {
+    if (err) return res.json({ Error: err });
+
+    if (results.length === 0)
+      return res.status(404).json({ message: "Role not found" });
+    const idRole = results[0].idRole;
+
+    if (regpass) {
+      const password = generator.generate({
+        length: 10,
+        numbers: true,
+      });
+
+      const salt = 10;
+
+      bcrypt.hash(password.toString(), salt, (err, hash) => {
+        if (err) return res.json({ Error: err });
+        const updateSql = `UPDATE admin
+                SET first_name = ?, last_name = ?, email = ?, idRole = ?, password = ?
+                WHERE idAdmin = ?`;
+
+        const values = [firstname, lastname, email, idRole, hash, idAdmin];
+
+        db.query(updateSql, values, (err, results) => {
+          if (err) return res.json({ Error: err });
+
+          sendRegenerationEmail(email, username, password);
+
+          res.json({
+            Success: "Admin updated successfully",
+            message: `Admin ${firstname} ${lastname.toUpperCase()} mis à jour`,
+          });
+        });
+      });
+    } else {
+      const updateSql = `UPDATE admin
+                SET first_name = ?, last_name = ?, email = ?, idRole = ?
+                WHERE idAdmin = ?`;
+      const values = [firstname, lastname, email, idRole, idAdmin];
+
+      db.query(updateSql, values, (err, results) => {
+        if (err) return res.json({ Error: err });
+
+        res.json({
+          Success: "Admin updated successfully",
+          message: `Admin ${firstname} ${lastname.toUpperCase()} mis à jour`,
+        });
+      });
+    }
   });
 };
 
@@ -97,8 +183,7 @@ const sendPasswordEmail = (email, username, password) => {
     from: process.env.EMAIL_USER,
     to: email,
     subject: "Votre compte administrateur a été créé",
-    text: `
-Bonjour,
+    text: `Bonjour,
 
 Votre compte administrateur a été créé.
 
@@ -106,7 +191,41 @@ Voici vos informations d'identification :
 Nom d'utilisateur : ${username}
 Mot de passe : ${password}
 
-Département Ingénierie - Cognition - Handicap
+Le département Ingénierie - Cognition - Handicap
+          `,
+  };
+
+  transporter.sendMail(mailOptions, (err, info) => {
+    if (err) {
+      console.log("Error sending email:", err);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
+};
+
+const sendRegenerationEmail = (email, username, password) => {
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: email,
+    subject: "Votre mot de passe a été régénéré",
+    text: `Bonjour,
+
+Votre mot de passe a été régénéré.
+
+Voici vos informations d'identification : 
+Nom d'utilisateur : ${username}
+Mot de passe : ${password}
+
+Le département Ingénierie - Cognition - Handicap
           `,
   };
 

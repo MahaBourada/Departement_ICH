@@ -35,7 +35,7 @@ Voici un résumé de votre message :
 ${bodyMessage}
 ------------------------
 
-Le département ICH.`,
+Le département Ingénierie - Cognition - Handicap.`,
   };
 
   transporter.sendMail(mailOptions, (err, info) => {
