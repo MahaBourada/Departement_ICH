@@ -3,15 +3,15 @@ import {
   ImageField,
   InputField,
   TextAreaField,
-} from "../../components/Inputs.jsx";
+} from "../../../components/Inputs.jsx";
 import {
   SmallBorderButton,
   SmallFilledButton,
-} from "../../components/Buttons.jsx";
-import MessagePopup from "../../components/MsgPopup.jsx";
+} from "../../../components/Buttons.jsx";
+import { MessagePopup } from "../../../components/MsgPopup.jsx";
 import { Plus, Trash2, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import api from "../../api/api.js";
+import api from "../../../api/api.js";
 
 const UpdateProject = () => {
   const { id } = useParams();
@@ -159,7 +159,7 @@ const UpdateProject = () => {
         <br />
         Voici le lien vers l'aide-mémoire Markdown :&nbsp;
         <a
-          className="underline hover:p-0.5 hover:no-underline hover:bg-hover-main rounded-md"
+          className="underline p-0.5 hover:no-underline hover:bg-hover-main rounded-md"
           href="https://www.markdownguide.org/cheat-sheet/"
           title="https://www.markdownguide.org/cheat-sheet/"
           target="_blank"
@@ -198,6 +198,7 @@ const UpdateProject = () => {
 
         <TextAreaField
           isRequired={true}
+          maxLength={500}
           label="Objectif en français *"
           name="objectif_fr"
           placeholder="Mini description du projet en français"
@@ -209,6 +210,7 @@ const UpdateProject = () => {
 
         <TextAreaField
           isRequired={true}
+          maxLength={500}
           label="Objectif en anglais *"
           name="objectif_en"
           placeholder="Mini description du projet en anglais"

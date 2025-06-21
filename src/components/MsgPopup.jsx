@@ -1,9 +1,8 @@
-// components/MessagePopup.jsx
 import { X } from "lucide-react";
 import { useEffect } from "react";
 import { SyncLoader } from "react-spinners";
 
-const MessagePopup = ({ message, status, onClose }) => {
+export const MessagePopup = ({ message, status, onClose }) => {
   useEffect(() => {
     // Only auto-close if status is success or error
     if (status === 200 || status === 0) {
@@ -69,4 +68,28 @@ const MessagePopup = ({ message, status, onClose }) => {
   );
 };
 
-export default MessagePopup;
+export const ConfirmationModal = ({ isOpen, onCancel, onConfirm, message }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
+      <div className="bg-neutral-100 rounded-2xl shadow-small p-6 w-1/3 text-center font-main">
+        <p className="font-medium mb-6">{message}</p>
+        <div className="flex justify-around">
+          <button
+            onClick={onCancel}
+            className="cursor-pointer bg-gray-300 px-4 py-2 rounded-lg hover:bg-gray-400"
+          >
+            Annuler
+          </button>
+          <button
+            onClick={onConfirm}
+            className="cursor-pointer bg-accent text-black px-4 py-2 rounded-lg hover:bg-dark-accent"
+          >
+            Confirmer
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};

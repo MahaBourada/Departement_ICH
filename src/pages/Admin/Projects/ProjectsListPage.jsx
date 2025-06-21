@@ -1,10 +1,20 @@
 import { Pencil, Plus, Trash2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import api from "../../api/api";
+import api from "../../../api/api";
+import { ConfirmationModal, MessagePopup } from "../../../components/MsgPopup";
 
 const ProjectsListPage = () => {
   const [projects, setProjects] = useState([]);
+  const [msg, setMsg] = useState("");
+  const [msgShow, setMsgShow] = useState(false);
+  const [msgStatus, setMsgStatus] = useState(0);
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const handleClose = () => {
+    setMsgShow(false);
+  };
 
   const fetchData = async () => {
     try {
@@ -17,16 +27,35 @@ const ProjectsListPage = () => {
     fetchData();
   }, []);
 
-  const handleDelete = async (idProjet) => {
+  const handleConfirmDelete = (project) => {
+    setSelectedProject(project);
+    setConfirmOpen(true);
+  };
+
+  const handleDelete = async () => {
     try {
       setProjects((prev) =>
-        prev.filter((project) => project.idProjet !== idProjet)
+        prev.filter((project) => project.idProjet !== selectedProject.idProjet)
       );
 
-      await api.delete(`projects/${idProjet}`);
+      const response = await api.delete(
+        `/projects/${selectedProject.idProjet}`
+      );
+
+      setMsgShow(true);
+      setMsgStatus(200);
+      setMsg(response.data.message);
     } catch (error) {
       console.error(error);
+    } finally {
+      setConfirmOpen(false);
+      setSelectedProject(null);
     }
+  };
+
+  const cancelDeletion = () => {
+    setConfirmOpen(false);
+    setSelectedProject(null);
   };
 
   return (
@@ -49,11 +78,24 @@ const ProjectsListPage = () => {
         </Link>
       </div>
 
+      {msgShow && (
+        <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
+      )}
+
       {projects.length === 0 && (
         <div className="m-auto w-fit mt-20 text-3xl font-medium">
           <h2>Aucun projet enregistré</h2>
         </div>
       )}
+
+      <ConfirmationModal
+        isOpen={confirmOpen}
+        onCancel={cancelDeletion}
+        onConfirm={handleDelete}
+        message={`Êtes-vous sûr de vouloir supprimer le projet ${
+          selectedProject?.titre || ""
+        } ?`}
+      />
 
       <table className="w-full mx-3 my-5">
         <caption className="sr-only">
@@ -101,7 +143,7 @@ const ProjectsListPage = () => {
                   <button
                     type="button"
                     className="cursor-pointer ml-2 p-0.5 rounded-md hover:bg-neutral-300"
-                    onClick={() => handleDelete(project.idProjet)}
+                    onClick={() => handleConfirmDelete(project)}
                   >
                     <Trash2
                       aria-label={`Supprimer le projet ${project.titre}`}

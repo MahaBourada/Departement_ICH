@@ -11,7 +11,9 @@ const HomePage = () => {
 
   const fetchData = async () => {
     try {
-      const contentResponse = await api.get(`/pages/title/accueil?lang=${lang}`);
+      const contentResponse = await api.get(
+        `/pages/title/accueil?lang=${lang}`
+      );
       const imagesResponse = await api.get(
         `/pages-images/title/accueil?lang=${lang}`
       );
@@ -71,14 +73,22 @@ const HomePage = () => {
 
           {/* Picture */}
           <div
-            className="w-[33rem] h-[33rem] bg-cover bg-center bg-no-repeat rounded-[50px] mx-auto max-xs:w-80 max-xs:h-80 max-sm:w-96 max-sm:h-96 max-md:w-[26rem] max-md:h-[26rem] max-xl:w-[28rem] max-xl:h-[26rem] max-md:mt-0 max-lg:mt-8 max-large-medium:mb-10 readerMode:mb-10"
-            style={{
-              backgroundImage: `url(${import.meta.env.VITE_BASE_URL}/${
+            className="w-[33rem] h-[33rem] rounded-[50px] overflow-hidden mx-auto
+                        max-xs:w-80 max-xs:h-80 
+                        max-sm:w-96 max-sm:h-96 
+                        max-md:w-[26rem] max-md:h-[26rem] 
+                        max-xl:w-[28rem] max-xl:h-[28rem]
+                        readerMode:mb-10
+                      "
+          >
+            <img
+              className="w-full h-full object-cover"
+              src={`${import.meta.env.VITE_BASE_URL}/${
                 getByPosition(images, 1).path
-              })`,
-            }}
-            alt={getByPosition(images, 1).alt || ""}
-          ></div>
+              }`}
+              alt={getByPosition(images, 1).alt || ""}
+            />
+          </div>
         </div>
 
         <div className="max-sm:hidden flex flex-row max-large-medium:flex-col justify-between my-6 readerMode:flex-col">
@@ -91,13 +101,20 @@ const HomePage = () => {
               : img.path;
 
             return (
-              <img
-                key={img.idMedia}
-                src={fullPath}
-                alt={img.alt || ""}
-                width={400}
-                className="w-[23rem] h-[23rem] rounded-3xl max-large-medium:w-[26rem] max-large-medium:h-[26rem] max-xl:w-[18rem] max-xl:h-[18rem] mx-auto max-large-medium:mb-6 readerMode:my-4"
-              />
+              <div
+                className="w-[26rem] h-[26rem] rounded-4xl overflow-hidden mx-auto
+                        
+                        readerMode:my-4
+                      "
+              >
+                <img
+                  key={img.idMedia}
+                  src={fullPath}
+                  alt={img.alt || ""}
+                  width={400}
+                  className="w-full h-full object-cover object-center"
+                />
+              </div>
             );
           })}
         </div>

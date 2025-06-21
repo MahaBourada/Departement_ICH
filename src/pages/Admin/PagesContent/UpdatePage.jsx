@@ -1,10 +1,13 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import api from "../../api/api";
-import MessagePopup from "../../components/MsgPopup";
-import { SmallBorderButton, SmallFilledButton } from "../../components/Buttons";
-import { ImageField, InputField } from "../../components/Inputs";
-import { UserContext } from "../../contexts/UserContext";
+import api from "../../../api/api";
+import { MessagePopup } from "../../../components/MsgPopup";
+import {
+  SmallBorderButton,
+  SmallFilledButton,
+} from "../../../components/Buttons";
+import { ImageField, InputField } from "../../../components/Inputs";
+import { UserContext } from "../../../contexts/UserContext";
 
 const UpdatePage = () => {
   // const { accessToken } = useContext(UserContext);
@@ -143,7 +146,7 @@ const UpdatePage = () => {
         <br />
         Voici le lien vers l'aide-mémoire Markdown :&nbsp;
         <a
-          className="underline hover:p-0.5 hover:no-underline hover:bg-hover-main rounded-md"
+          className="underline p-0.5 hover:no-underline hover:bg-hover-main rounded-md"
           href="https://www.markdownguide.org/cheat-sheet/"
           title="https://www.markdownguide.org/cheat-sheet/"
           target="_blank"

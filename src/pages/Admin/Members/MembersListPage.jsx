@@ -1,14 +1,16 @@
 import { Pencil, Plus, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import api from "../../api/api";
-import MessagePopup from "../../components/MsgPopup";
+import api from "../../../api/api";
+import { ConfirmationModal, MessagePopup } from "../../../components/MsgPopup";
 
 const MembersListPage = () => {
   const [members, setMembers] = useState([]);
   const [msg, setMsg] = useState("");
   const [msgShow, setMsgShow] = useState(false);
   const [msgStatus, setMsgStatus] = useState(0);
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [selectedMember, setSelectedMember] = useState(null);
 
   const handleClose = () => {
     setMsgShow(false);
@@ -27,20 +29,33 @@ const MembersListPage = () => {
     fetchData();
   }, []);
 
-  const handleDelete = async (idMembre) => {
+  const handleConfirmDelete = (member) => {
+    setSelectedMember(member);
+    setConfirmOpen(true);
+  };
+
+  const handleDelete = async () => {
     try {
       setMembers((prev) =>
-        prev.filter((member) => member.idMembre !== idMembre)
+        prev.filter((member) => member.idMembre !== selectedMember.idMembre)
       );
 
-      const response = await api.delete(`members/${idMembre}`);
+      const response = await api.delete(`/members/${selectedMember.idMembre}`);
 
       setMsgShow(true);
       setMsgStatus(200);
       setMsg(response.data.message);
     } catch (error) {
       console.error(error);
+    } finally {
+      setConfirmOpen(false);
+      setSelectedMember(null);
     }
+  };
+
+  const cancelDeletion = () => {
+    setConfirmOpen(false);
+    setSelectedMember(null);
   };
 
   return (
@@ -72,6 +87,15 @@ const MembersListPage = () => {
           <h2>Aucun membre enregistré</h2>
         </div>
       )}
+
+      <ConfirmationModal
+        isOpen={confirmOpen}
+        onCancel={cancelDeletion}
+        onConfirm={handleDelete}
+        message={`Êtes-vous sûr de vouloir supprimer ${
+          selectedMember?.prenom || ""
+        } ${selectedMember?.nom ? selectedMember.nom.toUpperCase() : ""}?`}
+      />
 
       {members.length > 0 && (
         <table className="w-full mx-3 my-5">
@@ -123,7 +147,7 @@ const MembersListPage = () => {
                     <button
                       type="button"
                       className="cursor-pointer ml-2 p-0.5 rounded-md hover:bg-neutral-300"
-                      onClick={() => handleDelete(member.idMembre)}
+                      onClick={() => handleConfirmDelete(member)}
                     >
                       <Trash2
                         aria-label={`Supprimer ${

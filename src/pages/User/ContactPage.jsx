@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import MessagePopup from "../../components/MsgPopup";
+import { MessagePopup } from "../../components/MsgPopup";
 import { SmallBorderButton, SmallFilledButton } from "../../components/Buttons";
 import {
   InputField,

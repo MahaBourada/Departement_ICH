@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import api from "../../api/api.js";
-import MessagePopup from "../../components/MsgPopup.jsx";
-import { InputField, SelectField } from "../../components/Inputs.jsx";
+import api from "../../../api/api.js";
+import { MessagePopup } from "../../../components/MsgPopup.jsx";
+import { InputField, SelectField } from "../../../components/Inputs.jsx";
 import {
   SmallBorderButton,
   SmallFilledButton,
-} from "../../components/Buttons.jsx";
+} from "../../../components/Buttons.jsx";
 
 const AddAdmin = () => {
   const [values, setValues] = useState({

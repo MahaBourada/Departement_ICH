@@ -1,4 +1,5 @@
-import { Trash2 } from "lucide-react";
+import { Eye, EyeOff, Trash2 } from "lucide-react";
+import { useState } from "react";
 
 export const InputField = ({
   type,
@@ -9,14 +10,16 @@ export const InputField = ({
   value,
   isRequired,
 }) => {
+  const [showPass, setShowPass] = useState(false);
+
   return (
-    <div className="flex flex-col leading-normal my-4">
+    <div className="relative flex flex-col leading-normal my-4">
       <label htmlFor={name} className="font-main font-medium my-2">
         {label}
       </label>
       <input
         required={isRequired}
-        type={type}
+        type={type === "password" ? (showPass ? "text" : "password") : type}
         name={name}
         id={name}
         placeholder={placeholder}
@@ -24,6 +27,22 @@ export const InputField = ({
         value={value}
         onChange={onChange}
       />
+      {type === "password" && (
+        <button
+          type="button"
+          aria-label={
+            showPass ? "Masquer le mot de passe" : "Afficher le mot de passe"
+          }
+          className="cursor-pointer rounded-md hover:bg-neutral-300 absolute top-[73%] right-5 transform -translate-y-1/2"
+          onClick={() => setShowPass((prev) => !prev)}
+        >
+          {showPass ? (
+            <EyeOff className="text-[#444] dark:text-[#111111]" size={31} />
+          ) : (
+            <Eye className="text-[#444] dark:text-[#111111]" size={31} />
+          )}
+        </button>
+      )}
     </div>
   );
 };
@@ -35,9 +54,10 @@ export const TextAreaField = ({
   onChange,
   value,
   isRequired,
+  maxLength,
 }) => {
   return (
-    <div className="flex flex-col leading-normal my-2">
+    <div className="relative flex flex-col leading-normal my-2">
       <label htmlFor={name} className="font-main font-medium my-2">
         {label}
       </label>
@@ -46,11 +66,28 @@ export const TextAreaField = ({
         name={name}
         id={name}
         rows={5}
+        maxLength={maxLength}
         placeholder={placeholder}
-        className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.75rem] mr-2 outline-gray-500 dark:text-black dark:bg-gray-400 dark:border-gray-700"
+        className={`bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.75rem] mr-2 outline-gray-500 dark:text-black dark:bg-gray-400 dark:border-gray-700 ${
+          maxLength ? "pb-9" : ""
+        }`}
         value={value}
         onChange={onChange}
       />
+      {maxLength && (
+        <p
+          className={`absolute bottom-1 right-5 text-dynamic-sm transform ${
+            value?.length >= maxLength
+              ? "text-red-600 font-semibold"
+              : "text-neutral-600"
+          }`}
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {value?.length}/{maxLength}
+          {value?.length >= maxLength && " — Limite atteinte"}
+        </p>
+      )}
     </div>
   );
 };

@@ -14,18 +14,18 @@ import MissingPage from "./pages/MissingPage";
 import ContactPage from "./pages/User/ContactPage";
 import IndividualPage from "./pages/User/IndividualPage";
 import LoginPage from "./pages/Admin/LoginPage";
-import Dashboard from "./pages/Admin/DashboardPage";
-import UpdatePage from "./pages/Admin/UpdatePage";
-import MembersListPage from "./pages/Admin/MembersListPage";
-import UpdateMember from "./pages/Admin/UpdateMember";
-import ProjectsListPage from "./pages/Admin/ProjectsListPage";
-import PrixManagementPage from "./pages/Admin/PrixManagementPage";
-import AddAdmin from "./pages/Admin/AddAdmin";
-import PagesListPage from "./pages/Admin/PagesListPage";
-import AddMember from "./pages/Admin/AddMember";
-import AddProject from "./pages/Admin/AddProject";
-import UpdateProject from "./pages/Admin/UpdateProject";
-import UpdateAdmin from "./pages/Admin/UpdateAdmin";
+import Dashboard from "./pages/Admin/Admin/DashboardPage";
+import AddAdmin from "./pages/Admin/Admin/AddAdmin";
+import UpdateAdmin from "./pages/Admin/Admin/UpdateAdmin";
+import UpdatePage from "./pages/Admin/PagesContent/UpdatePage";
+import PagesListPage from "./pages/Admin/PagesContent/PagesListPage";
+import MembersListPage from "./pages/Admin/Members/MembersListPage";
+import AddMember from "./pages/Admin/Members/AddMember";
+import UpdateMember from "./pages/Admin/Members/UpdateMember";
+import ProjectsListPage from "./pages/Admin/Projects/ProjectsListPage";
+import AddProject from "./pages/Admin/Projects/AddProject";
+import UpdateProject from "./pages/Admin/Projects/UpdateProject";
+import PrixManagementPage from "./pages/Admin/Prix/PrixManagementPage";
 
 function App() {
   return (

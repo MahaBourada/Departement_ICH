@@ -1,8 +1,11 @@
 import { Pencil, Plus, Trash2 } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import api from "../../api/api";
-import MessagePopup from "../../components/MsgPopup";
+import api from "../../../api/api";
+import {
+  ConfirmationModal,
+  MessagePopup,
+} from "../../../components/MsgPopup.jsx";
 
 const DashboardPage = () => {
   const [adminList, setAdminList] = useState([]);
@@ -29,20 +32,36 @@ const DashboardPage = () => {
     setMsgShow(false);
   };
 
-  const handleDelete = async (idAdmin) => {
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [selectedAdmin, setSelectedAdmin] = useState(null);
+
+  const handleConfirmDelete = (admin) => {
+    setSelectedAdmin(admin);
+    setConfirmOpen(true);
+  };
+
+  const handleDelete = async () => {
     try {
-      setAdminList((prevAdminList) =>
-        prevAdminList.filter((admin) => admin.idAdmin !== idAdmin)
+      setAdminList((prev) =>
+        prev.filter((admin) => admin.idAdmin !== selectedAdmin.idAdmin)
       );
 
-      const response = await api.delete(`/admin/${idAdmin}`);
+      const response = await api.delete(`/admin/${selectedAdmin.idAdmin}`);
 
       setMsgShow(true);
       setMsgStatus(200);
       setMsg(response.data.message);
     } catch (error) {
       console.error(error);
+    } finally {
+      setConfirmOpen(false);
+      setSelectedAdmin(null);
     }
+  };
+
+  const cancelDeletion = () => {
+    setConfirmOpen(false);
+    setSelectedAdmin(null);
   };
 
   return (
@@ -60,6 +79,19 @@ const DashboardPage = () => {
               status={msgStatus}
             />
           )}
+
+          <ConfirmationModal
+            isOpen={confirmOpen}
+            onCancel={cancelDeletion}
+            onConfirm={handleDelete}
+            message={`Êtes-vous sûr de vouloir supprimer l'administrateur ${
+              selectedAdmin?.first_name || ""
+            } ${
+              selectedAdmin?.last_name
+                ? selectedAdmin.last_name.toUpperCase()
+                : ""
+            }?`}
+          />
 
           <Link
             to="/admin/tableau-de-bord/ajouter-admin"
@@ -120,10 +152,12 @@ const DashboardPage = () => {
                     <button
                       type="button"
                       className="cursor-pointer ml-2 p-0.5 rounded-md hover:bg-neutral-300"
-                      onClick={() => handleDelete(admin.idAdmin)}
+                      onClick={() => handleConfirmDelete(admin)}
                     >
                       <Trash2
-                        aria-label="Supprimer un admin"
+                        aria-label={`Supprimer ${
+                          admin.first_name
+                        } ${admin.last_name.toUpperCase()}`}
                         size={30}
                         className="text-[#8B0000] dark:text-red-400"
                       />

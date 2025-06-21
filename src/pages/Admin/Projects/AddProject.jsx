@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
-import api from "../../api/api";
-import MessagePopup from "../../components/MsgPopup";
-import { ImageField, InputField, TextAreaField } from "../../components/Inputs";
-import { SmallBorderButton, SmallFilledButton } from "../../components/Buttons";
+import api from "../../../api/api";
+import { MessagePopup } from "../../../components/MsgPopup";
+import {
+  ImageField,
+  InputField,
+  TextAreaField,
+} from "../../../components/Inputs";
+import {
+  SmallBorderButton,
+  SmallFilledButton,
+} from "../../../components/Buttons";
 import { Plus, Trash2, X } from "lucide-react";
 
 const ProjectsManagementPage = () => {
@@ -96,7 +103,7 @@ const ProjectsManagementPage = () => {
         <br />
         Voici le lien vers l'aide-mémoire Markdown :&nbsp;
         <a
-          className="underline hover:p-0.5 hover:no-underline hover:bg-hover-main rounded-md"
+          className="underline p-0.5 hover:no-underline hover:bg-hover-main rounded-md"
           href="https://www.markdownguide.org/cheat-sheet/"
           title="https://www.markdownguide.org/cheat-sheet/"
           target="_blank"
@@ -135,6 +142,7 @@ const ProjectsManagementPage = () => {
 
         <TextAreaField
           isRequired={true}
+          maxLength={500}
           label="Objectif en français *"
           name="objectif_fr"
           placeholder="Mini description du projet en français"
@@ -146,6 +154,7 @@ const ProjectsManagementPage = () => {
 
         <TextAreaField
           isRequired={true}
+          maxLength={500}
           label="Objectif en anglais *"
           name="objectif_en"
           placeholder="Mini description du projet en anglais"

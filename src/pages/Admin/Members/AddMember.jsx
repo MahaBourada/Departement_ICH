@@ -1,82 +1,26 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import api from "../../api/api";
-import MessagePopup from "../../components/MsgPopup";
+import React, { useState } from "react";
+import api from "../../../api/api";
+import  { MessagePopup } from "../../../components/MsgPopup";
 import {
   ImageField,
   InputField,
   SelectField,
   TextAreaField,
-} from "../../components/Inputs";
-import { SmallBorderButton, SmallFilledButton } from "../../components/Buttons";
+} from "../../../components/Inputs";
+import {
+  SmallBorderButton,
+  SmallFilledButton,
+} from "../../../components/Buttons";
 
-const UpdateMember = () => {
-  const { id } = useParams();
-  const [member, setMember] = useState({});
-
-  const fetchData = async () => {
-    try {
-      const response = await api.get(`/members/${id}`);
-      setMember(response.data);
-      setImage(response.data.image);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    if (member?.idMembre) {
-      const initialImage =
-        member.image && !member.image.startsWith("data:image")
-          ? `${import.meta.env.VITE_BASE_URL}/${member.image}`
-          : member.image || null;
-
-      setValues({
-        prenom: member.prenom || "",
-        nom: member.nom || "",
-        titre: member.titre || "",
-        fonction: member.fonction || "",
-        section: member.section || "",
-        propos: member.propos || "",
-        image: member.image || "",
-      });
-      setImage(initialImage);
-    }
-  }, [member]);
-
-  const [image, setImage] = useState();
-
-  const handleChange = (e) => {
-    const selectedFile = e.target.files[0];
-    if (selectedFile) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result); // this is the base64 string like 'data:image/png;base64,...'
-        setValues((prev) => ({
-          ...prev,
-          image: reader.result, // store base64 string in your form state
-        }));
-      };
-      reader.readAsDataURL(selectedFile);
-    }
-  };
-
-  const handleRemoveImage = (index) => {
-    setImage("");
-  };
-
+const AddMember = () => {
   const [values, setValues] = useState({
-    prenom: member?.prenom || "",
-    nom: member?.nom || "",
-    titre: member?.titre || "",
-    fonction: member?.fonction || "",
-    section: member?.section || "",
-    propos: member?.propos || "",
-    image: member?.image || "",
+    prenom: "",
+    nom: "",
+    titre: "",
+    fonction: "",
+    section: "",
+    propos: "",
+    image: "",
   });
 
   const [msg, setMsg] = useState("");
@@ -87,32 +31,73 @@ const UpdateMember = () => {
     setMsgShow(false);
   };
 
+  const [file, setFile] = useState();
+
+  const handleChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFile(reader.result); // this is the base64 string like 'data:image/png;base64,...'
+        setValues((prev) => ({
+          ...prev,
+          image: reader.result, // store base64 string in your form state
+        }));
+      };
+      reader.readAsDataURL(selectedFile);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!values.prenom) {
+      setMsg("Prénom est obligatoire");
+      setMsgShow(true);
+      return;
+    }
+
+    if (!values.nom) {
+      setMsg("Nom est obligatoire");
+      setMsgShow(true);
+      return;
+    }
+
+    if (!values.titre) {
+      setMsg("Titre est obligatoire");
+      setMsgShow(true);
+      return;
+    }
+
+    if (!values.fonction) {
+      setMsg("Fonction est obligatoire");
+      setMsgShow(true);
+      return;
+    }
+
     const data = {
       ...values,
-      image: image
     };
 
-    console.log(data)
-
     try {
-      const response = await api.put(`/members/${member.idMembre}`, data);
+      const response = await api.post("/members", data);
 
       setMsgShow(true);
       setMsgStatus(200);
       setMsg(response.data.message);
     } catch (error) {
-      console.error(error);
+      const backendMsg = error?.response?.data?.message;
+
+      if (backendMsg) {
+        setMsg(backendMsg); // Set the backend message from Express
+        setMsgShow(true); // Trigger your popup or message display
+      }
     }
   };
 
   return (
     <main className="mx-14 my-20">
-      <h1 className="text-display font-semibold">
-        Gestion du membre {member.prenom + " " + member.nom}
-      </h1>
+      <h1 className="text-display font-semibold">Ajouter un membre</h1>
 
       {msgShow && (
         <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
@@ -148,10 +133,9 @@ const UpdateMember = () => {
         <ImageField
           text="Image *"
           name="imageMembre"
-          alt={`Image de ${member.prenom + " " + member.nom}`}
-          file={image}
+          alt="Image du membre"
+          file={file}
           onChange={handleChange}
-          onRemove={handleRemoveImage}
         />
 
         <p id="fonction-section-note" className="text-gray-700 mb-2">
@@ -169,7 +153,6 @@ const UpdateMember = () => {
               placeholder="Selectionez un titre"
               name="titre"
               onChange={(e) => setValues({ ...values, titre: e.target.value })}
-              initialValue={values.titre}
               values={[
                 "Directeur du département",
                 "Administration",
@@ -185,13 +168,14 @@ const UpdateMember = () => {
                 values.titre === "Enseignant(e)"
               }
               type="text"
-              label="Fonction *"
+              label="Fonction"
               name="fonction"
               placeholder="ex : Maître de conférences"
               value={values.fonction}
               onChange={(e) =>
                 setValues({ ...values, fonction: e.target.value })
               }
+              aria-describedby="fonction-section-note"
             />
           </div>
         </div>
@@ -203,19 +187,44 @@ const UpdateMember = () => {
               values.titre === "Enseignant(e)"
             }
             type="text"
-            label="Section disciplinaire *"
+            label="Section disciplinaire"
             name="section"
-            placeholder="ex : 61e section (Génie informatique, Automatique, Traitement du signal)"
+            placeholder="ex : 61e section (CNU) : Génie informatique, Automatique, Traitement du signal"
             value={values.section}
             onChange={(e) => setValues({ ...values, section: e.target.value })}
+            aria-describedby="fonction-section-note"
           />
         </div>
+
+        <p className="leading-normal inline-block m-3">
+          Veuillez utiliser la syntaxe{" "}
+          <strong className="font-semibold">Markdown</strong> pour rédiger le "à
+          propos".
+          <br />
+          Voici le lien vers l'aide-mémoire Markdown :&nbsp;
+          <a
+            className="underline p-0.5 hover:no-underline hover:bg-hover-main rounded-md"
+            href="https://www.markdownguide.org/cheat-sheet/"
+            title="https://www.markdownguide.org/cheat-sheet/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Markdown Cheat Sheet
+          </a>
+          <br />
+          <strong className="font-semibold">Remarque :</strong> évitez
+          d'utiliser le.s symbole.s <code>#</code> pour les titres de
+          niveau&nbsp;1,&nbsp;2,&nbsp;3,&nbsp;4 (heading 1, heading 2, heading
+          3, heading 4), car cela peut provoquer une erreur d'accessibilité dans
+          la hiérarchie des titres du site.
+        </p>
 
         <TextAreaField
           label="A propos"
           name="propos"
           placeholder="Mini description du membre"
           value={values.propos}
+          maxLength={500}
           onChange={(e) => setValues({ ...values, propos: e.target.value })}
         />
 
@@ -232,7 +241,7 @@ const UpdateMember = () => {
             type="submit"
             bgColor="bg-accent"
             color="text-black"
-            text="Modifier"
+            text="Ajouter"
           />
         </div>
       </form>
@@ -240,4 +249,4 @@ const UpdateMember = () => {
   );
 };
 
-export default UpdateMember;
+export default AddMember;

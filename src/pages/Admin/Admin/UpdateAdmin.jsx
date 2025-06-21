@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import api from "../../api/api.js";
-import MessagePopup from "../../components/MsgPopup.jsx";
-import { InputField, SelectField } from "../../components/Inputs.jsx";
+import api from "../../../api/api.js";
+import { MessagePopup } from "../../../components/MsgPopup.jsx";
+import { InputField, SelectField } from "../../../components/Inputs.jsx";
 import {
   SmallBorderButton,
   SmallFilledButton,
-} from "../../components/Buttons.jsx";
+} from "../../../components/Buttons.jsx";
 import Switch from "@mui/material/Switch";
 import { useParams } from "react-router-dom";
 
