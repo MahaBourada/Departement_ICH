@@ -95,6 +95,19 @@ const AddMember = () => {
     }
   };
 
+  const handleReset = () => {
+    setValues({
+      prenom: "",
+      nom: "",
+      titre: "",
+      fonction: "",
+      section: "",
+      propos: "",
+      image: "",
+    });
+    setFile(null);
+  };
+
   return (
     <main className="mx-14 my-20">
       <h1 className="text-display font-semibold">Ajouter un membre</h1>
@@ -103,7 +116,11 @@ const AddMember = () => {
         <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
       )}
 
-      <form onSubmit={handleSubmit} className="flex flex-col m-5">
+      <form
+        onSubmit={handleSubmit}
+        onReset={handleReset}
+        className="flex flex-col m-5"
+      >
         <div className="flex items-start justify-between mb-3">
           <div className="flex flex-col w-1/2 mr-2">
             <InputField
@@ -155,6 +172,7 @@ const AddMember = () => {
               label="Titre *"
               placeholder="Selectionez un titre"
               name="titre"
+              value={values.titre}
               onChange={(e) => setValues({ ...values, titre: e.target.value })}
               values={[
                 "Directeur du département",

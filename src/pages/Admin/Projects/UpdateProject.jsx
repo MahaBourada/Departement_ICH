@@ -142,6 +142,19 @@ const UpdateProject = () => {
     }
   };
 
+  const handleReset = () => {
+    setValues({
+      titre: project.titre,
+      annee: project.annee,
+      objectif_fr: project.objectif_fr,
+      objectif_en: project.objectif_en,
+    });
+
+    setImages(project.images);
+
+    setMembres(project.membres);
+  };
+
   return (
     <main className="mx-14 my-20">
       <h1 className="text-dynamic-2xl font-semibold">
@@ -375,7 +388,11 @@ const UpdateProject = () => {
         ))}
 
         <div className="flex justify-end mt-3">
-          <SmallBorderButton type="reset" text="Réinitialiser" />
+          <SmallBorderButton
+            type="button"
+            text="Réinitialiser"
+            onClick={handleReset}
+          />
 
           <SmallFilledButton type="submit" text="Modifier" />
         </div>

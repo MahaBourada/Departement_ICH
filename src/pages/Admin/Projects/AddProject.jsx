@@ -88,6 +88,25 @@ const ProjectsManagementPage = () => {
     }
   };
 
+  const handleReset = () => {
+    setValues({
+      titre: "",
+      objectif_fr: "",
+      objectif_en: "",
+      annee: "",
+      membres: [],
+      images: [],
+    });
+
+    setImages([
+      { ordre_positionnement: 1, path: "", alt_fr: "", alt_en: "" },
+      { ordre_positionnement: 2, path: "", alt_fr: "", alt_en: "" },
+      { ordre_positionnement: 3, path: "", alt_fr: "", alt_en: "" },
+    ]);
+
+    setMembres([{ prenom: "", nom: "" }]);
+  };
+
   return (
     <main className="mx-14 my-20">
       <h1 className="text-display font-semibold">Ajouter un projet</h1>
@@ -313,7 +332,11 @@ const ProjectsManagementPage = () => {
         ))}
 
         <div className="flex justify-end mt-3">
-          <SmallBorderButton type="reset" text="Réinitialiser" />
+          <SmallBorderButton
+            type="button"
+            onClick={handleReset}
+            text="Réinitialiser"
+          />
 
           <SmallFilledButton type="submit" text="Ajouter" />
         </div>

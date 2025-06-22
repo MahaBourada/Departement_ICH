@@ -1,7 +1,6 @@
 import {
   Code,
   House,
-  MonitorDot,
   PanelsTopLeft,
   Presentation,
   UsersRound,
@@ -25,7 +24,7 @@ const AdminNavigation = () => {
             className={({ isActive }) =>
               `flex items-center my-3 px-4 py-3 rounded-2xl hover:bg-admin-nav-bg dark:hover:bg-[#83421F] hover:underline mx-7 ${
                 isActive
-                  ? "bg-admin-nav-bg dark:bg-[#83421F] text-[#663114] dark:text-dark-white"
+                  ? "bg-admin-nav-bg dark:bg-[#83421F] text-black dark:text-dark-white"
                   : "bg-none text-black dark:text-gray-300"
               }`
             }
@@ -39,7 +38,7 @@ const AdminNavigation = () => {
             className={({ isActive }) =>
               `flex items-center my-3  px-4 py-3 rounded-2xl hover:bg-admin-nav-bg dark:hover:bg-[#83421F] hover:underline mx-7 ${
                 isActive
-                  ? "bg-admin-nav-bg dark:bg-[#83421F] text-[#663114] dark:text-dark-white"
+                  ? "bg-admin-nav-bg dark:bg-[#83421F] text-black dark:text-dark-white"
                   : "bg-none text-black dark:text-gray-300"
               }`
             }
@@ -53,7 +52,7 @@ const AdminNavigation = () => {
             className={({ isActive }) =>
               `flex items-center my-3  px-4 py-3 rounded-2xl hover:bg-admin-nav-bg dark:hover:bg-[#83421F] hover:underline mx-7 ${
                 isActive
-                  ? "bg-admin-nav-bg dark:bg-[#83421F] text-[#663114] dark:text-dark-white"
+                  ? "bg-admin-nav-bg dark:bg-[#83421F] text-black dark:text-dark-white"
                   : "bg-none text-black dark:text-gray-300"
               }`
             }
@@ -67,7 +66,7 @@ const AdminNavigation = () => {
             className={({ isActive }) =>
               `flex items-center my-3  px-4 py-3 rounded-2xl hover:bg-admin-nav-bg dark:hover:bg-[#83421F] hover:underline mx-7 ${
                 isActive
-                  ? "bg-admin-nav-bg dark:bg-[#83421F] text-[#663114] dark:text-dark-white"
+                  ? "bg-admin-nav-bg dark:bg-[#83421F] text-black dark:text-dark-white"
                   : "bg-none text-black dark:text-gray-300"
               }`
             }
@@ -81,7 +80,7 @@ const AdminNavigation = () => {
             className={({ isActive }) =>
               `flex items-center my-3  px-4 py-3 rounded-2xl hover:bg-admin-nav-bg dark:hover:bg-[#83421F] hover:underline mx-7 ${
                 isActive
-                  ? "bg-admin-nav-bg dark:bg-[#83421F] text-[#663114] dark:text-dark-white"
+                  ? "bg-admin-nav-bg dark:bg-[#83421F] text-black dark:text-dark-white"
                   : "bg-none text-black dark:text-gray-300"
               }`
             }

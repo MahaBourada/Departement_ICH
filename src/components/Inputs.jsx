@@ -97,7 +97,7 @@ export const SelectField = ({
   placeholder,
   name,
   onChange,
-  initialValue,
+  value,
   values,
   isRequired,
 }) => {
@@ -111,13 +111,13 @@ export const SelectField = ({
         name={name}
         id={name}
         className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.9rem] mr-2 outline-gray-500 dark:text-black dark:bg-gray-400 dark:border-gray-700"
-        value={initialValue}
+        value={value}
         onChange={onChange}
       >
         <option value="">{placeholder}</option>
-        {values.map((value, index) => (
-          <option key={index} value={value}>
-            {value}
+        {values.map((val, index) => (
+          <option key={index} value={val}>
+            {val}
           </option>
         ))}
       </select>

@@ -56,6 +56,17 @@ const AddAdmin = () => {
     }
   };
 
+  const handleReset = (e) => {
+    e.preventDefault();
+    setValues({
+      firstname: "",
+      lastname: "",
+      email: "",
+      username: "",
+      role: "",
+    });
+  };
+
   return (
     <main className="mx-14 my-20">
       <h1 className="text-display font-semibold ">
@@ -66,7 +77,11 @@ const AddAdmin = () => {
         <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
       )}
 
-      <form onSubmit={handleSubmit} className="flex flex-col m-5">
+      <form
+        onSubmit={handleSubmit}
+        onReset={handleReset}
+        className="flex flex-col m-5"
+      >
         <div className="flex items-start justify-between">
           <div className="flex flex-col w-1/2 mr-3">
             <InputField
@@ -116,6 +131,7 @@ const AddAdmin = () => {
               label="Rôle *"
               placeholder="Sélectionnez une option"
               name="role"
+              value={values.role}
               onChange={(e) => setValues({ ...values, role: e.target.value })}
               values={["Super admin", "Admin"]}
             />

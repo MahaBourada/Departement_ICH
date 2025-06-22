@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 
 const UpdateAdmin = () => {
   const { id } = useParams();
+  const [admin, setAdmin] = useState({});
   const [values, setValues] = useState({
     firstname: "",
     lastname: "",
@@ -32,10 +33,7 @@ const UpdateAdmin = () => {
     try {
       const response = await api.get(`/admin/${id}`);
 
-      setValues({
-        ...response.data,
-        regpass: false,
-      });
+      setAdmin(response.data);
     } catch (error) {
       setMsgShow(true);
       setMsgStatus(0);
@@ -46,6 +44,19 @@ const UpdateAdmin = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (admin?.idAdmin) {
+      setValues({
+        firstname: admin.firstname || "",
+        lastname: admin.lastname || "",
+        email: admin.email || "",
+        username: admin.username || "",
+        role: admin.role || "",
+        regpass: false,
+      });
+    }
+  }, [admin]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -80,11 +91,22 @@ const UpdateAdmin = () => {
     }
   };
 
+  const handleReset = () => {
+    setValues({
+      firstname: admin.firstname || "",
+      lastname: admin.lastname || "",
+      email: admin.email || "",
+      username: admin.username || "",
+      role: admin.role,
+      regpass: false,
+    });
+  };
+
   return (
     <main className="mx-14 my-20">
       <h1 className="text-display font-semibold ">
-        Gestion de l'administrateur {values.firstname}{" "}
-        {values.lastname.toUpperCase()} ({values.username})
+        Gestion de l'administrateur {admin.firstname}{" "}
+        {admin.lastname?.toUpperCase()} ({admin.username})
       </h1>
 
       {msgShow && (
@@ -141,7 +163,7 @@ const UpdateAdmin = () => {
               label="Rôle *"
               placeholder="Sélectionnez une option"
               name="role"
-              initialValue={values.role}
+              value={values.role}
               onChange={(e) => setValues({ ...values, role: e.target.value })}
               values={["Super admin", "Admin"]}
             />
@@ -173,14 +195,21 @@ const UpdateAdmin = () => {
             />
           </div>
 
-          <p id="switch-mdp-desc" className="text-gray-800 dark:text-dark-white my-1 mx-2">
+          <p
+            id="switch-mdp-desc"
+            className="text-gray-800 dark:text-dark-white my-1 mx-2"
+          >
             Activez pour générer automatiquement un nouveau mot de passe
             temporaire.
           </p>
         </div>
 
         <div className="flex justify-end mt-3">
-          <SmallBorderButton type="reset" text="Réinitialiser" />
+          <SmallBorderButton
+            type="button"
+            text="Réinitialiser"
+            onClick={handleReset}
+          />
 
           <SmallFilledButton type="submit" text="Modifier" />
         </div>

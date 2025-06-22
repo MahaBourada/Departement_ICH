@@ -15,6 +15,8 @@ export const MessagePopup = ({ message, status, onClose }) => {
     }
   }, [status, onClose]); // include dependencies
 
+  const darkTheme = localStorage.getItem("theme");
+
   return (
     <div
       className={`fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-dark-background dark:shadow-gray-900 font-main font-medium text-2xl shadow-small w-80 px-4 py-6 rounded-4xl z-50`}
@@ -32,7 +34,8 @@ export const MessagePopup = ({ message, status, onClose }) => {
         <>
           <div className="flex justify-center items-center py-6">
             <SyncLoader
-              color={"#0A0A0A"}
+              color={darkTheme === "dark" ? "#EDEDED" : "#0A0A0A"}
+              className="text-red-400"
               size={20}
               aria-label="Chargement du Spinner"
             />

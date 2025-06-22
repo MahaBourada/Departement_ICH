@@ -47,6 +47,16 @@ const ContactPage = () => {
     }
   };
 
+  const handleReset = () => {
+    setValues({
+      firstName: "",
+      lastName: "",
+      email: "",
+      subject: "",
+      bodyMessage: "",
+    });
+  };
+
   return (
     <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
       <h1 className="font-main font-semibold text-display readerMode:w-fit readerMode:mx-auto">
@@ -144,7 +154,11 @@ const ContactPage = () => {
           />
 
           <div className="flex flex-row justify-end mt-4 max-md:flex-col-reverse max-md:items-end">
-            <SmallBorderButton type="reset" text={t("contact.form.reset")} />
+            <SmallBorderButton
+              type="reset"
+              text={t("contact.form.reset")}
+              onClick={handleReset}
+            />
 
             <SmallFilledButton type="submit" text={t("contact.form.submit")} />
           </div>

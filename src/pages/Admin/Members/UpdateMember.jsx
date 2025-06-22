@@ -68,7 +68,7 @@ const UpdateMember = () => {
     }
   };
 
-  const handleRemoveImage = (index) => {
+  const handleRemoveImage = () => {
     setImage("");
   };
 
@@ -98,8 +98,6 @@ const UpdateMember = () => {
       image: image,
     };
 
-    console.log(data);
-
     try {
       const response = await api.put(`/members/${member.idMembre}`, data);
 
@@ -109,6 +107,19 @@ const UpdateMember = () => {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleReset = () => {
+    setValues({
+      prenom: member.prenom || "",
+      nom: member.nom || "",
+      titre: member.titre || "",
+      fonction: member.fonction || "",
+      section: member.section || "",
+      propos: member.propos || "",
+      image: member.image || "",
+    });
+    handleRemoveImage();
   };
 
   return (
@@ -175,7 +186,7 @@ const UpdateMember = () => {
               placeholder="Selectionez un titre"
               name="titre"
               onChange={(e) => setValues({ ...values, titre: e.target.value })}
-              initialValue={values.titre}
+              value={values.titre}
               values={[
                 "Directeur du département",
                 "Administration",
@@ -251,19 +262,12 @@ const UpdateMember = () => {
 
         <div className="flex justify-end mt-3">
           <SmallBorderButton
-            type="reset"
-            bgColor="bg-white"
-            color="text-black"
-            borderColor="border-black"
+            type="button"
+            onClick={handleReset}
             text="Réinitialiser"
           />
 
-          <SmallFilledButton
-            type="submit"
-            bgColor="bg-accent"
-            color="text-black"
-            text="Modifier"
-          />
+          <SmallFilledButton type="submit" text="Modifier" />
         </div>
       </form>
     </main>

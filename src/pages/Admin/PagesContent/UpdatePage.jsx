@@ -15,11 +15,13 @@ const UpdatePage = () => {
   const [pageInfo, setPageInfo] = useState({});
   const [sections, setSections] = useState([]);
   const [images, setImages] = useState([]);
+  const [initialSections, setInitialSections] = useState([]);
+  const [initialImages, setInitialImages] = useState([]);
 
+  // Update fetchData to also set initial values
   const fetchData = async () => {
     try {
       const responseSections = await api.get(`/pages/${idPage}`);
-
       setPageInfo(responseSections.data);
 
       const filledSections = Array.from({ length: 4 }, (_, i) => {
@@ -35,6 +37,7 @@ const UpdatePage = () => {
         );
       });
       setSections(filledSections);
+      setInitialSections(filledSections); // Save initial
 
       const responseImages = await api.get(`/pages-images/${idPage}`);
       const filledImages = Array.from({ length: 4 }, (_, i) => {
@@ -52,6 +55,7 @@ const UpdatePage = () => {
       });
 
       setImages(filledImages);
+      setInitialImages(filledImages); // Save initial
     } catch (error) {
       console.error(error);
     }
@@ -127,6 +131,11 @@ const UpdatePage = () => {
     } finally {
       setMsgShow(true);
     }
+  };
+
+  const handleReset = () => {
+    setSections(initialSections);
+    setImages(initialImages);
   };
 
   return (
@@ -257,7 +266,11 @@ const UpdatePage = () => {
         ))}
 
         <div className="flex justify-end mt-3">
-          <SmallBorderButton type="reset" text="Réinitialiser" />
+          {/* <SmallBorderButton
+            type="button"
+            text="Réinitialiser"
+            onClick={handleReset}
+          /> */}
 
           <SmallFilledButton type="submit" text="Modifier" />
         </div>
