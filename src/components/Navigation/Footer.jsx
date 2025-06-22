@@ -57,22 +57,30 @@ const Footer = ({ switchLang }) => {
           className="m-5 block dark:hidden"
         />
 
-        <form onSubmit={(e) => onSubmit(e)} className="flex flex-row items-end">
-          <div className="my-1">
-            <InputField
+        <form
+          onSubmit={(e) => onSubmit(e)}
+          className="flex flex-col"
+        >
+          <label htmlFor="newsletter" className="font-main font-medium my-2">
+            Newsletter
+          </label>
+
+          <div className="mx-2">
+            <input
               type="email"
-              label="Newsletter"
               name="newsletter"
+              id="newsletter"
               placeholder={t("contact.form.mail_placeholder")}
+              className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.75rem] mr-2 outline-gray-500 dark:text-black dark:bg-gray-400 dark:border-gray-700"
+              /* value={value}
+            onChange={onChange} */
+            />
+
+            <SmallFilledButton
+              type="submit"
+              text="S'inscrire"
             />
           </div>
-
-          <SmallFilledButton
-            type="submit"
-            bgColor="bg-accent"
-            color="text-black"
-            text="S'inscrire"
-          />
         </form>
       </div>
 

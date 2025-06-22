@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
+import Breadcrumb from "../../components/Breadcrumb";
 
 const InternationalePage = () => {
   const { t } = useTranslation();
@@ -42,30 +43,20 @@ const InternationalePage = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16">
-      <nav
-        aria-label={t("breadcrumb")}
-        className="mb-10 my-1 p-1.5 py-1 w-full bg-bg-crumb rounded-xl flex items-center font-medium readerMode:hidden dark:bg-black leading-loose text-breadcrumb"
-      >
-        <Link to="/" className="px-4 py-1 rounded-xl hover:underline hover:bg-hover-crumb">
-          {t("home.link")}
-        </Link>
-        <ChevronRight
-          size={33}
-          className="text-[#232323] dark:text-gray-300"
-          strokeWidth={2}
-        />
-        <span className="px-4 py-1 rounded-xl">
-          Collaborations
-        </span>
-        <ChevronRight
-          size={33}
-          className="text-[#232323] dark:text-gray-300"
-          strokeWidth={2}
-        />
-        <span className="px-4 py-1 rounded-xl text-[#663114] dark:text-black bg-bg-transparent">
-          {t("collaboration.international.title")}
-        </span>
-      </nav>
+      <Breadcrumb
+        crumbs={[
+          {
+            link: "/",
+            label: t("home.link"),
+          },
+          {
+            label: "Collaborations",
+          },
+          {
+            label: t("collaboration.international.title"),
+          },
+        ]}
+      />
 
       <h1 className="font-main font-semibold text-display my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("collaboration.international.title")}
@@ -75,20 +66,20 @@ const InternationalePage = () => {
         <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse my-7">
           {img1.path && (
             <img
-              src={`${import.meta.env.VITE_BASE_URL}/${
-                getByPosition(images, 1).path
-              }`}
-              alt={getByPosition(images, 1).alt || ""}
+              src={`${import.meta.env.VITE_BASE_URL}/${img1.path}`}
+              alt={img1.alt || ""}
               width={400}
               className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px]"
             />
           )}
-          <ReactMarkdown
-            className={`my-3 ${
-              img2.path ? "mx-7" : "mx-0"
-            }  max-sm:mx-0 minimal:mx-0 markdown`}
-            children={String(pageInternational[0]?.texte)}
-          />
+          {pageInternational[0]?.texte && (
+            <ReactMarkdown
+              className={`my-3 ${
+                img2.path ? "mx-7" : "mx-0"
+              }  max-sm:mx-0 minimal:mx-0 markdown`}
+              children={String(pageInternational[0]?.texte)}
+            />
+          )}
         </div>
 
         <div className="flex flex-row justify-between items-center max-large-medium:flex-col">
@@ -97,51 +88,54 @@ const InternationalePage = () => {
               img2.path ? "w-[60%]" : "w-full"
             } minimal:w-full max-large-medium:w-full mr-10 max-lg:mr-5`}
           >
-            <ReactMarkdown
-              className="markdown"
-              children={String(pageInternational[1]?.texte)}
-            />
+            {pageInternational[1]?.texte && (
+              <ReactMarkdown
+                className="markdown"
+                children={String(pageInternational[1]?.texte)}
+              />
+            )}
           </div>
           {img2.path && (
             <img
-              src={`${import.meta.env.VITE_BASE_URL}/${
-                getByPosition(images, 2).path
-              }`}
-              alt={getByPosition(images, 2).alt || ""}
+              src={`${import.meta.env.VITE_BASE_URL}/${img2.path}`}
+              alt={img2.alt || ""}
               width={400}
               className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px]"
             />
           )}
         </div>
 
-        <ReactMarkdown
-          className="markdown my-10"
-          children={String(pageInternational[2]?.texte)}
-        />
+        {pageInternational[2]?.texte && (
+          <ReactMarkdown
+            className="markdown my-10"
+            children={String(pageInternational[2]?.texte)}
+          />
+        )}
 
         <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse">
-          <ReactMarkdown
-            className="markdown my-10 w-[80%] minimal:w-full"
-            children={String(pageInternational[3]?.texte)}
-          />
+          {pageInternational[3]?.texte && (
+            <ReactMarkdown
+              className={`markdown my-10 ${
+                img4 ? "w-full" : "w-[80%]"
+              }  minimal:w-full`}
+              children={String(pageInternational[3]?.texte)}
+            />
+          )}
 
           <div className="m-auto">
             {img3.path && (
               <img
-                src={`${import.meta.env.VITE_BASE_URL}/${
-                  getByPosition(images, 3).path
-                }`}
-                alt={getByPosition(images, 3).alt || ""}
+                src={`${import.meta.env.VITE_BASE_URL}/${img3.path}`}
+                alt={img3.alt || ""}
                 width={400}
                 className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] my-5"
               />
             )}
+
             {img4.path && (
               <img
-                src={`${import.meta.env.VITE_BASE_URL}/${
-                  getByPosition(images, 4).path
-                }`}
-                alt={getByPosition(images, 4).alt || ""}
+                src={`${import.meta.env.VITE_BASE_URL}/${img4.path}`}
+                alt={img4.alt || ""}
                 width={400}
                 className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] my-5"
               />

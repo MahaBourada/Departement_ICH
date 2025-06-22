@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import api from "../../../api/api";
-import  { MessagePopup } from "../../../components/MsgPopup";
+import { MessagePopup } from "../../../components/MsgPopup";
 import {
   ImageField,
   InputField,
@@ -138,7 +138,10 @@ const AddMember = () => {
           onChange={handleChange}
         />
 
-        <p id="fonction-section-note" className="text-gray-700 mb-2">
+        <p
+          id="fonction-section-note"
+          className="text-gray-800 dark:text-dark-white mb-2"
+        >
           Les champs <strong>Fonction</strong> et{" "}
           <strong>Section disciplinaire</strong> sont obligatoires uniquement si
           le titre est <em>Directeur du département</em> ou{" "}
@@ -203,7 +206,7 @@ const AddMember = () => {
           <br />
           Voici le lien vers l'aide-mémoire Markdown :&nbsp;
           <a
-            className="underline p-0.5 hover:no-underline hover:bg-hover-main rounded-md"
+            className="underline p-0.5 hover:no-underline hover:bg-hover-main dark:hover:bg-dark-accent rounded-md"
             href="https://www.markdownguide.org/cheat-sheet/"
             title="https://www.markdownguide.org/cheat-sheet/"
             target="_blank"
@@ -229,20 +232,9 @@ const AddMember = () => {
         />
 
         <div className="flex justify-end mt-3">
-          <SmallBorderButton
-            type="reset"
-            bgColor="bg-white"
-            color="text-black"
-            borderColor="border-black"
-            text="Réinitialiser"
-          />
+          <SmallBorderButton type="reset" text="Réinitialiser" />
 
-          <SmallFilledButton
-            type="submit"
-            bgColor="bg-accent"
-            color="text-black"
-            text="Ajouter"
-          />
+          <SmallFilledButton type="submit" text="Ajouter" />
         </div>
       </form>
     </main>

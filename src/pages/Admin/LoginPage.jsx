@@ -76,13 +76,13 @@ const LoginPage = () => {
           <Link
             onClick={() => window.scrollTo({ top: 0 })}
             to="/"
-            className="rounded-md hover:bg-neutral-300"
+            className="rounded-md hover:bg-neutral-300 dark:hover:bg-neutral-600"
           >
             <ArrowLeft
               aria-label="Revenir à l'accueil"
               size={38}
               strokeWidth={2.5}
-              className="text-[#232323] dark:text-gray-300 "
+              className="text-[#232323] dark:text-gray-300"
             />
           </Link>
           <h1 className="m-auto text-center text-display font-medium font-main">

@@ -146,7 +146,7 @@ const UpdatePage = () => {
         <br />
         Voici le lien vers l'aide-mémoire Markdown :&nbsp;
         <a
-          className="underline p-0.5 hover:no-underline hover:bg-hover-main rounded-md"
+          className="underline p-0.5 hover:no-underline hover:bg-hover-main dark:hover:bg-dark-accent rounded-md"
           href="https://www.markdownguide.org/cheat-sheet/"
           title="https://www.markdownguide.org/cheat-sheet/"
           target="_blank"
@@ -257,20 +257,9 @@ const UpdatePage = () => {
         ))}
 
         <div className="flex justify-end mt-3">
-          <SmallBorderButton
-            type="reset"
-            bgColor="bg-white"
-            color="text-black"
-            borderColor="border-black"
-            text="Réinitialiser"
-          />
+          <SmallBorderButton type="reset" text="Réinitialiser" />
 
-          <SmallFilledButton
-            type="submit"
-            bgColor="bg-accent"
-            color="text-black"
-            text="Modifier"
-          />
+          <SmallFilledButton type="submit" text="Modifier" />
         </div>
       </form>
     </main>

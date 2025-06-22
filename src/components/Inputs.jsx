@@ -142,7 +142,7 @@ export const ImageField = ({
             {text}
           </label>
           <button
-            className="cursor-pointer p-0.5 rounded-md hover:bg-neutral-300"
+            className="cursor-pointer p-0.5 rounded-md hover:bg-neutral-300 dark:hover:bg-neutral-600"
             type="button"
             onClick={onRemove}
           >

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import api from "../../api/api";
 import { ChevronRight } from "lucide-react";
+import Breadcrumb from "../../components/Breadcrumb";
 
 const MembersPage = () => {
   const { t } = useTranslation();
@@ -23,31 +24,20 @@ const MembersPage = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
-      <nav
-        aria-label={t("breadcrumb")}
-        className="mb-10 my-1 p-1.5 py-1 w-full bg-bg-crumb rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-dark-bg-crumb leading-loose text-breadcrumb"
-      >
-        <Link
-          to="/"
-          className="px-4 py-1 rounded-xl hover:underline hover:bg-hover-crumb dark:hover:bg-dark-hover-crumb"
-        >
-          {t("home.link")}
-        </Link>
-        <ChevronRight
-          size={33}
-          className="text-[#232323] dark:text-gray-300"
-          strokeWidth={2}
-        />
-        <span className="px-4 py-1 rounded-xl">{t("department.link")}</span>
-        <ChevronRight
-          size={33}
-          className="text-[#232323] dark:text-gray-300"
-          strokeWidth={2}
-        />
-        <span className="px-4 py-1 rounded-xl text-[#663114] dark:text-dark-white bg-bg-transparent dark:bg-dark-bg-transparent">
-          {t("department.team.title")}
-        </span>
-      </nav>
+      <Breadcrumb
+        crumbs={[
+          {
+            link: "/",
+            label: t("home.link"),
+          },
+          {
+            label: t("department.link"),
+          },
+          {
+            label: t("department.team.title"),
+          },
+        ]}
+      />
 
       <h1 className="font-main font-semibold text-display my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("department.team.title")}
@@ -73,16 +63,14 @@ const MembersPage = () => {
                 key={member.idMembre}
                 to={member.idMembre}
                 state={{ member: member }}
-                className="border-2 border-black dark:border-gray-300 rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:translate-[1px] max-lg:flex max-lg:flex-col max-lg:justify-start"
+                className="border-2 border-black dark:border-gray-300 rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:bg-bg-crumb dark:hover:bg-dark-bg-crumb max-lg:flex max-lg:flex-col max-lg:justify-start"
               >
                 <h3 className="font-main font-medium text-dynamic-xl max-md:text-3xl">
                   {member.prenom + " " + member.nom.toUpperCase()}
                 </h3>
                 <div className="flex flex-row items-start max-lg:flex-col-reverse max-lg:justify-between max-lg:h-full">
                   <img
-                    src={`${import.meta.env.VITE_BASE_URL}/${
-                      member.image
-                    }`}
+                    src={`${import.meta.env.VITE_BASE_URL}/${member.image}`}
                     alt={`Photo de ${member.nom}`}
                     width={200}
                     className="rounded-3xl minimal:hidden max-lg:mx-auto max-lg:w-fit max-xl:w-40"
@@ -131,16 +119,14 @@ const MembersPage = () => {
                 key={member.idMembre}
                 to={member.idMembre}
                 state={{ member: member }}
-                className="border-2 border-black dark:border-gray-300 rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:translate-[1px] max-lg:flex max-lg:flex-col max-lg:justify-start"
+                className="border-2 border-black dark:border-gray-300 rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:bg-bg-crumb dark:hover:bg-dark-bg-crumb max-lg:flex max-lg:flex-col max-lg:justify-start"
               >
                 <h3 className="font-main font-medium text-dynamic-xl max-md:text-3xl">
                   {member.prenom + " " + member.nom.toUpperCase()}
                 </h3>
                 <div className="flex flex-row items-start max-lg:flex-col-reverse max-lg:justify-between max-lg:h-full">
                   <img
-                    src={`${import.meta.env.VITE_BASE_URL}/${
-                      member.image
-                    }`}
+                    src={`${import.meta.env.VITE_BASE_URL}/${member.image}`}
                     alt={`Photo de ${member.nom}`}
                     width={200}
                     className="rounded-3xl minimal:hidden max-lg:mx-auto max-lg:w-fit max-xl:w-40"
@@ -189,16 +175,14 @@ const MembersPage = () => {
                 key={member.idMembre}
                 to={member.idMembre}
                 state={{ member: member }}
-                className="border-2 border-black dark:border-gray-300 rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:translate-[1px] max-lg:flex max-lg:flex-col max-lg:justify-start"
+                className="border-2 border-black dark:border-gray-300 rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:bg-bg-crumb dark:hover:bg-dark-bg-crumb max-lg:flex max-lg:flex-col max-lg:justify-start"
               >
                 <h3 className="font-main font-medium text-dynamic-xl max-md:text-3xl">
                   {member.prenom + " " + member.nom.toUpperCase()}
                 </h3>
                 <div className="flex flex-row items-start max-lg:flex-col-reverse max-lg:justify-between max-lg:h-full">
                   <img
-                    src={`${import.meta.env.VITE_BASE_URL}/${
-                      member.image
-                    }`}
+                    src={`${import.meta.env.VITE_BASE_URL}/${member.image}`}
                     alt={`Photo de ${member.nom}`}
                     width={200}
                     className="rounded-3xl minimal:hidden max-lg:mx-auto max-lg:w-fit max-xl:w-40"

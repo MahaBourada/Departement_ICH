@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import api from "../../api/api";
 import ReactMarkdown from "react-markdown";
+import Breadcrumb from "../../components/Breadcrumb";
 
 const ProjectsPage = () => {
   const { t } = useTranslation();
@@ -23,31 +24,20 @@ const ProjectsPage = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
-      <nav
-        aria-label={t("breadcrumb")}
-        className="mb-10 my-1 p-1.5 py-1 w-full bg-bg-crumb rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-black leading-loose text-breadcrumb"
-      >
-        <Link
-          to="/"
-          className="px-4 py-1 rounded-xl hover:underline hover:bg-hover-crumb"
-        >
-          {t("home.link")}
-        </Link>
-        <ChevronRight
-          size={33}
-          className="text-[#232323] dark:text-gray-300"
-          strokeWidth={2}
-        />
-        <span className="px-4 py-1 rounded-xl">{t("formation.link")}</span>
-        <ChevronRight
-          size={33}
-          className="text-[#232323] dark:text-gray-300"
-          strokeWidth={2}
-        />
-        <span className="px-4 py-1 rounded-xl text-[#663114] bg-bg-transparent dark:text-black">
-          {t("formation.projects.title")}
-        </span>
-      </nav>
+      <Breadcrumb
+        crumbs={[
+          {
+            link: "/",
+            label: t("home.link"),
+          },
+          {
+            label: t("formation.link"),
+          },
+          {
+            label: t("formation.projects.title"),
+          },
+        ]}
+      />
 
       <h1 className="font-main font-semibold text-display my-2 readerMode:w-fit readerMode:mx-auto">
         {t("formation.projects.title")}

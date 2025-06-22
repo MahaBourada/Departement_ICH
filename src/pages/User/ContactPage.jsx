@@ -144,20 +144,9 @@ const ContactPage = () => {
           />
 
           <div className="flex flex-row justify-end mt-4 max-md:flex-col-reverse max-md:items-end">
-            <SmallBorderButton
-              type="reset"
-              bgColor="bg-white"
-              color="text-black"
-              borderColor="border-black"
-              text={t("contact.form.reset")}
-            />
+            <SmallBorderButton type="reset" text={t("contact.form.reset")} />
 
-            <SmallFilledButton
-              type="submit"
-              bgColor="bg-accent"
-              color="text-black"
-              text={t("contact.form.submit")}
-            />
+            <SmallFilledButton type="submit" text={t("contact.form.submit")} />
           </div>
         </form>
       </div>

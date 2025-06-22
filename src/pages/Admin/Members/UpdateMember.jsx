@@ -157,7 +157,10 @@ const UpdateMember = () => {
           onRemove={handleRemoveImage}
         />
 
-        <p id="fonction-section-note" className="text-gray-700 mb-2">
+        <p
+          id="fonction-section-note"
+          className="text-gray-800 dark:text-dark-white mb-2"
+        >
           Les champs <strong>Fonction</strong> et{" "}
           <strong>Section disciplinaire</strong> sont obligatoires uniquement si
           le titre est <em>Directeur du département</em> ou{" "}
@@ -221,7 +224,7 @@ const UpdateMember = () => {
           <br />
           Voici le lien vers l'aide-mémoire Markdown :&nbsp;
           <a
-            className="underline p-0.5 hover:no-underline hover:bg-hover-main rounded-md"
+            className="underline p-0.5 hover:no-underline hover:bg-hover-main dark:hover:bg-dark-accent rounded-md"
             href="https://www.markdownguide.org/cheat-sheet/"
             title="https://www.markdownguide.org/cheat-sheet/"
             target="_blank"

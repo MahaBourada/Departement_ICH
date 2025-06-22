@@ -1,6 +1,7 @@
 import { X } from "lucide-react";
 import { useEffect } from "react";
 import { SyncLoader } from "react-spinners";
+import { SmallBorderButton, SmallFilledButton } from "./Buttons";
 
 export const MessagePopup = ({ message, status, onClose }) => {
   useEffect(() => {
@@ -16,7 +17,7 @@ export const MessagePopup = ({ message, status, onClose }) => {
 
   return (
     <div
-      className={`fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white font-main font-medium text-2xl shadow-small w-80 px-4 py-6 rounded-4xl z-50`}
+      className={`fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-dark-background dark:shadow-gray-900 font-main font-medium text-2xl shadow-small w-80 px-4 py-6 rounded-4xl z-50`}
     >
       <div className="flex w-full justify-end">
         <button
@@ -24,7 +25,7 @@ export const MessagePopup = ({ message, status, onClose }) => {
           className="cursor-pointer hover:translate-[1px]"
           onClick={onClose}
         >
-          <X aria-label="Fermer" size={30} color="#232323" strokeWidth={3} />
+          <X aria-label="Fermer" size={30} strokeWidth={3} />
         </button>
       </div>
       {status === 1 ? (
@@ -73,21 +74,15 @@ export const ConfirmationModal = ({ isOpen, onCancel, onConfirm, message }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div className="bg-neutral-100 rounded-2xl shadow-small p-6 w-1/3 text-center font-main">
+      <div className="bg-neutral-100 dark:bg-dark-background dark:shadow-gray-900 rounded-2xl shadow-small p-6 w-1/3 text-center font-main">
         <p className="font-medium mb-6">{message}</p>
         <div className="flex justify-around">
-          <button
-            onClick={onCancel}
-            className="cursor-pointer bg-gray-300 px-4 py-2 rounded-lg hover:bg-gray-400"
-          >
-            Annuler
-          </button>
-          <button
+          <SmallBorderButton type="button" text="Annuler" onClick={onCancel} />
+          <SmallFilledButton
+            type="button"
+            text="Confirmer"
             onClick={onConfirm}
-            className="cursor-pointer bg-accent text-black px-4 py-2 rounded-lg hover:bg-dark-accent"
-          >
-            Confirmer
-          </button>
+          />
         </div>
       </div>
     </div>

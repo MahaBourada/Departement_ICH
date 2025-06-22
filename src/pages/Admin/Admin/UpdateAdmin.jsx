@@ -173,27 +173,16 @@ const UpdateAdmin = () => {
             />
           </div>
 
-          <p id="switch-mdp-desc" className="text-gray-800 my-1 mx-2">
+          <p id="switch-mdp-desc" className="text-gray-800 dark:text-dark-white my-1 mx-2">
             Activez pour générer automatiquement un nouveau mot de passe
             temporaire.
           </p>
         </div>
 
         <div className="flex justify-end mt-3">
-          <SmallBorderButton
-            type="reset"
-            bgColor="bg-white"
-            color="text-black"
-            borderColor="border-black"
-            text="Réinitialiser"
-          />
+          <SmallBorderButton type="reset" text="Réinitialiser" />
 
-          <SmallFilledButton
-            type="submit"
-            bgColor="bg-accent"
-            color="text-black"
-            text="Modifier"
-          />
+          <SmallFilledButton type="submit" text="Modifier" />
         </div>
       </form>
     </main>

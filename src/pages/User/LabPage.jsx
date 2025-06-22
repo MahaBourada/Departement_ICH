@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
+import Breadcrumb from "../../components/Breadcrumb";
 
 const LabPage = () => {
   const { t } = useTranslation();
@@ -53,31 +54,20 @@ const LabPage = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
-      <nav
-        aria-label={t("breadcrumb")}
-        className="mb-10 max-large-medium:hidden my-1 p-1.5 py-1 w-full bg-bg-crumb rounded-xl flex items-center font-medium readerMode:hidden dark:bg-black leading-loose text-breadcrumb"
-      >
-        <Link
-          to="/"
-          className="px-4 py-1 rounded-xl hover:underline hover:bg-hover-crumb"
-        >
-          {t("home.link")}
-        </Link>
-        <ChevronRight
-          size={33}
-          className="text-[#232323] dark:text-gray-300"
-          strokeWidth={2}
-        />
-        <span className="px-4 py-1 rounded-xl">{t("research.link")}</span>
-        <ChevronRight
-          size={33}
-          className="text-[#232323] dark:text-gray-300"
-          strokeWidth={2}
-        />
-        <span className="px-4 py-1 rounded-xl text-[#663114] dark:text-black bg-bg-transparent">
-          {t("research.lab-chart.title")}
-        </span>
-      </nav>
+      <Breadcrumb
+        crumbs={[
+          {
+            link: "/",
+            label: t("home.link"),
+          },
+          {
+            label: t("research.link"),
+          },
+          {
+            label: t("research.lab-chart.title"),
+          },
+        ]}
+      />
 
       <h1 className="font-main font-semibold text-display max-large-medium:text-dynamic-xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("research.lab-chart.title")}
@@ -87,19 +77,19 @@ const LabPage = () => {
         <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse my-7 readerMode:flex-col-reverse">
           {img1.path && (
             <img
-              src={`${import.meta.env.VITE_BASE_URL}/${
-                getImageByPosition(images, 1).path
-              }`}
-              alt={getImageByPosition(images, 1).alt || ""}
+              src={`${import.meta.env.VITE_BASE_URL}/${img1.path}`}
+              alt={img1.alt || ""}
               width={400}
               className="minimal:hidden w-[19rem] h-[19rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] readerMode:mx-auto"
             />
           )}
 
-          <ReactMarkdown
-            className="my-3 mx-7 max-sm:mx-0 markdown"
-            children={String(section1.texte)}
-          />
+          {section1.texte && (
+            <ReactMarkdown
+              className="my-3 mx-7 max-sm:mx-0 markdown"
+              children={String(section1.texte)}
+            />
+          )}
         </div>
 
         <div className="flex flex-row justify-between items-center max-large-medium:flex-col">
@@ -108,27 +98,29 @@ const LabPage = () => {
               img2.path ? "w-[60%]" : "w-full"
             } minimal:w-full max-large-medium:w-full mr-10 max-lg:mr-5`}
           >
-            <ReactMarkdown
-              className="markdown"
-              children={String(section2.texte)}
-            />
+            {section2.texte && (
+              <ReactMarkdown
+                className="markdown"
+                children={String(section2.texte)}
+              />
+            )}
           </div>
           {img2.path && (
             <img
-              src={`${import.meta.env.VITE_BASE_URL}/${
-                getImageByPosition(images, 2).path
-              }`}
-              alt={getImageByPosition(images, 2).alt || ""}
+              src={`${import.meta.env.VITE_BASE_URL}/${img2.path}`}
+              alt={img2.alt || ""}
               width={400}
               className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px]"
             />
           )}
         </div>
 
-        <ReactMarkdown
-          className="markdown my-10"
-          children={String(section3.texte)}
-        />
+        {section3.texte && (
+          <ReactMarkdown
+            className="markdown my-10"
+            children={String(section3.texte)}
+          />
+        )}
 
         <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse">
           {section4.texte && (
@@ -147,20 +139,17 @@ const LabPage = () => {
           >
             {img3.path && (
               <img
-                src={`${import.meta.env.VITE_BASE_URL}/${
-                  getImageByPosition(images, 3).path
-                }`}
-                alt={getImageByPosition(images, 3).alt || ""}
+                src={`${import.meta.env.VITE_BASE_URL}/${img3.path}`}
+                alt={img3.alt || ""}
                 width={400}
                 className="minimal:hidden w-[27rem] h-[27rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] my-5"
               />
             )}
+
             {img4.path && (
               <img
-                src={`${import.meta.env.VITE_BASE_URL}/${
-                  getImageByPosition(images, 4).path
-                }`}
-                alt={getImageByPosition(images, 4).alt || ""}
+                src={`${import.meta.env.VITE_BASE_URL}/${img4.path}`}
+                alt={img4.alt || ""}
                 width={400}
                 className="minimal:hidden w-[27rem] h-[27rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] my-5"
               />

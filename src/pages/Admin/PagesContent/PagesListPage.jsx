@@ -46,7 +46,7 @@ const PagesListPage = () => {
             aria-label={`Mettre à jour la ${page.title}`}
             key={index}
             to={`/admin/gestion-pages/${page.idPage}`}
-            className="mx-4 my-2 bg-admin-nav-bg p-6 rounded-3xl hover:bg-dark-accent hover:underline"
+            className="mx-4 my-2 bg-admin-nav-bg dark:bg-[#83421F] p-6 rounded-3xl hover:bg-accent hover:underline dark:hover:bg-[#693214]"
           >
             <div className=" flex justify-between items-center font-main font-medium ">
               <p>{page.title}</p>

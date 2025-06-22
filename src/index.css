@@ -8,6 +8,7 @@
   --color-main: #A7CAEA;
   --color-hover-main: rgba(117, 178, 234, 0.7);
   --color-accent: #FF9F67;
+  --color-hover-accent: #E98247;
   --color-black: #0A0A0A;
   --color-admin-nav: #B04404;
   --color-admin-nav-bg: rgba(255, 159, 103, 0.65);
@@ -18,13 +19,14 @@
   --color-dark-background: #2F2F2F;
   --color-dark-white: #EDEDED;
   --color-dark-main: #3E4B56;
-  --color-dark-accent: #E97E3F;
+  --color-dark-accent: #98471B;
+  --color-dark-hover-accent: #713210;
   --color-dark-bg-transparent: rgba(151,56,0, 0.65);
 
-  --color-bg-crumb: #D1D2D5;
-  --color-hover-crumb: #B2B4B8;
-  --color-dark-hover-crumb: #393F45;
-  --color-dark-bg-crumb: #4D545A;
+  --color-bg-crumb: #E2E2E2;
+  --color-hover-crumb: #C2C2C2;
+  --color-dark-bg-crumb: #222222;
+  --color-dark-hover-crumb: #363636;
 
   --font-main: "Poppins", "sans-serif";
   --font-body: "Albert Sans", "sans-serif";
@@ -73,10 +75,13 @@
   font-weight: 600;
 }
 
+.markdown a {
+    padding: 2px;
+}
+
 .markdown a:hover {
     text-decoration: underline;
     background-color: var(--color-hover-main);
-    padding: 2px;
     border-radius: 5px;
 }
 

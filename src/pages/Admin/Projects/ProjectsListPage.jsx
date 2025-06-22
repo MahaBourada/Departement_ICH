@@ -66,12 +66,12 @@ const ProjectsListPage = () => {
         <Link
           onClick={() => window.scrollTo({ top: 0 })}
           to="/admin/gestion-projets/ajouter-projet"
-          className="flex flex-row items-center cursor-pointer bg-accent dark:bg-dark-accent text-black font-main font-medium rounded-xl h-fit px-5 py-2.5 mx-2 my-1 hover:bg-dark-accent max-md:w-42 max-md:mx-3 text-nav leading-normal"
+          className="flex flex-row items-center font-main font-medium rounded-xl px-5 py-2 mx-3 my-1 text-black bg-accent hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white max-md:w-42 max-md:mb-4 text-nav leading-normal"
         >
           <Plus
             aria-label="Ajouter un projet"
             size={30}
-            className="text-[#232323] mr-2"
+            className="text-black dark:text-dark-white mr-2"
             strokeWidth={2.8}
           />
           <p>Ajouter un projet</p>
@@ -132,7 +132,7 @@ const ProjectsListPage = () => {
                     onClick={() => window.scrollTo({ top: 0 })}
                     to={`/admin/gestion-projets/${project.idProjet}`}
                     type="button"
-                    className="cursor-pointer mr-2 p-0.5 rounded-md hover:bg-neutral-300"
+                    className="cursor-pointer mr-2 p-0.5 rounded-md hover:bg-neutral-300 dark:hover:bg-neutral-600"
                   >
                     <Pencil
                       aria-label={`Mettre à jour le projet ${project.titre}`}
@@ -142,7 +142,7 @@ const ProjectsListPage = () => {
                   </Link>
                   <button
                     type="button"
-                    className="cursor-pointer ml-2 p-0.5 rounded-md hover:bg-neutral-300"
+                    className="cursor-pointer ml-2 p-0.5 rounded-md hover:bg-neutral-300 dark:hover:bg-neutral-600"
                     onClick={() => handleConfirmDelete(project)}
                   >
                     <Trash2

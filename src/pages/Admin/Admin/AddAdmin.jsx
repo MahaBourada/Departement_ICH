@@ -123,20 +123,9 @@ const AddAdmin = () => {
         </div>
 
         <div className="flex justify-end mt-3">
-          <SmallBorderButton
-            type="reset"
-            bgColor="bg-white"
-            color="text-black"
-            borderColor="border-black"
-            text="Réinitialiser"
-          />
+          <SmallBorderButton type="reset" text="Réinitialiser" />
 
-          <SmallFilledButton
-            type="submit"
-            bgColor="bg-accent"
-            color="text-black"
-            text="Ajouter"
-          />
+          <SmallFilledButton type="submit" text="Ajouter" />
         </div>
       </form>
     </main>

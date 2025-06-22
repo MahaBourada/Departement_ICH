@@ -23,9 +23,9 @@ const AdminNavigation = () => {
           <NavLink
             to="/admin/tableau-de-bord"
             className={({ isActive }) =>
-              `flex items-center my-3 px-4 py-3 rounded-2xl hover:bg-admin-nav-bg hover:underline mx-7 ${
+              `flex items-center my-3 px-4 py-3 rounded-2xl hover:bg-admin-nav-bg dark:hover:bg-[#83421F] hover:underline mx-7 ${
                 isActive
-                  ? "bg-admin-nav-bg text-[#663114] dark:text-black"
+                  ? "bg-admin-nav-bg dark:bg-[#83421F] text-[#663114] dark:text-dark-white"
                   : "bg-none text-black dark:text-gray-300"
               }`
             }
@@ -37,9 +37,9 @@ const AdminNavigation = () => {
           <NavLink
             to="/admin/gestion-pages"
             className={({ isActive }) =>
-              `flex items-center my-3  px-4 py-3 rounded-2xl hover:bg-admin-nav-bg hover:underline mx-7 ${
+              `flex items-center my-3  px-4 py-3 rounded-2xl hover:bg-admin-nav-bg dark:hover:bg-[#83421F] hover:underline mx-7 ${
                 isActive
-                  ? "bg-admin-nav-bg text-[#663114] dark:text-black"
+                  ? "bg-admin-nav-bg dark:bg-[#83421F] text-[#663114] dark:text-dark-white"
                   : "bg-none text-black dark:text-gray-300"
               }`
             }
@@ -51,9 +51,9 @@ const AdminNavigation = () => {
           <NavLink
             to="/admin/gestion-equipe"
             className={({ isActive }) =>
-              `flex items-center my-3  px-4 py-3 rounded-2xl hover:bg-admin-nav-bg hover:underline mx-7 ${
+              `flex items-center my-3  px-4 py-3 rounded-2xl hover:bg-admin-nav-bg dark:hover:bg-[#83421F] hover:underline mx-7 ${
                 isActive
-                  ? "bg-admin-nav-bg text-[#663114] dark:text-black"
+                  ? "bg-admin-nav-bg dark:bg-[#83421F] text-[#663114] dark:text-dark-white"
                   : "bg-none text-black dark:text-gray-300"
               }`
             }
@@ -65,9 +65,9 @@ const AdminNavigation = () => {
           <NavLink
             to="/admin/gestion-projets"
             className={({ isActive }) =>
-              `flex items-center my-3  px-4 py-3 rounded-2xl hover:bg-admin-nav-bg hover:underline mx-7 ${
+              `flex items-center my-3  px-4 py-3 rounded-2xl hover:bg-admin-nav-bg dark:hover:bg-[#83421F] hover:underline mx-7 ${
                 isActive
-                  ? "bg-admin-nav-bg text-[#663114] dark:text-black"
+                  ? "bg-admin-nav-bg dark:bg-[#83421F] text-[#663114] dark:text-dark-white"
                   : "bg-none text-black dark:text-gray-300"
               }`
             }
@@ -79,9 +79,9 @@ const AdminNavigation = () => {
           <NavLink
             to="/admin/gestion-prix"
             className={({ isActive }) =>
-              `flex items-center my-3  px-4 py-3 rounded-2xl hover:bg-admin-nav-bg hover:underline mx-7 ${
+              `flex items-center my-3  px-4 py-3 rounded-2xl hover:bg-admin-nav-bg dark:hover:bg-[#83421F] hover:underline mx-7 ${
                 isActive
-                  ? "bg-admin-nav-bg text-[#663114] dark:text-black"
+                  ? "bg-admin-nav-bg dark:bg-[#83421F] text-[#663114] dark:text-dark-white"
                   : "bg-none text-black dark:text-gray-300"
               }`
             }

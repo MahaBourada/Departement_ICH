@@ -95,12 +95,12 @@ const DashboardPage = () => {
 
           <Link
             to="/admin/tableau-de-bord/ajouter-admin"
-            className="flex flex-row items-center cursor-pointer bg-accent dark:bg-dark-accent text-black font-main font-medium rounded-xl h-fit px-5 py-2.5 mx-2 my-1 hover:bg-dark-accent max-md:w-42 max-md:mx-3 text-nav leading-normal"
+            className="flex flex-row items-center font-main font-medium rounded-xl px-5 py-2 mx-3 my-1 text-black bg-accent hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white max-md:w-42 max-md:mb-4 text-nav leading-normal"
           >
             <Plus
               aria-label="Ajouter un admin"
               size={30}
-              className="text-[#232323] mr-2"
+              className="text-black dark:text-dark-white mr-2"
               strokeWidth={2.8}
             />
             <p>Ajouter un admin</p>
@@ -141,7 +141,7 @@ const DashboardPage = () => {
                     <Link
                       to={`/admin/tableau-de-bord/gestion-admin/${admin.idAdmin}`}
                       type="button"
-                      className="cursor-pointer mr-2 p-0.5 rounded-md hover:bg-neutral-300"
+                      className="cursor-pointer mr-2 p-0.5 rounded-md hover:bg-neutral-300 dark:hover:bg-neutral-600"
                     >
                       <Pencil
                         aria-label="Mettre à jour un admin"
@@ -151,7 +151,7 @@ const DashboardPage = () => {
                     </Link>
                     <button
                       type="button"
-                      className="cursor-pointer ml-2 p-0.5 rounded-md hover:bg-neutral-300"
+                      className="cursor-pointer ml-2 p-0.5 rounded-md hover:bg-neutral-300 dark:hover:bg-neutral-600"
                       onClick={() => handleConfirmDelete(admin)}
                     >
                       <Trash2

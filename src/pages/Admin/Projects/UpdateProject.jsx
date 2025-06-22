@@ -159,7 +159,7 @@ const UpdateProject = () => {
         <br />
         Voici le lien vers l'aide-mémoire Markdown :&nbsp;
         <a
-          className="underline p-0.5 hover:no-underline hover:bg-hover-main rounded-md"
+          className="underline p-0.5 hover:no-underline hover:bg-hover-main dark:hover:bg-dark-accent rounded-md"
           href="https://www.markdownguide.org/cheat-sheet/"
           title="https://www.markdownguide.org/cheat-sheet/"
           target="_blank"
@@ -232,7 +232,7 @@ const UpdateProject = () => {
                 onClick={() => {
                   setMembres((prev) => prev.filter((_, idx) => idx !== index));
                 }}
-                className="cursor-pointer p-0.5 rounded-md hover:bg-neutral-300"
+                className="cursor-pointer p-0.5 rounded-md hover:bg-neutral-300 dark:hover:bg-neutral-600"
               >
                 <Trash2
                   aria-label="Supprimer un membre du projet"
@@ -298,7 +298,7 @@ const UpdateProject = () => {
               }
             }}
             disabled={membres.length >= 5}
-            className={`flex items-center text-black dark:text-dark-white border-2 border-black dark:border-dark-white font-main font-medium rounded-xl h-fit px-5 py-2.5 mx-2 my-1 max-md:w-42 max-md:mx-3 text-nav leading-normal 
+            className={`flex items-center border-2 text-black dark:text-dark-white border-black dark:border-dark-white font-main font-medium rounded-xl h-fit px-5 py-2.5 mx-2 my-1 hover:bg-neutral-300 dark:hover:bg-neutral-600 max-md:w-42 max-md:mx-3 text-nav leading-normal
                       ${
                         membres.length >= 5
                           ? "cursor-not-allowed opacity-75"
@@ -375,20 +375,9 @@ const UpdateProject = () => {
         ))}
 
         <div className="flex justify-end mt-3">
-          <SmallBorderButton
-            type="reset"
-            bgColor="bg-white"
-            color="text-black"
-            borderColor="border-black"
-            text="Réinitialiser"
-          />
+          <SmallBorderButton type="reset" text="Réinitialiser" />
 
-          <SmallFilledButton
-            type="submit"
-            bgColor="bg-accent"
-            color="text-black"
-            text="Modifier"
-          />
+          <SmallFilledButton type="submit" text="Modifier" />
         </div>
       </form>
     </main>
