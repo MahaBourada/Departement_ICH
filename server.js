@@ -5,6 +5,7 @@ import pagesImagesRoutes from "./routes/pagesImages.js";
 import authRoutes from "./routes/auth.js";
 import membersRoutes from "./routes/members.js";
 import projectsRoutes from "./routes/projects.js";
+import collaborationsRoutes from "./routes/collaborations.js";
 import { sendEmailContact } from "./controllers/sendEmailContact.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -38,6 +39,7 @@ app.use("/pages", pagesRoutes);
 app.use("/pages-images", pagesImagesRoutes);
 app.use("/members", membersRoutes);
 app.use("/projects", projectsRoutes);
+app.use("/collaborations", collaborationsRoutes);
 
 // Post method for sending an email from the contact from
 app.post("/contact", sendEmailContact);

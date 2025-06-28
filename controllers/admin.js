@@ -20,7 +20,7 @@ export const getAllAdmins = (req, res) => {
 export const getAdminById = (req, res) => {
   const id = req.params.idAdmin;
 
-  const sql = `SELECT first_name AS firstname, last_name AS lastname, username, createdAt, email, type AS role 
+  const sql = `SELECT idAdmin, first_name AS firstname, last_name AS lastname, username, createdAt, email, type AS role 
               FROM admin
               JOIN roles ON admin.idRole = roles.idRole 
               WHERE admin.idAdmin = ?`;
