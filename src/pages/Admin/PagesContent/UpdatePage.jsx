@@ -24,35 +24,53 @@ const UpdatePage = () => {
       const responseSections = await api.get(`/pages/${idPage}`);
       setPageInfo(responseSections.data);
 
-      const filledSections = Array.from({ length: 4 }, (_, i) => {
-        const found = responseSections.data.sections.find(
-          (img) => img.ordre_positionnement === i + 1
-        );
-        return (
-          found || {
-            ordre_positionnement: i + 1,
-            texte_fr: "",
-            texte_en: "",
-          }
-        );
-      });
+      const filledSections = Array.from(
+        {
+          length:
+            responseSections.data.title === "Collaboration nationales" ||
+            responseSections.data.title === "Collaboration internationales"
+              ? 2
+              : 4,
+        },
+        (_, i) => {
+          const found = responseSections.data.sections.find(
+            (img) => img.ordre_positionnement === i + 1
+          );
+          return (
+            found || {
+              ordre_positionnement: i + 1,
+              texte_fr: "",
+              texte_en: "",
+            }
+          );
+        }
+      );
       setSections(filledSections);
       setInitialSections(filledSections); // Save initial
 
       const responseImages = await api.get(`/pages-images/${idPage}`);
-      const filledImages = Array.from({ length: 4 }, (_, i) => {
-        const found = responseImages.data.find(
-          (img) => img.ordre_positionnement === i + 1
-        );
-        return (
-          found || {
-            ordre_positionnement: i + 1,
-            path: "",
-            alt_fr: "",
-            alt_en: "",
-          }
-        );
-      });
+      const filledImages = Array.from(
+        {
+          length:
+            responseSections.data.title === "Collaboration nationales" ||
+            responseSections.data.title === "Collaboration internationales"
+              ? 2
+              : 4,
+        },
+        (_, i) => {
+          const found = responseImages.data.find(
+            (img) => img.ordre_positionnement === i + 1
+          );
+          return (
+            found || {
+              ordre_positionnement: i + 1,
+              path: "",
+              alt_fr: "",
+              alt_en: "",
+            }
+          );
+        }
+      );
 
       setImages(filledImages);
       setInitialImages(filledImages); // Save initial

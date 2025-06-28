@@ -48,6 +48,10 @@ const AddMember = () => {
     }
   };
 
+  const handleRemoveImage = () => {
+    setFile(null);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -153,6 +157,7 @@ const AddMember = () => {
           alt="Image du membre"
           file={file}
           onChange={handleChange}
+          onRemove={handleRemoveImage}
         />
 
         <p

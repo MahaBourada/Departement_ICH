@@ -26,6 +26,9 @@ import ProjectsListPage from "./pages/Admin/Projects/ProjectsListPage";
 import AddProject from "./pages/Admin/Projects/AddProject";
 import UpdateProject from "./pages/Admin/Projects/UpdateProject";
 import PrixManagementPage from "./pages/Admin/Prix/PrixManagementPage";
+import CollabsList from "./pages/Admin/Collabs/CollabsList";
+import AddCollab from "./pages/Admin/Collabs/AddCollab";
+import UpdateCollab from "./pages/Admin/Collabs/UpdateCollab";
 
 function App() {
   return (
@@ -75,11 +78,11 @@ function App() {
           />
           <Route path="gestion-projets/:id" element={<UpdateProject />} />
 
-          {/* <Route
-            path="gestion-conferences"
-            element={<ConferencesManagementPage />}
-          />
-          <Route path="gestion-prix" element={<PrixManagementPage />} /> */}
+          <Route path="gestion-collaborations" element={<CollabsList />} /> 
+          <Route path="gestion-collaborations/ajouter-collaboration" element={<AddCollab />} /> 
+          <Route path="gestion-collaborations/:id" element={<UpdateCollab />} /> 
+
+          <Route path="gestion-prix" element={<PrixManagementPage />} /> 
         </Route>
 
         <Route path="*" element={<MissingPage />} />

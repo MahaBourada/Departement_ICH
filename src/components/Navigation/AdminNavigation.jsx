@@ -1,5 +1,6 @@
 import {
   Code,
+  Handshake,
   House,
   PanelsTopLeft,
   Presentation,
@@ -73,6 +74,20 @@ const AdminNavigation = () => {
           >
             <Presentation size={32} />
             <p className="mx-2">Projets</p>
+          </NavLink>
+
+          <NavLink
+            to="/admin/gestion-collaborations"
+            className={({ isActive }) =>
+              `flex items-center my-3  px-4 py-3 rounded-2xl hover:bg-admin-nav-bg dark:hover:bg-[#83421F] hover:underline mx-7 ${
+                isActive
+                  ? "bg-admin-nav-bg dark:bg-[#83421F] text-black dark:text-dark-white"
+                  : "bg-none text-black dark:text-gray-300"
+              }`
+            }
+          >
+            <Handshake size={30} />
+            <p className="mx-2">Collabs</p>
           </NavLink>
 
           <NavLink
