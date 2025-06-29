@@ -22,11 +22,13 @@ const UpdateCollab = () => {
   const [file, setFile] = useState();
   const [collab, setCollab] = useState({});
   const [values, setValues] = useState({
-    nom: collab.nom,
-    type: collab.type,
-    categorie: collab.categorie,
-    description: collab.description,
-    logo: collab.logo,
+    nom_fr: "",
+    nom_en: "",
+    type: "",
+    categorie: "",
+    description_fr: "",
+    description_en: "",
+    logo: "",
   });
 
   const handleClose = () => {
@@ -55,10 +57,12 @@ const UpdateCollab = () => {
           : collab.logo || null;
 
       setValues({
-        nom: collab.nom || "",
+        nom_fr: collab.nom_fr || "",
+        nom_en: collab.nom_en || "",
         type: collab.type || "",
         categorie: collab.categorie || "",
-        description: collab.description || "",
+        description_fr: collab.description_fr || "",
+        description_en: collab.description_en || "",
         logo: collab.logo || "",
       });
       setFile(initialImage);
@@ -70,7 +74,7 @@ const UpdateCollab = () => {
     if (selectedFile) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setFile(reader.result); // this is the base64 string like 'data:image/png;base64,...'
+        setImage(reader.result); // this is the base64 string like 'data:image/png;base64,...'
         setValues((prev) => ({
           ...prev,
           logo: reader.result, // store base64 string in your form state
@@ -108,18 +112,20 @@ const UpdateCollab = () => {
 
   const handleReset = () => {
     setValues({
-      nom: collab.nom,
-      type: collab.type,
-      categorie: collab.categorie,
-      description: collab.description,
-      logo: collab.logo,
+      nom_fr: collab.nom_fr || "",
+      nom_en: collab.nom_en || "",
+      type: collab.type || "",
+      categorie: collab.categorie || "",
+      description_fr: collab.description_fr || "",
+      description_en: collab.description_en || "",
+      logo: collab.logo || "",
     });
   };
 
   return (
     <main className="mx-14 my-20">
       <h1 className="text-display font-semibold">
-        Gestion du membre {collab.nom}
+        Gestion de la collaboration {collab.nom_fr}
       </h1>
 
       {msgShow && (
@@ -139,21 +145,20 @@ const UpdateCollab = () => {
               label="Nom de la collaboration *"
               name="nom"
               placeholder="Nom de la collaboration ou de l'organisation"
-              value={values.nom}
-              onChange={(e) => setValues({ ...values, nom: e.target.value })}
+              value={values.nom_fr}
+              onChange={(e) => setValues({ ...values, nom_fr: e.target.value })}
             />
           </div>
 
           <div className="flex flex-col w-1/2 ml-2">
-            <SelectField
+            <InputField
               isRequired={true}
               type="text"
-              label="Type de la collaboration *"
-              name="nom"
-              placeholder="Sélectionnez un type"
-              value={values.type}
-              onChange={(e) => setValues({ ...values, type: e.target.value })}
-              values={["Nationale", "Internationale"]}
+              label="Nom en anglais *"
+              name="nom_en"
+              placeholder="Nom de l'organisation en anglais"
+              value={values.nom_en}
+              onChange={(e) => setValues({ ...values, nom_en: e.target.value })}
             />
           </div>
         </div>
@@ -166,31 +171,83 @@ const UpdateCollab = () => {
           type de la collaboration est <em>Nationale</em>.
         </p>
 
-        <SelectField
-          isRequired={values.type === "Nationale"}
-          type="text"
-          label="Catégorie *"
-          name="categorie"
-          placeholder="Sélectionnez une catégorie"
-          value={values.categorie}
-          onChange={(e) => setValues({ ...values, categorie: e.target.value })}
-          values={[
-            "Hôpital",
-            "Université",
-            "Partenaire socio-économique",
-            "Autre",
-          ]}
+        <div className="flex items-start justify-between">
+          <div className="flex flex-col w-1/2 mr-2">
+            <SelectField
+              isRequired={true}
+              type="text"
+              label="Type de la collaboration *"
+              name="type"
+              placeholder="Sélectionnez un type"
+              value={values.type}
+              onChange={(e) => setValues({ ...values, type: e.target.value })}
+              values={["Nationale", "Internationale"]}
+            />
+          </div>
+
+          <div className="flex flex-col w-1/2 ml-2">
+            <SelectField
+              isRequired={values.type === "Nationale"}
+              type="text"
+              label="Catégorie *"
+              name="categorie"
+              placeholder="Sélectionnez une catégorie"
+              value={values.categorie}
+              onChange={(e) =>
+                setValues({ ...values, categorie: e.target.value })
+              }
+              values={[
+                "Hôpital",
+                "Université",
+                "Partenaire socio-économique",
+                "Autre",
+              ]}
+            />
+          </div>
+        </div>
+
+        <p className="leading-normal inline-block m-3">
+          Veuillez utiliser la syntaxe{" "}
+          <strong className="font-semibold">Markdown</strong> pour rédiger les
+          descriptions.
+          <br />
+          Voici le lien vers l'aide-mémoire Markdown :&nbsp;
+          <a
+            className="underline p-0.5 hover:no-underline hover:bg-hover-main dark:hover:bg-dark-accent rounded-md"
+            href="https://www.markdownguide.org/cheat-sheet/"
+            title="https://www.markdownguide.org/cheat-sheet/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Markdown Cheat Sheet
+          </a>
+          <br />
+          <strong className="font-semibold">Remarque :</strong> évitez
+          d'utiliser le.s symbole.s <code>#</code> pour les titres de
+          niveau&nbsp;1,&nbsp;2,&nbsp;3,&nbsp;4 (heading 1, heading 2, heading
+          3, heading 4), car cela peut provoquer une erreur d'accessibilité dans
+          la hiérarchie des titres du site.
+        </p>
+
+        <TextAreaField
+          label="Description en français"
+          name="description_fr"
+          placeholder="Mini description de la collaboration en français"
+          value={values.description_fr}
+          maxLength={700}
+          onChange={(e) =>
+            setValues({ ...values, description_fr: e.target.value })
+          }
         />
 
         <TextAreaField
-          isRequired={true}
-          label="Description *"
-          name="description"
-          placeholder="Mini description de la collaboration"
-          value={values.description}
-          maxLength={500}
+          label="Description en anglais"
+          name="description_en"
+          placeholder="Mini description de la collaboration en anglais"
+          value={values.description_en}
+          maxLength={700}
           onChange={(e) =>
-            setValues({ ...values, description: e.target.value })
+            setValues({ ...values, description_en: e.target.value })
           }
         />
 
@@ -206,7 +263,7 @@ const UpdateCollab = () => {
         <div className="flex justify-end mt-3">
           <SmallBorderButton type="reset" text="Réinitialiser" />
 
-          <SmallFilledButton type="submit" text="Ajouter" />
+          <SmallFilledButton type="submit" text="Modifier" />
         </div>
       </form>
     </main>

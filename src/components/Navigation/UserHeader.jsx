@@ -255,8 +255,8 @@ const Header = ({ switchLang }) => {
             <button
               className={`cursor-pointer flex justify-between items-center mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg hover:underline ${
                 [
-                  "/collaboration-nationale",
-                  "/collaboration-internationale",
+                  "/collaborations/collaborations-nationales",
+                  "/collaborations/collaborations-internationales",
                 ].includes(location.pathname)
                   ? "underline"
                   : ""
@@ -275,14 +275,14 @@ const Header = ({ switchLang }) => {
               <div className="absolute w-[95%] flex flex-col left-2 mt-1 bg-white dark:bg-dark-background shadow-md rounded-md font-normal z-50">
                 <Link
                   onClick={handleLinkClick}
-                  to="/collaboration-nationale"
+                  to="/collaborations/collaborations-nationales"
                   className="block w-full hover:bg-bg-crumb focus:bg-bg-crumb dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2 z-50"
                 >
                   {t("collaboration.national.link")}
                 </Link>
                 <Link
                   onClick={handleLinkClick}
-                  to="/collaboration-internationale"
+                  to="/collaborations/collaborations-internationales"
                   className="block w-full hover:bg-bg-crumb focus:bg-bg-crumb dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2 z-50"
                 >
                   {t("collaboration.international.link")}

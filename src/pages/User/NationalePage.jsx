@@ -79,7 +79,8 @@ const NationalePage = () => {
         )}
 
         <Link
-          to="/collaboration-nationale/details"
+          onClick={() => window.scrollTo({ top: 0 })}
+          to="/collaborations/collaborations-nationales/collabs-conventions"
           className="mx-auto my-10 flex justify-center items-center w-fit cursor-pointer font-main font-medium rounded-xl h-fit px-5 py-3 text-black bg-accent hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white max-md:w-42 max-md:mb-4 text-nav leading-normal"
         >
           Plus de collaborations
@@ -102,7 +103,8 @@ const NationalePage = () => {
         )}
 
         <Link
-          to="/collaborez-avec-nous"
+          onClick={() => window.scrollTo({ top: 0 })}
+          to="/collaborations/collaborez-avec-nous"
           className="mx-auto my-10 flex justify-center items-center w-fit cursor-pointer font-main font-medium rounded-xl h-fit px-5 py-3 text-black bg-accent hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white max-md:w-42 max-md:mb-4 text-nav leading-normal"
         >
           Collaborez avec nous

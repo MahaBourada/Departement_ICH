@@ -10,6 +10,7 @@ const InternationalePage = () => {
   const { t } = useTranslation();
   const [pageInternational, setPageInternational] = useState([]);
   const [images, setImages] = useState([]);
+  const [collabs, setCollabs] = useState([]);
   const lang = localStorage.getItem("lang") || "fr";
 
   const fetchData = async () => {
@@ -21,8 +22,14 @@ const InternationalePage = () => {
         `/pages-images/title/collaboration-internationale?lang=${lang}`
       );
 
+      const collabsResponse = await api.get(
+        `/collaborations/content?type=internationale&lang=${lang}`
+      );
+
       setPageInternational(contentResponse.data);
       setImages(imagesResponse.data);
+      setCollabs(collabsResponse.data);
+      set;
     } catch (error) {
       console.error(error);
     }
@@ -34,8 +41,6 @@ const InternationalePage = () => {
 
   const img1 = getByPosition(images, 1);
   const img2 = getByPosition(images, 2);
-  const img3 = getByPosition(images, 3);
-  const img4 = getByPosition(images, 4);
 
   useEffect(() => {
     fetchData();
@@ -94,14 +99,33 @@ const InternationalePage = () => {
             className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px]"
           />
         )}
-
-        <Link
-          to="/collaborez-avec-nous"
-          className="mx-auto my-10 flex justify-center items-center w-fit cursor-pointer font-main font-medium rounded-xl h-fit px-5 py-3 text-black bg-accent hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white max-md:w-42 max-md:mb-4 text-nav leading-normal"
-        >
-          Collaborez avec nous
-        </Link>
       </div>
+
+      {collabs.map((collab, index) => (
+        <div key={index}>
+          <div className="flex items-start justify-between my-10">
+            <div>
+              <h3 className="text-dynamic-lg font-semibold">{collab.nom}</h3>
+              <p className="mx-2">{collab.description}</p>
+            </div>
+
+            <img
+              src={`${import.meta.env.VITE_BASE_URL}/${collab.logo}`}
+              alt={`Logo de l'organisation ${collab.nom}`}
+              className="w-60 my-auto"
+            />
+          </div>
+          <div className="border-black dark:border-gray-300 border-[1px] my-5 w-full"></div>
+        </div>
+      ))}
+
+      <Link
+        onClick={() => window.scrollTo({ top: 0 })}
+        to="/collaborations/collaborez-avec-nous"
+        className="mx-auto my-10 flex justify-center items-center w-fit cursor-pointer font-main font-medium rounded-xl h-fit px-5 py-3 text-black bg-accent hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white max-md:w-42 max-md:mb-4 text-nav leading-normal"
+      >
+        Collaborez avec nous
+      </Link>
     </main>
   );
 };

@@ -57,14 +57,6 @@ const ContactPage = () => {
     });
   };
 
-  const defaultProps = {
-    center: {
-      lat: 48.94691700507778,
-      lng: 2.3615704444407064,
-    },
-    zoom: 11,
-  };
-
   return (
     <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
       <h1 className="font-main font-semibold text-display readerMode:w-fit readerMode:mx-auto">

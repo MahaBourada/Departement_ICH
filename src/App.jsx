@@ -29,6 +29,8 @@ import PrixManagementPage from "./pages/Admin/Prix/PrixManagementPage";
 import CollabsList from "./pages/Admin/Collabs/CollabsList";
 import AddCollab from "./pages/Admin/Collabs/AddCollab";
 import UpdateCollab from "./pages/Admin/Collabs/UpdateCollab";
+import CollabsConventions from "./pages/User/CollabsConventions";
+import CollabForm from "./pages/User/CollabForm";
 
 function App() {
   return (
@@ -48,9 +50,20 @@ function App() {
 
           <Route path="recherche/lab-chart" element={<LabPage />} />
 
-          <Route path="collaboration-nationale" element={<NationalePage />} />
           <Route
-            path="collaboration-internationale"
+            path="collaborations/collaborez-avec-nous"
+            element={<CollabForm />}
+          />
+          <Route
+            path="collaborations/collaborations-nationales"
+            element={<NationalePage />}
+          />
+          <Route
+            path="collaborations/collaborations-nationales/collabs-conventions"
+            element={<CollabsConventions />}
+          />
+          <Route
+            path="collaborations/collaborations-internationales"
             element={<InternationalePage />}
           />
           <Route path="contact" element={<ContactPage />} />
@@ -78,11 +91,14 @@ function App() {
           />
           <Route path="gestion-projets/:id" element={<UpdateProject />} />
 
-          <Route path="gestion-collaborations" element={<CollabsList />} /> 
-          <Route path="gestion-collaborations/ajouter-collaboration" element={<AddCollab />} /> 
-          <Route path="gestion-collaborations/:id" element={<UpdateCollab />} /> 
+          <Route path="gestion-collaborations" element={<CollabsList />} />
+          <Route
+            path="gestion-collaborations/ajouter-collaboration"
+            element={<AddCollab />}
+          />
+          <Route path="gestion-collaborations/:id" element={<UpdateCollab />} />
 
-          <Route path="gestion-prix" element={<PrixManagementPage />} /> 
+          <Route path="gestion-prix" element={<PrixManagementPage />} />
         </Route>
 
         <Route path="*" element={<MissingPage />} />

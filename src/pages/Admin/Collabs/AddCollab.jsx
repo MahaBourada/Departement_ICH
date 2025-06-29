@@ -18,10 +18,12 @@ const AddCollab = () => {
   const [msgStatus, setMsgStatus] = useState(0);
   const [file, setFile] = useState();
   const [values, setValues] = useState({
-    nom: "",
+    nom_fr: "",
+    nom_en: "",
     type: "",
     categorie: "",
-    description: "",
+    description_fr: "",
+    description_en: "",
     logo: "",
   });
 
@@ -74,10 +76,12 @@ const AddCollab = () => {
 
   const handleReset = () => {
     setValues({
-      nom: "",
+      nom_fr: "",
+      nom_en: "",
       type: "",
       categorie: "",
-      description: "",
+      description_fr: "",
+      description_en: "",
       logo: "",
     });
     setFile(null);
@@ -104,21 +108,20 @@ const AddCollab = () => {
               label="Nom de la collaboration *"
               name="nom"
               placeholder="Nom de la collaboration ou de l'organisation"
-              value={values.nom}
-              onChange={(e) => setValues({ ...values, nom: e.target.value })}
+              value={values.nom_fr}
+              onChange={(e) => setValues({ ...values, nom_fr: e.target.value })}
             />
           </div>
 
           <div className="flex flex-col w-1/2 ml-2">
-            <SelectField
+            <InputField
               isRequired={true}
               type="text"
-              label="Type de la collaboration *"
-              name="type"
-              placeholder="Sélectionnez un type"
-              value={values.type}
-              onChange={(e) => setValues({ ...values, type: e.target.value })}
-              values={["Nationale", "Internationale"]}
+              label="Nom en anglais *"
+              name="nom_en"
+              placeholder="Nom de l'organisation en anglais"
+              value={values.nom_en}
+              onChange={(e) => setValues({ ...values, nom_en: e.target.value })}
             />
           </div>
         </div>
@@ -131,31 +134,83 @@ const AddCollab = () => {
           type de la collaboration est <em>Nationale</em>.
         </p>
 
-        <SelectField
-          isRequired={values.type === "Nationale"}
-          type="text"
-          label="Catégorie *"
-          name="categorie"
-          placeholder="Sélectionnez une catégorie"
-          value={values.categorie}
-          onChange={(e) => setValues({ ...values, categorie: e.target.value })}
-          values={[
-            "Hôpital",
-            "Université",
-            "Partenaire socio-économique",
-            "Autre",
-          ]}
+        <div className="flex items-start justify-between">
+          <div className="flex flex-col w-1/2 mr-2">
+            <SelectField
+              isRequired={true}
+              type="text"
+              label="Type de la collaboration *"
+              name="type"
+              placeholder="Sélectionnez un type"
+              value={values.type}
+              onChange={(e) => setValues({ ...values, type: e.target.value })}
+              values={["Nationale", "Internationale"]}
+            />
+          </div>
+
+          <div className="flex flex-col w-1/2 ml-2">
+            <SelectField
+              isRequired={values.type === "Nationale"}
+              type="text"
+              label="Catégorie *"
+              name="categorie"
+              placeholder="Sélectionnez une catégorie"
+              value={values.categorie}
+              onChange={(e) =>
+                setValues({ ...values, categorie: e.target.value })
+              }
+              values={[
+                "Hôpital",
+                "Université",
+                "Partenaire socio-économique",
+                "Autre",
+              ]}
+            />
+          </div>
+        </div>
+
+        <p className="leading-normal inline-block m-3">
+          Veuillez utiliser la syntaxe{" "}
+          <strong className="font-semibold">Markdown</strong> pour rédiger les
+          descriptions.
+          <br />
+          Voici le lien vers l'aide-mémoire Markdown :&nbsp;
+          <a
+            className="underline p-0.5 hover:no-underline hover:bg-hover-main dark:hover:bg-dark-accent rounded-md"
+            href="https://www.markdownguide.org/cheat-sheet/"
+            title="https://www.markdownguide.org/cheat-sheet/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Markdown Cheat Sheet
+          </a>
+          <br />
+          <strong className="font-semibold">Remarque :</strong> évitez
+          d'utiliser le.s symbole.s <code>#</code> pour les titres de
+          niveau&nbsp;1,&nbsp;2,&nbsp;3,&nbsp;4 (heading 1, heading 2, heading
+          3, heading 4), car cela peut provoquer une erreur d'accessibilité dans
+          la hiérarchie des titres du site.
+        </p>
+
+        <TextAreaField
+          label="Description en français"
+          name="description_fr"
+          placeholder="Mini description de la collaboration en français"
+          value={values.description_fr}
+          maxLength={700}
+          onChange={(e) =>
+            setValues({ ...values, description_fr: e.target.value })
+          }
         />
 
         <TextAreaField
-          isRequired={true}
-          label="Description *"
-          name="description"
-          placeholder="Mini description de la collaboration"
-          value={values.description}
-          maxLength={500}
+          label="Description en anglais"
+          name="description_en"
+          placeholder="Mini description de la collaboration en anglais"
+          value={values.description_en}
+          maxLength={700}
           onChange={(e) =>
-            setValues({ ...values, description: e.target.value })
+            setValues({ ...values, description_en: e.target.value })
           }
         />
 
