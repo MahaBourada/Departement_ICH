@@ -6,12 +6,17 @@ import authRoutes from "./routes/auth.js";
 import membersRoutes from "./routes/members.js";
 import projectsRoutes from "./routes/projects.js";
 import collaborationsRoutes from "./routes/collaborations.js";
-import { sendEmailContact } from "./controllers/sendEmailContact.js";
+import {
+  sendEmailContact,
+  sendRequestCollab,
+} from "./controllers/sendEmails.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import path from "path";
 import { fileURLToPath } from "url";
+import multer from "multer";
 
+const upload = multer({ dest: "uploads/" });
 const app = express();
 app.use(cookieParser());
 
@@ -43,5 +48,6 @@ app.use("/collaborations", collaborationsRoutes);
 
 // Post method for sending an email from the contact from
 app.post("/contact", sendEmailContact);
+app.post("/collab-request", upload.single("fichier"), sendRequestCollab);
 
 app.listen(PORT, () => console.log(`Server running`));

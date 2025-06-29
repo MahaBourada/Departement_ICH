@@ -30,6 +30,29 @@ export const getCollab = (req, res) => {
   });
 };
 
+export const getCollabsByLangType = (req, res) => {
+  const lang = req.query.lang === "en" ? "en" : "fr";
+  const type = req.query.type;
+
+  const sql = `SELECT 
+                idCollab,
+                nom_${lang} AS nom,
+                type,
+                categorie,
+                description_${lang} AS description,
+                logo
+              FROM collaborations
+              WHERE type = ?`;
+
+  db.query(sql, [type], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    } else {
+      res.json(results);
+    }
+  });
+};
+
 export const addCollab = (req, res) => {
   const id = uuidv4();
   const collaborationBody = req.body;
@@ -49,7 +72,7 @@ export const addCollab = (req, res) => {
 
     // Create a unique file name
     const fileName = `collaboration_${
-      collaborationBody.nom
+      collaborationBody.nom_fr
     }_${Date.now()}.${ext}`;
 
     // Chemin absolu vers dossier uploads (dans le dossier courant)
@@ -71,14 +94,16 @@ export const addCollab = (req, res) => {
   }
 
   const sql =
-    "INSERT INTO collaborations (idCollab, nom, type, categorie, description, logo) VALUES (?, ?, ?, ?, ?, ?)";
+    "INSERT INTO collaborations (idCollab, nom_fr, nom_en, type, categorie, description_fr, description_en, logo) VALUES (?, ?, ?, ?, ?, ?)";
 
   const values = [
     id,
-    collaborationBody?.nom,
+    collaborationBody?.nom_fr,
+    collaborationBody?.nom_en,
     collaborationBody?.type,
     collaborationBody?.categorie,
-    collaborationBody?.description,
+    collaborationBody?.description_fr,
+    collaborationBody?.description_en,
     collaborationBody?.logo,
   ];
   db.query(sql, values, (err, result) => {
@@ -86,7 +111,7 @@ export const addCollab = (req, res) => {
 
     return res.json({
       Status: "Success",
-      message: `${collaborationBody.nom} ajoutée`,
+      message: `${collaborationBody.nom_fr} ajoutée`,
     });
   });
 };
@@ -122,7 +147,7 @@ export const updateCollab = (req, res) => {
 
       // Create a unique file name
       const fileName = `collaboration_${
-        collaborationBody.nom
+        collaborationBody.nom_fr
       }_${Date.now()}.${ext}`;
 
       const uploadDir = path.resolve("uploads");
@@ -156,15 +181,17 @@ export const updateCollab = (req, res) => {
 
     const sql = `
       UPDATE collaborations
-      SET nom = ?, type = ?, categorie = ?, description = ?, logo = ?
+      SET nom_fr = ?, nom_en = ?, type = ?, categorie = ?, description_fr = ?, description_en = ?, logo = ?
       WHERE idCollab = ?
     `;
 
     const values = [
-      collaborationBody.nom,
+      collaborationBody.nom_fr,
+      collaborationBody.nom_en,
       collaborationBody.type,
       collaborationBody.categorie,
-      collaborationBody.description,
+      collaborationBody.description_fr,
+      collaborationBody.description_en,
       collaborationBody.logo,
       idCollab,
     ];
@@ -174,7 +201,7 @@ export const updateCollab = (req, res) => {
 
       return res.json({
         Status: "Success",
-        message: `Informations de ${collaborationBody.nom} mises à jour`,
+        message: `Informations de ${collaborationBody.nom_fr} mises à jour`,
       });
     });
   });
