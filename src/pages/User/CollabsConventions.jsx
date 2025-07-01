@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../../api/api";
 import { useTranslation } from "react-i18next";
-import { ChevronRight } from "lucide-react";
-import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import Breadcrumb from "../../components/Breadcrumb";
+import Pagination from "../../components/Pagination";
 
 const CollabsConventions = () => {
   const { t } = useTranslation();
@@ -27,6 +26,20 @@ const CollabsConventions = () => {
     fetchData();
   }, []);
 
+  const filteredCollabs = collabs.filter(
+    (collab) =>
+      collab.type === "Nationale" &&
+      ["Autre", "Hôpital", "Université"].includes(collab.categorie)
+  );
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredCollabs.slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(filteredCollabs.length / itemsPerPage);
+
   return (
     <main className="flex-grow my-10 mb-20 mx-16">
       <Breadcrumb
@@ -40,7 +53,7 @@ const CollabsConventions = () => {
           },
           {
             label: t("collaboration.national.title"),
-            link: "/collaboration-nationale",
+            link: "/collaborations/collaborations-nationales",
           },
           {
             label: "Collaborations et conventions",
@@ -53,10 +66,13 @@ const CollabsConventions = () => {
       </h1>
 
       <div className="mx-4 max-md:mx-2 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
-        {collabs
+        {currentItems
           .filter(
             (collab) =>
-              collab.type === "Nationale" && collab.categorie === "Autre"
+              collab.type === "Nationale" &&
+              (collab.categorie === "Autre" ||
+                collab.categorie === "Hôpital" ||
+                collab.categorie === "Université")
           )
           .map((collab, index) => (
             <div key={index}>
@@ -65,10 +81,18 @@ const CollabsConventions = () => {
                   <h3 className="text-dynamic-lg font-semibold">
                     {collab.nom}
                   </h3>
+
                   <ReactMarkdown
                     className="markdown mx-2"
                     children={String(collab.description)}
                   />
+
+                  {collab.categorie !== "Autre" && (
+                    <p className="mx-2 mt-7">
+                      <strong className="font-medium">Catégorie : </strong>
+                      {collab.categorie}
+                    </p>
+                  )}
                 </div>
 
                 <img
@@ -77,70 +101,18 @@ const CollabsConventions = () => {
                   className="w-60 my-auto"
                 />
               </div>
-              <div className="border-black dark:border-gray-300 border-[1px] my-5 w-full"></div>
-            </div>
-          ))}
-
-        <h2 className="text-dynamic-2xl font-semibold my-7 mt-16">Hôpitaux</h2>
-        {collabs
-          .filter(
-            (collab) =>
-              collab.type === "Nationale" && collab.categorie === "Hôpital"
-          )
-          .map((collab, index) => (
-            <div key={index}>
-              <div className="flex items-start justify-between my-10">
-                <div>
-                  <h3 className="text-dynamic-lg font-semibold">
-                    {collab.nom}
-                  </h3>
-                  <ReactMarkdown
-                    className="markdown mx-2"
-                    children={String(collab.description)}
-                  />
-                </div>
-
-                <img
-                  src={`${import.meta.env.VITE_BASE_URL}/${collab.logo}`}
-                  alt={`Logo de l'organisation ${collab.nom}`}
-                  className="w-60 my-auto"
-                />
-              </div>
-              <div className="border-black dark:border-gray-300 border-[1px] my-5 w-full"></div>
-            </div>
-          ))}
-
-        <h2 className="text-dynamic-2xl font-semibold my-7 mt-16">
-          Universités
-        </h2>
-        {collabs
-          .filter(
-            (collab) =>
-              collab.type === "Nationale" && collab.categorie === "Université"
-          )
-          .map((collab, index) => (
-            <div key={index}>
-              <div className="flex items-start justify-between my-10">
-                <div>
-                  <h3 className="text-dynamic-lg font-semibold">
-                    {collab.nom}
-                  </h3>
-                  <ReactMarkdown
-                    className="markdown mx-2"
-                    children={String(collab.description)}
-                  />
-                </div>
-
-                <img
-                  src={`${import.meta.env.VITE_BASE_URL}/${collab.logo}`}
-                  alt={`Logo de l'organisation ${collab.nom}`}
-                  className="w-60 my-auto"
-                />
-              </div>
-              <div className="border-black dark:border-gray-300 border-[1px] my-5 w-full"></div>
+              <div className="border-neutral-500 dark:border-gray-300 border-[1px] my-5 w-full"></div>
             </div>
           ))}
       </div>
+
+      {totalPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalPages={totalPages}
+        />
+      )}
     </main>
   );
 };

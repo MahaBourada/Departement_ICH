@@ -5,6 +5,7 @@ import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import Breadcrumb from "../../components/Breadcrumb";
+import Pagination from "../../components/Pagination";
 
 const InternationalePage = () => {
   const { t } = useTranslation();
@@ -45,6 +46,15 @@ const InternationalePage = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = collabs.slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(collabs.length / itemsPerPage);
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16">
@@ -101,7 +111,7 @@ const InternationalePage = () => {
         )}
       </div>
 
-      {collabs.map((collab, index) => (
+      {currentItems.map((collab, index) => (
         <div key={index}>
           <div className="flex items-start justify-between my-10">
             <div>
@@ -118,6 +128,14 @@ const InternationalePage = () => {
           <div className="border-black dark:border-gray-300 border-[1px] my-5 w-full"></div>
         </div>
       ))}
+
+      {totalPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalPages={totalPages}
+        />
+      )}
 
       <Link
         onClick={() => window.scrollTo({ top: 0 })}
