@@ -102,7 +102,7 @@ Description de la collaboration : ${description}
 
 ${disponibilites && `Disponibilités : ${disponibilites}`}
 
-${site && site !== "undefined" ? `Lien : ${site}` : ""}`,
+${site && `Lien : ${site}`}`,
 
     attachments: fichier
       ? [
