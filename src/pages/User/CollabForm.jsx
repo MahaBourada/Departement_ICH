@@ -86,7 +86,7 @@ const CollabForm = () => {
     formData.append("fonction", values.fonction);
     formData.append("objet", values.objet);
     formData.append("description", values.description);
-    formData.append("site", values.portfolio);
+    formData.append("site", values.site);
     formData.append("disponibilites", disponibilites);
 
     // Append file if it exists

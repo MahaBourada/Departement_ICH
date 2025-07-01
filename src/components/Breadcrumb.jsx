@@ -11,7 +11,7 @@ const Breadcrumb = ({ crumbs }) => {
       className="mb-10 my-1 p-1.5 py-1 w-full bg-bg-crumb rounded-xl flex items-center font-medium max-large-medium:hidden readerMode:hidden dark:bg-dark-bg-crumb leading-loose text-breadcrumb"
     >
       {crumbs.map((crumb, index) => (
-        <>
+        <div key={index} className="flex flex-row items-center">
           {crumb.link ? (
             <Link
               to={crumb.link}
@@ -37,7 +37,7 @@ const Breadcrumb = ({ crumbs }) => {
               strokeWidth={2}
             />
           )}
-        </>
+        </div>
       ))}
     </nav>
   );
