@@ -47,15 +47,15 @@ const ProjectsPage = () => {
         <div className="border-black dark:border-gray-300 border-[1px] my-5 w-full"></div>
 
         {projects.map((project, index) => (
-          <>
-            <div className="w-full" key={project.idProjet}>
+          <div key={project.idProjet}>
+            <div className="w-full">
               <div className="flex flex-row items-start justify-between max-large-large:flex-col readerMode:flex-col">
                 <div>
                   <h2 className="font-semibold font-main text-dynamic-xl my-2">
                     {project.titre}
                   </h2>
 
-                  <div className="minimal:hidden block">
+                  <div>
                     <h3 className="font-semibold text-dynamic-lg my-2">
                       {t("formation.projects.members")}
                     </h3>
@@ -92,13 +92,13 @@ const ProjectsPage = () => {
                 {t("formation.projects.objective")}
               </h3>
               <ReactMarkdown
-                className="m-2"
+                className="m-2 markdown"
                 children={String(project.objectif)}
               />
             </div>
 
             <div className="border-black dark:border-gray-300 border-[1px] my-5 w-full"></div>
-          </>
+          </div>
         ))}
       </div>
     </main>
