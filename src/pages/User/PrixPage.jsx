@@ -21,7 +21,6 @@ const PrixPage = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(prix.image);
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16">
@@ -51,7 +50,7 @@ const PrixPage = () => {
           <div key={onePrix.idPrix}>
             <div className="w-full">
               <div className="flex flex-row items-start justify-between max-large-large:flex-col readerMode:flex-col">
-                <div>
+                <div className={`${onePrix.image ? "w-[60%]" : "w-full"}`}>
                   <h2 className="font-semibold font-main text-dynamic-xl my-2">
                     {onePrix.nom}
                   </h2>
@@ -72,37 +71,47 @@ const PrixPage = () => {
                       {onePrix.etudiants}
                     </p>
 
-                    <p className="my-2">
-                      <span className="font-semibold">Catégorie : </span>
-                      {onePrix.categorie}
-                    </p>
+                    {onePrix.categorie && (
+                      <p className="my-2">
+                        <span className="font-semibold">Catégorie : </span>
+                        {onePrix.categorie}
+                      </p>
+                    )}
 
-                    <h3 className="font-medium font-main text-dynamic-lg my-2">
-                      Description
-                    </h3>
-                    <ReactMarkdown
-                      className="m-2"
-                      children={String(onePrix.description)}
-                    />
+                    {onePrix.description && (
+                      <>
+                        <h3 className="font-medium font-main text-dynamic-lg my-2">
+                          Description
+                        </h3>
+                        <ReactMarkdown
+                          className="m-2"
+                          children={String(onePrix.description)}
+                        />
+                      </>
+                    )}
 
-                    <p className="my-2">
-                      <span className="font-semibold">Lien : </span>
-                      <a
-                        href={onePrix.lien}
-                        className="p-0.5 hover:bg-main hover:underline rounded-md"
-                      >
-                        {onePrix.lien}
-                      </a>
-                    </p>
+                    {onePrix.lien && (
+                      <p className="my-2">
+                        <span className="font-semibold">Lien : </span>
+                        <a
+                          href={onePrix.lien}
+                          className="p-0.5 hover:bg-main hover:underline rounded-md"
+                        >
+                          {onePrix.lien}
+                        </a>
+                      </p>
+                    )}
                   </div>
                 </div>
 
-                <img
-                  src={`${import.meta.env.VITE_BASE_URL}/${onePrix.image}`}
-                  alt={onePrix.alt}
-                  width={400}
-                  className="mx-4 minimal:hidden max-large-large:my-6 max-large-medium:w-[30rem] max-large-medium:h-[30rem] max-lg:w-64 max-lg:h-64 max-xl:w-60 max-xl:h-60 readerMode:my-4 rounded-3xl "
-                />
+                {onePrix.image && (
+                  <img
+                    src={`${import.meta.env.VITE_BASE_URL}/${onePrix.image}`}
+                    alt={onePrix.alt}
+                    width={400}
+                    className="mx-4 minimal:hidden max-large-large:my-6 max-large-medium:w-[30rem] max-large-medium:h-[30rem] max-lg:w-64 max-lg:h-64 max-xl:w-60 max-xl:h-60 readerMode:my-4 rounded-3xl "
+                  />
+                )}
               </div>
             </div>
 
