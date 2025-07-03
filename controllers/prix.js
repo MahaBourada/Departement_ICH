@@ -15,7 +15,7 @@ export const getAllPrix = (req, res) => {
                     categorie,
                     description_${lang} AS description,
                     image,
-                    alt_${lang},
+                    alt_${lang} AS alt,
                     lien
                 FROM prix`;
 
