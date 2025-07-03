@@ -79,12 +79,8 @@ const AddMember = () => {
       return;
     }
 
-    const data = {
-      ...values,
-    };
-
     try {
-      const response = await api.post("/members", data);
+      const response = await api.post("/members", values);
 
       setMsgShow(true);
       setMsgStatus(200);

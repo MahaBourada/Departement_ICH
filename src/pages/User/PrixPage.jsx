@@ -27,7 +27,7 @@ const PrixPage = () => {
       />
 
       <h1 className="font-main font-semibold text-dynamic-2xl my-2 mb-4">
-        {t("department.awards_title")}
+        {t("formation.awards_title")}
       </h1>
     </main>
   );

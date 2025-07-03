@@ -1,16 +1,17 @@
 import { Pencil, Plus, Trash2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../../../api/api";
 import { ConfirmationModal, MessagePopup } from "../../../components/MsgPopup";
 
-const MembersListPage = () => {
-  const [members, setMembers] = useState([]);
+const PrixListPage = () => {
+  const [prix, setPrix] = useState([]); // List of json objects
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [selectedPrix, setSelectedPrix] = useState({});
+
   const [msg, setMsg] = useState("");
   const [msgShow, setMsgShow] = useState(false);
   const [msgStatus, setMsgStatus] = useState(0);
-  const [confirmOpen, setConfirmOpen] = useState(false);
-  const [selectedMember, setSelectedMember] = useState({});
 
   const handleClose = () => {
     setMsgShow(false);
@@ -18,8 +19,8 @@ const MembersListPage = () => {
 
   const fetchData = async () => {
     try {
-      const response = await api.get("/members");
-      setMembers(response.data);
+      const response = await api.get("/prix");
+      setPrix(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -29,18 +30,18 @@ const MembersListPage = () => {
     fetchData();
   }, []);
 
-  const handleConfirmDelete = (member) => {
-    setSelectedMember(member);
+  const handleConfirmDelete = (onePrix) => {
+    setSelectedPrix(onePrix);
     setConfirmOpen(true);
   };
 
   const handleDelete = async () => {
     try {
-      setMembers((prev) =>
-        prev.filter((member) => member.idMembre !== selectedMember.idMembre)
+      setPrix((prev) =>
+        prev.filter((onePrix) => onePrix.idPrix !== selectedPrix.idPrix)
       );
 
-      const response = await api.delete(`/members/${selectedMember.idMembre}`);
+      const response = await api.delete(`/prix/${selectedPrix.idPrix}`);
 
       setMsgShow(true);
       setMsgStatus(200);
@@ -49,32 +50,32 @@ const MembersListPage = () => {
       console.error(error);
     } finally {
       setConfirmOpen(false);
-      setSelectedMember(null);
+      setSelectedPrix(null);
     }
   };
 
   const cancelDeletion = () => {
     setConfirmOpen(false);
-    setSelectedMember(null);
+    setSelectedPrix(null);
   };
 
   return (
     <main className="mx-14 my-20">
       <div className="flex items-center justify-between text-display font-semibold">
-        <h1 className="font-semibold ">Gestion de l'équipe du département</h1>
+        <h1 className="font-semibold ">Gestion des prix & concours</h1>
 
         <Link
           onClick={() => window.scrollTo({ top: 0 })}
-          to="/admin/gestion-equipe/ajouter-membre"
+          to="/admin/gestion-prix/ajouter-prix"
           className="flex flex-row items-center font-main font-medium rounded-xl px-5 py-2 mx-3 my-1 text-black bg-accent hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white max-md:w-42 max-md:mb-4 text-nav leading-normal"
         >
           <Plus
-            aria-label="Ajouter un membre"
+            aria-label="Ajouter un prix"
             size={30}
             className="text-black dark:text-dark-white mr-2"
             strokeWidth={2.8}
           />
-          <p>Ajouter un membre</p>
+          <p>Ajouter un prix</p>
         </Link>
       </div>
 
@@ -82,9 +83,9 @@ const MembersListPage = () => {
         <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
       )}
 
-      {members.length === 0 && (
+      {prix.length === 0 && (
         <div className="m-auto w-fit mt-20 text-3xl font-medium">
-          <h2>Aucun membre enregistré</h2>
+          <h2>Aucun prix enregistré</h2>
         </div>
       )}
 
@@ -93,53 +94,47 @@ const MembersListPage = () => {
         onCancel={cancelDeletion}
         onConfirm={handleDelete}
         message={`Êtes-vous sûr de vouloir supprimer ${
-          selectedMember?.prenom || ""
-        } ${selectedMember?.nom ? selectedMember.nom.toUpperCase() : ""}?`}
+          selectedPrix?.nom || ""
+        }?`}
       />
 
-      {members.length > 0 && (
+      {prix.length > 0 && (
         <table className="w-full mx-3 my-5">
-          <caption className="sr-only">
-            Liste des membres de l'équipe du département
-          </caption>
+          <caption className="sr-only">Liste des prix & concours</caption>
           <thead>
             <tr className="border-b-[0.5px] text-start">
-              <th className="py-3 text-start w-[28%]">Membre</th>
-              <th className="py-3 text-start w-[20%]">Titre</th>
-              <th className="py-3 text-start w-[27%]">Fonction</th>
-              <th className="py-3 text-start w-[20%]">Section</th>
+              <th className="py-3 text-start w-[20%]">Nom</th>
+              <th className="py-3 text-start w-[20%]">Organisation</th>
+              <th className="py-3 text-start w-[20%]">Projet</th>
+              <th className="py-3 text-start w-[28%]">Étudiant.s</th>
               <th className="py-3 text-start w-1/2">Opérations</th>
             </tr>
           </thead>
           <tbody>
-            {members.map((member) => (
-              <tr key={member.idMembre} className="border-b-[0.5px]">
+            {prix.map((onePrix) => (
+              <tr key={onePrix.idPrix} className="border-b-[0.5px]">
                 <td className="py-3 text-start">
-                  <p className="line-clamp-1">
-                    {member.prenom + " " + member.nom.toUpperCase()}
-                  </p>
+                  <p className="line-clamp-1">{onePrix.nom}</p>
                 </td>
                 <td className="py-3 text-start">
-                  <p className="line-clamp-1">{member.titre}</p>
+                  <p className="line-clamp-1">{onePrix.organisation}</p>
                 </td>
                 <td className="py-3 text-start">
-                  <p className="line-clamp-1">{member.fonction}</p>
+                  <p className="line-clamp-1">{onePrix.projet}</p>
                 </td>
                 <td className="py-3 text-start">
-                  <p className="line-clamp-1">{member.section}</p>
+                  <p className="line-clamp-1">{onePrix.etudiants}</p>
                 </td>
                 <td className="h-full px-4">
                   <div className="flex items-center justify-center space-x-2">
                     <Link
                       onClick={() => window.scrollTo({ top: 0 })}
-                      to={`/admin/gestion-equipe/${member.idMembre}`}
+                      to={`/admin/gestion-prix/${onePrix.idPrix}`}
                       type="button"
                       className="cursor-pointer mr-2 p-0.5 rounded-md hover:bg-neutral-300 dark:hover:bg-neutral-600"
                     >
                       <Pencil
-                        aria-label={`Mettre à jour ${
-                          member.prenom
-                        } ${member.nom.toUpperCase()}`}
+                        aria-label={`Mettre à jour ${onePrix.nom}`}
                         size={30}
                         className="text-[#232323] dark:text-gray-300"
                       />
@@ -147,12 +142,10 @@ const MembersListPage = () => {
                     <button
                       type="button"
                       className="cursor-pointer ml-2 p-0.5 rounded-md hover:bg-neutral-300 dark:hover:bg-neutral-600"
-                      onClick={() => handleConfirmDelete(member)}
+                      onClick={() => handleConfirmDelete(onePrix)}
                     >
                       <Trash2
-                        aria-label={`Supprimer ${
-                          member.prenom
-                        } ${member.nom.toUpperCase()}`}
+                        aria-label={`Supprimer ${onePrix.nom}`}
                         size={30}
                         className="text-[#8B0000] dark:text-red-400"
                       />
@@ -168,4 +161,4 @@ const MembersListPage = () => {
   );
 };
 
-export default MembersListPage;
+export default PrixListPage;
