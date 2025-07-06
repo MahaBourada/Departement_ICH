@@ -2,6 +2,7 @@ import {
   Code,
   Handshake,
   House,
+  Newspaper,
   PanelsTopLeft,
   Presentation,
   UsersRound,
@@ -46,6 +47,20 @@ const AdminNavigation = () => {
           >
             <PanelsTopLeft size={32} />
             <p className="mx-2">Pages</p>
+          </NavLink>
+
+          <NavLink
+            to="/admin/gestion-actualites"
+            className={({ isActive }) =>
+              `flex items-center my-3  px-4 py-3 rounded-2xl hover:bg-admin-nav-bg dark:hover:bg-[#83421F] hover:underline mx-7 ${
+                isActive
+                  ? "bg-admin-nav-bg dark:bg-[#83421F] text-black dark:text-dark-white"
+                  : "bg-none text-black dark:text-gray-300"
+              }`
+            }
+          >
+            <Newspaper size={32} />
+            <p className="mx-2">Actualités</p>
           </NavLink>
 
           <NavLink

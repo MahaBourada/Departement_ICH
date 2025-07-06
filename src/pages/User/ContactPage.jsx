@@ -69,12 +69,6 @@ const ContactPage = () => {
 
       <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse readerMode:flex-col readerMode:leading-loose readerMode:w-[60ch] max-large-medium:readerMode:w-full readerMode:mx-auto">
         <div className="flex flex-col ml-3 max-large-medium:mt-5 max-large-medium:mx-0">
-          <h2 className="font-main font-medium text-header my-5">Horaires</h2>
-          <ul className="list-disc mx-8">
-            <li>Lundi - Vendredi</li>
-            <li>09:00 - 15:00</li>
-          </ul>
-
           <h2 className="font-main font-medium text-header my-5">
             {t("contact.title")}
           </h2>
@@ -151,7 +145,11 @@ const ContactPage = () => {
             name="subject"
             value={values.subject}
             onChange={(e) => setValues({ ...values, subject: e.target.value })}
-            values={[t("contact.form.subject.1"), t("contact.form.subject.2")]}
+            values={[
+              t("contact.form.subject.1"),
+              t("contact.form.subject.2"),
+              t("contact.form.subject.3"),
+            ]}
           />
 
           <TextAreaField

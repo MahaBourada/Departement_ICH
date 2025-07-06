@@ -12,6 +12,7 @@ import {
   SmallBorderButton,
   SmallFilledButton,
 } from "../../../components/Buttons";
+import { getRelativePath } from "../../../utils/getRelativePath";
 
 const UpdateMember = () => {
   const { id } = useParams();
@@ -33,10 +34,11 @@ const UpdateMember = () => {
 
   useEffect(() => {
     if (member?.idMembre) {
-      const initialImage =
-        member.image && !member.image.startsWith("data:image")
-          ? `${import.meta.env.VITE_BASE_URL}/${member.image}`
-          : member.image || null;
+      const initialImage = member.image
+        ? `${import.meta.env.VITE_BASE_URL}/${member.image}`
+        : member.image || null;
+
+      console.log(initialImage);
 
       setValues({
         prenom: member.prenom || "",
@@ -59,10 +61,10 @@ const UpdateMember = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         setImage(reader.result); // this is the base64 string like 'data:image/png;base64,...'
-        setValues((prev) => ({
+        /* setValues((prev) => ({
           ...prev,
           image: reader.result, // store base64 string in your form state
-        }));
+        })); */
       };
       reader.readAsDataURL(selectedFile);
     }
@@ -95,7 +97,7 @@ const UpdateMember = () => {
 
     const data = {
       ...values,
-      image: image,
+      image: getRelativePath(image),
     };
 
     try {

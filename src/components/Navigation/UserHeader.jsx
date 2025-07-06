@@ -263,7 +263,7 @@ const Header = ({ switchLang }) => {
               }`}
               onClick={() => setShowColl(!showColl)}
             >
-              <p className="mx-1">Collaboration</p>
+              <p className="mx-1">Collaborations</p>
               <ChevronDown
                 size={26}
                 className="text-[#232323] dark:text-gray-300"

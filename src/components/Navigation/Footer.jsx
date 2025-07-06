@@ -47,41 +47,29 @@ const Footer = ({ switchLang }) => {
         <img
           src="/ich/assets/vectors/LogoDark.svg"
           alt="Logo de l'université Paris 8"
-          width={180}
+          width={130}
           className="m-5 hidden dark:block"
         />
         <img
           src="/ich/assets/vectors/Logo.svg"
           alt="Logo de l'université Paris 8"
-          width={180}
+          width={130}
           className="m-5 block dark:hidden"
         />
-
-        <form
-          onSubmit={(e) => onSubmit(e)}
-          className="flex flex-col"
-        >
-          <label htmlFor="newsletter" className="font-main font-medium my-2">
-            Newsletter
-          </label>
-
-          <div className="mx-2">
-            <input
-              type="email"
-              name="newsletter"
-              id="newsletter"
-              placeholder={t("contact.form.mail_placeholder")}
-              className="bg-gray-100 border-gray-200 border-2 rounded-xl px-5 py-[0.75rem] mr-2 outline-gray-500 dark:text-black dark:bg-gray-400 dark:border-gray-700"
-              /* value={value}
-            onChange={onChange} */
-            />
-
-            <SmallFilledButton
-              type="submit"
-              text="S'inscrire"
-            />
-          </div>
-        </form>
+        <div className="flex flex-row items-center justify-end">
+          <img
+            src="/ich/assets/vectors/W3C.svg"
+            alt="Logo de W3C"
+            width={80}
+            className="m-2 block"
+          />
+          <img
+            src="/ich/assets/vectors/wave.svg"
+            alt="Logo de wave"
+            width={50}
+            className="m-2 block"
+          />
+        </div>
       </div>
 
       <div className="border-black dark:border-gray-300 border-[1px] my-5 w-full"></div>
@@ -200,7 +188,7 @@ const Footer = ({ switchLang }) => {
                   ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
                   : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
-              to="/lab-chart"
+              to="/formation/prix-concours"
             >
               {t("formation.awards_title")}
             </NavLink>
@@ -222,7 +210,7 @@ const Footer = ({ switchLang }) => {
           </div>
 
           <div className="flex flex-col px-2">
-            <p className="p-2 font-medium">Collaboration</p>
+            <p className="p-2 font-medium">Collaborations</p>
             <NavLink
               onClick={() => window.scrollTo({ top: 0 })}
               className={({ isActive }) =>
@@ -230,7 +218,7 @@ const Footer = ({ switchLang }) => {
                   ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
                   : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
-              to="/collaboration-nationale"
+              to="/collaborations/collaborations-nationales"
             >
               {t("collaboration.national.link")}
             </NavLink>
@@ -241,7 +229,7 @@ const Footer = ({ switchLang }) => {
                   ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
                   : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
               }
-              to="/collaboration-internationale"
+              to="/collaborations/collaborations-internationales"
             >
               {t("collaboration.international.link")}
             </NavLink>

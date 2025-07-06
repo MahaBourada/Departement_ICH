@@ -111,13 +111,6 @@ const LoginPage = () => {
             onChange={(e) => setValues({ ...values, password: e.target.value })}
           />
 
-          <button
-            type="button"
-            className="w-fit mx-1 self-end cursor-pointer hover:translate-[1px] hover:underline"
-          >
-            Mot de passe oublié ?
-          </button>
-
           {msgShow && (
             <p className="text-[#8B0000] text-center text-xl font-medium m-2">
               {msg}

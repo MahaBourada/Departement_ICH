@@ -12,6 +12,7 @@ import {
   SmallFilledButton,
 } from "../../../components/Buttons";
 import { MessagePopup } from "../../../components/MsgPopup";
+import { getRelativePath } from "../../../utils/getRelativePath";
 
 const UpdateCollab = () => {
   const { id } = useParams();
@@ -93,7 +94,7 @@ const UpdateCollab = () => {
 
     const data = {
       ...values,
-      logo: file,
+      logo: getRelativePath(file),
     };
 
     try {

@@ -33,6 +33,10 @@ import CollabsConventions from "./pages/User/CollabsConventions";
 import CollabForm from "./pages/User/CollabForm";
 import AddPrix from "./pages/Admin/Prix/AddPrix";
 import UpdatePrix from "./pages/Admin/Prix/UpdatePrix";
+import NewsPage from "./pages/User/NewsPage";
+import NewsListPage from "./pages/Admin/News/NewsListPage";
+import AddNews from "./pages/Admin/News/AddNews";
+import UpdateNews from "./pages/Admin/News/UpdateNews";
 
 function App() {
   return (
@@ -42,6 +46,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="departement/equipe" element={<MembersPage />} />
           <Route path="departement/equipe/:id" element={<IndividualPage />} />
+          <Route path="departement/actualites" element={<NewsPage />} />
 
           <Route path="formation/master" element={<MasterPage />} />
           <Route
@@ -83,9 +88,17 @@ function App() {
           <Route path="gestion-pages" element={<PagesListPage />} />
           <Route path="gestion-pages/:idPage" element={<UpdatePage />} />
 
+          <Route path="gestion-actualites" element={<NewsListPage />} />
+          <Route
+            path="gestion-actualites/ajouter-actualite"
+            element={<AddNews />}
+          />
+          <Route path="gestion-actualites/:id" element={<UpdateNews />} />
+
           <Route path="gestion-equipe" element={<MembersListPage />} />
           <Route path="gestion-equipe/ajouter-membre" element={<AddMember />} />
           <Route path="gestion-equipe/:id" element={<UpdateMember />} />
+
           <Route path="gestion-projets" element={<ProjectsListPage />} />
           <Route
             path="gestion-projets/ajouter-projet"

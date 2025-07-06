@@ -43,11 +43,11 @@
   "collaboration": {
     "national": {
       "link": "National",
-      "title": "National collaboration"
+      "title": "National collaborations"
     },
     "international": {
       "link": "International",
-      "title": "International collaboration"
+      "title": "International collaborations"
     }
   },
   "contact": {
@@ -60,7 +60,8 @@
         "label": "Subject",
         "placeholder": "Select an option",
         "1": "Feedback",
-        "2": "Information"
+        "2": "Information",
+        "3": "Other"
       },
       "message_placeholder": "Write your message",
       "submit": "Submit",

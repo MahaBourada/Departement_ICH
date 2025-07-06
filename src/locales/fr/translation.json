@@ -42,12 +42,12 @@
   },
   "collaboration": {
     "national": {
-      "link": "Nationale",
-      "title": "Collaboration nationale"
+      "link": "Nationales",
+      "title": "Collaborations nationales"
     },
     "international": {
-      "link": "Internationale",
-      "title": "Collaboration internationale"
+      "link": "Internationales",
+      "title": "Collaborations internationales"
     }
   },
   "contact": {
@@ -60,7 +60,8 @@
         "label": "Objet",
         "placeholder": "Sélectionnez une option",
         "1": "Feedback",
-        "2": "Renseignements"
+        "2": "Renseignements",
+        "3": "Autre"
       },
       "message_placeholder": "Rédigez votre message",
       "submit": "Envoyer",

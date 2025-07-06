@@ -11,6 +11,7 @@ import {
   TextAreaField,
 } from "../../../components/Inputs";
 import { MessagePopup } from "../../../components/MsgPopup";
+import { getRelativePath } from "../../../utils/getRelativePath";
 
 const UpdatePrix = () => {
   const { id } = useParams();
@@ -96,8 +97,13 @@ const UpdatePrix = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const data = {
+      ...values,
+      image: getRelativePath(values.image),
+    };
+
     try {
-      const response = await api.put(`/prix/${prix.idPrix}`, values);
+      const response = await api.put(`/prix/${prix.idPrix}`, data);
 
       setMsgShow(true);
       setMsgStatus(200);
@@ -130,7 +136,9 @@ const UpdatePrix = () => {
 
   return (
     <main className="mx-14 my-20">
-      <h1 className="text-dynamic-2xl font-semibold">Gestion du prix</h1>
+      <h1 className="text-dynamic-2xl font-semibold">
+        Gestion du prix {prix.nom}
+      </h1>
 
       {msgShow && (
         <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
