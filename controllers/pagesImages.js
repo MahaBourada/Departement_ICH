@@ -129,23 +129,55 @@ export const updateImages = async (req, res) => {
         for (const image of images) {
           if (!image.path || image.path.trim() === "") continue;
 
-          let isBase64 = image.path.startsWith("data:image");
+          let imageData = image.path;
 
-          if (isBase64) {
-            const matches = image.path.match(
-              /^data:image\/([a-zA-Z]+);base64,(.+)$/
+          if (imageData && imageData.startsWith("data:")) {
+            const matches = imageData.match(
+              /^data:image\/([a-zA-Z0-9+.-]+);base64,(.+)$/
             );
+
             if (!matches || matches.length !== 3) {
-              return res
-                .status(400)
-                .json({ error: "Invalid image base64 data" });
+              return res.status(400).json({
+                error: "Format invalide",
+                message:
+                  "Format invalide, veuillez insérer une image au format SVG, PNG, JPEG ou WEBP.",
+              });
             }
 
-            const ext = matches[1];
+            const ext = matches[1].toLowerCase();
             const data = matches[2];
+
+            const allowedFormats = [
+              "svg+xml",
+              "svg",
+              "png",
+              "jpeg",
+              "jpg",
+              "webp",
+            ];
+
+            if (!allowedFormats.includes(ext)) {
+              return res.status(400).json({
+                error: "Format invalide",
+                message:
+                  "Format invalide, veuillez insérer une image au format SVG, PNG, JPEG ou WEBP.",
+              });
+            }
+
+            // Allow these formats
+            const extensionMap = {
+              "svg+xml": "svg",
+              svg: "svg",
+              png: "png",
+              jpeg: "jpg",
+              jpg: "jpg",
+              webp: "webp",
+            };
+
+            const fileExtension = extensionMap[ext];
             const buffer = Buffer.from(data, "base64");
 
-            const fileName = `page_${link}_${uuidv4()}_${Date.now()}.${ext}`;
+            const fileName = `page_${link}_${uuidv4()}_${Date.now()}.${fileExtension}`;
             const uploadDir = path.resolve("uploads");
             if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
 
@@ -163,7 +195,7 @@ export const updateImages = async (req, res) => {
               [image.idMedia, idPage]
             );
             const oldRow = old[0]; // since query() is fixed
-            if (oldRow && isBase64 && oldRow.path) {
+            if (oldRow && imageData && oldRow.path) {
               const oldPath = path.join(process.cwd(), oldRow.path);
               if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath); // Delete old file
             }

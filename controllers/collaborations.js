@@ -60,42 +60,62 @@ export const addCollab = (req, res) => {
 
   let imageData = collaborationBody.logo;
 
-  if (imageData && imageData.startsWith("data:image")) {
-    // Split the base64 string to get the actual data after comma
-    const matches = imageData.match(/^data:image\/([a-zA-Z]+);base64,(.+)$/);
+  if (imageData && imageData.startsWith("data:")) {
+    const matches = imageData.match(
+      /^data:image\/([a-zA-Z0-9+.-]+);base64,(.+)$/
+    );
+
     if (!matches || matches.length !== 3) {
-      return res.status(400).json({ error: "Invalid image base64 data" });
+      return res.status(400).json({
+        error: "Format invalide",
+        message:
+          "Format invalide, veuillez insérer une image au format SVG, PNG, JPEG ou WEBP.",
+      });
     }
 
-    const ext = matches[1]; // e.g. jpeg, png
+    const ext = matches[1].toLowerCase();
     const data = matches[2];
+
+    const allowedFormats = ["svg+xml", "svg", "png", "jpeg", "jpg", "webp"];
+
+    if (!allowedFormats.includes(ext)) {
+      return res.status(400).json({
+        error: "Format invalide",
+        message:
+          "Format invalide, veuillez insérer une image au format SVG, PNG, JPEG ou WEBP.",
+      });
+    }
+
+    // Allow these formats
+    const extensionMap = {
+      "svg+xml": "svg",
+      svg: "svg",
+      png: "png",
+      jpeg: "jpg",
+      jpg: "jpg",
+      webp: "webp",
+    };
+
+    const fileExtension = extensionMap[ext];
     const buffer = Buffer.from(data, "base64");
 
-    // Create a unique file name
     const fileName = `collaboration_${
-      collaborationBody.nom_fr
-    }_${Date.now()}.${ext}`;
-
-    // Chemin absolu vers dossier uploads (dans le dossier courant)
+      collaborationBody.nom
+    }_${Date.now()}.${fileExtension}`;
     const uploadDir = path.resolve("uploads");
 
-    // Créer dossier uploads s'il n'existe pas
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir);
     }
 
-    // Chemin complet pour écrire le fichier
     const fullImagePath = path.join(uploadDir, fileName);
-
-    // Sauvegarder le fichier
     fs.writeFileSync(fullImagePath, buffer);
 
-    // Stocker le chemin relatif avec slash '/' dans la base
     collaborationBody.logo = `uploads/${fileName}`;
   }
 
   const sql =
-    "INSERT INTO collaborations (idCollab, nom, type, categorie, description_fr, description_en, logo) VALUES (?, ?, ?, ?, ?, ?)";
+    "INSERT INTO collaborations (idCollab, nom, type, categorie, description_fr, description_en, logo) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
   const values = [
     id,
@@ -134,21 +154,48 @@ export const updateCollab = (req, res) => {
 
     let imageData = collaborationBody.logo;
 
-    if (imageData && imageData.startsWith("data:image")) {
+    if (imageData && imageData.startsWith("data:")) {
       // Split the base64 string to get the actual data after comma
-      const matches = imageData.match(/^data:image\/([a-zA-Z]+);base64,(.+)$/);
+      const matches = imageData.match(
+        /^data:image\/([a-zA-Z0-9+.-]+);base64,(.+)$/
+      );
+
       if (!matches || matches.length !== 3) {
-        return res.status(400).json({ error: "Invalid image base64 data" });
+        return res.status(400).json({
+          error: "Invalid image base64 data",
+          message:
+            "Format invalide, veuillez insérer une image au format SVG, PNG, JPEG ou WEBP.",
+        });
       }
 
-      const ext = matches[1]; // e.g. jpeg, png
+      const ext = matches[1]; // e.g. svg, jpeg, png
       const data = matches[2];
+
+      // Allow these formats
+      const allowedFormats = ["svg+xml", "svg", "png", "jpeg", "jpg", "webp"];
+
+      if (!allowedFormats.includes(ext)) {
+        return res.status(400).json({
+          error: "Format invalide",
+          message:
+            "Format invalide, veuillez insérer une image au format SVG, PNG, JPEG ou WEBP.",
+        });
+      }
+
       const buffer = Buffer.from(data, "base64");
 
-      // Create a unique file name
+      const extensionMap = {
+        "svg+xml": "svg",
+        svg: "svg",
+        png: "png",
+        jpeg: "jpg",
+        jpg: "jpg",
+        webp: "webp",
+      };
+      const fileExtension = extensionMap[ext];
       const fileName = `collaboration_${
-        collaborationBody.nom_fr
-      }_${Date.now()}.${ext}`;
+        collaborationBody.nom
+      }_${Date.now()}.${fileExtension}`;
 
       const uploadDir = path.resolve("uploads");
       if (!fs.existsSync(uploadDir)) {

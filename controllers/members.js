@@ -30,6 +30,56 @@ export const getMember = (req, res) => {
   });
 };
 
+export const getAllMembersByLang = (req, res) => {
+  const lang = req.query.lang === "en" ? "en" : "fr";
+
+  const sql = `SELECT 
+                idMembre,
+                nom,
+                prenom,
+                titre,
+                fonction_${lang} AS fonction,
+                section_${lang} AS section,
+                image
+              FROM membres_equipe`;
+
+  db.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    } else {
+      res.json(results);
+    }
+  });
+};
+
+export const getMemberByLang = (req, res) => {
+  const lang = req.query.lang === "en" ? "en" : "fr";
+  const id = req.params.idMembre;
+
+  const sql = `SELECT 
+                idMembre,
+                nom,
+                prenom,
+                titre,
+                fonction_${lang} AS fonction,
+                section_${lang} AS section,
+                propos_${lang} AS propos,
+                image
+              FROM membres_equipe
+              WHERE idMembre = ?`;
+  db.query(sql, [id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Member not found" });
+    }
+
+    res.json(results[0]);
+  });
+};
+
 export const addMember = (req, res) => {
   const id = uuidv4();
   const memberBody = req.body;
@@ -71,16 +121,19 @@ export const addMember = (req, res) => {
   }
 
   const sql =
-    "INSERT INTO membres_equipe (idMembre, prenom, nom, titre, fonction, section, propos, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    "INSERT INTO membres_equipe (idMembre, prenom, nom, titre, fonction_fr, section_fr, propos_fr, fonction_en, section_en, propos_en, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
   const values = [
     id,
     memberBody?.prenom,
     memberBody?.nom,
     memberBody?.titre,
-    memberBody?.fonction,
-    memberBody?.section,
-    memberBody?.propos,
+    memberBody?.fonction_fr,
+    memberBody?.section_fr,
+    memberBody?.propos_fr,
+    memberBody?.fonction_en,
+    memberBody?.section_en,
+    memberBody?.propos_en,
     memberBody?.image,
   ];
   db.query(sql, values, (err, result) => {
@@ -158,7 +211,7 @@ export const updateMember = (req, res) => {
 
     const sql = `
       UPDATE departement_ich.membres_equipe
-      SET prenom = ?, nom = ?, titre = ?, fonction = ?, section = ?, propos = ?, image = ?
+      SET prenom = ?, nom = ?, titre = ?, fonction_fr = ?, section_fr = ?, propos_fr = ?, fonction_en = ?, section_en = ?, propos_en = ?, image = ?
       WHERE idMembre = ?
     `;
 
@@ -166,9 +219,12 @@ export const updateMember = (req, res) => {
       memberBody.prenom,
       memberBody.nom,
       memberBody.titre,
-      memberBody.fonction,
-      memberBody.section,
-      memberBody.propos,
+      memberBody.fonction_fr,
+      memberBody.section_fr,
+      memberBody.propos_fr,
+      memberBody.fonction_en,
+      memberBody.section_en,
+      memberBody.propos_en,
       memberBody.image,
       idMembre,
     ];

@@ -199,25 +199,57 @@ export const addProject = (req, res) => {
 
           let base64Data = image.path;
 
-          if (base64Data && base64Data.startsWith("data:image")) {
+          if (base64Data && base64Data.startsWith("data:")) {
             // Split the base64 string to get the actual data after comma
             const matches = base64Data.match(
-              /^data:image\/([a-zA-Z]+);base64,(.+)$/
+              /^data:image\/([a-zA-Z0-9+.-]+);base64,(.+)$/
             );
+
             if (!matches || matches.length !== 3) {
-              return res
-                .status(400)
-                .json({ error: "Invalid image base64 data" });
+              return res.status(400).json({
+                error: "Format invalide",
+                message:
+                  "Format invalide, veuillez insérer une image au format SVG, PNG, JPEG ou WEBP.",
+              });
             }
 
-            const ext = matches[1]; // e.g. jpeg, png
+            const ext = matches[1].toLowerCase();
             const data = matches[2];
+
+            const allowedFormats = [
+              "svg+xml",
+              "svg",
+              "png",
+              "jpeg",
+              "jpg",
+              "webp",
+            ];
+
+            if (!allowedFormats.includes(ext)) {
+              return res.status(400).json({
+                error: "Format invalide",
+                message:
+                  "Format invalide, veuillez insérer une image au format SVG, PNG, JPEG ou WEBP.",
+              });
+            }
+
+            // Allow these formats
+            const extensionMap = {
+              "svg+xml": "svg",
+              svg: "svg",
+              png: "png",
+              jpeg: "jpg",
+              jpg: "jpg",
+              webp: "webp",
+            };
+
+            const fileExtension = extensionMap[ext];
             const buffer = Buffer.from(data, "base64");
 
             // Create a unique file name
             const fileName = `projet_${
               projectBody.titre
-            }_${uuidv4()}_${Date.now()}.${ext}`;
+            }_${uuidv4()}_${Date.now()}.${fileExtension}`;
 
             // Chemin absolu vers dossier uploads (dans le dossier courant)
             const uploadDir = path.resolve("uploads");
@@ -414,23 +446,57 @@ export const updateProject = (req, res) => {
         for (const image of projectBody.images) {
           if (!image.path || image.path.trim() === "") continue;
 
-          let isBase64 = image.path.startsWith("data:image");
+          let isBase64 = image.path;
 
-          if (isBase64) {
-            const matches = image.path.match(
-              /^data:image\/([a-zA-Z]+);base64,(.+)$/
+          if (isBase64 && isBase64.startsWith("data:")) {
+            const matches = isBase64.match(
+              /^data:image\/([a-zA-Z0-9+.-]+);base64,(.+)$/
             );
+
             if (!matches || matches.length !== 3) {
-              return res
-                .status(400)
-                .json({ error: "Invalid image base64 data" });
+              return res.status(400).json({
+                error: "Format invalide",
+                message:
+                  "Format invalide, veuillez insérer une image au format SVG, PNG, JPEG ou WEBP.",
+              });
             }
 
-            const ext = matches[1];
+            const ext = matches[1].toLowerCase();
             const data = matches[2];
+
+            const allowedFormats = [
+              "svg+xml",
+              "svg",
+              "png",
+              "jpeg",
+              "jpg",
+              "webp",
+            ];
+
+            if (!allowedFormats.includes(ext)) {
+              return res.status(400).json({
+                error: "Format invalide",
+                message:
+                  "Format invalide, veuillez insérer une image au format SVG, PNG, JPEG ou WEBP.",
+              });
+            }
+
+            // Allow these formats
+            const extensionMap = {
+              "svg+xml": "svg",
+              svg: "svg",
+              png: "png",
+              jpeg: "jpg",
+              jpg: "jpg",
+              webp: "webp",
+            };
+
+            const fileExtension = extensionMap[ext];
             const buffer = Buffer.from(data, "base64");
 
-            const fileName = `projet_${projectBody.titre}_${Date.now()}.${ext}`;
+            const fileName = `projet_${
+              projectBody.titre
+            }_${Date.now()}.${fileExtension}`;
             const uploadDir = path.resolve("uploads");
             if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
 

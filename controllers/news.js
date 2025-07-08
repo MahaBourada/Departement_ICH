@@ -65,19 +65,47 @@ export const addNews = (req, res) => {
 
   let imageData = newsBody.image;
 
-  if (imageData && imageData.startsWith("data:image")) {
-    // Split the base64 string to get the actual data after comma
-    const matches = imageData.match(/^data:image\/([a-zA-Z]+);base64,(.+)$/);
+  if (imageData && imageData.startsWith("data:")) {
+    const matches = imageData.match(
+      /^data:image\/([a-zA-Z0-9+.-]+);base64,(.+)$/
+    );
+
     if (!matches || matches.length !== 3) {
-      return res.status(400).json({ error: "Invalid image base64 data" });
+      return res.status(400).json({
+        error: "Format invalide",
+        message:
+          "Format invalide, veuillez insérer une image au format SVG, PNG, JPEG ou WEBP.",
+      });
     }
 
-    const ext = matches[1]; // e.g. jpeg, png
+    const ext = matches[1].toLowerCase();
     const data = matches[2];
+
+    const allowedFormats = ["svg+xml", "svg", "png", "jpeg", "jpg", "webp"];
+
+    if (!allowedFormats.includes(ext)) {
+      return res.status(400).json({
+        error: "Format invalide",
+        message:
+          "Format invalide, veuillez insérer une image au format SVG, PNG, JPEG ou WEBP.",
+      });
+    }
+
+    // Allow these formats
+    const extensionMap = {
+      "svg+xml": "svg",
+      svg: "svg",
+      png: "png",
+      jpeg: "jpg",
+      jpg: "jpg",
+      webp: "webp",
+    };
+
+    const fileExtension = extensionMap[ext];
     const buffer = Buffer.from(data, "base64");
 
     // Create a unique file name
-    const fileName = `news_${newsBody.titre_fr}_${Date.now()}.${ext}`;
+    const fileName = `news_${newsBody.titre_fr}_${Date.now()}.${fileExtension}`;
 
     // Chemin absolu vers dossier uploads (dans le dossier courant)
     const uploadDir = path.resolve("uploads");
@@ -140,19 +168,49 @@ export const updateNews = (req, res) => {
 
     let imageData = newsBody.image;
 
-    if (imageData && imageData.startsWith("data:image")) {
-      // Split the base64 string to get the actual data after comma
-      const matches = imageData.match(/^data:image\/([a-zA-Z]+);base64,(.+)$/);
+    if (imageData && imageData.startsWith("data:")) {
+      const matches = imageData.match(
+        /^data:image\/([a-zA-Z0-9+.-]+);base64,(.+)$/
+      );
+
       if (!matches || matches.length !== 3) {
-        return res.status(400).json({ error: "Invalid image base64 data" });
+        return res.status(400).json({
+          error: "Format invalide",
+          message:
+            "Format invalide, veuillez insérer une image au format SVG, PNG, JPEG ou WEBP.",
+        });
       }
 
-      const ext = matches[1]; // e.g. jpeg, png
+      const ext = matches[1].toLowerCase();
       const data = matches[2];
+
+      const allowedFormats = ["svg+xml", "svg", "png", "jpeg", "jpg", "webp"];
+
+      if (!allowedFormats.includes(ext)) {
+        return res.status(400).json({
+          error: "Format invalide",
+          message:
+            "Format invalide, veuillez insérer une image au format SVG, PNG, JPEG ou WEBP.",
+        });
+      }
+
+      // Allow these formats
+      const extensionMap = {
+        "svg+xml": "svg",
+        svg: "svg",
+        png: "png",
+        jpeg: "jpg",
+        jpg: "jpg",
+        webp: "webp",
+      };
+
+      const fileExtension = extensionMap[ext];
       const buffer = Buffer.from(data, "base64");
 
       // Create a unique file name
-      const fileName = `news_${newsBody.titre_fr}_${Date.now()}.${ext}`;
+      const fileName = `news_${
+        newsBody.titre_fr
+      }_${Date.now()}.${fileExtension}`;
 
       const uploadDir = path.resolve("uploads");
       if (!fs.existsSync(uploadDir)) {
