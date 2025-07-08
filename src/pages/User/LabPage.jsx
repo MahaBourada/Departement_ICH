@@ -80,7 +80,7 @@ const LabPage = () => {
               src={`${import.meta.env.VITE_BASE_URL}/${img1.path}`}
               alt={img1.alt || ""}
               width={400}
-              className="minimal:hidden w-[19rem] h-[19rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] readerMode:mx-auto"
+              className="minimal:hidden w-fit h-[16rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] readerMode:mx-auto"
             />
           )}
 
@@ -105,12 +105,13 @@ const LabPage = () => {
               />
             )}
           </div>
+
           {img2.path && (
             <img
               src={`${import.meta.env.VITE_BASE_URL}/${img2.path}`}
               alt={img2.alt || ""}
               width={400}
-              className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px]"
+              className="minimal:hidden w-fit h-[16rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px]"
             />
           )}
         </div>
@@ -125,14 +126,16 @@ const LabPage = () => {
         <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse">
           {section4.texte && (
             <ReactMarkdown
-              className="markdown my-10"
+              className={`markdown my-10 ${
+                img3.path || img4.path ? "w-[60%]" : "w-full"
+              }`}
               children={String(section4.texte)}
             />
           )}
 
           <div
             className={`m-auto ${
-              pageLab[3]?.texte === ""
+              section3?.texte !== ""
                 ? "flex flex-col"
                 : "flex flex-row max-large-medium:flex-col"
             }`}
@@ -142,7 +145,7 @@ const LabPage = () => {
                 src={`${import.meta.env.VITE_BASE_URL}/${img3.path}`}
                 alt={img3.alt || ""}
                 width={400}
-                className="minimal:hidden w-[27rem] h-[27rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] my-5"
+                className="minimal:hidden w-fit h-[25rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] my-5"
               />
             )}
 
@@ -151,7 +154,7 @@ const LabPage = () => {
                 src={`${import.meta.env.VITE_BASE_URL}/${img4.path}`}
                 alt={img4.alt || ""}
                 width={400}
-                className="minimal:hidden w-[27rem] h-[27rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] my-5"
+                className="minimal:hidden w-fit h-[25rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] my-5"
               />
             )}
           </div>

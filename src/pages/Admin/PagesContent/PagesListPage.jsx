@@ -19,20 +19,6 @@ const PagesListPage = () => {
     fetchData();
   }, []);
 
-  const pages_titles = [
-    { title: "Page d'accueil", link: "accueil" },
-    { title: "Page de master", link: "master" },
-    { title: "Page du laboratoire CHArt", link: "lab-chart" },
-    {
-      title: "Page des collaborations nationales",
-      link: "collaboration-nationale",
-    },
-    {
-      title: "Page des collaborations internationales",
-      link: "collaboration-internationale",
-    },
-  ];
-
   return (
     <main>
       <h1 className="text-dynamic-2xl font-semibold mx-14 mt-20">

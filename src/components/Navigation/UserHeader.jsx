@@ -180,6 +180,7 @@ const Header = ({ switchLang }) => {
                   "/formation/master",
                   "/formation/projets-etudiants",
                   "/formation/prix-concours",
+                  "/formation/alumni",
                 ].includes(location.pathname)
                   ? "underline"
                   : ""
@@ -216,6 +217,13 @@ const Header = ({ switchLang }) => {
                   className="block w-full hover:bg-bg-crumb focus:bg-bg-crumb dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2 z-50"
                 >
                   {t("formation.awards_title")}
+                </Link>
+                <Link
+                  onClick={handleLinkClick}
+                  to="/formation/alumni"
+                  className="block w-full hover:bg-bg-crumb focus:bg-bg-crumb dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2 z-50"
+                >
+                  Alumni
                 </Link>
               </div>
             )}
@@ -286,6 +294,13 @@ const Header = ({ switchLang }) => {
                   className="block w-full hover:bg-bg-crumb focus:bg-bg-crumb dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2 z-50"
                 >
                   {t("collaboration.international.link")}
+                </Link>
+                <Link
+                  onClick={handleLinkClick}
+                  to="/collaborations/collaborez-avec-nous"
+                  className="block w-full hover:bg-bg-crumb focus:bg-bg-crumb dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2 z-50"
+                >
+                  {t("collaboration.form.link")}
                 </Link>
               </div>
             )}

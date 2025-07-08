@@ -37,6 +37,7 @@ import NewsPage from "./pages/User/NewsPage";
 import NewsListPage from "./pages/Admin/News/NewsListPage";
 import AddNews from "./pages/Admin/News/AddNews";
 import UpdateNews from "./pages/Admin/News/UpdateNews";
+import AlumniPage from "./pages/User/AlumniPage";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
             element={<ProjectsPage />}
           />
           <Route path="formation/prix-concours" element={<PrixPage />} />
+          <Route path="formation/alumni" element={<AlumniPage />} />
 
           <Route path="recherche/lab-chart" element={<LabPage />} />
 

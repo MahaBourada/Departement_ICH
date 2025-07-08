@@ -96,7 +96,7 @@ const CollabsList = () => {
         onCancel={cancelDeletion}
         onConfirm={handleDelete}
         message={`Êtes-vous sûr de vouloir supprimer la collaboration ${
-          selectedCollab?.nom_fr || ""
+          selectedCollab?.nom || ""
         } ?`}
       />
 
@@ -117,7 +117,7 @@ const CollabsList = () => {
             {collabs.map((collab) => (
               <tr key={collab.idCollab} className="border-b-[0.5px]">
                 <td className="py-3 text-start">
-                  <p className="line-clamp-1">{collab.nom_fr}</p>
+                  <p className="line-clamp-1">{collab.nom}</p>
                 </td>
                 <td className="py-3 text-start">{collab.type}</td>
                 <td className="py-3 text-start">{collab.categorie}</td>

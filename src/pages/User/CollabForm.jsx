@@ -251,8 +251,7 @@ const CollabForm = () => {
         />
 
         <TextAreaField
-          isRequired={true}
-          label="Description de la collaboration *"
+          label="Description de la collaboration"
           placeholder="Décrivez votre idée ou votre proposition de collaboration..."
           name="description"
           value={values.description}

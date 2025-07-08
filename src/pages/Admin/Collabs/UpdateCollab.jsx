@@ -23,8 +23,7 @@ const UpdateCollab = () => {
   const [file, setFile] = useState();
   const [collab, setCollab] = useState({});
   const [values, setValues] = useState({
-    nom_fr: "",
-    nom_en: "",
+    nom: "",
     type: "",
     categorie: "",
     description_fr: "",
@@ -58,8 +57,7 @@ const UpdateCollab = () => {
           : collab.logo || null;
 
       setValues({
-        nom_fr: collab.nom_fr || "",
-        nom_en: collab.nom_en || "",
+        nom: collab.nom || "",
         type: collab.type || "",
         categorie: collab.categorie || "",
         description_fr: collab.description_fr || "",
@@ -113,8 +111,7 @@ const UpdateCollab = () => {
 
   const handleReset = () => {
     setValues({
-      nom_fr: collab.nom_fr || "",
-      nom_en: collab.nom_en || "",
+      nom: collab.nom || "",
       type: collab.type || "",
       categorie: collab.categorie || "",
       description_fr: collab.description_fr || "",
@@ -138,31 +135,15 @@ const UpdateCollab = () => {
         onReset={handleReset}
         className="flex flex-col m-5"
       >
-        <div className="flex items-start justify-between">
-          <div className="flex flex-col w-1/2 mr-2">
-            <InputField
-              isRequired={true}
-              type="text"
-              label="Nom de la collaboration *"
-              name="nom"
-              placeholder="Nom de la collaboration ou de l'organisation"
-              value={values.nom_fr}
-              onChange={(e) => setValues({ ...values, nom_fr: e.target.value })}
-            />
-          </div>
-
-          <div className="flex flex-col w-1/2 ml-2">
-            <InputField
-              isRequired={true}
-              type="text"
-              label="Nom en anglais *"
-              name="nom_en"
-              placeholder="Nom de l'organisation en anglais"
-              value={values.nom_en}
-              onChange={(e) => setValues({ ...values, nom_en: e.target.value })}
-            />
-          </div>
-        </div>
+        <InputField
+          isRequired={true}
+          type="text"
+          label="Nom de la collaboration *"
+          name="nom"
+          placeholder="Nom de la collaboration ou de l'organisation"
+          value={values.nom}
+          onChange={(e) => setValues({ ...values, nom: e.target.value })}
+        />
 
         <p
           id="fonction-section-note"

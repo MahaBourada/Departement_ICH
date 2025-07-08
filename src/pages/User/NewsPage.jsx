@@ -64,16 +64,18 @@ const NewsPage = () => {
 
                     <p className="m-2">{oneNews.contenu}</p>
 
-                    <p className="m-2">
-                      <span className="font-semibold">Lien : </span>
-                      <a
-                        href={oneNews.lien}
-                        target="_blank"
-                        className="p-0.5 hover:bg-main hover:underline rounded-md"
-                      >
-                        {oneNews.lien}
-                      </a>
-                    </p>
+                    {oneNews.lien && (
+                      <p className="m-2">
+                        <span className="font-semibold">Lien : </span>
+                        <a
+                          href={oneNews.lien}
+                          target="_blank"
+                          className="p-0.5 hover:bg-main hover:underline rounded-md"
+                        >
+                          {oneNews.lien}
+                        </a>
+                      </p>
+                    )}
 
                     <p className="mx-2 mt-4 text-neutral-600">
                       {oneNews.dateUpdated ? (
@@ -90,12 +92,14 @@ const NewsPage = () => {
                     </p>
                   </div>
 
-                  <img
-                    src={import.meta.env.VITE_BASE_URL + "/" + oneNews.image}
-                    width={400}
-                    alt={oneNews.alt}
-                    className="my-auto rounded-2xl"
-                  />
+                  {oneNews.image && (
+                    <img
+                      src={import.meta.env.VITE_BASE_URL + "/" + oneNews.image}
+                      width={400}
+                      alt={oneNews.alt}
+                      className="my-auto rounded-2xl"
+                    />
+                  )}
                 </div>
 
                 <div className="border-black dark:border-gray-300 border-[1px] my-5 w-full"></div>

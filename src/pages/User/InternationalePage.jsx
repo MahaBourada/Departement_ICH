@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../../api/api";
 import { useTranslation } from "react-i18next";
-import { ChevronRight } from "lucide-react";
-import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import Breadcrumb from "../../components/Breadcrumb";
 import Pagination from "../../components/Pagination";
@@ -136,14 +134,6 @@ const InternationalePage = () => {
           totalPages={totalPages}
         />
       )}
-
-      <Link
-        onClick={() => window.scrollTo({ top: 0 })}
-        to="/collaborations/collaborez-avec-nous"
-        className="mx-auto my-10 flex justify-center items-center w-fit cursor-pointer font-main font-medium rounded-xl h-fit px-5 py-3 text-black bg-accent hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white max-md:w-42 max-md:mb-4 text-nav leading-normal"
-      >
-        Collaborez avec nous
-      </Link>
     </main>
   );
 };

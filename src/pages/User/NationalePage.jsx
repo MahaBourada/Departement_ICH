@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import api from "../../api/api";
 import { useTranslation } from "react-i18next";
-import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import Breadcrumb from "../../components/Breadcrumb";
-import { SmallFilledButton } from "../../components/Buttons";
 import HorizontalCarousel from "../../components/HorizontalCarousel";
 
 const NationalePage = () => {
@@ -108,35 +106,7 @@ const NationalePage = () => {
           />
         )}
 
-        {/* <div className="flex flex-row items-center overflow-x-auto space-x-10 my-16">
-          {collabs
-            .filter(
-              (collab) =>
-                collab.type === "Nationale" &&
-                collab.categorie === "Partenaire socio-économique"
-            )
-            .map((collab, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 flex items-center justify-center"
-              >
-                <img
-                  src={`${import.meta.env.VITE_BASE_URL}/${collab.logo}`}
-                  alt={`Logo de l'entreprise ${collab.nom}`}
-                  className="w-60 my-auto"
-                />
-              </div>
-            ))}
-        </div> */}
         <HorizontalCarousel collabs={collabs} />
-
-        <Link
-          onClick={() => window.scrollTo({ top: 0 })}
-          to="/collaborations/collaborez-avec-nous"
-          className="mx-auto my-10 flex justify-center items-center w-fit cursor-pointer font-main font-medium rounded-xl h-fit px-5 py-3 text-black bg-accent hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white max-md:w-42 max-md:mb-4 text-nav leading-normal"
-        >
-          Collaborez avec nous
-        </Link>
       </div>
     </main>
   );
