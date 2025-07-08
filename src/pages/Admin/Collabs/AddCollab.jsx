@@ -108,14 +108,6 @@ const AddCollab = () => {
           onChange={(e) => setValues({ ...values, nom: e.target.value })}
         />
 
-        <p
-          id="fonction-section-note"
-          className="text-gray-800 dark:text-dark-white mt-4"
-        >
-          Le champ <strong>Catégorie</strong> est obligatoire uniquement si le
-          type de la collaboration est <em>Nationale</em>.
-        </p>
-
         <div className="flex items-start justify-between">
           <div className="flex flex-col w-1/2 mr-2">
             <SelectField
@@ -132,7 +124,7 @@ const AddCollab = () => {
 
           <div className="flex flex-col w-1/2 ml-2">
             <SelectField
-              isRequired={values.type === "Nationale"}
+              isRequired={true}
               type="text"
               label="Catégorie *"
               name="categorie"

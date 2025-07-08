@@ -13,7 +13,12 @@
     },
     "team": {
       "link": "Equipe",
-      "title": "Équipe du département"
+      "title": "Équipe du département",
+      "categories": {
+        "Directeur du département": "Directeur du département",
+        "Administration": "Administration",
+        "Enseignant(e)": "Enseignant(e)"
+      }
     }
   },
   "formation": {

@@ -109,12 +109,25 @@ const InternationalePage = () => {
         )}
       </div>
 
+      <div className="border-neutral-500 dark:border-gray-300 border-[1px] my-5 w-full"></div>
+
       {currentItems.map((collab, index) => (
         <div key={index}>
           <div className="flex items-start justify-between my-10">
             <div>
               <h3 className="text-dynamic-lg font-semibold">{collab.nom}</h3>
-              <p className="mx-2">{collab.description}</p>
+
+              <ReactMarkdown
+                className="markdown mx-2"
+                children={String(collab.description)}
+              />
+
+              {collab.categorie !== "Autre" && (
+                <p className="mx-2 mt-7">
+                  <strong className="font-medium">Catégorie : </strong>
+                  {collab.categorie}
+                </p>
+              )}
             </div>
 
             <img
@@ -123,7 +136,7 @@ const InternationalePage = () => {
               className="w-60 my-auto"
             />
           </div>
-          <div className="border-black dark:border-gray-300 border-[1px] my-5 w-full"></div>
+          <div className="border-neutral-500 dark:border-gray-300 border-[1px] my-5 w-full"></div>
         </div>
       ))}
 

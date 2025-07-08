@@ -123,10 +123,10 @@ const MembersListPage = () => {
                   <p className="line-clamp-1">{member.titre}</p>
                 </td>
                 <td className="py-3 text-start">
-                  <p className="line-clamp-1">{member.fonction}</p>
+                  <p className="line-clamp-1">{member.fonction_fr}</p>
                 </td>
                 <td className="py-3 text-start">
-                  <p className="line-clamp-1">{member.section}</p>
+                  <p className="line-clamp-1">{member.section_fr}</p>
                 </td>
                 <td className="h-full px-4">
                   <div className="flex items-center justify-center space-x-2">

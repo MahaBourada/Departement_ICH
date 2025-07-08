@@ -73,7 +73,7 @@ const UpdateCollab = () => {
     if (selectedFile) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImage(reader.result); // this is the base64 string like 'data:image/png;base64,...'
+        setFile(reader.result); // this is the base64 string like 'data:image/png;base64,...'
         setValues((prev) => ({
           ...prev,
           logo: reader.result, // store base64 string in your form state
@@ -105,7 +105,12 @@ const UpdateCollab = () => {
       setMsgStatus(200);
       setMsg(response.data.message);
     } catch (error) {
-      console.error(error);
+      const backendMsg = error?.response?.data?.message;
+
+      if (backendMsg) {
+        setMsg(backendMsg); // Set the backend message from Express
+        setMsgShow(true); // Trigger your popup or message display
+      }
     }
   };
 
@@ -145,14 +150,6 @@ const UpdateCollab = () => {
           onChange={(e) => setValues({ ...values, nom: e.target.value })}
         />
 
-        <p
-          id="fonction-section-note"
-          className="text-gray-800 dark:text-dark-white mt-4"
-        >
-          Le champ <strong>Catégorie</strong> est obligatoire uniquement si le
-          type de la collaboration est <em>Nationale</em>.
-        </p>
-
         <div className="flex items-start justify-between">
           <div className="flex flex-col w-1/2 mr-2">
             <SelectField
@@ -169,7 +166,7 @@ const UpdateCollab = () => {
 
           <div className="flex flex-col w-1/2 ml-2">
             <SelectField
-              isRequired={values.type === "Nationale"}
+              isRequired={true}
               type="text"
               label="Catégorie *"
               name="categorie"

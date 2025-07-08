@@ -7,10 +7,11 @@ import Breadcrumb from "../../components/Breadcrumb";
 const MembersPage = () => {
   const { t } = useTranslation();
   const [members, setMembers] = useState([]);
+  const lang = localStorage.getItem("lang") || "fr";
 
   const fetchData = async () => {
     try {
-      const response = await api.get("/members");
+      const response = await api.get(`/members/content?lang=${lang}`);
       setMembers(response.data);
     } catch (error) {
       console.error(error);
@@ -43,19 +44,19 @@ const MembersPage = () => {
       </h1>
 
       <h2 className="font-medium text-header font-main mx-2 mt-7 mb-4 readerMode:w-fit readerMode:mx-auto">
-        Directeur du département
+        {t("department.team.categories.Directeur du département")}
       </h2>
 
       <div className="grid grid-cols-2 mb-6 max-md:grid-cols-1 readerMode:grid-cols-1 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
         {members
           .filter((member) => member.titre === "Directeur du département")
           .map((member) => {
-            const match = member.section?.match(/^(.+?)\s*\((.+)\)$/);
-
-            const mainPart = match ? match[1].trim() : "";
-            const subParts = match
-              ? match[2].split(",").map((s) => s.trim())
+            const [mainPartRaw, subPartRaw] = member.section.split(":");
+            const mainPart = mainPartRaw?.trim() || "";
+            const subParts = subPartRaw
+              ? subPartRaw.split(",").map((s) => s.trim())
               : [];
+
             return (
               <Link
                 onClick={() => window.scrollTo({ top: 0 })}
@@ -68,12 +69,14 @@ const MembersPage = () => {
                   {member.prenom + " " + member.nom.toUpperCase()}
                 </h3>
                 <div className="flex flex-row items-start max-lg:flex-col-reverse max-lg:justify-between max-lg:h-full">
-                  <img
-                    src={`${import.meta.env.VITE_BASE_URL}/${member.image}`}
-                    alt={`Photo de ${member.nom}`}
-                    width={200}
-                    className="rounded-3xl minimal:hidden max-lg:mx-auto max-lg:w-fit max-xl:w-40"
-                  />
+                  {member.image && (
+                    <img
+                      src={`${import.meta.env.VITE_BASE_URL}/${member.image}`}
+                      alt={`Photo de ${member.nom}`}
+                      width={200}
+                      className="rounded-3xl minimal:hidden max-lg:mx-auto max-lg:w-fit max-xl:w-40"
+                    />
+                  )}
 
                   <div className="ml-4 my-2 max-md:mx-1">
                     <h4 className="font-semibold text-dynamic-lg my-2">
@@ -85,7 +88,7 @@ const MembersPage = () => {
                         <ul className="list-disc mx-9">
                           {subParts.map((item, index) => (
                             <li key={index}>
-                              {item.charAt(0).toLowerCase() + item.slice(1)}
+                              {item.charAt(0).toUpperCase() + item.slice(1)}
                             </li>
                           ))}
                         </ul>
@@ -99,19 +102,19 @@ const MembersPage = () => {
       </div>
 
       <h2 className="font-medium text-header font-main mx-2 mt-7 mb-4 readerMode:w-fit readerMode:mx-auto">
-        Administration
+        {t("department.team.categories.Administration")}
       </h2>
 
       <div className="grid grid-cols-2 mb-6 max-md:grid-cols-1 readerMode:grid-cols-1 readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full max-large-medium:readerMode:text-xl">
         {members
           .filter((member) => member.titre === "Administration")
           .map((member) => {
-            const match = member.section?.match(/^(.+?)\s*\((.+)\)$/);
-
-            const mainPart = match ? match[1].trim() : "";
-            const subParts = match
-              ? match[2].split(",").map((s) => s.trim())
+            const [mainPartRaw, subPartRaw] = member.section.split(":");
+            const mainPart = mainPartRaw?.trim() || "";
+            const subParts = subPartRaw
+              ? subPartRaw.split(",").map((s) => s.trim())
               : [];
+
             return (
               <Link
                 onClick={() => window.scrollTo({ top: 0 })}
@@ -141,7 +144,7 @@ const MembersPage = () => {
                         <ul className="list-disc mx-9">
                           {subParts.map((item, index) => (
                             <li key={index}>
-                              {item.charAt(0).toLowerCase() + item.slice(1)}
+                              {item.charAt(0).toUpperCase() + item.slice(1)}
                             </li>
                           ))}
                         </ul>
@@ -155,19 +158,20 @@ const MembersPage = () => {
       </div>
 
       <h2 className="font-medium text-header font-main mx-2 mt-7 mb-4 readerMode:w-fit readerMode:mx-auto">
-        Enseignants
+        {t("department.team.categories.Enseignant(e)")}s{" "}
+        {/* 's' at the end for the plural */}
       </h2>
 
       <div className="grid grid-cols-2 max-md:grid-cols-1 gap-y-10 readerMode:grid-cols-1 readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full max-large-medium:readerMode:text-xl">
         {members
           .filter((member) => member.titre === "Enseignant(e)")
           .map((member) => {
-            const match = member.section?.match(/^(.+?)\s*\((.+)\)$/);
-
-            const mainPart = match ? match[1].trim() : "";
-            const subParts = match
-              ? match[2].split(",").map((s) => s.trim())
+            const [mainPartRaw, subPartRaw] = member.section.split(":");
+            const mainPart = mainPartRaw?.trim() || "";
+            const subParts = subPartRaw
+              ? subPartRaw.split(",").map((s) => s.trim())
               : [];
+
             return (
               <Link
                 onClick={() => window.scrollTo({ top: 0 })}
@@ -197,7 +201,7 @@ const MembersPage = () => {
                         <ul className="list-disc mx-9">
                           {subParts.map((item, index) => (
                             <li key={index}>
-                              {item.charAt(0).toLowerCase() + item.slice(1)}
+                              {item.charAt(0).toUpperCase() + item.slice(1)}
                             </li>
                           ))}
                         </ul>

@@ -17,9 +17,12 @@ const AddMember = () => {
     prenom: "",
     nom: "",
     titre: "",
-    fonction: "",
-    section: "",
-    propos: "",
+    fonction_fr: "",
+    fonction_en: "",
+    section_fr: "",
+    section_en: "",
+    propos_fr: "",
+    propos_en: "",
     image: "",
   });
 
@@ -55,30 +58,6 @@ const AddMember = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!values.prenom) {
-      setMsg("Prénom est obligatoire");
-      setMsgShow(true);
-      return;
-    }
-
-    if (!values.nom) {
-      setMsg("Nom est obligatoire");
-      setMsgShow(true);
-      return;
-    }
-
-    if (!values.titre) {
-      setMsg("Titre est obligatoire");
-      setMsgShow(true);
-      return;
-    }
-
-    if (!values.fonction) {
-      setMsg("Fonction est obligatoire");
-      setMsgShow(true);
-      return;
-    }
-
     try {
       const response = await api.post("/members", values);
 
@@ -100,9 +79,12 @@ const AddMember = () => {
       prenom: "",
       nom: "",
       titre: "",
-      fonction: "",
-      section: "",
-      propos: "",
+      fonction_fr: "",
+      fonction_en: "",
+      section_fr: "",
+      section_en: "",
+      propos_fr: "",
+      propos_en: "",
       image: "",
     });
     setFile(null);
@@ -148,7 +130,7 @@ const AddMember = () => {
         </div>
 
         <ImageField
-          text="Image *"
+          text="Image"
           name="imageMembre"
           alt="Image du membre"
           file={file}
@@ -160,26 +142,40 @@ const AddMember = () => {
           id="fonction-section-note"
           className="text-gray-800 dark:text-dark-white mb-2"
         >
-          Les champs <strong>Fonction</strong> et{" "}
-          <strong>Section disciplinaire</strong> sont obligatoires uniquement si
-          le titre est <em>Directeur du département</em> ou{" "}
-          <em>Enseignant(e)</em>.
+          Le champ <strong>Fonction</strong> est obligatoire uniquement si le
+          titre est <em>Directeur du département</em> ou <em>Enseignant(e)</em>.
         </p>
+
+        <SelectField
+          isRequired={true}
+          label="Titre *"
+          placeholder="Selectionez un titre"
+          name="titre"
+          value={values.titre}
+          onChange={(e) => setValues({ ...values, titre: e.target.value })}
+          values={[
+            "Directeur du département",
+            "Administration",
+            "Enseignant(e)",
+          ]}
+        />
 
         <div className="flex items-start justify-between mb-3">
           <div className="flex flex-col w-1/2 mr-2">
-            <SelectField
-              isRequired={true}
-              label="Titre *"
-              placeholder="Selectionez un titre"
-              name="titre"
-              value={values.titre}
-              onChange={(e) => setValues({ ...values, titre: e.target.value })}
-              values={[
-                "Directeur du département",
-                "Administration",
-                "Enseignant(e)",
-              ]}
+            <InputField
+              isRequired={
+                values.titre === "Directeur du département" ||
+                values.titre === "Enseignant(e)"
+              }
+              type="text"
+              label="Fonction en français"
+              name="fonction_fr"
+              placeholder="ex : Maître de conférences"
+              value={values.fonction_fr}
+              onChange={(e) =>
+                setValues({ ...values, fonction_fr: e.target.value })
+              }
+              aria-describedby="fonction-section-note"
             />
           </div>
 
@@ -190,33 +186,37 @@ const AddMember = () => {
                 values.titre === "Enseignant(e)"
               }
               type="text"
-              label="Fonction"
-              name="fonction"
-              placeholder="ex : Maître de conférences"
-              value={values.fonction}
+              label="Fonction en anglais"
+              name="fonction_en"
+              placeholder="ex : Associate Professor"
+              value={values.fonction_en}
               onChange={(e) =>
-                setValues({ ...values, fonction: e.target.value })
+                setValues({ ...values, fonction_en: e.target.value })
               }
               aria-describedby="fonction-section-note"
             />
           </div>
         </div>
 
-        <div className="flex flex-col mb-3">
-          <InputField
-            isRequired={
-              values.titre === "Directeur du département" ||
-              values.titre === "Enseignant(e)"
-            }
-            type="text"
-            label="Section disciplinaire"
-            name="section"
-            placeholder="ex : 61e section (CNU) : Génie informatique, Automatique, Traitement du signal"
-            value={values.section}
-            onChange={(e) => setValues({ ...values, section: e.target.value })}
-            aria-describedby="fonction-section-note"
-          />
-        </div>
+        <InputField
+          type="text"
+          label="Section disciplinaire en français"
+          name="section_fr"
+          placeholder="ex : 61e section (CNU) : Génie informatique, Automatique, Traitement du signal"
+          value={values.section_fr}
+          onChange={(e) => setValues({ ...values, section_fr: e.target.value })}
+          aria-describedby="fonction-section-note"
+        />
+
+        <InputField
+          type="text"
+          label="Section disciplinaire en anglais"
+          name="section_en"
+          placeholder="ex : 61st section (CNU): Computer engineering, automation, signal processing"
+          value={values.section_en}
+          onChange={(e) => setValues({ ...values, section_en: e.target.value })}
+          aria-describedby="fonction-section-note"
+        />
 
         <p className="leading-normal inline-block m-3">
           Veuillez utiliser la syntaxe{" "}
@@ -242,12 +242,21 @@ const AddMember = () => {
         </p>
 
         <TextAreaField
-          label="A propos"
-          name="propos"
-          placeholder="Mini description du membre"
-          value={values.propos}
+          label="A propos en français"
+          name="propos_fr"
+          placeholder="Mini description du membre en français"
+          value={values.propos_fr}
           maxLength={500}
-          onChange={(e) => setValues({ ...values, propos: e.target.value })}
+          onChange={(e) => setValues({ ...values, propos_fr: e.target.value })}
+        />
+
+        <TextAreaField
+          label="A propos en anglais"
+          name="propos_en"
+          placeholder="Mini description du membre en anglais"
+          value={values.propos_en}
+          maxLength={500}
+          onChange={(e) => setValues({ ...values, propos_en: e.target.value })}
         />
 
         <div className="flex justify-end mt-3">

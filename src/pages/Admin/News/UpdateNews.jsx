@@ -77,7 +77,12 @@ const UpdateNews = () => {
   const handleRemoveImage = () => {
     setValues((prev) => ({
       ...prev,
-      image: null, // store base64 string in your form state
+      image:
+        news.image && !news.image.startsWith("data:image")
+          ? `${import.meta.env.VITE_BASE_URL}/${news.image}`
+          : news.image || null,
+      alt_fr: news.alt_fr || "",
+      alt_en: news.alt_en || "",
     }));
   };
 
@@ -121,7 +126,10 @@ const UpdateNews = () => {
       contenu_fr: news.contenu_fr || "",
       contenu_en: news.contenu_en || "",
       lien: news.lien || "",
-      image: news.image || null,
+      image:
+        news.image && !news.image.startsWith("data:image")
+          ? `${import.meta.env.VITE_BASE_URL}/${news.image}`
+          : news.image || null,
       alt_fr: news.alt_fr || "",
       alt_en: news.alt_en || "",
     });

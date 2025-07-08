@@ -46,7 +46,7 @@ const AddNews = () => {
   };
 
   const handleRemoveImage = () => {
-    setValues((prev) => ({ ...prev, image: null }));
+    setValues((prev) => ({ ...prev, image: null, alt_fr: "", alt_en: "" }));
   };
 
   const handleSubmit = async (e) => {

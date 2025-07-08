@@ -1,8 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { InputField } from "../Inputs";
-import { SmallFilledButton } from "../Buttons";
 import AccessibilityMenu from "../AccessibilityMenu";
 
 const Footer = ({ switchLang }) => {
@@ -35,40 +33,37 @@ const Footer = ({ switchLang }) => {
     };
   }, [showLang]);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-  };
-
-  const darkTheme = localStorage.getItem("theme");
-
   return (
     <footer className="max-large-medium:hidden flex flex-col items-center py-4 px-10 bg-main dark:bg-dark-main dark:text-gray-300 large-medium:text-nav leading-normal">
-      <div className="flex justify-between items-center w-full">
+      <div className="flex justify-between items-end w-full">
         <img
           src="/ich/assets/vectors/LogoDark.svg"
           alt="Logo de l'université Paris 8"
           width={130}
-          className="m-5 hidden dark:block"
+          className="m-1 hidden dark:block"
         />
         <img
           src="/ich/assets/vectors/Logo.svg"
           alt="Logo de l'université Paris 8"
           width={130}
-          className="m-5 block dark:hidden"
+          className="m-1 block dark:hidden"
         />
-        <div className="flex flex-row items-center justify-end">
-          <img
-            src="/ich/assets/vectors/W3C.svg"
-            alt="Logo de W3C"
-            width={80}
-            className="m-2 block"
-          />
-          <img
-            src="/ich/assets/vectors/wave.svg"
-            alt="Logo de wave"
-            width={50}
-            className="m-2 block"
-          />
+        <div>
+          <p className="font-medium text-xl">Accessibilité validé par</p>
+          <div className="flex flex-row items-center justify-end">
+            <img
+              src="/ich/assets/vectors/wave.svg"
+              alt="Logo de wave"
+              width={30}
+              className="m-2 block"
+            />
+            <img
+              src="/ich/assets/vectors/W3C.svg"
+              alt="Logo de W3C"
+              width={60}
+              className="m-2 block"
+            />
+          </div>
         </div>
       </div>
 

@@ -13,7 +13,12 @@
     },
     "team": {
       "link": "Team",
-      "title": "Department team"
+      "title": "Department team",
+      "categories": {
+        "Directeur du département": "Head of Department",
+        "Administration": "Administration",
+        "Enseignant(e)": "Lecturer"
+      }
     }
   },
   "formation": {

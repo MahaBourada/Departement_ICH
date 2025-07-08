@@ -29,7 +29,7 @@ const UpdatePage = () => {
           length:
             responseSections.data.title === "Collaboration nationales" ||
             responseSections.data.title === "Collaboration internationales"
-              ? 2
+              ? 1
               : 4,
         },
         (_, i) => {
@@ -45,8 +45,9 @@ const UpdatePage = () => {
           );
         }
       );
+
+      setInitialSections(JSON.parse(JSON.stringify(filledSections))); // Deep clone
       setSections(filledSections);
-      setInitialSections(filledSections); // Save initial
 
       const responseImages = await api.get(`/pages-images/${idPage}`);
       const filledImages = Array.from(
@@ -54,7 +55,7 @@ const UpdatePage = () => {
           length:
             responseSections.data.title === "Collaboration nationales" ||
             responseSections.data.title === "Collaboration internationales"
-              ? 2
+              ? 1
               : 4,
         },
         (_, i) => {
@@ -72,8 +73,8 @@ const UpdatePage = () => {
         }
       );
 
-      setImages(filledImages);
       setInitialImages(filledImages); // Save initial
+      setImages(filledImages);
     } catch (error) {
       console.error(error);
     }
@@ -188,7 +189,11 @@ const UpdatePage = () => {
         des titres du site.
       </p>
 
-      <form onSubmit={handleSubmit} className="flex flex-col mx-5">
+      <form
+        onSubmit={handleSubmit}
+        onReset={handleReset}
+        className="flex flex-col mx-5"
+      >
         {sections.map((section, index) => (
           <div key={index}>
             <div className="flex flex-col leading-normal mb-3">
@@ -284,11 +289,7 @@ const UpdatePage = () => {
         ))}
 
         <div className="flex justify-end mt-3">
-          {/* <SmallBorderButton
-            type="button"
-            text="Réinitialiser"
-            onClick={handleReset}
-          /> */}
+          <SmallBorderButton type="reset" text="Réinitialiser" />
 
           <SmallFilledButton type="submit" text="Modifier" />
         </div>
