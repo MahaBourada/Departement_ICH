@@ -98,7 +98,7 @@ Téléphone : ${telephone}
 Organisation : ${organisation}
 Fonction / Rôle : ${fonction}
 
-Description de la collaboration : ${description}
+${description && `Description de la collaboration : ${description}`}
 
 ${disponibilites && `Disponibilités : ${disponibilites}`}
 

@@ -4,7 +4,7 @@ import fs from "fs";
 import path from "path";
 
 export const getAllCollabs = (req, res) => {
-  db.query("SELECT * FROM collaborations", (err, results) => {
+  db.query("SELECT * FROM collaborations ORDER BY nom", (err, results) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     } else {
@@ -36,13 +36,14 @@ export const getCollabsByLangType = (req, res) => {
 
   const sql = `SELECT 
                 idCollab,
-                nom_${lang} AS nom,
+                nom,
                 type,
                 categorie,
                 description_${lang} AS description,
                 logo
               FROM collaborations
-              WHERE type = ?`;
+              WHERE type = ?
+              ORDER BY nom`;
 
   db.query(sql, [type], (err, results) => {
     if (err) {
@@ -94,12 +95,11 @@ export const addCollab = (req, res) => {
   }
 
   const sql =
-    "INSERT INTO collaborations (idCollab, nom_fr, nom_en, type, categorie, description_fr, description_en, logo) VALUES (?, ?, ?, ?, ?, ?)";
+    "INSERT INTO collaborations (idCollab, nom, type, categorie, description_fr, description_en, logo) VALUES (?, ?, ?, ?, ?, ?)";
 
   const values = [
     id,
-    collaborationBody?.nom_fr,
-    collaborationBody?.nom_en,
+    collaborationBody?.nom,
     collaborationBody?.type,
     collaborationBody?.categorie,
     collaborationBody?.description_fr,
@@ -111,7 +111,7 @@ export const addCollab = (req, res) => {
 
     return res.json({
       Status: "Success",
-      message: `${collaborationBody.nom_fr} ajoutée`,
+      message: `${collaborationBody.nom} ajoutée`,
     });
   });
 };
@@ -181,13 +181,12 @@ export const updateCollab = (req, res) => {
 
     const sql = `
       UPDATE collaborations
-      SET nom_fr = ?, nom_en = ?, type = ?, categorie = ?, description_fr = ?, description_en = ?, logo = ?
+      SET nom = ?, type = ?, categorie = ?, description_fr = ?, description_en = ?, logo = ?
       WHERE idCollab = ?
     `;
 
     const values = [
-      collaborationBody.nom_fr,
-      collaborationBody.nom_en,
+      collaborationBody.nom,
       collaborationBody.type,
       collaborationBody.categorie,
       collaborationBody.description_fr,
@@ -201,7 +200,7 @@ export const updateCollab = (req, res) => {
 
       return res.json({
         Status: "Success",
-        message: `Informations de ${collaborationBody.nom_fr} mises à jour`,
+        message: `Informations de ${collaborationBody.nom} mises à jour`,
       });
     });
   });

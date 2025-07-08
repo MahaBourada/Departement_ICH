@@ -4,13 +4,16 @@ import fs from "fs";
 import path from "path";
 
 export const getAllNews = (req, res) => {
-  db.query("SELECT * FROM actualites", (err, results) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    } else {
-      res.json(results);
+  db.query(
+    "SELECT * FROM actualites ORDER BY datePosted DESC",
+    (err, results) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      } else {
+        res.json(results);
+      }
     }
-  });
+  );
 };
 
 export const getNewsById = (req, res) => {
@@ -44,7 +47,8 @@ export const getNewsByLang = (req, res) => {
                 datePosted,
                 dateUpdated,
                 alt_${lang} AS alt
-              FROM actualites`;
+              FROM actualites
+              ORDER BY datePosted DESC`;
 
   db.query(sql, (err, results) => {
     if (err) {
