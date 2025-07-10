@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import { v4 as uuidv4 } from "uuid";
 import generator from "generate-password";
 import nodemailer from "nodemailer";
+import { logHistory } from "../utils/logHistory.js"; // adjust the path as needed
 
 export const getAllAdmins = (req, res) => {
   db.query("SELECT * FROM admin", (err, results) => {
@@ -70,6 +71,14 @@ export const addAdmin = (req, res) => {
 
       sendPasswordEmail(adminBody.email, username, password);
 
+      logHistory(
+        adminBody.currentAdmin,
+        "INSERT",
+        `Ajout de l'admin ${
+          adminBody.firstname
+        } ${adminBody.lastname.toUpperCase()}`
+      );
+
       return res.json({
         Status: "Success",
         message: `Admin ${adminBody.firstname} ${adminBody.lastname} ajouté`,
@@ -79,7 +88,7 @@ export const addAdmin = (req, res) => {
 };
 
 export const updateAdmin = (req, res) => {
-  const { firstname, lastname, email, regpass } = req.body;
+  const { firstname, lastname, email, regpass, currentAdmin } = req.body;
   const { idAdmin } = req.params;
 
   const username =
@@ -106,6 +115,12 @@ export const updateAdmin = (req, res) => {
 
         sendRegenerationEmail(email, username, password);
 
+        logHistory(
+          currentAdmin,
+          "UPDATE",
+          `Mise à jour de l'admin ${firstname} ${lastname.toUpperCase()}`
+        );
+
         res.json({
           Success: "Admin updated successfully",
           message: `Admin ${firstname} ${lastname.toUpperCase()} mis à jour`,
@@ -121,6 +136,12 @@ export const updateAdmin = (req, res) => {
     db.query(updateSql, values, (err, results) => {
       if (err) return res.json({ Error: err });
 
+      logHistory(
+        currentAdmin,
+        "UPDATE",
+        `Mise à jour de l'admin ${firstname} ${lastname.toUpperCase()}`
+      );
+
       res.json({
         Success: "Admin updated successfully",
         message: `Admin ${firstname} ${lastname.toUpperCase()} mis à jour`,
@@ -131,19 +152,46 @@ export const updateAdmin = (req, res) => {
 
 export const deleteAdmin = (req, res) => {
   const { idAdmin } = req.params;
+  const { currentAdmin } = req.query;
 
-  const sql = "DELETE FROM admin WHERE idAdmin = ?";
+  if (!currentAdmin?.first_name || !currentAdmin?.last_name) {
+    return res.status(400).json({ error: "Missing current admin info" });
+  }
 
-  db.query(sql, [idAdmin], (err, results) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    } else {
-      res.json({
-        Success: "Admin deleted successfully",
-        message: `Admin supprimé`,
+  db.query(
+    "SELECT first_name, last_name FROM admin WHERE idAdmin = ?",
+    [idAdmin],
+    (err, results) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+
+      if (results.length === 0) {
+        return res.status(404).json({ error: "Admin not found" });
+      }
+
+      const { first_name, last_name } = results[0];
+
+      const sql = "DELETE FROM admin WHERE idAdmin = ?";
+
+      db.query(sql, [idAdmin], (err, results) => {
+        if (err) {
+          return res.status(500).json({ error: err.message });
+        } else {
+          logHistory(
+            currentAdmin,
+            "DELETE",
+            `Suppression de l'admin ${first_name} ${last_name.toUpperCase()}`
+          );
+
+          res.json({
+            Success: "Admin deleted successfully",
+            message: `Admin ${first_name} ${last_name.toUpperCase()} supprimé`,
+          });
+        }
       });
     }
-  });
+  );
 };
 
 const sendPasswordEmail = (email, username, password) => {

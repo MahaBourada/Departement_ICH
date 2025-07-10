@@ -17,6 +17,7 @@ import cookieParser from "cookie-parser";
 import path from "path";
 import { fileURLToPath } from "url";
 import multer from "multer";
+import { getAllHistory } from "./controllers/history.js";
 
 const upload = multer({ dest: "uploads/" });
 const app = express();
@@ -49,6 +50,9 @@ app.use("/members", membersRoutes);
 app.use("/projects", projectsRoutes);
 app.use("/prix", prixRoutes);
 app.use("/collaborations", collaborationsRoutes);
+
+// Get method for getting the logs/history
+app.get("/history", getAllHistory);
 
 // Post method for sending an email from the contact from
 app.post("/contact", sendEmailContact);
