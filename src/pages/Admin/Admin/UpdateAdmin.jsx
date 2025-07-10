@@ -17,7 +17,6 @@ const UpdateAdmin = () => {
     lastname: "",
     email: "",
     username: "",
-    role: "",
     regpass: false,
   });
 
@@ -52,7 +51,6 @@ const UpdateAdmin = () => {
         lastname: admin.lastname || "",
         email: admin.email || "",
         username: admin.username || "",
-        role: admin.role || "",
         regpass: false,
       });
     }
@@ -65,8 +63,7 @@ const UpdateAdmin = () => {
       !values.firstname ||
       !values.lastname ||
       !values.username ||
-      !values.email ||
-      !values.role
+      !values.email
     ) {
       setMsg("Tous les champs sont obligatoires.");
       setMsgShow(true);
@@ -97,7 +94,6 @@ const UpdateAdmin = () => {
       lastname: admin.lastname || "",
       email: admin.email || "",
       username: admin.username || "",
-      role: admin.role,
       regpass: false,
     });
   };
@@ -144,31 +140,15 @@ const UpdateAdmin = () => {
           </div>
         </div>
 
-        <div className="flex items-start justify-between">
-          <div className="flex flex-col w-1/2 mr-3">
-            <InputField
-              isRequired={true}
-              type="email"
-              label="E-mail *"
-              name="email"
-              placeholder="example@mail.com"
-              value={values.email}
-              onChange={(e) => setValues({ ...values, email: e.target.value })}
-            />
-          </div>
-
-          <div className="flex flex-col w-1/2">
-            <SelectField
-              isRequired={true}
-              label="Rôle *"
-              placeholder="Sélectionnez une option"
-              name="role"
-              value={values.role}
-              onChange={(e) => setValues({ ...values, role: e.target.value })}
-              values={["Super admin", "Admin"]}
-            />
-          </div>
-        </div>
+        <InputField
+          isRequired={true}
+          type="email"
+          label="E-mail *"
+          name="email"
+          placeholder="example@mail.com"
+          value={values.email}
+          onChange={(e) => setValues({ ...values, email: e.target.value })}
+        />
 
         <div className="w-1/2 mr-3 leading-normal my-4">
           <div className="flex flex-row items-center justify-between my-2">

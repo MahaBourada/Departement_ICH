@@ -13,7 +13,6 @@ const AddAdmin = () => {
     lastname: "",
     email: "",
     username: "",
-    role: "",
   });
 
   const [msg, setMsg] = useState("");
@@ -27,12 +26,7 @@ const AddAdmin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      !values.firstname ||
-      !values.lastname ||
-      !values.email ||
-      !values.role
-    ) {
+    if (!values.firstname || !values.lastname || !values.email) {
       setMsg("Tous les champs sont obligatoires.");
       setMsgShow(true);
       return;
@@ -63,7 +57,6 @@ const AddAdmin = () => {
       lastname: "",
       email: "",
       username: "",
-      role: "",
     });
   };
 
@@ -112,31 +105,15 @@ const AddAdmin = () => {
           </div>
         </div>
 
-        <div className="flex items-start justify-between">
-          <div className="flex flex-col w-1/2 mr-3">
-            <InputField
-              isRequired={true}
-              type="email"
-              label="E-mail *"
-              name="email"
-              placeholder="example@mail.com"
-              value={values.email}
-              onChange={(e) => setValues({ ...values, email: e.target.value })}
-            />
-          </div>
-
-          <div className="flex flex-col w-1/2">
-            <SelectField
-              isRequired={true}
-              label="Rôle *"
-              placeholder="Sélectionnez une option"
-              name="role"
-              value={values.role}
-              onChange={(e) => setValues({ ...values, role: e.target.value })}
-              values={["Super admin", "Admin"]}
-            />
-          </div>
-        </div>
+        <InputField
+          isRequired={true}
+          type="email"
+          label="E-mail *"
+          name="email"
+          placeholder="example@mail.com"
+          value={values.email}
+          onChange={(e) => setValues({ ...values, email: e.target.value })}
+        />
 
         <div className="flex justify-end mt-3">
           <SmallBorderButton type="reset" text="Réinitialiser" />

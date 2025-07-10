@@ -110,9 +110,8 @@ const DashboardPage = () => {
         <table className="w-full mx-3 my-5">
           <thead>
             <tr className="border-b-[0.5px] text-start">
-              <th className="py-3 text-start w-1/4">Admin</th>
-              <th className="py-3 text-start w-1/4">Nom d'utilisateur</th>
-              <th className="py-3 text-start w-1/4">Rôle</th>
+              <th className="py-3 text-start w-1/3">Admin</th>
+              <th className="py-3 text-start w-1/3">Nom d'utilisateur</th>
               <th className="py-3 text-start w-1/4">Créé le</th>
               <th className="py-3 text-start w-fit">Opérations</th>
             </tr>
@@ -128,7 +127,6 @@ const DashboardPage = () => {
                 <td className="py-3 text-start">
                   <p className="line-clamp-1">{admin.username}</p>
                 </td>
-                <td className="py-3 text-start">{admin.type}</td>
                 <td className="py-3 text-start">
                   {new Date(admin.createdAt).toLocaleDateString("fr-FR", {
                     day: "2-digit",
