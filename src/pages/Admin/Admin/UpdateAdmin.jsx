@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import api from "../../../api/api.js";
 import { MessagePopup } from "../../../components/MsgPopup.jsx";
 import { InputField, SelectField } from "../../../components/Inputs.jsx";
@@ -8,8 +8,10 @@ import {
 } from "../../../components/Buttons.jsx";
 import Switch from "@mui/material/Switch";
 import { useParams } from "react-router-dom";
+import { UserContext } from "../../../contexts/UserContext.jsx";
 
 const UpdateAdmin = () => {
+  const currentAdmin = useContext(UserContext).user;
   const { id } = useParams();
   const [admin, setAdmin] = useState({});
   const [values, setValues] = useState({
@@ -59,18 +61,16 @@ const UpdateAdmin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      !values.firstname ||
-      !values.lastname ||
-      !values.username ||
-      !values.email
-    ) {
+    if (!values.firstname || !values.lastname || !values.email) {
       setMsg("Tous les champs sont obligatoires.");
       setMsgShow(true);
       return;
     }
 
-    const { createdAt, username, ...data } = values;
+    const data = {
+      ...values,
+      currentAdmin: currentAdmin,
+    };
 
     try {
       const response = await api.put(`/admin/${id}`, data);
@@ -93,7 +93,6 @@ const UpdateAdmin = () => {
       firstname: admin.firstname || "",
       lastname: admin.lastname || "",
       email: admin.email || "",
-      username: admin.username || "",
       regpass: false,
     });
   };

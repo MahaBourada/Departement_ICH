@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import api from "../../../api/api";
 import { MessagePopup } from "../../../components/MsgPopup";
 import {
@@ -11,8 +11,10 @@ import {
   SmallBorderButton,
   SmallFilledButton,
 } from "../../../components/Buttons";
+import { UserContext } from "../../../contexts/UserContext";
 
 const AddMember = () => {
+  const currentAdmin = useContext(UserContext).user;
   const [values, setValues] = useState({
     prenom: "",
     nom: "",
@@ -58,8 +60,13 @@ const AddMember = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const data = {
+      ...values,
+      currentAdmin: currentAdmin,
+    };
+
     try {
-      const response = await api.post("/members", values);
+      const response = await api.post("/members", data);
 
       setMsgShow(true);
       setMsgStatus(200);

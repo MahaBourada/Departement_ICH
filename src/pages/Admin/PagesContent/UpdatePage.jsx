@@ -11,6 +11,7 @@ import { UserContext } from "../../../contexts/UserContext";
 
 const UpdatePage = () => {
   // const { accessToken } = useContext(UserContext);
+  const currentAdmin = useContext(UserContext).user;
   const { idPage } = useParams();
   const [pageInfo, setPageInfo] = useState({});
   const [sections, setSections] = useState([]);
@@ -134,9 +135,15 @@ const UpdatePage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const data = {
+      ...sections,
+      currentAdmin: currentAdmin,
+      pageTitle: pageInfo.title,
+    };
+
     try {
       // Update sections
-      await api.put(`/pages/${idPage}`, sections);
+      await api.put(`/pages/${idPage}`, data);
 
       // Update images
       await api.put(`/pages-images/${idPage}`, {
@@ -259,7 +266,7 @@ const UpdatePage = () => {
               onRemove={() => handleRemoveImage(i)}
               inputRef={(el) => (inputRefs.current[i] = el)}
             />
-            
+
             <InputField
               type="text"
               label="Source de l'image"

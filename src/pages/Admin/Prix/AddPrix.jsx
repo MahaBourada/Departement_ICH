@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { MessagePopup } from "../../../components/MsgPopup";
 import {
   ImageField,
@@ -10,8 +10,10 @@ import {
   SmallFilledButton,
 } from "../../../components/Buttons";
 import api from "../../../api/api";
+import { UserContext } from "../../../contexts/UserContext";
 
 const AddPrix = () => {
+  const currentAdmin = useContext(UserContext).user;
   const [values, setValues] = useState({
     nom: "",
     organisation: "",
@@ -58,8 +60,13 @@ const AddPrix = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const data = {
+      ...values,
+      currentAdmin: currentAdmin,
+    };
+
     try {
-      const response = await api.post("/prix", values);
+      const response = await api.post("/prix", data);
 
       setMsgShow(true);
       setMsgStatus(200);

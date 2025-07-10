@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../../api/api";
 import { MessagePopup } from "../../../components/MsgPopup";
@@ -13,8 +13,10 @@ import {
   SmallFilledButton,
 } from "../../../components/Buttons";
 import { getRelativePath } from "../../../utils/getRelativePath";
+import { UserContext } from "../../../contexts/UserContext";
 
 const UpdateMember = () => {
+  const currentAdmin = useContext(UserContext).user;
   const { id } = useParams();
   const [member, setMember] = useState({});
 
@@ -104,6 +106,7 @@ const UpdateMember = () => {
     const data = {
       ...values,
       image: getRelativePath(image),
+      currentAdmin: currentAdmin,
     };
 
     try {

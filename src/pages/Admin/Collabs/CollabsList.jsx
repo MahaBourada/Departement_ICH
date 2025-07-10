@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ConfirmationModal, MessagePopup } from "../../../components/MsgPopup";
 import { Link } from "react-router-dom";
 import { Pencil, Plus, Trash2 } from "lucide-react";
 import api from "../../../api/api";
+import { UserContext } from "../../../contexts/UserContext";
 
 const CollabsList = () => {
+  const currentAdmin = useContext(UserContext).user;
   const [msg, setMsg] = useState("");
   const [msgShow, setMsgShow] = useState(false);
   const [msgStatus, setMsgStatus] = useState(0);
@@ -38,7 +40,12 @@ const CollabsList = () => {
       );
 
       const response = await api.delete(
-        `/collaborations/${selectedCollab.idCollab}`
+        `/collaborations/${selectedCollab.idCollab}`,
+        {
+          params: {
+            currentAdmin: currentAdmin,
+          },
+        }
       );
 
       setMsgShow(true);

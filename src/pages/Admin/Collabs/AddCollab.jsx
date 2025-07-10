@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   ImageField,
   InputField,
@@ -11,8 +11,10 @@ import {
 } from "../../../components/Buttons";
 import api from "../../../api/api";
 import { MessagePopup } from "../../../components/MsgPopup";
+import { UserContext } from "../../../contexts/UserContext";
 
 const AddCollab = () => {
+  const currentAdmin = useContext(UserContext).user;
   const [msg, setMsg] = useState("");
   const [msgShow, setMsgShow] = useState(false);
   const [msgStatus, setMsgStatus] = useState(0);
@@ -55,6 +57,7 @@ const AddCollab = () => {
 
     const data = {
       ...values,
+      currentAdmin: currentAdmin,
     };
 
     try {

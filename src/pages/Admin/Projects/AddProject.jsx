@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import api from "../../../api/api";
 import { MessagePopup } from "../../../components/MsgPopup";
 import {
@@ -11,8 +11,10 @@ import {
   SmallFilledButton,
 } from "../../../components/Buttons";
 import { Plus, Trash2, X } from "lucide-react";
+import { UserContext } from "../../../contexts/UserContext";
 
 const ProjectsManagementPage = () => {
+  const currentAdmin = useContext(UserContext).user;
   const [images, setImages] = useState([
     { ordre_positionnement: 1, path: "", alt_fr: "", alt_en: "" },
     { ordre_positionnement: 2, path: "", alt_fr: "", alt_en: "" },
@@ -70,6 +72,7 @@ const ProjectsManagementPage = () => {
       ...values,
       membres: membres,
       images: images,
+      currentAdmin: currentAdmin,
     };
 
     try {

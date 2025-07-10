@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import api from "../../../api/api";
 import { useParams } from "react-router-dom";
 import {
@@ -12,8 +12,10 @@ import {
 } from "../../../components/Inputs";
 import { MessagePopup } from "../../../components/MsgPopup";
 import { getRelativePath } from "../../../utils/getRelativePath";
+import { UserContext } from "../../../contexts/UserContext";
 
 const UpdatePrix = () => {
+  const currentAdmin = useContext(UserContext).user;
   const { id } = useParams();
   const [prix, setPrix] = useState({});
   const [values, setValues] = useState({
@@ -100,6 +102,7 @@ const UpdatePrix = () => {
     const data = {
       ...values,
       image: getRelativePath(values.image),
+      currentAdmin: currentAdmin,
     };
 
     try {

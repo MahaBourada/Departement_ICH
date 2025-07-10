@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import api from "../../../api/api";
 import { useParams } from "react-router-dom";
 import {
@@ -12,9 +12,10 @@ import {
 } from "../../../components/Inputs";
 import { MessagePopup } from "../../../components/MsgPopup";
 import { getRelativePath } from "../../../utils/getRelativePath";
-import { dateFormatting } from "../../../utils/dateFormatting";
+import { UserContext } from "../../../contexts/UserContext.jsx";
 
 const UpdateNews = () => {
+  const currentAdmin = useContext(UserContext).user;
   const { id } = useParams();
   const [news, setNews] = useState({});
   const [values, setValues] = useState({
@@ -100,7 +101,7 @@ const UpdateNews = () => {
     const data = {
       ...values,
       image: getRelativePath(values.image),
-      dateUpdated: dateFormatting(),
+      currentAdmin: currentAdmin,
     };
 
     try {

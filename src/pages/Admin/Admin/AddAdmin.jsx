@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../../../contexts/UserContext.jsx";
 import api from "../../../api/api.js";
 import { MessagePopup } from "../../../components/MsgPopup.jsx";
-import { InputField, SelectField } from "../../../components/Inputs.jsx";
+import { InputField } from "../../../components/Inputs.jsx";
 import {
   SmallBorderButton,
   SmallFilledButton,
 } from "../../../components/Buttons.jsx";
 
 const AddAdmin = () => {
+  const currentAdmin = useContext(UserContext).user;
   const [values, setValues] = useState({
     firstname: "",
     lastname: "",
     email: "",
-    username: "",
   });
 
   const [msg, setMsg] = useState("");
@@ -23,6 +24,8 @@ const AddAdmin = () => {
     setMsgShow(false);
   };
 
+  console.log(currentAdmin);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -32,7 +35,10 @@ const AddAdmin = () => {
       return;
     }
 
-    const { username, ...data } = values;
+    const data = {
+      ...values,
+      currentAdmin: currentAdmin,
+    };
 
     try {
       const response = await api.post("/admin", data);
@@ -56,7 +62,6 @@ const AddAdmin = () => {
       firstname: "",
       lastname: "",
       email: "",
-      username: "",
     });
   };
 

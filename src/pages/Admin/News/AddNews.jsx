@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import { MessagePopup } from "../../../components/MsgPopup";
 import {
   SmallBorderButton,
@@ -10,9 +10,10 @@ import {
   TextAreaField,
 } from "../../../components/Inputs";
 import api from "../../../api/api";
-import { dateFormatting } from "../../../utils/dateFormatting";
+import { UserContext } from "../../../contexts/UserContext.jsx";
 
 const AddNews = () => {
+  const currentAdmin = useContext(UserContext).user;
   const [msg, setMsg] = useState("");
   const [msgShow, setMsgShow] = useState(false);
   const [msgStatus, setMsgStatus] = useState(0);
@@ -61,7 +62,7 @@ const AddNews = () => {
 
     const data = {
       ...values,
-      datePosted: dateFormatting(),
+      currentAdmin: currentAdmin,
     };
 
     try {

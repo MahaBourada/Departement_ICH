@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 import api from "../api/api"; // Make sure this import exists
-import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext();
 
@@ -23,7 +22,7 @@ export const UserProvider = ({ children }) => {
       }
     };
     tryRefresh();
-  }, []); 
+  }, []);
 
   return (
     <UserContext.Provider

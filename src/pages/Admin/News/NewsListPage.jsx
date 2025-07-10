@@ -1,10 +1,12 @@
 import { Pencil, Plus, Trash2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../../../api/api";
 import { ConfirmationModal, MessagePopup } from "../../../components/MsgPopup";
+import { UserContext } from "../../../contexts/UserContext";
 
 const NewsListPage = () => {
+  const currentAdmin = useContext(UserContext).user;
   const [msg, setMsg] = useState("");
   const [msgShow, setMsgShow] = useState(false);
   const [msgStatus, setMsgStatus] = useState(0);
@@ -41,7 +43,11 @@ const NewsListPage = () => {
         prev.filter((news) => news.idActu !== selectedNews.idActu)
       );
 
-      const response = await api.delete(`/news/${selectedNews.idActu}`);
+      const response = await api.delete(`/news/${selectedNews.idActu}`, {
+        params: {
+          currentAdmin: currentAdmin,
+        },
+      });
 
       setMsgShow(true);
       setMsgStatus(200);

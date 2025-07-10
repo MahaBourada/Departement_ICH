@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import api from "../../../api/api";
 import { useParams } from "react-router-dom";
 import {
@@ -13,8 +13,10 @@ import {
 } from "../../../components/Buttons";
 import { MessagePopup } from "../../../components/MsgPopup";
 import { getRelativePath } from "../../../utils/getRelativePath";
+import { UserContext } from "../../../contexts/UserContext";
 
 const UpdateCollab = () => {
+  const currentAdmin = useContext(UserContext).user;
   const { id } = useParams();
 
   const [msg, setMsg] = useState("");
@@ -93,6 +95,7 @@ const UpdateCollab = () => {
     const data = {
       ...values,
       logo: getRelativePath(file),
+      currentAdmin: currentAdmin,
     };
 
     try {

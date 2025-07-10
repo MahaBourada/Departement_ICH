@@ -1,10 +1,12 @@
 import { Pencil, Plus, Trash2 } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../../../api/api";
 import { ConfirmationModal, MessagePopup } from "../../../components/MsgPopup";
+import { UserContext } from "../../../contexts/UserContext";
 
 const ProjectsListPage = () => {
+  const currentAdmin = useContext(UserContext).user;
   const [projects, setProjects] = useState([]);
   const [msg, setMsg] = useState("");
   const [msgShow, setMsgShow] = useState(false);
@@ -39,7 +41,12 @@ const ProjectsListPage = () => {
       );
 
       const response = await api.delete(
-        `/projects/${selectedProject.idProjet}`
+        `/projects/${selectedProject.idProjet}`,
+        {
+          params: {
+            currentAdmin: currentAdmin,
+          },
+        }
       );
 
       setMsgShow(true);

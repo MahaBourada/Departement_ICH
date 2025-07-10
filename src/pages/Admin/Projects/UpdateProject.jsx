@@ -10,10 +10,12 @@ import {
 } from "../../../components/Buttons.jsx";
 import { MessagePopup } from "../../../components/MsgPopup.jsx";
 import { Plus, Trash2, X } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import api from "../../../api/api.js";
+import { UserContext } from "../../../contexts/UserContext.jsx";
 
 const UpdateProject = () => {
+  const currentAdmin = useContext(UserContext).user;
   const { id } = useParams();
   const [project, setProject] = useState({});
 
@@ -124,6 +126,7 @@ const UpdateProject = () => {
       ...values,
       membres: membres,
       images: images,
+      currentAdmin: currentAdmin,
     };
 
     try {

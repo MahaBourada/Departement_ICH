@@ -1,20 +1,27 @@
 import { Pencil, Plus, Trash2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../../../api/api";
 import {
   ConfirmationModal,
   MessagePopup,
 } from "../../../components/MsgPopup.jsx";
+import { UserContext } from "../../../contexts/UserContext.jsx";
 
 const DashboardPage = () => {
+  const currentAdmin = useContext(UserContext).user;
   const [adminList, setAdminList] = useState([]);
+  const [historyList, setHistoryList] = useState([]);
 
   const fetchData = async () => {
     try {
-      const response = await api.get("/admin");
+      const adminResponse = await api.get("/admin");
 
-      setAdminList(response.data);
+      setAdminList(adminResponse.data);
+
+      const historyResponse = await api.get("/history");
+
+      setHistoryList(historyResponse.data);
     } catch (error) {
       console.error(error);
     }
@@ -46,7 +53,11 @@ const DashboardPage = () => {
         prev.filter((admin) => admin.idAdmin !== selectedAdmin.idAdmin)
       );
 
-      const response = await api.delete(`/admin/${selectedAdmin.idAdmin}`);
+      const response = await api.delete(`/admin/${selectedAdmin.idAdmin}`, {
+        params: {
+          currentAdmin: currentAdmin,
+        },
+      });
 
       setMsgShow(true);
       setMsgStatus(200);
@@ -65,33 +76,12 @@ const DashboardPage = () => {
   };
 
   return (
-    <div className="mt-20">
+    <div className="my-20">
       <main className="mx-14 max-md:mx-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-display font-semibold ">
+          <h1 className="text-display font-semibold">
             Comptes administrateurs
           </h1>
-
-          {msgShow && (
-            <MessagePopup
-              message={msg}
-              onClose={handleClose}
-              status={msgStatus}
-            />
-          )}
-
-          <ConfirmationModal
-            isOpen={confirmOpen}
-            onCancel={cancelDeletion}
-            onConfirm={handleDelete}
-            message={`Êtes-vous sûr de vouloir supprimer l'administrateur ${
-              selectedAdmin?.first_name || ""
-            } ${
-              selectedAdmin?.last_name
-                ? selectedAdmin.last_name.toUpperCase()
-                : ""
-            }?`}
-          />
 
           <Link
             to="/admin/tableau-de-bord/ajouter-admin"
@@ -107,7 +97,31 @@ const DashboardPage = () => {
           </Link>
         </div>
 
+        {msgShow && (
+          <MessagePopup
+            message={msg}
+            onClose={handleClose}
+            status={msgStatus}
+          />
+        )}
+
+        <ConfirmationModal
+          isOpen={confirmOpen}
+          onCancel={cancelDeletion}
+          onConfirm={handleDelete}
+          message={`Êtes-vous sûr de vouloir supprimer l'administrateur ${
+            selectedAdmin?.first_name || ""
+          } ${
+            selectedAdmin?.last_name
+              ? selectedAdmin.last_name.toUpperCase()
+              : ""
+          }?`}
+        />
+
         <table className="w-full mx-3 my-5">
+          <caption className="sr-only">
+            Liste des administrateurs du site
+          </caption>
           <thead>
             <tr className="border-b-[0.5px] text-start">
               <th className="py-3 text-start w-1/3">Admin</th>
@@ -166,55 +180,52 @@ const DashboardPage = () => {
             ))}
           </tbody>
         </table>
-        {/* <aside>
-          <div>
-            <h1 className="text-dynamic-2xl max-md:text-dynamic-xl font-semibold">
-              Historique
-            </h1>
 
-            <div className="mx-3">
-              <div className="flex justify-between items-center my-3">
-                <p>Isis TRUCK</p>
-                <p>01/04/2025</p>
-                <p>20:35</p>
-              </div>
+        <aside className="mt-20">
+          <div className="flex items-center justify-between">
+            <h1 className="text-display font-semibold">Historique</h1>
 
-              <div className="h-[0.5px] bg-black my-1 w-full"></div>
-
-              <div className="flex justify-between items-center my-3">
-                <p>Anis ROJBI</p>
-                <p>01/04/2025</p>
-                <p>20:35</p>
-              </div>
-
-              <div className="h-[0.5px] bg-black my-1 w-full"></div>
-
-              <div className="flex justify-between items-center my-3">
-                <p>Céline JOST</p>
-                <p>01/04/2025</p>
-                <p>20:35</p>
-              </div>
-
-              <div className="h-[0.5px] bg-black my-1 w-full"></div>
-            </div>
-
-            <div className="w-fit ml-auto mt-2 font-semibold">
-              <button className="mr-2 p-2 cursor-pointer hover:underline hover:translate-[1px]">
-                Voir plus
-              </button>
-            </div>
+            <Link className="flex flex-row items-center font-main font-medium rounded-xl px-5 py-2 mx-3 my-1 text-black bg-accent hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white max-md:w-42 max-md:mb-4 text-nav leading-normal">
+              <Plus
+                aria-label="Ajouter un admin"
+                size={30}
+                className="text-black dark:text-dark-white mr-2"
+                strokeWidth={2.8}
+              />
+              <p>Exporter</p>
+            </Link>
           </div>
 
-          <div className="my-5">
-            <h1 className="text-dynamic-2xl max-md:text-dynamic-xl font-semibold">
-              Newsletter
-            </h1>
-
-            <div className="mx-3">
-              <h2></h2>
-            </div>
-          </div>
-        </aside> */}
+          <table className="w-full mx-3 my-5">
+            <caption className="sr-only">
+              Historique des changements du site
+            </caption>
+            <thead>
+              <tr className="border-b-[0.5px] text-start">
+                <th className="py-3 text-start w-1/5">Admin</th>
+                <th className="py-3 text-start w-1/2">Résumé</th>
+                <th className="py-3 text-start w-1/5">Date</th>
+                <th className="py-3 text-start w-1/3">Opérations</th>
+              </tr>
+            </thead>
+            <tbody>
+              {historyList.map((history) => (
+                <tr key={history.idHistory} className="border-b-[0.5px]">
+                  <td className="py-3 text-start">
+                    <p className="line-clamp-1">{history.admin_name}</p>
+                  </td>
+                  <td className="py-3 text-start">
+                    <p className="line-clamp-1">{history.resume}</p>
+                  </td>
+                  <td className="py-3 text-start">{history.dateUpdated}</td>
+                  <td className="py-3 text-center">
+                    <p className="line-clamp-1">{history.operation}</p>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </aside>
       </main>
     </div>
   );

@@ -1,10 +1,12 @@
 import { Pencil, Plus, Trash2 } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../../../api/api";
 import { ConfirmationModal, MessagePopup } from "../../../components/MsgPopup";
+import { UserContext } from "../../../contexts/UserContext";
 
 const PrixListPage = () => {
+  const currentAdmin = useContext(UserContext).user;
   const [prix, setPrix] = useState([]); // List of json objects
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [selectedPrix, setSelectedPrix] = useState({});
@@ -41,7 +43,11 @@ const PrixListPage = () => {
         prev.filter((onePrix) => onePrix.idPrix !== selectedPrix.idPrix)
       );
 
-      const response = await api.delete(`/prix/${selectedPrix.idPrix}`);
+      const response = await api.delete(`/prix/${selectedPrix.idPrix}`, {
+        params: {
+          currentAdmin: currentAdmin,
+        },
+      });
 
       setMsgShow(true);
       setMsgStatus(200);
