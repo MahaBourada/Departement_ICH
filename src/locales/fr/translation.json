@@ -36,7 +36,14 @@
       "year": "Année",
       "objective": "Objectif"
     },
-    "awards_title": "Prix & Concours"
+    "awards_title": {
+      "org": "Organisation",
+      "title": "Prix & Concours",
+      "project": "Projet",
+      "students": "Étudiant(s)",
+      "category": "Catégorie",
+      "year": "Année"
+    }
   },
   "research": {
     "link": "Recherche",
@@ -48,7 +55,8 @@
   "collaboration": {
     "national": {
       "link": "Nationales",
-      "title": "Collaborations nationales"
+      "title": "Collaborations nationales",
+      "conventions": "Collaborations et conventions"
     },
     "international": {
       "link": "Internationales",
@@ -56,7 +64,44 @@
     },
     "form": {
       "link": "Collaborer",
-      "title": "Collaborez avec nous"
+      "title": "Collaborez avec nous",
+      "firstname": "Prénom",
+      "lastname": "Nom",
+      "email_placeholder": "exemple@mail.com",
+      "phone": "Téléphone",
+      "org": {
+        "label": "Organisation",
+        "placeholder": "Nom de votre organisation ou projet"
+      },
+      "fonction": {
+        "label": "Fonction / Rôle",
+        "placeholder": "ex. : Développeur, directeur d'association..."
+      },
+      "subject": {
+        "label": "Objet de collaboration",
+        "placeholder": "Quel est le but de cette collaboration ?"
+      },
+      "desc": {
+        "label": "Description de la collaboration",
+        "placeholder": "Décrivez votre idée ou votre proposition de collaboration..."
+      },
+      "optional": {
+        "label": "Champs optionnels",
+        "link": "Lien vers portfolio / site",
+        "file": "Joindre un fichier (CV, brief...etc)",
+        "selected_file": "Fichier sélectionné"
+      },
+      "availability": {
+        "label": "Disponibilités",
+        "from": "Du",
+        "to": "Au"
+      }
+    },
+    "categories": {
+      "label": "Catégorie",
+      "Université": "Université",
+      "Hôpital": "Hôpital",
+      "Partenaire socio-économique": "Partenaire socio-économique"
     }
   },
   "contact": {
@@ -82,11 +127,22 @@
     "button": "Revenir en arrière"
   },
   "breadcrumb": "Fil d'Ariane",
+  "website": "Lien",
+  "updated": "Mise à jour",
+  "posted": "Postée",
   "accessibility": {
     "label": "Accessibilité",
     "dark": "Mode sombre",
     "light": "Mode clair",
     "reset": "Réinitialiser zoom",
     "reader": "Confort de lecture"
+  },
+  "accessibility_confirmed": "Accessibilité validé par",
+  "footer": {
+    "accessibility": "Accessibilité",
+    "credits": "Crédits",
+    "mentions": "Mentions légales",
+    "policy": "Politique de confidentialité",
+    "copyright": "@2025 Paris 8 - Droits d'auteurs"
   }
 }

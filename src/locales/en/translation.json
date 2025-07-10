@@ -36,7 +36,14 @@
       "year": "Year",
       "objective": "Objective"
     },
-    "awards_title": "Awards & Competitions"
+    "awards_title": {
+      "org": "Organization",
+      "title": "Awards & Competitions",
+      "project": "Project",
+      "students": "Student(s)",
+      "category": "Category",
+      "year": "Year"
+    }
   },
   "research": {
     "link": "Research",
@@ -48,7 +55,8 @@
   "collaboration": {
     "national": {
       "link": "National",
-      "title": "National collaborations"
+      "title": "National collaborations",
+      "conventions": "Collaborations and conventions"
     },
     "international": {
       "link": "International",
@@ -56,7 +64,44 @@
     },
     "form": {
       "link": "Collaborate",
-      "title": "Collaborate with us"
+      "title": "Collaborate with us",
+      "firstname": "First name",
+      "lastname": "Last name",
+      "email_placeholder": "example@mail.com",
+      "phone": "Phone number",
+      "org": {
+        "label": "Organization",
+        "placeholder": "Name of your organization or project"
+      },
+      "fonction": {
+        "label": "Function / Role",
+        "placeholder": "ex. : Developer, association director..."
+      },
+      "subject": {
+        "label": "Object of collaboration",
+        "placeholder": "What is the purpose of this collaboration ?"
+      },
+      "desc": {
+        "label": "Description of collaboration",
+        "placeholder": "Describe your idea or collaboration proposal..."
+      },
+      "optional": {
+        "label": "Optional fields",
+        "link": "Link to portfolio / website",
+        "file": "Attach a file (CV, brief...etc)",
+        "selected_file": "Selected file"
+      },
+      "availability": {
+        "label": "Availability",
+        "from": "From",
+        "to": "To"
+      }
+    },
+    "categories": {
+      "label": "Category",
+      "Université": "University",
+      "Hôpital": "Hospital",
+      "Partenaire socio-économique": "Socio-economic partner"
     }
   },
   "contact": {
@@ -82,11 +127,22 @@
     "button": "Go back"
   },
   "breadcrumb": "Breadcrumb",
+  "website": "Link",
+  "updated": "Updated",
+  "posted": "Posted",
   "accessibility": {
     "label": "Accessibility",
     "dark": "Dark mode",
     "light": "Light mode",
     "reset": "Reset zoom",
     "reader": "Reader mode"
+  },
+  "accessibility_confirmed": "Accessibility validated by",
+  "footer": {
+    "accessibility": "Accessibility",
+    "credits": "Credits",
+    "mentions": "Legal mentions",
+    "policy": "Privacy policy",
+    "copyright": "@2025 Paris 8 - All rights reserved"
   }
 }

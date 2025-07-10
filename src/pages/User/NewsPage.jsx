@@ -66,7 +66,7 @@ const NewsPage = () => {
 
                     {oneNews.lien && (
                       <p className="m-2">
-                        <span className="font-semibold">Lien : </span>
+                        <span className="font-semibold">{t("website")} : </span>
                         <a
                           href={oneNews.lien}
                           target="_blank"
@@ -77,15 +77,19 @@ const NewsPage = () => {
                       </p>
                     )}
 
-                    <p className="mx-2 mt-4 text-neutral-600">
+                    <p className="mx-2 mt-4 text-neutral-600 dark:text-neutral-300">
                       {oneNews.dateUpdated ? (
                         <>
-                          <span className="font-semibold">Mise à jour : </span>
+                          <span className="font-semibold">
+                            {t("updated")} :{" "}
+                          </span>
                           {oneNews.dateUpdated}
                         </>
                       ) : (
                         <>
-                          <span className="font-semibold">Postée : </span>
+                          <span className="font-semibold">
+                            {t("posted")} :{" "}
+                          </span>
                           {oneNews.datePosted}
                         </>
                       )}
@@ -104,7 +108,7 @@ const NewsPage = () => {
                       />
 
                       {oneNews?.source_image && (
-                        <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto">
+                        <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit ml-auto">
                           <span className="font-semibold">Source :</span>{" "}
                           {oneNews.source_image}
                         </p>

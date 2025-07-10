@@ -83,7 +83,7 @@ const MasterPage = () => {
               />
 
               {img1?.source && (
-                <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto">
+                <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit ml-auto">
                   <span className="font-semibold">Source :</span> {img1.source}
                 </p>
               )}
@@ -122,7 +122,7 @@ const MasterPage = () => {
               />
 
               {img2?.source && (
-                <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto">
+                <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit ml-auto">
                   <span className="font-semibold">Source :</span> {img2.source}
                 </p>
               )}
@@ -164,7 +164,7 @@ const MasterPage = () => {
                 />
 
                 {img3?.source && (
-                  <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto">
+                  <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit ml-auto">
                     <span className="font-semibold">Source :</span>{" "}
                     {img3.source}
                   </p>
@@ -182,7 +182,7 @@ const MasterPage = () => {
                 />
 
                 {img4?.source && (
-                  <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto">
+                  <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit ml-auto">
                     <span className="font-semibold">Source :</span>{" "}
                     {img4.source}
                   </p>

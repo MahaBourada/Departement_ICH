@@ -89,11 +89,11 @@ const InternationalePage = () => {
               src={`${import.meta.env.VITE_BASE_URL}/${img1.path}`}
               alt={img1.alt || ""}
               width={400}
-              className="minimal:hidden w-3/4 m-auto my-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px]"
+              className="minimal:hidden w-3/4 m-auto my-5 max-large-medium:mx-auto max-large-medium:mb-6"
             />
 
             {img1?.source && (
-              <p className="text-neutral-700 text-dynamic-xsm w-fit mx-auto">
+              <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit mx-auto">
                 <span className="font-semibold">Source :</span> {img1.source}
               </p>
             )}
@@ -132,8 +132,10 @@ const InternationalePage = () => {
 
               {collab.categorie !== "Autre" && (
                 <p className="mx-2 mt-7">
-                  <strong className="font-medium">Catégorie : </strong>
-                  {collab.categorie}
+                  <strong className="font-medium">
+                    {t("collaboration.categories.label")} :{" "}
+                  </strong>
+                  {t(`collaboration.categories.${collab.categorie}`)}
                 </p>
               )}
             </div>

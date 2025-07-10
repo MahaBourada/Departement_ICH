@@ -150,13 +150,7 @@ const DashboardPage = () => {
                   <td className="py-3 text-start">
                     <p className="line-clamp-1">{admin.username}</p>
                   </td>
-                  <td className="py-3 text-start">
-                    {new Date(admin.createdAt).toLocaleDateString("fr-FR", {
-                      day: "2-digit",
-                      month: "2-digit",
-                      year: "numeric",
-                    })}
-                  </td>
+                  <td className="py-3 text-start">{admin.createdAt}</td>
                   <td className="h-full px-4">
                     <div className="flex items-center justify-center space-x-2">
                       <Link

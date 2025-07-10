@@ -56,13 +56,13 @@ const CollabsConventions = () => {
             link: "/collaborations/collaborations-nationales",
           },
           {
-            label: "Collaborations et conventions",
+            label: t("collaboration.national.conventions"),
           },
         ]}
       />
 
       <h1 className="font-main font-semibold text-display my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
-        Collaborations et conventions
+        {t("collaboration.national.conventions")}
       </h1>
 
       <div className="mx-4 max-md:mx-2 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
@@ -89,8 +89,13 @@ const CollabsConventions = () => {
 
                   {collab.categorie !== "Autre" && (
                     <p className="mx-2 mt-7">
-                      <strong className="font-medium">Catégorie : </strong>
-                      {collab.categorie}
+                      <strong className="font-medium">
+                        {t("collaboration.categories.label")} :{" "}
+                      </strong>
+
+                      {t(
+                        `collaboration.categories.${collab.categorie}`
+                      )}
                     </p>
                   )}
                 </div>
@@ -98,7 +103,7 @@ const CollabsConventions = () => {
                 <img
                   src={`${import.meta.env.VITE_BASE_URL}/${collab.logo}`}
                   alt={`Logo de l'organisation ${collab.nom}`}
-                  className="w-60 my-auto"
+                  className="w-60 my-auto dark:bg-neutral-400 p-2.5 px-3 rounded-2xl"
                 />
               </div>
               <div className="border-neutral-500 dark:border-gray-300 border-[1px] my-5 w-full"></div>

@@ -190,7 +190,8 @@ const AddMember = () => {
             <InputField
               isRequired={
                 values.titre === "Directeur du département" ||
-                values.titre === "Enseignant(e)"
+                values.titre === "Enseignant(e)" ||
+                values.fonction_fr
               }
               type="text"
               label="Fonction en anglais"
@@ -216,6 +217,7 @@ const AddMember = () => {
         />
 
         <InputField
+          isRequired={values.section_fr}
           type="text"
           label="Section disciplinaire en anglais"
           name="section_en"
@@ -258,6 +260,7 @@ const AddMember = () => {
         />
 
         <TextAreaField
+          isRequired={values.propos_fr}
           label="A propos en anglais"
           name="propos_en"
           placeholder="Mini description du membre en anglais"

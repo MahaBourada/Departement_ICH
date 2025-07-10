@@ -78,6 +78,12 @@ export const ConfirmationModal = ({ isOpen, onCancel, onConfirm, message }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div className="bg-neutral-100 dark:bg-dark-background dark:shadow-gray-900 rounded-2xl shadow-small p-6 w-1/3 text-center font-main">
+        <img
+          src="/ich/assets/vectors/ConfirmationIcon.svg"
+          alt=""
+          role="presentation"
+          className="m-auto my-2 w-64"
+        />
         <p className="font-medium mb-6">{message}</p>
         <div className="flex justify-around">
           <SmallBorderButton type="button" text="Annuler" onClick={onCancel} />

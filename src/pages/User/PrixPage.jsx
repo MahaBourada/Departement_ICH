@@ -34,13 +34,13 @@ const PrixPage = () => {
             label: t("formation.link"),
           },
           {
-            label: t("formation.awards_title"),
+            label: t("formation.awards_title.title"),
           },
         ]}
       />
 
       <h1 className="font-main font-semibold text-dynamic-2xl my-2 mb-4">
-        {t("formation.awards_title")}
+        {t("formation.awards_title.title")}
       </h1>
 
       <div className="mx-4 max-md:mx-2 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
@@ -57,24 +57,41 @@ const PrixPage = () => {
 
                   <div className="mx-2">
                     <p className="my-2">
-                      <span className="font-semibold">Organisation : </span>
+                      <span className="font-semibold">
+                        {t("formation.awards_title.org")} :{" "}
+                      </span>
                       {onePrix.organisation}
                     </p>
 
                     <p className="my-2">
-                      <span className="font-semibold">Projet : </span>
+                      <span className="font-semibold">
+                        {t("formation.awards_title.title")} :{" "}
+                      </span>
                       {onePrix.projet}
                     </p>
 
                     <p className="my-2">
-                      <span className="font-semibold">Étudiant.s : </span>
+                      <span className="font-semibold">
+                        {t("formation.awards_title.students")} :{" "}
+                      </span>
                       {onePrix.etudiants}
                     </p>
 
                     {onePrix.categorie && (
                       <p className="my-2">
-                        <span className="font-semibold">Catégorie : </span>
+                        <span className="font-semibold">
+                          {t("formation.awards_title.category")} :{" "}
+                        </span>
                         {onePrix.categorie}
+                      </p>
+                    )}
+
+                    {onePrix.annee && (
+                      <p className="my-2">
+                        <span className="font-semibold">
+                          {t("formation.awards_title.year")} :{" "}
+                        </span>
+                        {onePrix.annee}
                       </p>
                     )}
 
@@ -92,7 +109,7 @@ const PrixPage = () => {
 
                     {onePrix.lien && (
                       <p className="my-2">
-                        <span className="font-semibold">Lien : </span>
+                        <span className="font-semibold">{t("website")} : </span>
                         <a
                           href={onePrix.lien}
                           className="p-0.5 hover:bg-main hover:underline rounded-md"

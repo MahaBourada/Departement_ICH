@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import AccessibilityMenu from "../AccessibilityMenu";
 
@@ -49,7 +49,7 @@ const Footer = ({ switchLang }) => {
           className="m-1 block dark:hidden"
         />
         <div>
-          <p className="font-medium text-xl">Accessibilité validé par</p>
+          <p className="font-medium text-xl">{t("accessibility_confirmed")}</p>
           <div className="flex flex-row items-center justify-end">
             <img
               src="/ich/assets/vectors/wave.svg"
@@ -185,7 +185,7 @@ const Footer = ({ switchLang }) => {
               }
               to="/formation/prix-concours"
             >
-              {t("formation.awards_title")}
+              {t("formation.awards_title.title")}
             </NavLink>
           </div>
 
@@ -233,15 +233,25 @@ const Footer = ({ switchLang }) => {
       </div>
 
       <div className="flex justify-between items-center mt-10">
-        <p className="mx-1">Accessibilité</p>
+        <Link to="/accessibilite" className="mx-1 hover:underline">
+          {t("footer.accessibility")}
+        </Link>
         <p className="mx-1">|</p>
-        <p className="mx-1">Crédits</p>
+        <Link to="/credits" className="mx-1 hover:underline">
+          {t("footer.credits")}
+        </Link>
         <p className="mx-1">|</p>
-        <p className="mx-1">Mentions légales</p>
+        <Link to="/mentions-legales" className="mx-1 hover:underline">
+          {t("footer.mentions")}
+        </Link>
         <p className="mx-1">|</p>
-        <p className="mx-1">Politique de confidentialité</p>
+        <Link to="/politique-confidentialite" className="mx-1 hover:underline">
+          {t("footer.policy")}
+        </Link>
         <p className="mx-1">|</p>
-        <p className="mx-1">@2025 Paris 8 - Droits d'auteurs</p>
+        <Link to="/droits-auteurs" className="mx-1 hover:underline">
+          {t("footer.copyright")}
+        </Link>
       </div>
     </footer>
   );

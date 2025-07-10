@@ -223,6 +223,7 @@ const UpdateCollab = () => {
         />
 
         <TextAreaField
+          isRequired={values.description_fr}
           label="Description en anglais"
           name="description_en"
           placeholder="Mini description de la collaboration en anglais"

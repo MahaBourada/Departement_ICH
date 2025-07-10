@@ -33,8 +33,6 @@ const HomePage = () => {
     fetchData();
   }, []);
 
-  console.log(getByPosition(images, 1).source);
-
   return (
     <main className="flex-grow">
       <div className="h-72 bg-cover bg-center bg-no-repeat flex items-center justify-center bg-[url('/ich/assets/images/HomeImage.png')] max-md:hidden">
@@ -93,7 +91,7 @@ const HomePage = () => {
             </div>
 
             {getByPosition(images, 1)?.source && (
-              <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto">
+              <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit ml-auto">
                 <span className="font-semibold">Source :</span>{" "}
                 {getByPosition(images, 1).source}
               </p>
@@ -125,7 +123,7 @@ const HomePage = () => {
                 </div>
 
                 {img?.source && (
-                  <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto">
+                  <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit ml-auto">
                     <span className="font-semibold">Source :</span> {img.source}
                   </p>
                 )}

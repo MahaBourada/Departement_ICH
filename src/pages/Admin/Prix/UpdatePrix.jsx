@@ -24,6 +24,7 @@ const UpdatePrix = () => {
     projet: "",
     etudiants: "",
     categorie: "",
+    annee: "",
     description_fr: "",
     description_en: "",
     lien: "",
@@ -54,6 +55,7 @@ const UpdatePrix = () => {
         projet: prix.projet || "",
         etudiants: prix.etudiants || "",
         categorie: prix.categorie || "",
+        annee: prix.annee || "",
         description_fr: prix.description_fr || "",
         description_en: prix.description_en || "",
         lien: prix.lien || "",
@@ -128,6 +130,7 @@ const UpdatePrix = () => {
       projet: prix.projet || "",
       etudiants: prix.etudiants || "",
       categorie: prix.categorie || "",
+      annee: prix.annee || "",
       description_fr: prix.description_fr || "",
       description_en: prix.description_en || "",
       lien: prix.lien || "",
@@ -218,17 +221,25 @@ const UpdatePrix = () => {
 
           <div className="flex flex-col w-1/2 ml-2">
             <InputField
+              isRequired={true}
               type="text"
-              label="Catégorie"
-              name="categorie"
-              placeholder="Catégorie"
-              value={values.categorie}
-              onChange={(e) =>
-                setValues({ ...values, categorie: e.target.value })
-              }
+              label="Année *"
+              name="annee"
+              placeholder="ex. : 2024/2025"
+              value={values.annee}
+              onChange={(e) => setValues({ ...values, annee: e.target.value })}
             />
           </div>
         </div>
+
+        <InputField
+          type="text"
+          label="Catégorie"
+          name="categorie"
+          placeholder="Catégorie"
+          value={values.categorie}
+          onChange={(e) => setValues({ ...values, categorie: e.target.value })}
+        />
 
         <InputField
           isRequired={true}
@@ -252,6 +263,7 @@ const UpdatePrix = () => {
         />
 
         <TextAreaField
+          isRequired={values.description_fr}
           label="Description en anglais"
           name="description_en"
           placeholder="Mini description du projet en anglais"

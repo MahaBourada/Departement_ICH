@@ -16,7 +16,7 @@ const HorizontalCarousel = ({ collabs }) => {
     <div className="relative my-16">
       <div
         ref={scrollRef}
-        className="flex flex-row items-center overflow-x-auto space-x-16 px-10 mx-20 scroll-smooth hide-scrollbar"
+        className="flex flex-row items-center overflow-x-auto space-x-16 px-10 mx-20 scroll-smooth hide-scrollbar dark:bg-neutral-500 dark:rounded-4xl py-6"
       >
         {collabs
           .filter(

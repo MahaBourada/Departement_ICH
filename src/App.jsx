@@ -38,6 +38,11 @@ import NewsListPage from "./pages/Admin/News/NewsListPage";
 import AddNews from "./pages/Admin/News/AddNews";
 import UpdateNews from "./pages/Admin/News/UpdateNews";
 import AlumniPage from "./pages/User/AlumniPage";
+import AccessibilityPage from "./pages/User/accessibilityPage";
+import CreditsPage from "./pages/User/creditsPage";
+import MentionsPage from "./pages/User/mentionsPage";
+import PolicyPage from "./pages/User/policyPage";
+import CopyrightPage from "./pages/User/copyrightPage";
 
 function App() {
   return (
@@ -45,6 +50,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
+          <Route path="accessibilite" element={<AccessibilityPage />} />
+          <Route path="credits" element={<CreditsPage />} />
+          <Route path="mentions-legales" element={<MentionsPage />} />
+          <Route path="politique-confidentialite" element={<PolicyPage />} />
+          <Route path="droits-auteurs" element={<CopyrightPage />} />
+
           <Route path="departement/equipe" element={<MembersPage />} />
           <Route path="departement/equipe/:id" element={<IndividualPage />} />
           <Route path="departement/actualites" element={<NewsPage />} />

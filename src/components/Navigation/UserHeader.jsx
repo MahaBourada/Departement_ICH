@@ -216,7 +216,7 @@ const Header = ({ switchLang }) => {
                   to="/formation/prix-concours"
                   className="block w-full hover:bg-bg-crumb focus:bg-bg-crumb dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main rounded-md px-4 py-2 z-50"
                 >
-                  {t("formation.awards_title")}
+                  {t("formation.awards_title.title")}
                 </Link>
                 <Link
                   onClick={handleLinkClick}

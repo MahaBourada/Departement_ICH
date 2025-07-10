@@ -145,13 +145,13 @@ const CollabForm = () => {
             label: "Collaborations",
           },
           {
-            label: "Collaborez avec nous",
+            label: t("collaboration.form.title"),
           },
         ]}
       />
 
       <h1 className="font-main font-semibold text-display my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
-        Collaborez avec nous
+        {t("collaboration.form.title")}
       </h1>
 
       {msgShow && (
@@ -169,7 +169,7 @@ const CollabForm = () => {
             <InputField
               isRequired={true}
               type="text"
-              label="Prénom *"
+              label={`${t("collaboration.form.firstname")} *`}
               placeholder="John"
               name="prenom"
               value={values.prenom}
@@ -181,7 +181,7 @@ const CollabForm = () => {
             <InputField
               isRequired={true}
               type="text"
-              label="Nom *"
+              label={`${t("collaboration.form.lastname")} *`}
               placeholder="DOE"
               name="nom"
               value={values.nom}
@@ -196,7 +196,7 @@ const CollabForm = () => {
               isRequired={true}
               type="email"
               label="E-mail *"
-              placeholder="exemple@mail.com"
+              placeholder={`${t("collaboration.form.email_placeholder")}`}
               name="email"
               value={values.email}
               onChange={(e) => setValues({ ...values, email: e.target.value })}
@@ -207,7 +207,7 @@ const CollabForm = () => {
             <InputField
               isRequired={true}
               type="text"
-              label="Téléphone *"
+              label={`${t("collaboration.form.phone")} *`}
               placeholder="+33 7 12 34 56 78"
               name="telephone"
               value={values.telephone}
@@ -221,8 +221,8 @@ const CollabForm = () => {
         <InputField
           isRequired={true}
           type="text"
-          label="Organisation *"
-          placeholder="Nom de votre organisation ou projet"
+          label={`${t("collaboration.form.org.label")} *`}
+          placeholder={t("collaboration.form.org.placeholder")}
           name="organisation"
           value={values.organisation}
           onChange={(e) =>
@@ -233,8 +233,8 @@ const CollabForm = () => {
         <InputField
           isRequired={true}
           type="text"
-          label="Fonction / Rôle *"
-          placeholder="ex : Développeur, directeur d'association..."
+          label={`${t("collaboration.form.fonction.label")} *`}
+          placeholder={t("collaboration.form.fonction.placeholder")}
           name="fonction"
           value={values.fonction}
           onChange={(e) => setValues({ ...values, fonction: e.target.value })}
@@ -243,16 +243,16 @@ const CollabForm = () => {
         <InputField
           isRequired={true}
           type="text"
-          label="Objet de collaboration *"
-          placeholder="Quel est le but de cette collaboration ?"
+          label={`${t("collaboration.form.subject.label")} *`}
+          placeholder={t("collaboration.form.subject.placeholder")}
           name="objet"
           value={values.objet}
           onChange={(e) => setValues({ ...values, objet: e.target.value })}
         />
 
         <TextAreaField
-          label="Description de la collaboration"
-          placeholder="Décrivez votre idée ou votre proposition de collaboration..."
+          label={t("collaboration.form.desc.label")}
+          placeholder={t("collaboration.form.desc.placeholder")}
           name="description"
           value={values.description}
           onChange={(e) =>
@@ -262,11 +262,11 @@ const CollabForm = () => {
         />
 
         <h2 className="text-dynamic-xl font-semibold mt-8">
-          Champs optionnels
+          {t("collaboration.form.optional.label")}
         </h2>
         <InputField
           type="url"
-          label="Lien vers portfolio / site"
+          label={t("collaboration.form.optional.link")}
           placeholder="https://votre-site.com"
           name="site"
           value={values.site}
@@ -275,7 +275,7 @@ const CollabForm = () => {
 
         <div className="relative flex flex-col leading-normal my-4">
           <label htmlFor="fichier" className="font-main font-medium my-2">
-            Joindre un fichier (CV, brief...etc)
+            {t("collaboration.form.optional.file")}
           </label>
           <input
             type="file"
@@ -289,21 +289,25 @@ const CollabForm = () => {
           />
 
           {values.fichier && (
-            <p className="mt-4 text-dynamic-sm text-gray-700">
-              Fichier sélectionné : {values.fichier.name}
+            <p className="mt-4 text-dynamic-sm text-neutral-700 dark:text-neutral-300">
+              <span className="font-semibold">
+                {t("collaboration.form.optional.selected_file")} :{" "}
+              </span>
+
+              {values.fichier.name}
             </p>
           )}
         </div>
 
         <fieldset className="mt-8">
           <legend className="text-dynamic-xl font-semibold">
-            Disponibilités
+            {t("collaboration.form.availability.label")}
           </legend>
           <div className="flex flex-row items-start justify-between mb-3 max-md:flex-col">
             <div className="w-1/2 max-md:w-full mr-3">
               <InputField
                 type="date"
-                label="Du"
+                label={t("collaboration.form.availability.from")}
                 placeholder="Ex. : Dès mi-juillet, avant septembre, etc."
                 name="debutDate"
                 value={values.debutDate}
@@ -315,7 +319,7 @@ const CollabForm = () => {
             <div className="w-1/2 max-md:w-full">
               <InputField
                 type="date"
-                label="Au"
+                label={t("collaboration.form.availability.to")}
                 placeholder="Ex. : Dès mi-juillet, avant septembre, etc."
                 name="finDate"
                 value={values.finDate}
