@@ -2,6 +2,7 @@ import db from "../config/db.js";
 import { v4 as uuidv4 } from "uuid";
 import fs from "fs";
 import path from "path";
+import { logHistory } from "../utils/logHistory.js";
 
 export const getAllProjects = (req, res) => {
   const lang = req.query.lang === "en" ? "en" : "fr";
@@ -292,6 +293,12 @@ export const addProject = (req, res) => {
                 .json({ status: "Error 3", message: "Erreur lors du commit" });
             });
           } else {
+            logHistory(
+              projectBody.currentAdmin,
+              "INSERT",
+              `Ajout du projet ${projectBody.titre}`
+            );
+
             res.status(200).json({
               status: "Success",
               message: `Le projet '${projectBody.titre}' a été ajouté`,
@@ -555,6 +562,12 @@ export const updateProject = (req, res) => {
                 .json({ status: "Error 3", message: "Erreur lors du commit" });
             });
           } else {
+            logHistory(
+              projectBody.currentAdmin,
+              "UPDATE",
+              `Mise à jour du projet ${projectBody.titre}`
+            );
+
             res.status(200).json({
               status: "Success",
               message: `Le projet '${projectBody.titre}' a été mis à jour`,
@@ -574,6 +587,7 @@ export const updateProject = (req, res) => {
 
 export const deleteProject = async (req, res) => {
   const { idProjet } = req.params;
+  const { currentAdmin } = req.query;
 
   db.getConnection((err, connection) => {
     if (err) return res.status(500).json({ status: "Error 1", message: err });
@@ -581,6 +595,15 @@ export const deleteProject = async (req, res) => {
     connection.beginTransaction(async (err) => {
       if (err) return res.status(500).json({ status: "Error 2", message: err });
       try {
+        // Get the title of the project
+        const [project] = await query(
+          connection,
+          "SELECT titre FROM projets WHERE idProjet = ?",
+          [idProjet]
+        );
+
+        const titre = project?.titre || "inconnu";
+
         // Get image paths to delete from filesystem
         const images = await query(
           connection,
@@ -623,9 +646,15 @@ export const deleteProject = async (req, res) => {
                 .json({ status: "Error 3", message: "Erreur lors du commit" });
             });
           } else {
+            logHistory(
+              currentAdmin,
+              "DELETE",
+              `Suppression du projet ${titre}`
+            );
+
             res.status(200).json({
               status: "Success",
-              message: `Projet supprimé`,
+              message: `Projet ${titre} supprimé`,
             });
           }
         });

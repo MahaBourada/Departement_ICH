@@ -2,9 +2,10 @@ import db from "../config/db.js";
 import { v4 as uuidv4 } from "uuid";
 import fs from "fs";
 import path from "path";
+import { logHistory } from "../utils/logHistory.js";
 
 export const getAllMembers = (req, res) => {
-  db.query("SELECT * FROM membres_equipe", (err, results) => {
+  db.query("SELECT * FROM membres_equipe ORDER BY prenom", (err, results) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     } else {
@@ -90,7 +91,11 @@ export const addMember = (req, res) => {
     // Split the base64 string to get the actual data after comma
     const matches = imageData.match(/^data:image\/([a-zA-Z]+);base64,(.+)$/);
     if (!matches || matches.length !== 3) {
-      return res.status(400).json({ error: "Invalid image base64 data" });
+      return res.status(400).json({
+        error: "Invalid image base64 data",
+        message:
+          "Format invalide, veuillez insérer une image au format PNG, JPEG ou WEBP.",
+      });
     }
 
     const ext = matches[1]; // e.g. jpeg, png
@@ -139,9 +144,15 @@ export const addMember = (req, res) => {
   db.query(sql, values, (err, result) => {
     if (err) return res.json({ Error: err });
 
+    logHistory(
+      memberBody.currentAdmin,
+      "INSERT",
+      `Ajout du membre ${memberBody.prenom} ${memberBody.nom.toUpperCase()}`
+    );
+
     return res.json({
       Status: "Success",
-      message: `${memberBody.prenom} ${memberBody.nom} ajoutée`,
+      message: `${memberBody.prenom} ${memberBody.nom.toUpperCase()} ajoutée`,
     });
   });
 };
@@ -232,6 +243,14 @@ export const updateMember = (req, res) => {
     db.query(sql, values, (err, result) => {
       if (err) return res.status(500).json({ error: err });
 
+      logHistory(
+        memberBody.currentAdmin,
+        "UPDATE",
+        `Mise à jour du membre ${
+          memberBody.prenom
+        } ${memberBody.nom.toUpperCase()}`
+      );
+
       return res.json({
         Status: "Success",
         message: `Informations de ${memberBody.prenom} ${memberBody.nom} mises à jour`,
@@ -242,42 +261,75 @@ export const updateMember = (req, res) => {
 
 export const deleteMember = (req, res) => {
   const { idMembre } = req.params;
+  const { currentAdmin } = req.query;
 
-  const getImageSql = "SELECT image FROM membres_equipe WHERE idMembre = ?";
+  if (!currentAdmin?.first_name || !currentAdmin?.last_name) {
+    return res.status(400).json({ error: "Missing current admin info" });
+  }
 
-  db.query(getImageSql, [idMembre], (err, result) => {
-    if (err) return res.status(500).json({ error: err.message });
-
-    if (result.length === 0) {
-      return res.status(404).json({ error: "Membre introuvable" });
-    }
-
-    const imagePath = result[0].image;
-
-    const deleteSql = "DELETE FROM membres_equipe WHERE idMembre = ?";
-
-    db.query(deleteSql, [idMembre], (err) => {
-      if (err) return res.status(500).json({ error: err.message });
-
-      // Only try to delete the image if it exists
-      if (imagePath) {
-        const absoluteImagePath = path.resolve(imagePath);
-        fs.unlink(absoluteImagePath, (err) => {
-          if (err && err.code !== "ENOENT") {
-            console.error("Erreur suppression image:", err.message);
-          }
-
-          return res.json({
-            Success: "Member deleted successfully",
-            message: "Membre supprimé",
-          });
-        });
-      } else {
-        return res.json({
-          Success: "Member deleted successfully",
-          message: "Membre supprimé",
-        });
+  db.query(
+    "SELECT prenom, nom FROM membres_equipe WHERE idMembre = ?",
+    [idMembre],
+    (err, results) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
       }
-    });
-  });
+
+      if (results.length === 0) {
+        return res.status(404).json({ error: "Membre not found" });
+      }
+
+      const { prenom, nom } = results[0];
+
+      const getImageSql = "SELECT image FROM membres_equipe WHERE idMembre = ?";
+
+      db.query(getImageSql, [idMembre], (err, result) => {
+        if (err) return res.status(500).json({ error: err.message });
+
+        if (result.length === 0) {
+          return res.status(404).json({ error: "Membre introuvable" });
+        }
+
+        const imagePath = result[0].image;
+
+        const deleteSql = "DELETE FROM membres_equipe WHERE idMembre = ?";
+
+        db.query(deleteSql, [idMembre], (err) => {
+          if (err) return res.status(500).json({ error: err.message });
+
+          // Only try to delete the image if it exists
+          if (imagePath) {
+            const absoluteImagePath = path.resolve(imagePath);
+            fs.unlink(absoluteImagePath, (err) => {
+              if (err && err.code !== "ENOENT") {
+                console.error("Erreur suppression image:", err.message);
+              }
+
+              logHistory(
+                currentAdmin,
+                "DELETE",
+                `Suppression du membre ${prenom} ${nom.toUpperCase()}`
+              );
+
+              return res.json({
+                Success: "Member deleted successfully",
+                message: `Membre ${prenom} ${nom.toUpperCase()} supprimé`,
+              });
+            });
+          } else {
+            logHistory(
+              currentAdmin,
+              "DELETE",
+              `Suppression du membre ${prenom} ${nom.toUpperCase()}`
+            );
+
+            return res.json({
+              Success: "Member deleted successfully",
+              message: `Membre ${prenom} ${nom.toUpperCase()} supprimé`,
+            });
+          }
+        });
+      });
+    }
+  );
 };

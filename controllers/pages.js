@@ -1,5 +1,6 @@
 import db from "../config/db.js";
 import { v4 as uuidv4 } from "uuid";
+import { logHistory } from "../utils/logHistory.js";
 
 export const getAllPages = (req, res) => {
   const sql = `
@@ -141,7 +142,8 @@ export const getPageByTitle = (req, res) => {
 
 export const updatePage = (req, res) => {
   const idPage = req.params.idPage;
-  const sections = req.body;
+  const { currentAdmin, pageTitle, ...sectionMap } = req.body;
+  const sections = Object.values(sectionMap); // Just the numbered keys
 
   function query(conn, sql, params) {
     return new Promise((resolve, reject) => {
@@ -206,6 +208,13 @@ export const updatePage = (req, res) => {
             });
           } else {
             connection.release();
+
+            logHistory(
+              currentAdmin,
+              "UPDATE",
+              `Mise à jour des sections de la page ${pageTitle}`
+            );
+
             res.status(200).json({ message: "Sections mises à jour" });
           }
         });

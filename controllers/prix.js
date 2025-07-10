@@ -2,6 +2,7 @@ import db from "../config/db.js";
 import { v4 as uuidv4 } from "uuid";
 import fs from "fs";
 import path from "path";
+import { logHistory } from "../utils/logHistory.js";
 
 export const getAllPrix = (req, res) => {
   const lang = req.query.lang === "en" ? "en" : "fr";
@@ -17,7 +18,8 @@ export const getAllPrix = (req, res) => {
                     image,
                     alt_${lang} AS alt,
                     lien
-                FROM prix`;
+                FROM prix
+                ORDER BY nom`;
 
   db.query(sql, (err, results) => {
     if (err) {
@@ -136,6 +138,12 @@ export const addPrix = (req, res) => {
   ];
   db.query(sql, values, (err, result) => {
     if (err) return res.json({ Error: err });
+
+    logHistory(
+      prixBody.currentAdmin,
+      "INSERT",
+      `Ajout du prix ${prixBody.nom}`
+    );
 
     return res.json({
       Status: "Success",
@@ -260,9 +268,15 @@ export const updatePrix = (req, res) => {
     db.query(sql, values, (err, result) => {
       if (err) return res.status(500).json({ error: err });
 
+      logHistory(
+        prixBody.currentAdmin,
+        "UPDATE",
+        `Mise à jour du prix ${prixBody.nom}`
+      );
+
       return res.json({
         Status: "Success",
-        message: `Informations de du prix${prixBody.nom} mises à jour`,
+        message: `Informations de du prix ${prixBody.nom} mises à jour`,
       });
     });
   });
@@ -270,42 +284,67 @@ export const updatePrix = (req, res) => {
 
 export const deletePrix = (req, res) => {
   const { idPrix } = req.params;
+  const { currentAdmin } = req.query;
 
-  const getImageSql = "SELECT image FROM prix WHERE idPrix = ?";
+  if (!currentAdmin?.first_name || !currentAdmin?.last_name) {
+    return res.status(400).json({ error: "Missing current admin info" });
+  }
 
-  db.query(getImageSql, [idPrix], (err, result) => {
-    if (err) return res.status(500).json({ error: err.message });
-
-    if (result.length === 0) {
-      return res.status(404).json({ error: "Prix introuvable" });
-    }
-
-    const imagePath = result[0].image;
-
-    const deleteSql = "DELETE FROM prix WHERE idPrix = ?";
-
-    db.query(deleteSql, [idPrix], (err) => {
-      if (err) return res.status(500).json({ error: err.message });
-
-      // Only try to delete the image if it exists
-      if (imagePath) {
-        const absoluteImagePath = path.resolve(imagePath);
-        fs.unlink(absoluteImagePath, (err) => {
-          if (err && err.code !== "ENOENT") {
-            console.error("Erreur suppression image:", err.message);
-          }
-
-          return res.json({
-            Success: "Prix deleted successfully",
-            message: "Prix supprimé",
-          });
-        });
-      } else {
-        return res.json({
-          Success: "Prix deleted successfully",
-          message: "Prix supprimé",
-        });
+  db.query(
+    "SELECT nom FROM prix WHERE idPrix = ?",
+    [idPrix],
+    (err, results) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
       }
-    });
-  });
+
+      if (results.length === 0) {
+        return res.status(404).json({ error: "Prix not found" });
+      }
+
+      const { nom } = results[0];
+
+      const getImageSql = "SELECT image FROM prix WHERE idPrix = ?";
+
+      db.query(getImageSql, [idPrix], (err, result) => {
+        if (err) return res.status(500).json({ error: err.message });
+
+        if (result.length === 0) {
+          return res.status(404).json({ error: "Prix introuvable" });
+        }
+
+        const imagePath = result[0].image;
+
+        const deleteSql = "DELETE FROM prix WHERE idPrix = ?";
+
+        db.query(deleteSql, [idPrix], (err) => {
+          if (err) return res.status(500).json({ error: err.message });
+
+          // Only try to delete the image if it exists
+          if (imagePath) {
+            const absoluteImagePath = path.resolve(imagePath);
+            fs.unlink(absoluteImagePath, (err) => {
+              if (err && err.code !== "ENOENT") {
+                console.error("Erreur suppression image:", err.message);
+              }
+
+              logHistory(currentAdmin, "DELETE", `Suppression du prix ${nom}`);
+
+              return res.json({
+                Success: "Prix deleted successfully",
+                message: `Prix ${nom} supprimé`,
+              });
+            });
+          } else {
+            logHistory(currentAdmin, "DELETE", `Suppression du prix ${nom}`);
+
+            return res.json({
+              Success: "Prix deleted successfully",
+              message: `Prix ${nom} supprimé`,
+            });
+          }
+        });
+      });
+    }
+  );
 };

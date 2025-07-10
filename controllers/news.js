@@ -2,6 +2,8 @@ import db from "../config/db.js";
 import { v4 as uuidv4 } from "uuid";
 import fs from "fs";
 import path from "path";
+import { dateFormatting } from "../utils/dateFormatting.js";
+import { logHistory } from "../utils/logHistory.js";
 
 export const getAllNews = (req, res) => {
   db.query(
@@ -140,10 +142,16 @@ export const addNews = (req, res) => {
     newsBody?.source_image,
     newsBody?.alt_fr,
     newsBody?.alt_en,
-    newsBody?.datePosted,
+    dateFormatting(),
   ];
   db.query(sql, values, (err, result) => {
     if (err) return res.json({ Error: err });
+
+    logHistory(
+      newsBody.currentAdmin,
+      "INSERT",
+      `Ajout de l'actualité ${newsBody.titre_fr}`
+    );
 
     return res.json({
       Status: "Success",
@@ -259,12 +267,18 @@ export const updateNews = (req, res) => {
       newsBody?.source_image,
       newsBody?.alt_fr,
       newsBody?.alt_en,
-      newsBody?.dateUpdated,
+      dateFormatting(),
       idActu,
     ];
 
     db.query(sql, values, (err, result) => {
       if (err) return res.status(500).json({ error: err });
+
+      logHistory(
+        newsBody.currentAdmin,
+        "UPDATE",
+        `Mise à jour de l'actualité ${newsBody.titre_fr}`
+      );
 
       return res.json({
         Status: "Success",
@@ -275,43 +289,76 @@ export const updateNews = (req, res) => {
 };
 
 export const deleteNews = (req, res) => {
+  const { currentAdmin } = req.query;
   const { idActu } = req.params;
 
-  const getImageSql = "SELECT image FROM actualites WHERE idActu = ?";
+  if (!currentAdmin?.first_name || !currentAdmin?.last_name) {
+    return res.status(400).json({ error: "Missing current admin info" });
+  }
 
-  db.query(getImageSql, [idActu], (err, result) => {
-    if (err) return res.status(500).json({ error: err.message });
-
-    if (result.length === 0) {
-      return res.status(404).json({ error: "Actualité introuvable" });
-    }
-
-    const imagePath = result[0].image;
-
-    const deleteSql = "DELETE FROM actualites WHERE idActu = ?";
-
-    db.query(deleteSql, [idActu], (err) => {
-      if (err) return res.status(500).json({ error: err.message });
-
-      // Only try to delete the image if it exists
-      if (imagePath) {
-        const absoluteImagePath = path.resolve(imagePath);
-        fs.unlink(absoluteImagePath, (err) => {
-          if (err && err.code !== "ENOENT") {
-            console.error("Erreur suppression image:", err.message);
-          }
-
-          return res.json({
-            Success: "News deleted successfully",
-            message: "Actualité supprimé",
-          });
-        });
-      } else {
-        return res.json({
-          Success: "News deleted successfully",
-          message: "Actualité supprimé",
-        });
+  db.query(
+    "SELECT titre_fr FROM actualites WHERE idActu = ?",
+    [idActu],
+    (err, results) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
       }
-    });
-  });
+
+      if (results.length === 0) {
+        return res.status(404).json({ error: "News not found" });
+      }
+
+      const { titre_fr } = results[0];
+
+      const getImageSql = "SELECT image FROM actualites WHERE idActu = ?";
+
+      db.query(getImageSql, [idActu], (err, result) => {
+        if (err) return res.status(500).json({ error: err.message });
+
+        if (result.length === 0) {
+          return res.status(404).json({ error: "Actualité introuvable" });
+        }
+
+        const imagePath = result[0].image;
+
+        const deleteSql = "DELETE FROM actualites WHERE idActu = ?";
+
+        db.query(deleteSql, [idActu], (err) => {
+          if (err) return res.status(500).json({ error: err.message });
+
+          // Only try to delete the image if it exists
+          if (imagePath) {
+            const absoluteImagePath = path.resolve(imagePath);
+            fs.unlink(absoluteImagePath, (err) => {
+              if (err && err.code !== "ENOENT") {
+                console.error("Erreur suppression image:", err.message);
+              }
+
+              logHistory(
+                currentAdmin,
+                "DELETE",
+                `Suppression de l'actualité ${titre_fr}`
+              );
+
+              return res.json({
+                Success: "News deleted successfully",
+                message: `Actualité ${titre_fr} supprimé`,
+              });
+            });
+          } else {
+            logHistory(
+              currentAdmin,
+              "DELETE",
+              `Suppression de l'actualité ${titre_fr}`
+            );
+
+            return res.json({
+              Success: "News deleted successfully",
+              message: `Actualité ${titre_fr} supprimé`,
+            });
+          }
+        });
+      });
+    }
+  );
 };
