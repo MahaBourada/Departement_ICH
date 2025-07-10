@@ -42,7 +42,8 @@ export const getAllMembersByLang = (req, res) => {
                 fonction_${lang} AS fonction,
                 section_${lang} AS section,
                 image
-              FROM membres_equipe`;
+              FROM membres_equipe
+              ORDER BY prenom, nom`;
 
   db.query(sql, (err, results) => {
     if (err) {

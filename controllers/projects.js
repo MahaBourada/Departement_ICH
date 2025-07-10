@@ -22,7 +22,8 @@ export const getAllProjects = (req, res) => {
                   media.ordre_positionnement
                 FROM projets
                 LEFT JOIN membres_projet ON projets.idProjet = membres_projet.idProjet
-                LEFT JOIN media ON projets.idProjet = media.idProjet`;
+                LEFT JOIN media ON projets.idProjet = media.idProjet
+                ORDER BY projets.annee DESC, titre`;
 
   db.query(sql, (err, results) => {
     if (err) return res.status(500).json({ error: err.message });
@@ -514,39 +515,49 @@ export const updateProject = (req, res) => {
           }
 
           if (image.idMedia) {
-            // Delete old image if replacing
             const old = await query(
               connection,
               "SELECT path FROM media WHERE idMedia = ? AND idProjet = ?",
               [image.idMedia, idProjet]
             );
-            if (old.length > 0 && isBase64 && old[0].path) {
-              const oldPath = path.join(process.cwd(), old[0].path);
-              if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath); // Delete old file
+            const oldRow = old[0];
+
+            // Only delete the old file if a new file was uploaded (i.e. base64 string was received and a new file was saved)
+            const isBase64Upload = isBase64?.startsWith("data:");
+            const isNewFileSaved =
+              image.path && image.path.startsWith("uploads/") && isBase64Upload;
+
+            if (oldRow && isNewFileSaved && oldRow.path !== image.path) {
+              const oldPath = path.join(process.cwd(), oldRow.path);
+              if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
             }
 
             // Update DB
             const imageSql = `UPDATE media
-                      SET path = ?, alt_fr = ?, alt_en = ?
-                      WHERE idMedia = ? AND idProjet = ?`;
+                              SET path = ?, alt_fr = ?, alt_en = ?, source = ?
+                              WHERE idMedia = ? AND idProjet = ?`;
+
             const imageValues = [
               image.path,
               image?.alt_fr,
               image?.alt_en,
+              image?.source,
               image.idMedia,
               idProjet,
             ];
+
             await query(connection, imageSql, imageValues);
           } else {
             // Insert new image
             const idMedia = uuidv4();
-            const imageSql = `INSERT INTO media (idMedia, path, alt_fr, alt_en, ordre_positionnement, idProjet)
-                              VALUES (?, ?, ?, ?, ?, ?)`;
+            const imageSql = `INSERT INTO media (idMedia, path, alt_fr, alt_en, source, ordre_positionnement, idProjet)
+                                        VALUES (?, ?, ?, ?, ?, ?, ?)`;
             const imageValues = [
               idMedia,
               image.path,
               image?.alt_fr,
               image?.alt_en,
+              image?.source,
               image?.ordre_positionnement,
               idProjet,
             ];

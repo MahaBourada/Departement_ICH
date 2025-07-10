@@ -14,6 +14,7 @@ export const getAllPrix = (req, res) => {
                     projet,
                     etudiants,
                     categorie,
+                    annee,
                     description_${lang} AS description,
                     image,
                     alt_${lang} AS alt,
@@ -120,7 +121,7 @@ export const addPrix = (req, res) => {
   }
 
   const sql =
-    "INSERT INTO prix (idPrix, nom, organisation, projet, etudiants, categorie, description_fr, description_en, image, alt_fr, alt_en, lien) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    "INSERT INTO prix (idPrix, nom, organisation, projet, etudiants, categorie, annee, description_fr, description_en, image, alt_fr, alt_en, lien) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
   const values = [
     id,
@@ -129,6 +130,7 @@ export const addPrix = (req, res) => {
     prixBody?.projet,
     prixBody?.etudiants,
     prixBody?.categorie,
+    prixBody?.annee,
     prixBody?.description_fr,
     prixBody?.description_en,
     prixBody?.image,
@@ -246,7 +248,7 @@ export const updatePrix = (req, res) => {
 
     const sql = `
       UPDATE departement_ich.prix
-      SET nom = ?, organisation = ?, projet = ?, etudiants = ?, categorie = ?, description_fr = ?, description_en = ?, image = ?, alt_fr = ?, alt_en = ?, lien = ?
+      SET nom = ?, organisation = ?, projet = ?, etudiants = ?, categorie = ?, annee = ?, description_fr = ?, description_en = ?, image = ?, alt_fr = ?, alt_en = ?, lien = ?
       WHERE idPrix = ?
     `;
 
@@ -256,6 +258,7 @@ export const updatePrix = (req, res) => {
       prixBody?.projet,
       prixBody?.etudiants,
       prixBody?.categorie,
+      prixBody?.annee,
       prixBody?.description_fr,
       prixBody?.description_en,
       prixBody?.image,

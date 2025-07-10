@@ -4,9 +4,10 @@ import { v4 as uuidv4 } from "uuid";
 import generator from "generate-password";
 import nodemailer from "nodemailer";
 import { logHistory } from "../utils/logHistory.js"; // adjust the path as needed
+import { dateFormatting } from "../utils/dateFormatting.js";
 
 export const getAllAdmins = (req, res) => {
-  db.query("SELECT * FROM admin", (err, results) => {
+  db.query("SELECT * FROM admin ORDER BY first_name, last_name", (err, results) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     } else {
@@ -42,7 +43,6 @@ export const addAdmin = (req, res) => {
   });
 
   const id = uuidv4();
-  const date = new Date();
   const salt = 10;
   const adminBody = req.body;
 
@@ -63,7 +63,7 @@ export const addAdmin = (req, res) => {
       username,
       hash,
       adminBody.email,
-      date,
+      dateFormatting(),
     ];
 
     db.query(sqlAdmin, values, (err, result) => {
