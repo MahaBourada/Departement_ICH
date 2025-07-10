@@ -44,6 +44,7 @@ export const getNewsByLang = (req, res) => {
                 contenu_${lang} AS contenu,
                 lien,
                 image,
+                source_image,
                 datePosted,
                 dateUpdated,
                 alt_${lang} AS alt
@@ -126,7 +127,7 @@ export const addNews = (req, res) => {
   }
 
   const sql =
-    "INSERT INTO actualites (idActu, titre_fr, titre_en, contenu_fr, contenu_en, lien, image, alt_fr, alt_en, datePosted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    "INSERT INTO actualites (idActu, titre_fr, titre_en, contenu_fr, contenu_en, lien, image, source_image, alt_fr, alt_en, datePosted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
   const values = [
     id,
@@ -136,6 +137,7 @@ export const addNews = (req, res) => {
     newsBody?.contenu_en,
     newsBody?.lien,
     newsBody?.image,
+    newsBody?.source_image,
     newsBody?.alt_fr,
     newsBody?.alt_en,
     newsBody?.datePosted,
@@ -243,7 +245,7 @@ export const updateNews = (req, res) => {
 
     const sql = `
       UPDATE actualites
-      SET titre_fr = ?, titre_en = ?, contenu_fr = ?, contenu_en = ?, lien = ?, image = ?, alt_fr = ?, alt_en = ?, dateUpdated = ?
+      SET titre_fr = ?, titre_en = ?, contenu_fr = ?, contenu_en = ?, lien = ?, image = ?, source_image = ?, alt_fr = ?, alt_en = ?, dateUpdated = ?
       WHERE idActu = ?
     `;
 
@@ -254,6 +256,7 @@ export const updateNews = (req, res) => {
       newsBody?.contenu_en,
       newsBody?.lien,
       newsBody?.image,
+      newsBody?.source_image,
       newsBody?.alt_fr,
       newsBody?.alt_en,
       newsBody?.dateUpdated,
