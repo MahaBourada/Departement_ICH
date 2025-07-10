@@ -5,24 +5,20 @@ import generator from "generate-password";
 import nodemailer from "nodemailer";
 
 export const getAllAdmins = (req, res) => {
-  db.query(
-    "SELECT * FROM admin, roles WHERE admin.idRole = roles.idRole",
-    (err, results) => {
-      if (err) {
-        return res.status(500).json({ error: err.message });
-      } else {
-        res.json(results);
-      }
+  db.query("SELECT * FROM admin", (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    } else {
+      res.json(results);
     }
-  );
+  });
 };
 
 export const getAdminById = (req, res) => {
   const id = req.params.idAdmin;
 
-  const sql = `SELECT idAdmin, first_name AS firstname, last_name AS lastname, username, createdAt, email, type AS role 
+  const sql = `SELECT idAdmin, first_name AS firstname, last_name AS lastname, username, createdAt, email
               FROM admin
-              JOIN roles ON admin.idRole = roles.idRole 
               WHERE admin.idAdmin = ?`;
 
   db.query(sql, [id], (err, results) => {
@@ -49,108 +45,88 @@ export const addAdmin = (req, res) => {
   const salt = 10;
   const adminBody = req.body;
 
-  const sqlRole = "SELECT idRole FROM roles WHERE type = ?";
+  const username =
+    adminBody.firstname.trim().slice(0, 1).toLowerCase() +
+    adminBody.lastname.trim().toLowerCase();
 
-  db.query(sqlRole, [adminBody.role], (err, roleResult) => {
+  const sqlAdmin =
+    "INSERT INTO admin (idAdmin, first_name, last_name, username, password, email, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+  bcrypt.hash(password.toString(), salt, (err, hash) => {
     if (err) return res.json({ Error: err });
-    if (roleResult.length === 0) return res.json({ Error: err });
 
-    const idRole = roleResult[0].idRole;
+    const values = [
+      id,
+      adminBody.firstname,
+      adminBody.lastname,
+      username,
+      hash,
+      adminBody.email,
+      date,
+    ];
 
-    const username =
-      adminBody.firstname.trim().slice(0, 1).toLowerCase() +
-      adminBody.lastname.trim().toLowerCase();
-
-    const sqlAdmin =
-      "INSERT INTO admin (idAdmin, first_name, last_name, username, password, email, createdAt, idRole) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
-    bcrypt.hash(password.toString(), salt, (err, hash) => {
+    db.query(sqlAdmin, values, (err, result) => {
       if (err) return res.json({ Error: err });
 
-      const values = [
-        id,
-        adminBody.firstname,
-        adminBody.lastname,
-        username,
-        hash,
-        adminBody.email,
-        date,
-        idRole,
-      ];
+      sendPasswordEmail(adminBody.email, username, password);
 
-      db.query(sqlAdmin, values, (err, result) => {
-        if (err) return res.json({ Error: err });
-
-        sendPasswordEmail(adminBody.email, adminBody.username, password);
-
-        return res.json({
-          Status: "Success",
-          message: `Admin ${adminBody.firstname} ${adminBody.lastname} ajouté`,
-        });
+      return res.json({
+        Status: "Success",
+        message: `Admin ${adminBody.firstname} ${adminBody.lastname} ajouté`,
       });
     });
   });
 };
 
 export const updateAdmin = (req, res) => {
-  const { firstname, lastname, email, role, regpass } = req.body;
+  const { firstname, lastname, email, regpass } = req.body;
   const { idAdmin } = req.params;
 
   const username =
     firstname.trim().slice(0, 1).toLowerCase() + lastname.trim().toLowerCase();
 
-  const roleSql = `SELECT idRole FROM roles WHERE type = ?`;
+  if (regpass) {
+    const password = generator.generate({
+      length: 10,
+      numbers: true,
+    });
 
-  db.query(roleSql, [role], (err, results) => {
-    if (err) return res.json({ Error: err });
+    const salt = 10;
 
-    if (results.length === 0)
-      return res.status(404).json({ message: "Role not found" });
-    const idRole = results[0].idRole;
-
-    if (regpass) {
-      const password = generator.generate({
-        length: 10,
-        numbers: true,
-      });
-
-      const salt = 10;
-
-      bcrypt.hash(password.toString(), salt, (err, hash) => {
-        if (err) return res.json({ Error: err });
-        const updateSql = `UPDATE admin
-                SET first_name = ?, last_name = ?, email = ?, idRole = ?, password = ?
-                WHERE idAdmin = ?`;
-
-        const values = [firstname, lastname, email, idRole, hash, idAdmin];
-
-        db.query(updateSql, values, (err, results) => {
-          if (err) return res.json({ Error: err });
-
-          sendRegenerationEmail(email, username, password);
-
-          res.json({
-            Success: "Admin updated successfully",
-            message: `Admin ${firstname} ${lastname.toUpperCase()} mis à jour`,
-          });
-        });
-      });
-    } else {
+    bcrypt.hash(password.toString(), salt, (err, hash) => {
+      if (err) return res.json({ Error: err });
       const updateSql = `UPDATE admin
-                SET first_name = ?, last_name = ?, email = ?, idRole = ?
+                SET first_name = ?, last_name = ?, username = ?, email = ?, password = ?
                 WHERE idAdmin = ?`;
-      const values = [firstname, lastname, email, idRole, idAdmin];
+
+      const values = [firstname, lastname, username, email, hash, idAdmin];
 
       db.query(updateSql, values, (err, results) => {
         if (err) return res.json({ Error: err });
+
+        sendRegenerationEmail(email, username, password);
 
         res.json({
           Success: "Admin updated successfully",
           message: `Admin ${firstname} ${lastname.toUpperCase()} mis à jour`,
         });
       });
-    }
-  });
+    });
+  } else {
+    const updateSql = `UPDATE admin
+                SET first_name = ?, last_name = ?, username = ?, email = ?
+                WHERE idAdmin = ?`;
+    const values = [firstname, lastname, username, email, idAdmin];
+
+    db.query(updateSql, values, (err, results) => {
+      if (err) return res.json({ Error: err });
+
+      res.json({
+        Success: "Admin updated successfully",
+        message: `Admin ${firstname} ${lastname.toUpperCase()} mis à jour`,
+      });
+    });
+  }
 };
 
 export const deleteAdmin = (req, res) => {
