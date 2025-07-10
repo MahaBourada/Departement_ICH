@@ -76,12 +76,20 @@ const LabPage = () => {
       <div className="my-10 mb-20 mx-16 font-body max-large-medium:mx-0 max-xl:mx-5 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
         <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse my-7 readerMode:flex-col-reverse">
           {img1.path && (
-            <img
-              src={`${import.meta.env.VITE_BASE_URL}/${img1.path}`}
-              alt={img1.alt || ""}
-              width={400}
-              className="minimal:hidden w-fit h-[16rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] readerMode:mx-auto"
-            />
+            <div className="w-full flex flex-col items-center my-auto">
+              <img
+                src={`${import.meta.env.VITE_BASE_URL}/${img1.path}`}
+                alt={img1.alt || ""}
+                width={400}
+                className="minimal:hidden w-fit h-[16rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] readerMode:mx-auto"
+              />
+
+              {img1?.source && (
+                <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto">
+                  <span className="font-semibold">Source :</span> {img1.source}
+                </p>
+              )}
+            </div>
           )}
 
           {section1.texte && (
@@ -107,12 +115,20 @@ const LabPage = () => {
           </div>
 
           {img2.path && (
-            <img
-              src={`${import.meta.env.VITE_BASE_URL}/${img2.path}`}
-              alt={img2.alt || ""}
-              width={400}
-              className="minimal:hidden w-fit h-[16rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px]"
-            />
+            <div className="flex flex-col items-center my-auto">
+              <img
+                src={`${import.meta.env.VITE_BASE_URL}/${img2.path}`}
+                alt={img2.alt || ""}
+                width={400}
+                className="minimal:hidden w-fit h-[16rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px]"
+              />
+
+              {img2?.source && (
+                <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto">
+                  <span className="font-semibold">Source :</span> {img2.source}
+                </p>
+              )}
+            </div>
           )}
         </div>
 
@@ -141,21 +157,39 @@ const LabPage = () => {
             }`}
           >
             {img3.path && (
-              <img
-                src={`${import.meta.env.VITE_BASE_URL}/${img3.path}`}
-                alt={img3.alt || ""}
-                width={400}
-                className="minimal:hidden w-fit h-[25rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] my-5"
-              />
+              <div className="flex flex-col items-center justify-start my-auto">
+                <img
+                  src={`${import.meta.env.VITE_BASE_URL}/${img3.path}`}
+                  alt={img3.alt || ""}
+                  width={400}
+                  className="minimal:hidden w-fit h-[25rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] my-5"
+                />
+
+                {img3?.source && (
+                  <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto">
+                    <span className="font-semibold">Source :</span>{" "}
+                    {img3.source}
+                  </p>
+                )}
+              </div>
             )}
 
             {img4.path && (
-              <img
-                src={`${import.meta.env.VITE_BASE_URL}/${img4.path}`}
-                alt={img4.alt || ""}
-                width={400}
-                className="minimal:hidden w-fit h-[25rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] my-5"
-              />
+              <div className="flex flex-col items-center justify-start mt-10 my-auto">
+                <img
+                  src={`${import.meta.env.VITE_BASE_URL}/${img4.path}`}
+                  alt={img4.alt || ""}
+                  width={400}
+                  className="minimal:hidden w-fit h-[25rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px] my-5"
+                />
+
+                {img4?.source && (
+                  <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto">
+                    <span className="font-semibold">Source :</span>{" "}
+                    {img4.source}
+                  </p>
+                )}
+              </div>
             )}
           </div>
         </div>

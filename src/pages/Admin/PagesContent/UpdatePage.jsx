@@ -68,6 +68,7 @@ const UpdatePage = () => {
               path: "",
               alt_fr: "",
               alt_en: "",
+              source: "",
             }
           );
         }
@@ -104,6 +105,7 @@ const UpdatePage = () => {
         path: "",
         alt_fr: "",
         alt_en: "",
+        source: "",
       };
       return updated;
     });
@@ -257,6 +259,22 @@ const UpdatePage = () => {
               onRemove={() => handleRemoveImage(i)}
               inputRef={(el) => (inputRefs.current[i] = el)}
             />
+            
+            <InputField
+              type="text"
+              label="Source de l'image"
+              placeholder="ex: Nom du photographe, URL..."
+              name={`source_${i}`}
+              value={img.source}
+              onChange={(e) =>
+                setImages((prev) => {
+                  const updated = [...prev];
+                  updated[i] = { ...updated[i], source: e.target.value };
+                  return updated;
+                })
+              }
+            />
+
             <InputField
               type="text"
               label="Alt en français"
@@ -271,6 +289,7 @@ const UpdatePage = () => {
                 })
               }
             />
+
             <InputField
               type="text"
               label="Alt en anglais"

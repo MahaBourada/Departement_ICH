@@ -74,12 +74,20 @@ const NationalePage = () => {
         )}
 
         {img1.path && (
-          <img
-            src={`${import.meta.env.VITE_BASE_URL}/${img1.path}`}
-            alt={img1.alt || ""}
-            width={400}
-            className="minimal:hidden w-3/4 m-auto my-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px]"
-          />
+          <div className="flex flex-col items-center justify-start mt-10 my-auto">
+            <img
+              src={`${import.meta.env.VITE_BASE_URL}/${img1.path}`}
+              alt={img1.alt || ""}
+              width={400}
+              className="minimal:hidden w-3/4 m-auto my-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px]"
+            />
+
+            {img1?.source && (
+              <p className="text-neutral-700 text-dynamic-xsm w-fit mx-auto">
+                <span className="font-semibold">Source :</span> {img1.source}
+              </p>
+            )}
+          </div>
         )}
 
         <Link

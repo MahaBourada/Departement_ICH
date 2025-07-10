@@ -33,6 +33,8 @@ const HomePage = () => {
     fetchData();
   }, []);
 
+  console.log(getByPosition(images, 1).source);
+
   return (
     <main className="flex-grow">
       <div className="h-72 bg-cover bg-center bg-no-repeat flex items-center justify-center bg-[url('/ich/assets/images/HomeImage.png')] max-md:hidden">
@@ -71,23 +73,31 @@ const HomePage = () => {
             />
           </div>
 
-          {/* Picture */}
-          <div
-            className="w-[33rem] h-[33rem] rounded-[50px] overflow-hidden mx-auto
-                        max-xs:w-80 max-xs:h-80 
-                        max-sm:w-96 max-sm:h-96 
-                        max-md:w-[26rem] max-md:h-[26rem] 
-                        max-xl:w-[28rem] max-xl:h-[28rem]
-                        readerMode:mb-10
-                      "
-          >
-            <img
-              className="w-full h-full object-cover"
-              src={`${import.meta.env.VITE_BASE_URL}/${
-                getByPosition(images, 1).path
-              }`}
-              alt={getByPosition(images, 1).alt || ""}
-            />
+          {/* Picture 1 */}
+          <div className="mx-auto text-center mb-6">
+            <div
+              className="w-[33rem] h-[33rem] rounded-[50px] overflow-hidden mx-auto
+               max-xs:w-80 max-xs:h-80 
+               max-sm:w-96 max-sm:h-96 
+               max-md:w-[26rem] max-md:h-[26rem] 
+               max-xl:w-[28rem] max-xl:h-[28rem]
+               readerMode:mb-10"
+            >
+              <img
+                className="w-full h-full object-cover"
+                src={`${import.meta.env.VITE_BASE_URL}/${
+                  getByPosition(images, 1)?.path
+                }`}
+                alt={getByPosition(images, 1)?.alt || ""}
+              />
+            </div>
+
+            {getByPosition(images, 1)?.source && (
+              <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto">
+                <span className="font-semibold">Source :</span>{" "}
+                {getByPosition(images, 1).source}
+              </p>
+            )}
           </div>
         </div>
 
@@ -102,18 +112,23 @@ const HomePage = () => {
 
             return (
               <div
-                className="w-[26rem] h-[26rem] rounded-4xl overflow-hidden mx-auto
-                        
-                        readerMode:my-4
-                      "
+                key={img.idMedia}
+                className="flex flex-col items-center mx-auto readerMode:my-4"
               >
-                <img
-                  key={img.idMedia}
-                  src={fullPath}
-                  alt={img.alt || ""}
-                  width={400}
-                  className="w-full h-full object-cover object-center"
-                />
+                <div className="w-[26rem] h-[26rem] rounded-4xl overflow-hidden">
+                  <img
+                    src={fullPath}
+                    alt={img.alt || ""}
+                    width={400}
+                    className="w-full h-full object-cover object-center"
+                  />
+                </div>
+
+                {img?.source && (
+                  <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto">
+                    <span className="font-semibold">Source :</span> {img.source}
+                  </p>
+                )}
               </div>
             );
           })}

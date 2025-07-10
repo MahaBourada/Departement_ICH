@@ -23,6 +23,7 @@ const AddNews = () => {
     contenu_en: "",
     lien: "",
     image: null,
+    source_image: "",
     alt_fr: "",
     alt_en: "",
   });
@@ -46,7 +47,13 @@ const AddNews = () => {
   };
 
   const handleRemoveImage = () => {
-    setValues((prev) => ({ ...prev, image: null, alt_fr: "", alt_en: "" }));
+    setValues((prev) => ({
+      ...prev,
+      image: null,
+      alt_fr: "",
+      alt_en: "",
+      source_image: "",
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -81,6 +88,7 @@ const AddNews = () => {
       contenu_en: "",
       lien: "",
       image: null,
+      source_image: "",
       alt_fr: "",
       alt_en: "",
     });
@@ -188,6 +196,17 @@ const AddNews = () => {
           file={values.image}
           onChange={handleChange}
           onRemove={handleRemoveImage}
+        />
+
+        <InputField
+          type="text"
+          label="Source de l'image"
+          name="source_image"
+          placeholder="ex: Nom du photographe, URL..."
+          value={values.source_image}
+          onChange={(e) =>
+            setValues({ ...values, source_image: e.target.value })
+          }
         />
 
         <InputField

@@ -24,6 +24,7 @@ const UpdateNews = () => {
     contenu_en: "",
     lien: "",
     image: null,
+    source_image: "",
     alt_fr: "",
     alt_en: "",
   });
@@ -54,6 +55,7 @@ const UpdateNews = () => {
           news.image && !news.image.startsWith("data:image")
             ? `${import.meta.env.VITE_BASE_URL}/${news.image}`
             : news.image || null,
+        source_image: news.source_image || "",
         alt_fr: news.alt_fr || "",
         alt_en: news.alt_en || "",
       });
@@ -77,12 +79,10 @@ const UpdateNews = () => {
   const handleRemoveImage = () => {
     setValues((prev) => ({
       ...prev,
-      image:
-        news.image && !news.image.startsWith("data:image")
-          ? `${import.meta.env.VITE_BASE_URL}/${news.image}`
-          : news.image || null,
-      alt_fr: news.alt_fr || "",
-      alt_en: news.alt_en || "",
+      image: null,
+      source_image: "",
+      alt_fr: "",
+      alt_en: "",
     }));
   };
 
@@ -130,6 +130,7 @@ const UpdateNews = () => {
         news.image && !news.image.startsWith("data:image")
           ? `${import.meta.env.VITE_BASE_URL}/${news.image}`
           : news.image || null,
+      source_image: news.source_image || "",
       alt_fr: news.alt_fr || "",
       alt_en: news.alt_en || "",
     });
@@ -239,6 +240,17 @@ const UpdateNews = () => {
           file={values.image}
           onChange={handleChange}
           onRemove={handleRemoveImage}
+        />
+
+        <InputField
+          type="text"
+          label="Source de l'image"
+          name="source_image"
+          placeholder="ex: Nom du photographe, URL..."
+          value={values.source_image}
+          onChange={(e) =>
+            setValues({ ...values, source_image: e.target.value })
+          }
         />
 
         <InputField

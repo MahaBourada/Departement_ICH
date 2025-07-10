@@ -93,12 +93,23 @@ const NewsPage = () => {
                   </div>
 
                   {oneNews.image && (
-                    <img
-                      src={import.meta.env.VITE_BASE_URL + "/" + oneNews.image}
-                      width={400}
-                      alt={oneNews.alt}
-                      className="my-auto rounded-2xl"
-                    />
+                    <div className="flex flex-col items-center justify-start mt-10 my-auto">
+                      <img
+                        src={
+                          import.meta.env.VITE_BASE_URL + "/" + oneNews.image
+                        }
+                        width={450}
+                        alt={oneNews.alt}
+                        className="my-auto rounded-2xl"
+                      />
+
+                      {oneNews?.source_image && (
+                        <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto">
+                          <span className="font-semibold">Source :</span>{" "}
+                          {oneNews.source_image}
+                        </p>
+                      )}
+                    </div>
                   )}
                 </div>
 

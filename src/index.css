@@ -117,7 +117,7 @@
 }
 
 .text-dynamic-xsm {
-  font-size: calc(var(--font-base, 1.25rem) / 1.4);
+  font-size: calc(var(--font-base, 1.25rem) / 1.2);
 }
 .text-dynamic-sm {
   font-size: calc(var(--font-base, 1.25rem) / 1.05);
