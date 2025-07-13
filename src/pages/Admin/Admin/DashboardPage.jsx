@@ -9,11 +9,16 @@ import {
 import { UserContext } from "../../../contexts/UserContext.jsx";
 import { exportCSV } from "../../../utils/exportCSV.js";
 import { exportTXT } from "../../../utils/exportTXT.js";
+import {
+  SmallBorderButton,
+  SmallFilledButton,
+} from "../../../components/Buttons.jsx";
 
 const DashboardPage = () => {
   const currentAdmin = useContext(UserContext).user;
   const [adminList, setAdminList] = useState([]);
   const [historyList, setHistoryList] = useState([]);
+  const [showAllAdmin, setShowAllAdmin] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -32,6 +37,9 @@ const DashboardPage = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const limitedHistory = historyList.slice(-10);
+  const limitedAdmin = showAllAdmin ? adminList : adminList.slice(0, 10);
 
   const [msg, setMsg] = useState("");
   const [msgShow, setMsgShow] = useState(false);
@@ -140,7 +148,7 @@ const DashboardPage = () => {
               </tr>
             </thead>
             <tbody>
-              {adminList.map((admin) => (
+              {limitedAdmin.map((admin) => (
                 <tr key={admin.idAdmin} className="border-b-[0.5px]">
                   <td className="py-3 text-start">
                     <p className="line-clamp-1">
@@ -185,24 +193,32 @@ const DashboardPage = () => {
           </table>
         )}
 
+        {adminList.length > 10 && (
+          <div className="ml-auto w-fit">
+            <SmallBorderButton
+              type="button"
+              text={showAllAdmin ? "Voir moins" : "Voir plus"}
+              onClick={() => setShowAllAdmin((prev) => !prev)}
+            />
+          </div>
+        )}
+
         <aside className="mt-20">
           <div className="flex items-center justify-between">
             <h1 className="text-display font-semibold">Historique</h1>
 
             <div className="flex flex-row items-center">
-              <button
+              <SmallFilledButton
+                type="button"
+                text="Exporter en fichier CSV"
                 onClick={() => exportCSV(historyList, "historique.csv")}
-                className="cursor-pointer flex flex-row items-center font-main font-medium rounded-xl px-5 py-2 mx-3 my-1 text-black bg-accent hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white max-md:w-42 max-md:mb-4 text-nav leading-normal"
-              >
-                Exporter en fichier CSV
-              </button>
+              />
 
-              <button
+              <SmallFilledButton
+                type="button"
+                text="Exporter en fichier TXT"
                 onClick={() => exportTXT(historyList, "historique.txt")}
-                className="cursor-pointer flex flex-row items-center font-main font-medium rounded-xl px-5 py-2 mx-3 my-1 text-black bg-accent hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white max-md:w-42 max-md:mb-4 text-nav leading-normal"
-              >
-                Exporter en fichier TXT
-              </button>
+              />
             </div>
           </div>
 
@@ -226,7 +242,7 @@ const DashboardPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {historyList.map((history) => (
+                {historyList.slice(0, 10).map((history) => (
                   <tr key={history.idHistory} className="border-b-[0.5px]">
                     <td className="py-3 text-start">
                       <p className="line-clamp-1">{history.admin_name}</p>
@@ -240,6 +256,20 @@ const DashboardPage = () => {
                     </td>
                   </tr>
                 ))}
+                {historyList.length > 10 && (
+                  <tr className="border-b-[0.5px]">
+                    <td className="py-3 text-start">
+                      <p className="line-clamp-1">...</p>
+                    </td>
+                    <td className="py-3 text-start">
+                      <p className="line-clamp-1">...</p>
+                    </td>
+                    <td className="py-3 text-start">...</td>
+                    <td className="py-3 text-center">
+                      <p className="line-clamp-1">...</p>
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           )}

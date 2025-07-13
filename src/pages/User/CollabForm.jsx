@@ -134,7 +134,7 @@ const CollabForm = () => {
   };
 
   return (
-    <main className="flex-grow my-10 mb-20 mx-16">
+    <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
       <Breadcrumb
         crumbs={[
           {
@@ -150,7 +150,7 @@ const CollabForm = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main font-semibold text-display max-sm:text-4xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("collaboration.form.title")}
       </h1>
 
@@ -162,7 +162,7 @@ const CollabForm = () => {
         method="post"
         onSubmit={handleSubmit}
         onReset={handleReset}
-        className="w-3/4 m-auto"
+        className="w-3/4 m-auto max-sm:w-full"
       >
         <div className="flex flex-row items-start justify-between mb-3 max-md:flex-col">
           <div className="w-1/2 max-md:w-full mr-3">
@@ -332,8 +332,14 @@ const CollabForm = () => {
         </fieldset>
 
         <div className="flex flex-row justify-end mt-4 max-md:flex-col-reverse max-md:items-end">
-          <SmallBorderButton type="reset" text="Réinitialiser" />
-          <SmallFilledButton type="submit" text="Envoyer" />
+          <SmallBorderButton
+            type="reset"
+            text={t("collaboration.form.reset")}
+          />
+          <SmallFilledButton
+            type="submit"
+            text={t("collaboration.form.send")}
+          />
         </div>
       </form>
     </main>

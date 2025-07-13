@@ -65,7 +65,7 @@ const AlumniPage = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display max-large-medium:text-dynamic-xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main font-semibold text-display max-large-medium:text-4xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         Alumni
       </h1>
 
@@ -88,7 +88,7 @@ const AlumniPage = () => {
               />
 
               {img1?.source && (
-                <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto">
+                <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto max-w-full break-words whitespace-normal">
                   <span className="font-semibold">Source :</span> {img1.source}
                 </p>
               )}
@@ -107,7 +107,7 @@ const AlumniPage = () => {
               />
 
               {img2?.source && (
-                <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto">
+                <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto max-w-full break-words whitespace-normal">
                   <span className="font-semibold">Source :</span> {img2.source}
                 </p>
               )}
@@ -139,7 +139,7 @@ const AlumniPage = () => {
           {section4.texte && (
             <ReactMarkdown
               className={`markdown my-10 ${
-                img3.path || img4.path ? "w-[60%]" : "w-full"
+                img3.path || img4.path ? "w-[60%] max-sm:w-full" : "w-full"
               }`}
               children={String(section4.texte)}
             />
@@ -162,7 +162,7 @@ const AlumniPage = () => {
                 />
 
                 {img3?.source && (
-                  <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto">
+                  <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto max-w-full break-words whitespace-normal">
                     <span className="font-semibold">Source :</span>{" "}
                     {img3.source}
                   </p>
@@ -180,7 +180,7 @@ const AlumniPage = () => {
                 />
 
                 {img4?.source && (
-                  <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto">
+                  <p className="text-neutral-700 text-dynamic-xsm w-fit ml-auto max-w-full break-words whitespace-normal">
                     <span className="font-semibold">Source :</span>{" "}
                     {img4.source}
                   </p>

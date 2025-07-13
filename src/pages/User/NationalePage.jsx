@@ -45,7 +45,7 @@ const NationalePage = () => {
   }, []);
 
   return (
-    <main className="flex-grow my-10 mb-20 mx-16">
+    <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
       <Breadcrumb
         crumbs={[
           {
@@ -61,7 +61,7 @@ const NationalePage = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main font-semibold text-display max-sm:text-4xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("collaboration.national.title")}
       </h1>
 
@@ -79,11 +79,11 @@ const NationalePage = () => {
               src={`${import.meta.env.VITE_BASE_URL}/${img1.path}`}
               alt={img1.alt || ""}
               width={400}
-              className="minimal:hidden w-3/4 m-auto my-5 max-large-medium:mx-auto max-large-medium:mb-6"
+              className="minimal:hidden w-3/4 max-sm:w-fit m-auto my-5 max-large-medium:mx-auto max-large-medium:mb-6"
             />
 
             {img1?.source && (
-              <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit mx-auto">
+              <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit mx-auto max-w-full break-words whitespace-normal">
                 <span className="font-semibold">Source :</span> {img1.source}
               </p>
             )}
@@ -93,24 +93,15 @@ const NationalePage = () => {
         <Link
           onClick={() => window.scrollTo({ top: 0 })}
           to="/collaborations/collaborations-nationales/collabs-conventions"
-          className="mx-auto my-10 flex justify-center items-center w-fit cursor-pointer font-main font-medium rounded-xl h-fit px-5 py-3 text-black bg-accent hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white max-md:w-42 max-md:mb-4 text-nav leading-normal"
+          className="mx-auto my-10 flex justify-center items-center w-fit cursor-pointer font-main font-medium rounded-xl h-fit px-5 py-3 text-black bg-accent hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white text-nav leading-normal"
         >
-          Plus de collaborations
+          {t("collaboration.national.more")}
         </Link>
 
         {pageNational[1]?.texte && (
           <ReactMarkdown
             className="markdown"
             children={String(pageNational[1]?.texte)}
-          />
-        )}
-
-        {img2.path && (
-          <img
-            src={`${import.meta.env.VITE_BASE_URL}/${img2.path}`}
-            alt={img2.alt || ""}
-            width={400}
-            className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px]"
           />
         )}
 

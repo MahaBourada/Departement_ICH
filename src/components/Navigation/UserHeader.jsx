@@ -153,6 +153,7 @@ const Header = ({ switchLang }) => {
                 strokeWidth={2.5}
               />
             </button>
+
             {showDept && (
               <div className="absolute w-[95%] flex flex-col left-2 mt-1 bg-white dark:bg-dark-background shadow-md rounded-md font-normal z-50">
                 <Link
@@ -162,6 +163,7 @@ const Header = ({ switchLang }) => {
                 >
                   {t("department.news.link")}
                 </Link>
+
                 <Link
                   onClick={handleLinkClick}
                   to="/departement/equipe"
@@ -265,6 +267,7 @@ const Header = ({ switchLang }) => {
                 [
                   "/collaborations/collaborations-nationales",
                   "/collaborations/collaborations-internationales",
+                  "/collaborations/collaborez-avec-nous",
                 ].includes(location.pathname)
                   ? "underline"
                   : ""

@@ -56,7 +56,8 @@
     "national": {
       "link": "National",
       "title": "National collaborations",
-      "conventions": "Collaborations and conventions"
+      "conventions": "Collaborations and conventions",
+      "more": "Plus de collaborations"
     },
     "international": {
       "link": "International",
@@ -95,7 +96,9 @@
         "label": "Availability",
         "from": "From",
         "to": "To"
-      }
+      },
+      "send": "Send",
+      "reset": "Reset"
     },
     "categories": {
       "label": "Category",

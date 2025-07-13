@@ -74,7 +74,7 @@ const HomePage = () => {
           {/* Picture 1 */}
           <div className="mx-auto text-center mb-6">
             <div
-              className="w-[33rem] h-[33rem] rounded-[50px] overflow-hidden mx-auto
+              className="w-[33rem] h-[33rem] rounded-4xl overflow-hidden mx-auto
                max-xs:w-80 max-xs:h-80 
                max-sm:w-96 max-sm:h-96 
                max-md:w-[26rem] max-md:h-[26rem] 
@@ -99,7 +99,7 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div className="max-sm:hidden flex flex-row max-large-medium:flex-col justify-between my-6 readerMode:flex-col">
+        <div className="flex flex-row max-large-medium:flex-col justify-between my-6 readerMode:flex-col">
           {[2, 3, 4].map((pos) => {
             const img = getByPosition(images, pos);
             if (!img?.path) return null;
@@ -113,7 +113,7 @@ const HomePage = () => {
                 key={img.idMedia}
                 className="flex flex-col items-center mx-auto readerMode:my-4"
               >
-                <div className="w-[26rem] h-[26rem] rounded-4xl overflow-hidden">
+                <div className="w-[26rem] h-[26rem] max-sm:w-fit max-sm:h-1/2 overflow-hidden">
                   <img
                     src={fullPath}
                     alt={img.alt || ""}

@@ -56,7 +56,8 @@
     "national": {
       "link": "Nationales",
       "title": "Collaborations nationales",
-      "conventions": "Collaborations et conventions"
+      "conventions": "Collaborations et conventions",
+      "more": "Plus de collaborations"
     },
     "international": {
       "link": "Internationales",
@@ -95,7 +96,9 @@
         "label": "Disponibilités",
         "from": "Du",
         "to": "Au"
-      }
+      },
+      "send": "Envoyer",
+      "reset": "Réinitialiser"
     },
     "categories": {
       "label": "Catégorie",

@@ -69,12 +69,12 @@ const LabPage = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display max-large-medium:text-dynamic-xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main font-semibold text-display max-sm:text-3xl leading-snug max-large-medium:text-dynamic-xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("research.lab-chart.title")}
       </h1>
 
-      <div className="my-10 mb-20 mx-16 font-body max-large-medium:mx-0 max-xl:mx-5 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
-        <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse my-7 readerMode:flex-col-reverse">
+      <div className="my-10 max-sm:mt-0 mb-20 mx-16 font-body max-large-medium:mx-0 max-xl:mx-5 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
+        <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse my-7 max-sm:mt-1 readerMode:flex-col-reverse">
           {img1.path && (
             <div className="w-full flex flex-col items-center my-auto">
               <img
@@ -85,7 +85,7 @@ const LabPage = () => {
               />
 
               {img1?.source && (
-                <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit ml-auto">
+                <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit ml-auto max-w-full break-words whitespace-normal">
                   <span className="font-semibold">Source :</span> {img1.source}
                 </p>
               )}
@@ -104,7 +104,7 @@ const LabPage = () => {
           <div
             className={`${
               img2.path ? "w-[60%]" : "w-full"
-            } minimal:w-full max-large-medium:w-full mr-10 max-lg:mr-5`}
+            } minimal:w-full max-large-medium:w-full mr-10 max-lg:mr-0`}
           >
             {section2.texte && (
               <ReactMarkdown
@@ -124,7 +124,7 @@ const LabPage = () => {
               />
 
               {img2?.source && (
-                <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit ml-auto">
+                <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit ml-auto max-w-full break-words whitespace-normal">
                   <span className="font-semibold">Source :</span> {img2.source}
                 </p>
               )}
@@ -166,7 +166,7 @@ const LabPage = () => {
                 />
 
                 {img3?.source && (
-                  <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit ml-auto">
+                  <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit ml-auto max-w-full break-words whitespace-normal">
                     <span className="font-semibold">Source :</span>{" "}
                     {img3.source}
                   </p>
@@ -184,7 +184,7 @@ const LabPage = () => {
                 />
 
                 {img4?.source && (
-                  <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit ml-auto">
+                  <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit ml-auto max-w-full break-words whitespace-normal">
                     <span className="font-semibold">Source :</span>{" "}
                     {img4.source}
                   </p>

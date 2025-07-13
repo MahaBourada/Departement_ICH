@@ -14,13 +14,15 @@ const MobileUserHeader = ({ switchLang }) => {
   const { t } = useTranslation();
   const location = useLocation();
 
-  const [showAct, setShowAct] = useState(false);
+  const [showFormation, setShowFormation] = useState(false);
   const [showDept, setShowDept] = useState(false);
+  const [showRecherche, setShowRecherche] = useState(false);
   const [showColl, setShowColl] = useState(false);
   const [showLang, setShowLang] = useState(false);
 
-  const actMenuRef = useRef(null);
+  const formationMenuRef = useRef(null);
   const deptMenuRef = useRef(null);
+  const rechercheMenuRef = useRef(null);
   const collMenuRef = useRef(null);
   const langMenuRef = useRef(null);
 
@@ -32,11 +34,14 @@ const MobileUserHeader = ({ switchLang }) => {
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
-      if (showAct) {
-        handleClickOutside(event, setShowAct, actMenuRef);
+      if (showFormation) {
+        handleClickOutside(event, setShowFormation, formationMenuRef);
       }
       if (showDept) {
         handleClickOutside(event, setShowDept, deptMenuRef);
+      }
+      if (showRecherche) {
+        handleClickOutside(event, setShowRecherche, rechercheMenuRef);
       }
       if (showColl) {
         handleClickOutside(event, setShowColl, collMenuRef);
@@ -46,7 +51,7 @@ const MobileUserHeader = ({ switchLang }) => {
       }
     };
 
-    if (showAct || showDept || showColl || showLang) {
+    if (showFormation || showDept || showRecherche || showColl || showLang) {
       document.addEventListener("mousedown", handleOutsideClick);
     } else {
       document.removeEventListener("mousedown", handleOutsideClick);
@@ -55,20 +60,19 @@ const MobileUserHeader = ({ switchLang }) => {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, [showAct, showDept, showColl, showLang]);
+  }, [showFormation, showDept, showRecherche, showColl, showLang]);
 
   const handleLinkClick = () => {
     setShowMenu(false);
 
-    setShowAct(false);
+    setShowFormation(false);
     setShowDept(false);
+    setShowRecherche(false);
     setShowColl(false);
     setShowLang(false);
 
     window.scrollTo({ top: 0 });
   };
-
-  const darkTheme = localStorage.getItem("theme");
 
   return (
     <header className="sticky top-0 max-large-medium:block hidden px-7 py-5 bg-main dark:bg-dark-main shadow-medium dark:shadow-gray-900 z-50">
@@ -150,7 +154,7 @@ const MobileUserHeader = ({ switchLang }) => {
             <Link
               onClick={handleLinkClick}
               to="/admin"
-              className="text-[1.125rem] max-large-medium:text-xl font-medium px-2.5 py-1.5 ml-2 mx-1 cursor-pointer hover:translate-[1px] hover:underline p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+              className="max-large-medium:text-xl font-medium px-2.5 py-1.5 ml-2 mx-1 cursor-pointer hover:translate-[1px] hover:underline p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
             >
               Mon espace
             </Link>
@@ -169,46 +173,12 @@ const MobileUserHeader = ({ switchLang }) => {
               {t("home.link")}
             </Link>
 
-            <div ref={actMenuRef}>
-              <button
-                className={`cursor-pointer flex justify-between items-center w-full font-medium px-4 py-3 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 hover:underline hover:translate-[1px] ${
-                  ["/conferences"].includes(location.pathname)
-                    ? "underline bg-hover-main dark:bg-gray-900"
-                    : ""
-                }`}
-                onClick={() => setShowAct(!showAct)}
-              >
-                <p className="mx-1">{t("news.link")}</p>
-                <ChevronDown
-                  size={26}
-                  className="text-[#232323] dark:text-gray-300"
-                  strokeWidth={2.5}
-                />
-              </button>
-
-              {showAct && (
-                <div className="flex flex-col left-2 bg-white font-normal">
-                  <Link
-                    onClick={handleLinkClick}
-                    to="/conferences"
-                    className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-gray-900 dark:hover:bg-gray-900 px-4 py-3"
-                  >
-                    {t("news.conferences.link")}
-                  </Link>
-                </div>
-              )}
-            </div>
-
             <div ref={deptMenuRef}>
               <button
                 className={`cursor-pointer flex justify-between items-center w-full font-medium px-4 py-3 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 hover:underline hover:translate-[1px] ${
-                  [
-                    "/equipe",
-                    "/master",
-                    "/lab-chart",
-                    "/projets-etudiants",
-                    "/prix-concours",
-                  ].includes(location.pathname)
+                  ["/departement/actualites", "/departement/equipe"].includes(
+                    location.pathname
+                  )
                     ? "underline bg-hover-main dark:bg-gray-900"
                     : ""
                 }`}
@@ -221,42 +191,79 @@ const MobileUserHeader = ({ switchLang }) => {
                   strokeWidth={2.5}
                 />
               </button>
+
               {showDept && (
                 <div className="flex flex-col left-2 bg-white font-normal">
                   <Link
                     onClick={handleLinkClick}
-                    to="/equipe"
+                    to="/departement/actualites"
+                    className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-gray-900 dark:hover:bg-gray-900 px-4 py-3"
+                  >
+                    {t("department.news.link")}
+                  </Link>
+
+                  <Link
+                    onClick={handleLinkClick}
+                    to="/departement/equipe"
                     className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-gray-900 dark:hover:bg-gray-900 px-4 py-3"
                   >
                     {t("department.team.link")}
                   </Link>
+                </div>
+              )}
+            </div>
+
+            <div ref={formationMenuRef}>
+              <button
+                className={`cursor-pointer flex justify-between items-center w-full font-medium px-4 py-3 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 hover:underline hover:translate-[1px] ${
+                  [
+                    "/formation/master",
+                    "/formation/projets-etudiants",
+                    "/formation/prix-concours",
+                    "/formation/alumni",
+                  ].includes(location.pathname)
+                    ? "underline bg-hover-main dark:bg-gray-900"
+                    : ""
+                }`}
+                onClick={() => setShowFormation(!showFormation)}
+              >
+                <p className="mx-1">{t("formation.link")}</p>
+                <ChevronDown
+                  size={26}
+                  className="text-[#232323] dark:text-gray-300"
+                  strokeWidth={2.5}
+                />
+              </button>
+
+              {showFormation && (
+                <div className="flex flex-col left-2 bg-white font-normal">
                   <Link
                     onClick={handleLinkClick}
-                    to="/master"
+                    to="/formation/master"
                     className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-gray-900 dark:hover:bg-gray-900 px-4 py-3"
                   >
-                    {t("department.master.link")}
+                    {t("formation.master.link")}
                   </Link>
                   <Link
                     onClick={handleLinkClick}
-                    to="/lab-chart"
+                    to="/formation/projets-etudiants"
                     className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-gray-900 dark:hover:bg-gray-900 px-4 py-3"
                   >
-                    {t("department.lab-chart.link")}
+                    {t("formation.projects.title")}
                   </Link>
                   <Link
                     onClick={handleLinkClick}
-                    to="/projets-etudiants"
+                    to="/formation/prix-concours"
                     className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-gray-900 dark:hover:bg-gray-900 px-4 py-3"
                   >
-                    {t("department.projects.title")}
+                    {t("formation.awards_title.title")}
                   </Link>
                   <Link
                     onClick={handleLinkClick}
-                    to="/prix-concours"
+                    to="/formation/alumni"
                     className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-gray-900 dark:hover:bg-gray-900 px-4 py-3"
                   >
-                    {t("department.awards_title")}
+                    Alumni
                   </Link>
                 </div>
               )}
@@ -266,15 +273,16 @@ const MobileUserHeader = ({ switchLang }) => {
               <button
                 className={`cursor-pointer flex justify-between items-center w-full font-medium px-4 py-3 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 hover:underline hover:translate-[1px] ${
                   [
-                    "/collaboration-nationale",
-                    "/collaboration-internationale",
+                    "/collaborations/collaborations-nationales",
+                    "/collaborations/collaborations-internationales",
+                    "/collaborations/collaborez-avec-nous",
                   ].includes(location.pathname)
                     ? "underline bg-hover-main dark:bg-gray-900"
                     : ""
                 }`}
                 onClick={() => setShowColl(!showColl)}
               >
-                <p className="mx-1">Collaboration</p>
+                <p className="mx-1">Collaborations</p>
                 <ChevronDown
                   size={26}
                   className="text-[#232323] dark:text-gray-300"
@@ -286,17 +294,54 @@ const MobileUserHeader = ({ switchLang }) => {
                 <div className="flex flex-col left-2 bg-white font-normal">
                   <Link
                     onClick={handleLinkClick}
-                    to="/collaboration-nationale"
+                    to="/collaborations/collaborations-nationales"
                     className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-gray-900 dark:hover:bg-gray-900 px-4 py-3"
                   >
                     {t("collaboration.national.link")}
                   </Link>
                   <Link
                     onClick={handleLinkClick}
-                    to="/collaboration-internationale"
+                    to="/collaborations/collaborations-internationales"
                     className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-gray-900 dark:hover:bg-gray-900 px-4 py-3"
                   >
                     {t("collaboration.international.link")}
+                  </Link>
+                  <Link
+                    onClick={handleLinkClick}
+                    to="/collaborations/collaborez-avec-nous"
+                    className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-gray-900 dark:hover:bg-gray-900 px-4 py-3"
+                  >
+                    {t("collaboration.form.link")}
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            <div ref={rechercheMenuRef}>
+              <button
+                className={`cursor-pointer flex justify-between items-center w-full font-medium px-4 py-3 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 hover:underline hover:translate-[1px] ${
+                  ["/recherche/lab-chart"].includes(location.pathname)
+                    ? "underline bg-hover-main dark:bg-gray-900"
+                    : ""
+                }`}
+                onClick={() => setShowRecherche(!showRecherche)}
+              >
+                <p className="mx-1">{t("research.link")}</p>
+                <ChevronDown
+                  size={26}
+                  className="text-[#232323] dark:text-gray-300"
+                  strokeWidth={2.5}
+                />
+              </button>
+
+              {showRecherche && (
+                <div className="flex flex-col left-2 bg-white font-normal">
+                  <Link
+                    onClick={handleLinkClick}
+                    to="/recherche/lab-chart"
+                    className="hover:bg-gray-200 focus:bg-gray-200 dark:bg-dark-background dark:focus:bg-gray-900 dark:hover:bg-gray-900 px-4 py-3"
+                  >
+                    {t("research.lab-chart.link")}
                   </Link>
                 </div>
               )}

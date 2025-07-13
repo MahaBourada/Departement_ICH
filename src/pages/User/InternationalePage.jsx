@@ -55,7 +55,7 @@ const InternationalePage = () => {
   const totalPages = Math.ceil(collabs.length / itemsPerPage);
 
   return (
-    <main className="flex-grow my-10 mb-20 mx-16">
+    <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
       <Breadcrumb
         crumbs={[
           {
@@ -71,7 +71,7 @@ const InternationalePage = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main font-semibold text-display max-sm:text-4xl leading-snug my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("collaboration.international.title")}
       </h1>
 
@@ -89,11 +89,11 @@ const InternationalePage = () => {
               src={`${import.meta.env.VITE_BASE_URL}/${img1.path}`}
               alt={img1.alt || ""}
               width={400}
-              className="minimal:hidden w-3/4 m-auto my-5 max-large-medium:mx-auto max-large-medium:mb-6"
+              className="minimal:hidden w-3/4 max-sm:w-fit m-auto my-5 max-large-medium:mx-auto max-large-medium:mb-6"
             />
 
             {img1?.source && (
-              <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit mx-auto">
+              <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit mx-auto max-w-full break-words whitespace-normal">
                 <span className="font-semibold">Source :</span> {img1.source}
               </p>
             )}
@@ -106,22 +106,13 @@ const InternationalePage = () => {
             children={String(pageInternational[1]?.texte)}
           />
         )}
-
-        {img2.path && (
-          <img
-            src={`${import.meta.env.VITE_BASE_URL}/${img2.path}`}
-            alt={img2.alt || ""}
-            width={400}
-            className="minimal:hidden w-[23rem] h-[23rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-[50px]"
-          />
-        )}
       </div>
 
       <div className="border-neutral-500 dark:border-gray-300 border-[1px] my-5 w-full"></div>
 
       {currentItems.map((collab, index) => (
         <div key={index}>
-          <div className="flex items-start justify-between my-10">
+          <div className="flex flex-row max-sm:flex-col items-start justify-between my-10">
             <div>
               <h3 className="text-dynamic-lg font-semibold">{collab.nom}</h3>
 
@@ -143,7 +134,7 @@ const InternationalePage = () => {
             <img
               src={`${import.meta.env.VITE_BASE_URL}/${collab.logo}`}
               alt={`Logo de l'organisation ${collab.nom}`}
-              className="w-60 my-auto"
+              className="w-60 my-auto max-sm:mt-8 max-sm:w-fit"
             />
           </div>
           <div className="border-neutral-500 dark:border-gray-300 border-[1px] my-5 w-full"></div>

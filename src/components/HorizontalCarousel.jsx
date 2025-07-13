@@ -16,7 +16,7 @@ const HorizontalCarousel = ({ collabs }) => {
     <div className="relative my-16">
       <div
         ref={scrollRef}
-        className="flex flex-row items-center overflow-x-auto space-x-16 px-10 mx-20 scroll-smooth hide-scrollbar dark:bg-neutral-500 dark:rounded-4xl py-6"
+        className="flex flex-row items-center overflow-x-auto space-x-16 px-10 mx-20 max-sm:mx-10 scroll-smooth hide-scrollbar dark:bg-neutral-500 dark:rounded-4xl py-6"
       >
         {collabs
           .filter(
@@ -32,7 +32,7 @@ const HorizontalCarousel = ({ collabs }) => {
               <img
                 src={`${import.meta.env.VITE_BASE_URL}/${collab.logo}`}
                 alt={`Logo de l'entreprise ${collab.nom}`}
-                className="w-52"
+                className="w-52 max-sm:w-40"
               />
             </div>
           ))}
@@ -42,12 +42,12 @@ const HorizontalCarousel = ({ collabs }) => {
       <button
         aria-label="Défiler à gauche"
         onClick={() => scroll("left")}
-        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-neutral-200 p-1.5 border-black border-2 rounded-full hover:bg-neutral-400 cursor-pointer"
+        className="absolute left-0 max-sm:-left-4 top-1/2 -translate-y-1/2 z-10 bg-neutral-200 p-1.5 border-black border-2 rounded-full hover:bg-neutral-400 cursor-pointer"
       >
         <ChevronLeft
           size={37}
           strokeWidth={2.5}
-          className="text-black pr-0.5"
+          className="text-black pr-0.5 max-sm:w-8 max-sm:h-8"
         />
       </button>
 
@@ -55,12 +55,12 @@ const HorizontalCarousel = ({ collabs }) => {
       <button
         aria-label="Défiler à droite"
         onClick={() => scroll("right")}
-        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-neutral-200 p-1.5 border-black border-2 rounded-full hover:bg-neutral-400 cursor-pointer"
+        className="absolute right-0 max-sm:-right-4 top-1/2 -translate-y-1/2 z-10 bg-neutral-200 p-1.5 border-black border-2 rounded-full hover:bg-neutral-400 cursor-pointer"
       >
         <ChevronRight
           size={37}
           strokeWidth={2.5}
-          className="text-black pl-0.5"
+          className="text-black pl-0.5 max-sm:w-8 max-sm:h-8"
         />
       </button>
     </div>

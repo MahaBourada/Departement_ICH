@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../api/api";
-import { ArrowLeft } from "lucide-react";
+import { CircleArrowLeft } from "lucide-react";
 import { InputField } from "../../components/Inputs";
 import { BigFilledButton } from "../../components/Buttons";
 import { UserContext } from "../../contexts/UserContext.jsx";
@@ -57,13 +57,13 @@ const LoginPage = () => {
           src="/ich/assets/vectors/Logo.svg"
           alt="Logo de l'université Paris 8"
           width={160}
-          className="m-5 block dark:hidden"
+          className="m-5 block dark:hidden max-sm:w-32 max-sm:mx-4"
         />
         <img
           src="/ich/assets/vectors/LogoDark.svg"
           alt="Logo de l'université Paris 8"
           width={160}
-          className="m-5 hidden dark:block"
+          className="m-5 hidden dark:block max-sm:w-32 max-sm:mx-4"
         />
 
         <div className="mx-6">
@@ -71,17 +71,17 @@ const LoginPage = () => {
         </div>
       </header>
 
-      <main className="mx-auto mt-14">
+      <main className="mx-auto mt-7">
         <div className="flex justify-between items-center">
           <Link
             onClick={() => window.scrollTo({ top: 0 })}
             to="/"
             className="rounded-md hover:bg-neutral-300 dark:hover:bg-neutral-600"
           >
-            <ArrowLeft
+            <CircleArrowLeft
               aria-label="Revenir à l'accueil"
-              size={38}
-              strokeWidth={2.5}
+              size={40}
+              strokeWidth={2}
               className="text-[#232323] dark:text-gray-300"
             />
           </Link>

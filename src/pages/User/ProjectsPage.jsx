@@ -39,11 +39,11 @@ const ProjectsPage = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display my-2 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main font-semibold text-display max-sm:text-4xl my-2 readerMode:w-fit readerMode:mx-auto">
         {t("formation.projects.title")}
       </h1>
 
-      <div className="mx-4 max-md:mx-2 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
+      <div className="mx-4 max-sm:mx-0 max-md:mx-2 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
         <div className="border-black dark:border-gray-300 border-[1px] my-5 w-full"></div>
 
         {projects.map((project, index) => (
@@ -82,7 +82,7 @@ const ProjectsPage = () => {
                       src={`${import.meta.env.VITE_BASE_URL}/${image.path}`}
                       alt={image.alt}
                       width={275}
-                      className="mx-4 minimal:hidden max-large-large:my-6 max-large-medium:w-[30rem] max-large-medium:h-[30rem] max-lg:w-64 max-lg:h-64 max-xl:w-60 max-xl:h-60 readerMode:my-4 rounded-3xl "
+                      className="mx-4 minimal:hidden max-sm:w-fit max-sm:h-1/2 max-large-large:my-6 max-large-medium:w-[30rem] max-large-medium:h-[30rem] max-lg:w-64 max-lg:h-64 max-xl:w-60 max-xl:h-60 readerMode:my-4 rounded-3xl "
                     />
                   ))}
                 </div>
@@ -91,6 +91,7 @@ const ProjectsPage = () => {
               <h3 className="font-semibold text-dynamic-lg my-2">
                 {t("formation.projects.objective")}
               </h3>
+
               <ReactMarkdown
                 className="m-2 markdown"
                 children={String(project.objectif)}

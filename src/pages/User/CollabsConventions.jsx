@@ -41,7 +41,7 @@ const CollabsConventions = () => {
   const totalPages = Math.ceil(filteredCollabs.length / itemsPerPage);
 
   return (
-    <main className="flex-grow my-10 mb-20 mx-16">
+    <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
       <Breadcrumb
         crumbs={[
           {
@@ -61,7 +61,7 @@ const CollabsConventions = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main font-semibold text-display max-sm:text-4xl leading-snug my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("collaboration.national.conventions")}
       </h1>
 
@@ -76,7 +76,7 @@ const CollabsConventions = () => {
           )
           .map((collab, index) => (
             <div key={index}>
-              <div className="flex items-start justify-between my-10">
+              <div className="flex flex-row max-sm:flex-col items-start justify-between my-10 max-sm:mt-5">
                 <div>
                   <h3 className="text-dynamic-lg font-semibold">
                     {collab.nom}
@@ -93,9 +93,7 @@ const CollabsConventions = () => {
                         {t("collaboration.categories.label")} :{" "}
                       </strong>
 
-                      {t(
-                        `collaboration.categories.${collab.categorie}`
-                      )}
+                      {t(`collaboration.categories.${collab.categorie}`)}
                     </p>
                   )}
                 </div>
@@ -103,7 +101,7 @@ const CollabsConventions = () => {
                 <img
                   src={`${import.meta.env.VITE_BASE_URL}/${collab.logo}`}
                   alt={`Logo de l'organisation ${collab.nom}`}
-                  className="w-60 my-auto dark:bg-neutral-400 p-2.5 px-3 rounded-2xl"
+                  className="w-60 my-auto dark:bg-neutral-400 p-2.5 px-3 rounded-2xl max-sm:mt-8 max-sm:w-fit"
                 />
               </div>
               <div className="border-neutral-500 dark:border-gray-300 border-[1px] my-5 w-full"></div>

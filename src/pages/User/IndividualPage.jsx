@@ -1,4 +1,4 @@
-import { ChevronRight } from "lucide-react";
+import { ArrowLeft, ChevronRight, CircleArrowLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import api from "../../api/api";
@@ -32,7 +32,7 @@ const IndividualPage = () => {
   const subParts = subPartRaw ? subPartRaw.split(",").map((s) => s.trim()) : [];
 
   return (
-    <main className="flex-grow my-10 mb-20 mx-16">
+    <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
       <Breadcrumb
         crumbs={[
           {
@@ -52,16 +52,29 @@ const IndividualPage = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-dynamic-2xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <Link
+        onClick={() => window.scrollTo({ top: 0 })}
+        to={-1}
+        className="hidden max-sm:block w-fit rounded-md hover:bg-neutral-300 dark:hover:bg-neutral-600 mb-5 -ml-2"
+      >
+        <CircleArrowLeft
+          aria-label="Revenir en arrière"
+          size={45}
+          strokeWidth={2}
+          className="text-black dark:text-gray-300"
+        />
+      </Link>
+
+      <h1 className="font-main font-semibold text-dynamic-2xl text-dynamic-xl leading-snug my-2 mb-4 max-sm:my-2 readerMode:w-fit readerMode:mx-auto">
         {member.prenom + " " + UpperNom}
       </h1>
 
-      <div className="flex flex-row items-start justify-between readerMode:flex-col readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
-        <div className="m-2">
-          <h2 className="font-medium text-dynamic-xl font-main">
+      <div className="flex flex-row max-sm:flex-col items-start justify-between readerMode:flex-col readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
+        <div className="m-2 max-sm:mx-0">
+          <h2 className="font-medium text-dynamic-xl leading-snug text-dynamic-lg max-sm:font-semibold font-main">
             {t(`department.team.categories.${member.titre}`)}
           </h2>
-          <h3 className="font-semibold text-dynamic-lg m-2">
+          <h3 className="font-semibold text-dynamic-lg leading-snug text-dynamic-lg m-2 max-sm:mx-0">
             {member.fonction}
           </h3>
           <p className="mx-2">{mainPart}</p>
@@ -91,7 +104,7 @@ const IndividualPage = () => {
             src={`${import.meta.env.VITE_BASE_URL}/${member.image}`}
             alt={`Photo de ${member.prenom} ${UpperNom}`}
             width={350}
-            className="rounded-3xl m-4 mx-10 readerMode:mx-auto"
+            className="rounded-3xl m-4 mx-10 max-sm:mx-0 readerMode:mx-auto"
           />
         )}
       </div>

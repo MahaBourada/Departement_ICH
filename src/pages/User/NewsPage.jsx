@@ -43,7 +43,7 @@ const NewsPage = () => {
         {t("department.news.link")}
       </h1>
 
-      <div className="mx-4 max-md:mx-2 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
+      <div className="mx-4 max-sm:mx-0 max-md:mx-2 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
         {news.length === 0 && (
           <div className="m-auto w-fit my-20 text-3xl font-medium">
             <h2>Aucune actualité enregistrée</h2>
@@ -56,16 +56,16 @@ const NewsPage = () => {
 
             {news.map((oneNews) => (
               <div key={oneNews.idActu}>
-                <div className="h-full flex flex-row items-start justify-between my-2">
+                <div className="h-full flex flex-row max-sm:flex-col items-start justify-between my-2">
                   <div className="flex flex-col justify-between">
                     <h2 className="text-dynamic-xl font-semibold">
                       {oneNews.titre}
                     </h2>
 
-                    <p className="m-2">{oneNews.contenu}</p>
+                    <p className="m-2 max-sm:mx-0">{oneNews.contenu}</p>
 
                     {oneNews.lien && (
-                      <p className="m-2">
+                      <p className="m-2 max-sm:mx-0">
                         <span className="font-semibold">{t("website")} : </span>
                         <a
                           href={oneNews.lien}
@@ -77,7 +77,7 @@ const NewsPage = () => {
                       </p>
                     )}
 
-                    <p className="mx-2 mt-4 text-neutral-600 dark:text-neutral-300">
+                    <p className="mx-2 max-sm:mx-0 mt-4 max-sm:mt-1 text-neutral-600 dark:text-neutral-300">
                       {oneNews.dateUpdated ? (
                         <>
                           <span className="font-semibold">
@@ -97,18 +97,18 @@ const NewsPage = () => {
                   </div>
 
                   {oneNews.image && (
-                    <div className="flex flex-col items-center justify-start mt-10 my-auto">
+                    <div className="flex flex-col items-end justify-start mt-10 my-auto max-sm:w-full">
                       <img
                         src={
                           import.meta.env.VITE_BASE_URL + "/" + oneNews.image
                         }
-                        width={450}
                         alt={oneNews.alt}
+                        width={500}
                         className="my-auto rounded-2xl"
                       />
 
                       {oneNews?.source_image && (
-                        <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit ml-auto">
+                        <p className="text-neutral-700 dark:text-neutral-300 text-dynamic-xsm w-fit ml-auto max-w-full break-words whitespace-normal">
                           <span className="font-semibold">Source :</span>{" "}
                           {oneNews.source_image}
                         </p>

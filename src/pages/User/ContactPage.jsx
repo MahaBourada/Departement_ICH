@@ -67,7 +67,7 @@ const ContactPage = () => {
         <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
       )}
 
-      <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse readerMode:flex-col readerMode:leading-loose readerMode:w-[60ch] max-large-medium:readerMode:w-full readerMode:mx-auto">
+      <div className="flex flex-row justify-between items-start max-large-medium:flex-col readerMode:flex-col readerMode:leading-loose readerMode:w-[60ch] max-large-medium:readerMode:w-full readerMode:mx-auto">
         <div className="flex flex-col ml-3 max-large-medium:mt-5 max-large-medium:mx-0">
           <h2 className="font-main font-medium text-header my-5">
             {t("contact.title")}
@@ -79,7 +79,7 @@ const ContactPage = () => {
           </ul>
 
           <iframe
-            className="mx-auto my-10"
+            className="mx-auto my-10 max-sm:w-fit "
             title="Emplacement sur Google Maps : 2 Rue de la Liberté, 93200 Saint-Denis, France"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2620.434741898566!2d2.361295176275716!3d48.94520729459332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6695023b0b505%3A0xb2e7735a65b65d47!2s2%20Rue%20de%20la%20Libert%C3%A9%2C%2093200%20Saint-Denis%2C%20France!5e0!3m2!1sfr!2sdz!4v1751030832622!5m2!1sfr!2sdz"
             width="600"
