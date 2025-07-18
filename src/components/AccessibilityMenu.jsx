@@ -127,15 +127,17 @@ const AccessibilityMenu = ({ position }) => {
     setLeading(MIN_LEADING);
   };
 
+  const isMobile = window.innerWidth <= 1024;
+
   return (
     <div
-      className="relative my-1 rounded-lg font-body text-nav leading-normal"
+      className="relative my-1 rounded-lg font-body text-nav max-sm:text-[1.125rem] leading-normal"
       ref={showMenuRef}
     >
       <button
         type="button"
         onClick={() => setShowMenu(!showMenu)}
-        className="cursor-pointer w-fit flex justify-end items-center px-2 mx-1 py-1.5 hover:underline hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg font-medium"
+        className="cursor-pointer w-fit flex justify-end items-center px-2 mx-1 py-1.5 transition-colors duration-300 hover:underline hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg font-medium"
       >
         <span className="mx-1">{t("accessibility.label")}</span>
         <PersonStanding
@@ -151,7 +153,7 @@ const AccessibilityMenu = ({ position }) => {
         >
           <button
             type="button"
-            className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-bg-crumb focus:bg-bg-crumb dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
+            className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background transition-colors duration-300 hover:bg-bg-crumb focus:bg-bg-crumb dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
             onClick={toggleDarkTheme}
           >
             {darkTheme === "light" ? (
@@ -167,49 +169,57 @@ const AccessibilityMenu = ({ position }) => {
             )}
           </button>
 
-          <button
-            type="button"
-            className={`flex justify-between items-center bg-white dark:bg-dark-background px-3 py-1.5 text-nowrap w-full rounded-lg ${
-              isZoomInDisabled
-                ? "opacity-55 cursor-not-allowed"
-                : "cursor-pointer hover:bg-bg-crumb focus:bg-bg-crumb dark:hover:bg-dark-main dark:focus:bg-dark-main"
-            }`}
-            onClick={zoomIn}
-            disabled={isZoomInDisabled}
-          >
-            <span>Zoom +</span>
-            <ZoomIn size={29} className="text-[#232323] dark:text-gray-300" />
-          </button>
+          {!isMobile && (
+            <button
+              type="button"
+              className={`flex justify-between items-center bg-white dark:bg-dark-background px-3 py-1.5 text-nowrap w-full rounded-lg ${
+                isZoomInDisabled
+                  ? "opacity-55 cursor-not-allowed"
+                  : "cursor-pointer transition-colors duration-300 hover:bg-bg-crumb focus:bg-bg-crumb dark:hover:bg-dark-main dark:focus:bg-dark-main"
+              }`}
+              onClick={zoomIn}
+              disabled={isZoomInDisabled}
+            >
+              <span>Zoom +</span>
+              <ZoomIn size={29} className="text-[#232323] dark:text-gray-300" />
+            </button>
+          )}
 
-          <button
-            type="button"
-            className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-bg-crumb focus:bg-bg-crumb dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
-            onClick={resetZoom}
-          >
-            <span>{t("accessibility.reset")}</span>
-            <RotateCcw
-              size={28}
-              className="text-[#232323] dark:text-gray-300"
-            />
-          </button>
+          {!isMobile && (
+            <button
+              type="button"
+              className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background transition-colors duration-300 hover:bg-bg-crumb focus:bg-bg-crumb dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
+              onClick={resetZoom}
+            >
+              <span>{t("accessibility.reset")}</span>
+              <RotateCcw
+                size={28}
+                className="text-[#232323] dark:text-gray-300"
+              />
+            </button>
+          )}
 
+          {!isMobile && (
+            <button
+              type="button"
+              className={`flex justify-between items-center bg-white dark:bg-dark-background px-3 py-1.5 text-nowrap w-full rounded-lg ${
+                isZoomOutDisabled
+                  ? "opacity-55 cursor-not-allowed"
+                  : "cursor-pointer transition-colors duration-300 hover:bg-bg-crumb focus:bg-bg-crumb dark:hover:bg-dark-main dark:focus:bg-dark-main"
+              }`}
+              onClick={zoomOut}
+              disabled={isZoomOutDisabled}
+            >
+              <span>Zoom -</span>
+              <ZoomOut
+                size={29}
+                className="text-[#232323] dark:text-gray-300"
+              />
+            </button>
+          )}
           <button
             type="button"
-            className={`flex justify-between items-center bg-white dark:bg-dark-background px-3 py-1.5 text-nowrap w-full rounded-lg ${
-              isZoomOutDisabled
-                ? "opacity-55 cursor-not-allowed"
-                : "cursor-pointer hover:bg-bg-crumb focus:bg-bg-crumb dark:hover:bg-dark-main dark:focus:bg-dark-main"
-            }`}
-            onClick={zoomOut}
-            disabled={isZoomOutDisabled}
-          >
-            <span>Zoom -</span>
-            <ZoomOut size={29} className="text-[#232323] dark:text-gray-300" />
-          </button>
-
-          <button
-            type="button"
-            className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background hover:bg-bg-crumb focus:bg-bg-crumb dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
+            className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background transition-colors duration-300 hover:bg-bg-crumb focus:bg-bg-crumb dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
             onClick={toggleReaderMode}
           >
             <span className="mr-2">{t("accessibility.reader")}</span>

@@ -5,6 +5,7 @@ import api from "../../api/api";
 import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
 import Breadcrumb from "../../components/Breadcrumb";
+import { BackButton } from "../../components/Buttons";
 
 const IndividualPage = () => {
   const { t } = useTranslation();
@@ -52,18 +53,7 @@ const IndividualPage = () => {
         ]}
       />
 
-      <Link
-        onClick={() => window.scrollTo({ top: 0 })}
-        to={-1}
-        className="hidden max-sm:block w-fit rounded-md hover:bg-neutral-300 dark:hover:bg-neutral-600 mb-5 -ml-2"
-      >
-        <CircleArrowLeft
-          aria-label="Revenir en arrière"
-          size={45}
-          strokeWidth={2}
-          className="text-black dark:text-gray-300"
-        />
-      </Link>
+      <BackButton />
 
       <h1 className="font-main font-semibold text-dynamic-2xl text-dynamic-xl leading-snug my-2 mb-4 max-sm:my-2 readerMode:w-fit readerMode:mx-auto">
         {member.prenom + " " + UpperNom}
@@ -104,7 +94,7 @@ const IndividualPage = () => {
             src={`${import.meta.env.VITE_BASE_URL}/${member.image}`}
             alt={`Photo de ${member.prenom} ${UpperNom}`}
             width={350}
-            className="rounded-3xl m-4 mx-10 max-sm:mx-0 readerMode:mx-auto"
+            className="dark:bg-neutral-500 rounded-3xl m-4 mx-10 max-sm:mx-0 readerMode:mx-auto"
           />
         )}
       </div>

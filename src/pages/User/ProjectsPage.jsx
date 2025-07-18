@@ -39,14 +39,14 @@ const ProjectsPage = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display max-sm:text-4xl my-2 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main font-semibold text-display max-sm:text-header max-sm:leading-tight my-2 readerMode:w-fit readerMode:mx-auto">
         {t("formation.projects.title")}
       </h1>
 
       <div className="mx-4 max-sm:mx-0 max-md:mx-2 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
         <div className="border-black dark:border-gray-300 border-[1px] my-5 w-full"></div>
 
-        {projects.map((project, index) => (
+        {projects.map((project) => (
           <div key={project.idProjet}>
             <div className="w-full">
               <div className="flex flex-row items-start justify-between max-large-large:flex-col readerMode:flex-col">
@@ -79,10 +79,11 @@ const ProjectsPage = () => {
                 <div className="flex flex-row justify-between items-center max-large-medium:flex-col max-large-large:mx-auto readerMode:flex-col readerMode:mx-auto">
                   {project.images.map((image, index) => (
                     <img
+                      key={index}
                       src={`${import.meta.env.VITE_BASE_URL}/${image.path}`}
                       alt={image.alt}
                       width={275}
-                      className="mx-4 minimal:hidden max-sm:w-fit max-sm:h-1/2 max-large-large:my-6 max-large-medium:w-[30rem] max-large-medium:h-[30rem] max-lg:w-64 max-lg:h-64 max-xl:w-60 max-xl:h-60 readerMode:my-4 rounded-3xl "
+                      className="mx-4 minimal:hidden max-lg:my-5 max-lg:w-full max-lg:h-1/2 readerMode:my-4 rounded-3xl "
                     />
                   ))}
                 </div>

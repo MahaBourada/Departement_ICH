@@ -6,6 +6,7 @@ import {
   TextAreaField,
 } from "../../../components/Inputs";
 import {
+  BackButton,
   SmallBorderButton,
   SmallFilledButton,
 } from "../../../components/Buttons";
@@ -101,6 +102,8 @@ const AddPrix = () => {
 
   return (
     <main className="mx-14 my-20">
+      <BackButton />
+
       <h1 className="text-display font-semibold">Ajouter un prix</h1>
 
       {msgShow && (
@@ -114,7 +117,7 @@ const AddPrix = () => {
         <br />
         Voici le lien vers l'aide-mémoire Markdown :&nbsp;
         <a
-          className="underline p-0.5 hover:no-underline hover:bg-hover-main dark:hover:bg-dark-accent rounded-md"
+          className="underline p-0.5 transition-colors duration-300 hover:no-underline hover:bg-hover-main dark:hover:bg-dark-accent rounded-md"
           href="https://www.markdownguide.org/cheat-sheet/"
           title="https://www.markdownguide.org/cheat-sheet/"
           target="_blank"

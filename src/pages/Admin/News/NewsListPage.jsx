@@ -71,9 +71,9 @@ const NewsListPage = () => {
         <h1 className="font-semibold ">Gestion des actualités</h1>
 
         <Link
-          onClick={() => window.scrollTo({ top: 0 })}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           to="/admin/gestion-actualites/ajouter-actualite"
-          className="flex flex-row items-center font-main font-medium rounded-xl px-5 py-2 mx-3 my-1 text-black bg-accent hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white max-md:w-42 max-md:mb-4 text-nav leading-normal"
+          className="flex flex-row items-center font-main font-medium rounded-xl px-5 py-2 mx-3 my-1 text-black bg-accent transition-colors duration-300 hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white max-md:w-42 max-md:mb-4 text-nav leading-normal"
         >
           <Plus
             aria-label="Ajouter une actualité"
@@ -128,10 +128,10 @@ const NewsListPage = () => {
                 <td className="h-full px-4">
                   <div className="flex items-center justify-center space-x-2">
                     <Link
-                      onClick={() => window.scrollTo({ top: 0 })}
+                      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                       to={`/admin/gestion-actualites/${oneNews.idActu}`}
                       type="button"
-                      className="cursor-pointer mr-2 p-0.5 rounded-md hover:bg-neutral-300 dark:hover:bg-neutral-600"
+                      className="cursor-pointer mr-2 p-0.5 rounded-md transition-colors duration-300 hover:bg-neutral-300 dark:hover:bg-neutral-600"
                     >
                       <Pencil
                         aria-label={`Mettre à jour l'actualité' ${oneNews.titre_fr}`}
@@ -141,7 +141,7 @@ const NewsListPage = () => {
                     </Link>
                     <button
                       type="button"
-                      className="cursor-pointer ml-2 p-0.5 rounded-md hover:bg-neutral-300 dark:hover:bg-neutral-600"
+                      className="cursor-pointer ml-2 p-0.5 rounded-md transition-colors duration-300 hover:bg-neutral-300 dark:hover:bg-neutral-600"
                       onClick={() => handleConfirmDelete(oneNews)}
                     >
                       <Trash2

@@ -85,7 +85,7 @@ const AdminHeader = () => {
         >
           <button
             type="submit"
-            className="hover:bg-gray-200 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main  rounded-md px-6 py-2 cursor-pointer text-nav text-start"
+            className="hover:bg-gray-200 transition-colors duration-300 dark:bg-dark-background dark:focus:bg-dark-main dark:hover:bg-dark-main  rounded-md px-6 py-2 cursor-pointer text-nav text-start"
           >
             Déconnexion
           </button>

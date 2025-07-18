@@ -33,7 +33,7 @@ export const InputField = ({
           aria-label={
             showPass ? "Masquer le mot de passe" : "Afficher le mot de passe"
           }
-          className="cursor-pointer rounded-md hover:bg-neutral-300 absolute top-[73%] right-5 transform -translate-y-1/2"
+          className="cursor-pointer rounded-md transition-colors duration-300 hover:bg-neutral-300 absolute top-[73%] right-5 transform -translate-y-1/2"
           onClick={() => setShowPass((prev) => !prev)}
         >
           {showPass ? (
@@ -142,7 +142,7 @@ export const ImageField = ({
             {text}
           </label>
           <button
-            className="cursor-pointer p-0.5 rounded-md hover:bg-neutral-300 dark:hover:bg-neutral-600"
+            className="cursor-pointer p-0.5 rounded-md transition-colors duration-300 hover:bg-neutral-300 dark:hover:bg-neutral-600"
             type="button"
             onClick={onRemove}
           >

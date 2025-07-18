@@ -51,22 +51,22 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[url('/ich/assets/vectors/AdminBg.svg')] dark:bg-[url('/ich/assets/vectors/AdminBgDark.svg')] bg-cover bg-no-repeat bg-center text-black dark:text-gray-300 text-dynamic-base leading-11 readerMode:leading-loose dark:bg-dark-background">
+    <div className="flex flex-col min-h-screen bg-[url('/ich/assets/vectors/AdminBg.svg')] dark:bg-[url('/ich/assets/vectors/AdminBgDark.svg')] bg-cover bg-no-repeat bg-center text-black dark:text-gray-300 leading-11 readerMode:leading-loose dark:bg-dark-background text-nav max-sm:text-[1.125rem]">
       <header className="flex flex-row items-center justify-between w-full leading-normal">
         <img
           src="/ich/assets/vectors/Logo.svg"
           alt="Logo de l'université Paris 8"
           width={160}
-          className="m-5 block dark:hidden max-sm:w-32 max-sm:mx-4"
+          className="m-5 block dark:hidden max-sm:w-24 max-sm:mx-4"
         />
         <img
           src="/ich/assets/vectors/LogoDark.svg"
           alt="Logo de l'université Paris 8"
           width={160}
-          className="m-5 hidden dark:block max-sm:w-32 max-sm:mx-4"
+          className="m-5 hidden dark:block max-sm:w-24 max-sm:mx-4"
         />
 
-        <div className="mx-6">
+        <div className="mx-2">
           <AccessibilityMenu />
         </div>
       </header>
@@ -74,9 +74,9 @@ const LoginPage = () => {
       <main className="mx-auto mt-7">
         <div className="flex justify-between items-center">
           <Link
-            onClick={() => window.scrollTo({ top: 0 })}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             to="/"
-            className="rounded-md hover:bg-neutral-300 dark:hover:bg-neutral-600"
+            className="rounded-md transition-colors duration-300 hover:bg-neutral-300 dark:hover:bg-neutral-600"
           >
             <CircleArrowLeft
               aria-label="Revenir à l'accueil"
@@ -85,7 +85,7 @@ const LoginPage = () => {
               className="text-[#232323] dark:text-gray-300"
             />
           </Link>
-          <h1 className="m-auto text-center text-display font-medium font-main">
+          <h1 className="m-auto text-center text-display max-sm:text-header font-medium font-main">
             Connexion
           </h1>
         </div>

@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import api from "../../../api/api";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
+  BackButton,
   SmallBorderButton,
   SmallFilledButton,
 } from "../../../components/Buttons";
@@ -13,6 +14,7 @@ import {
 import { MessagePopup } from "../../../components/MsgPopup";
 import { getRelativePath } from "../../../utils/getRelativePath";
 import { UserContext } from "../../../contexts/UserContext.jsx";
+import { CircleArrowLeft } from "lucide-react";
 
 const UpdateNews = () => {
   const currentAdmin = useContext(UserContext).user;
@@ -139,8 +141,10 @@ const UpdateNews = () => {
 
   return (
     <main className="mx-14 my-20">
-      <h1 className="text-display font-semibold">
-        Gestion de l'actualité {news.titre_fr}
+      <BackButton />
+
+      <h1 className="text-display leading-normal font-semibold">
+        Gestion de l'actualité '{news.titre_fr}'
       </h1>
 
       {msgShow && (
@@ -189,7 +193,7 @@ const UpdateNews = () => {
           <br />
           Voici le lien vers l'aide-mémoire Markdown :&nbsp;
           <a
-            className="underline p-0.5 hover:no-underline hover:bg-hover-main dark:hover:bg-dark-accent rounded-md"
+            className="underline p-0.5 transition-colors duration-300 hover:no-underline hover:bg-hover-main dark:hover:bg-dark-accent rounded-md"
             href="https://www.markdownguide.org/cheat-sheet/"
             title="https://www.markdownguide.org/cheat-sheet/"
             target="_blank"

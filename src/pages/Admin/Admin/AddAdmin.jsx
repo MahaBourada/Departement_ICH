@@ -4,9 +4,12 @@ import api from "../../../api/api.js";
 import { MessagePopup } from "../../../components/MsgPopup.jsx";
 import { InputField } from "../../../components/Inputs.jsx";
 import {
+  BackButton,
   SmallBorderButton,
   SmallFilledButton,
 } from "../../../components/Buttons.jsx";
+import { CircleArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const AddAdmin = () => {
   const currentAdmin = useContext(UserContext).user;
@@ -23,8 +26,6 @@ const AddAdmin = () => {
   const handleClose = () => {
     setMsgShow(false);
   };
-
-  console.log(currentAdmin);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,6 +68,8 @@ const AddAdmin = () => {
 
   return (
     <main className="mx-14 my-20">
+      <BackButton />
+
       <h1 className="text-display font-semibold ">
         Ajouter un nouvel administrateur
       </h1>

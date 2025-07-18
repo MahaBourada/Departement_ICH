@@ -15,7 +15,7 @@ const Breadcrumb = ({ crumbs }) => {
           {crumb.link ? (
             <Link
               to={crumb.link}
-              className="px-4 py-1 rounded-xl hover:underline hover:bg-hover-crumb dark:hover:bg-dark-hover-crumb"
+              className="px-4 py-1 rounded-xl transition-colors duration-300 hover:underline hover:bg-hover-crumb dark:hover:bg-dark-hover-crumb"
             >
               {crumb.label}
             </Link>

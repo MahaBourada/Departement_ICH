@@ -42,12 +42,12 @@ const HorizontalCarousel = ({ collabs }) => {
       <button
         aria-label="Défiler à gauche"
         onClick={() => scroll("left")}
-        className="absolute left-0 max-sm:-left-4 top-1/2 -translate-y-1/2 z-10 bg-neutral-200 p-1.5 border-black border-2 rounded-full hover:bg-neutral-400 cursor-pointer"
+        className="absolute left-0 max-sm:-left-4 top-1/2 -translate-y-1/2 z-10 bg-neutral-200 dark:bg-transparent p-1.5 border-neutral-500 dark:border-dark-white hover:bg-neutral-300 dark:hover:bg-neutral-400 dark:active:bg-neutral-400 border-[1.5px] rounded-full transition-colors duration-300 cursor-pointer"
       >
         <ChevronLeft
-          size={37}
-          strokeWidth={2.5}
-          className="text-black pr-0.5 max-sm:w-8 max-sm:h-8"
+          size={30}
+          strokeWidth={2.2}
+          className="text-neutral-600 dark:text-white pr-0.5 max-sm:w-8 max-sm:h-8"
         />
       </button>
 
@@ -55,12 +55,12 @@ const HorizontalCarousel = ({ collabs }) => {
       <button
         aria-label="Défiler à droite"
         onClick={() => scroll("right")}
-        className="absolute right-0 max-sm:-right-4 top-1/2 -translate-y-1/2 z-10 bg-neutral-200 p-1.5 border-black border-2 rounded-full hover:bg-neutral-400 cursor-pointer"
+        className="absolute right-0 max-sm:-right-4 top-1/2 -translate-y-1/2 z-10 bg-neutral-200 dark:bg-transparent p-1.5 border-neutral-500 dark:border-dark-white hover:bg-neutral-300 dark:hover:bg-neutral-400 dark:active:bg-neutral-400 border-[1.5px] rounded-full transition-colors duration-300 cursor-pointer"
       >
         <ChevronRight
-          size={37}
-          strokeWidth={2.5}
-          className="text-black pl-0.5 max-sm:w-8 max-sm:h-8"
+          size={30}
+          strokeWidth={2.2}
+          className="text-neutral-600 dark:text-white pl-0.5 max-sm:w-8 max-sm:h-8"
         />
       </button>
     </div>

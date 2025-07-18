@@ -67,19 +67,19 @@ const MasterPage = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display max-sm:text-4xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main font-semibold text-display max-sm:text-header max-sm:leading-tight my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("formation.master.title")}
       </h1>
 
       <div className="my-10 max-sm:mt-0 mb-20 mx-16 font-body max-large-medium:mx-0 max-xl:mx-5 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
-        <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse my-7 max-sm:mt-0 readerMode:flex-col-reverse">
+        <div className="flex flex-row justify-between items-start max-large:flex-col-reverse my-7 max-sm:mt-0 readerMode:flex-col-reverse">
           {img1.path && (
             <div className="w-full flex flex-col items-center my-auto">
               <img
                 src={`${import.meta.env.VITE_BASE_URL}/${img1.path}`}
                 alt={img1.alt || ""}
                 width={400}
-                className="minimal:hidden w-fit h-[16rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-3xl readerMode:mx-auto"
+                className="minimal:hidden w-fit h-[16rem] max-sm:w-fit max-sm:h-[16rem] max-large:w-fit max-large:h-[27rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-3xl readerMode:mx-auto"
               />
 
               {img1?.source && (
@@ -98,11 +98,11 @@ const MasterPage = () => {
           )}
         </div>
 
-        <div className="flex flex-row justify-between items-center max-large-medium:flex-col">
+        <div className="flex flex-row justify-between items-center max-large:flex-col">
           <div
             className={`${
               img2.path ? "w-[60%]" : "w-full"
-            } minimal:w-full max-large-medium:w-full mr-10 max-lg:mr-0`}
+            } minimal:w-full max-large:w-full max-large:my-5 mr-10 max-large:mr-0`}
           >
             {section2.texte && (
               <ReactMarkdown
@@ -113,12 +113,12 @@ const MasterPage = () => {
           </div>
 
           {img2.path && (
-            <div className="flex flex-col items-center my-auto">
+            <div className="flex flex-col items-center my-auto max-large:w-full">
               <img
                 src={`${import.meta.env.VITE_BASE_URL}/${img2.path}`}
                 alt={img2.alt || ""}
                 width={400}
-                className="minimal:hidden w-fit h-[16rem] max-sm:w-fit max-sm:mt-5 max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto mx-5 max-large-medium:mx-auto max-large-medium:mb-6 rounded-3xl"
+                className="minimal:hidden w-fit h-[16rem] max-sm:w-fit max-sm:h-[16rem] max-sm:mt-5 m-auto mx-5 max-large:w-fit max-large:h-1/2 max-large-medium:mx-auto max-large-medium:mb-6 rounded-3xl"
               />
 
               {img2?.source && (
@@ -137,11 +137,11 @@ const MasterPage = () => {
           />
         )}
 
-        <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse">
+        <div className="flex flex-row justify-between items-start max-large:flex-col-reverse">
           {section4.texte && (
             <ReactMarkdown
               className={`markdown my-10 ${
-                img3.path || img4.path ? "w-[60%] max-sm:w-full" : "w-full"
+                img3.path || img4.path ? "w-[60%] max-large:w-full" : "w-full"
               }`}
               children={String(section4.texte)}
             />
@@ -160,7 +160,7 @@ const MasterPage = () => {
                   src={`${import.meta.env.VITE_BASE_URL}/${img3.path}`}
                   alt={img3.alt || ""}
                   width={400}
-                  className="minimal:hidden w-fit h-[25rem] max-sm:w-fit max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto max-large-medium:mx-auto max-large-medium:mb-6 rounded-3xl"
+                  className="minimal:hidden w-fit h-[25rem] max-large:w-full max-large:h-1/2 m-auto max-large-medium:mx-auto max-large-medium:mb-6 rounded-3xl"
                 />
 
                 {img3?.source && (
@@ -178,7 +178,7 @@ const MasterPage = () => {
                   src={`${import.meta.env.VITE_BASE_URL}/${img4.path}`}
                   alt={img4.alt || ""}
                   width={400}
-                  className="minimal:hidden w-fit h-[25rem] max-sm:w-[16rem] max-sm:h-[16rem] max-large-medium:w-[25rem] max-large-medium:h-[25rem] max-xl:w-[20rem] max-xl:h-[20rem] m-auto max-large-medium:mx-auto max-large-medium:mb-6 rounded-3xl"
+                  className="minimal:hidden w-fit h-[25rem] max-large:w-full max-large:h-1/2 m-auto max-large-medium:mx-auto max-large-medium:mb-6 rounded-3xl"
                 />
 
                 {img4?.source && (

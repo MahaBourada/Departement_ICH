@@ -4,7 +4,7 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
   return (
     <nav
       aria-label="Pagination"
-      className="w-fit mx-auto mt-10 flex flex-row items-center space-x-3 text-neutral-600 font-medium dark:text-white"
+      className="w-fit mx-auto mt-10 flex flex-row items-center space-x-3 text-neutral-600 text-base font-medium font-numbers dark:text-white"
     >
       <button
         aria-label={
@@ -12,16 +12,16 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
         }
         onClick={() => {
           setCurrentPage((prev) => Math.max(prev - 1, 1)),
-            window.scrollTo({ top: 0 });
+            window.scrollTo({ top: 0, behavior: "smooth" });
         }}
         disabled={currentPage === 1}
-        className={`bg-neutral-200 w-11 h-11 border-neutral-500 border-2 rounded-full  ${
+        className={` w-9 h-9 border-neutral-500 dark:border-dark-white border-[1.5px] rounded-full  ${
           currentPage === 1
-            ? "cursor-not-allowed opacity-75"
-            : "cursor-pointer hover:bg-neutral-300"
+            ? "cursor-not-allowed bg-neutral-200 dark:bg-neutral-600 opacity-75 border-neutral-500 dark:border-neutral-400"
+            : "cursor-pointer bg-neutral-200 dark:bg-neutral-500 hover:bg-neutral-300 dark:hover:bg-neutral-400 border-neutral-500 dark:border-neutral-300"
         }`}
       >
-        <ChevronLeft size={30} strokeWidth={2.2} className="m-auto pr-0.5" />
+        <ChevronLeft size={26} strokeWidth={2.3} className="m-auto pr-0.5" />
       </button>
 
       {[...Array(totalPages)].map((_, i) => (
@@ -29,17 +29,19 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
           aria-label={`Page ${i + 1}`}
           key={i}
           onClick={() => {
-            setCurrentPage(i + 1), window.scrollTo({ top: 0 });
+            setCurrentPage(i + 1),
+              window.scrollTo({ top: 0, behavior: "smooth" });
           }}
-          className={`w-11 h-11 border-neutral-500 border-2 rounded-full hover:bg-neutral-300 cursor-pointer ${
+          className={`w-9 h-9 border-[1.5px] rounded-full transition-colors duration-300 hover:bg-neutral-300 dark:hover:bg-neutral-500 border-neutral-500 dark:border-neutral-300 cursor-pointer
+          ${
             currentPage === i + 1
-              ? "bg-neutral-400 text-black"
-              : "bg-neutral-200"
+              ? "bg-[#B8B8B8] dark:bg-neutral-400 text-black dark:text-white"
+              : "bg-neutral-200 dark:bg-transparent text-black dark:text-white"
           }`}
         >
           <p
             aria-current={currentPage === i + 1 ? "page" : undefined}
-            className="m-auto font-main"
+            className="m-auto"
           >
             {i + 1}
           </p>
@@ -54,16 +56,17 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
         }
         onClick={() => {
           setCurrentPage((prev) => Math.min(prev + 1, totalPages)),
-            window.scrollTo({ top: 0 });
+            window.scrollTo({ top: 0, behavior: "smooth" });
         }}
         disabled={currentPage === totalPages}
-        className={`bg-neutral-200 w-11 h-11 border-neutral-500 border-2 rounded-full  ${
+        className={`w-9 h-9 border-[1.5px] rounded-full transition-colors duration-300 
+        ${
           currentPage === totalPages
-            ? "cursor-not-allowed opacity-75"
-            : "cursor-pointer hover:bg-neutral-300"
+            ? "cursor-not-allowed bg-neutral-200 dark:bg-neutral-600 opacity-75 border-neutral-500 dark:border-neutral-400"
+            : "cursor-pointer bg-neutral-200 dark:bg-neutral-500 hover:bg-neutral-300 dark:hover:bg-neutral-400 border-neutral-500 dark:border-neutral-300"
         }`}
       >
-        <ChevronRight size={30} strokeWidth={2.2} className="m-auto pl-0.5" />
+        <ChevronRight size={26} strokeWidth={2.3} className="m-auto pl-0.5" />
       </button>
     </nav>
   );

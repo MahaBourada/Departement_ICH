@@ -59,7 +59,7 @@ const ContactPage = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
-      <h1 className="font-main font-semibold text-display readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main font-semibold text-display max-sm:text-header max-sm:leading-tight readerMode:w-fit readerMode:mx-auto">
         Contact
       </h1>
 
@@ -67,9 +67,9 @@ const ContactPage = () => {
         <MessagePopup message={msg} onClose={handleClose} status={msgStatus} />
       )}
 
-      <div className="flex flex-row justify-between items-start max-large-medium:flex-col readerMode:flex-col readerMode:leading-loose readerMode:w-[60ch] max-large-medium:readerMode:w-full readerMode:mx-auto">
-        <div className="flex flex-col ml-3 max-large-medium:mt-5 max-large-medium:mx-0">
-          <h2 className="font-main font-medium text-header my-5">
+      <div className="flex flex-row justify-between items-start max-large:flex-col readerMode:flex-col readerMode:leading-loose readerMode:w-[60ch] max-large-medium:readerMode:w-full readerMode:mx-auto">
+        <div className="flex flex-col ml-3 max-large:mt-5 max-large:mx-0 max-large:w-full">
+          <h2 className="font-main font-medium text-header max-sm:text-3xl max-sm:leading-tight my-5">
             {t("contact.title")}
           </h2>
           <ul className="list-disc mx-8">
@@ -79,16 +79,16 @@ const ContactPage = () => {
           </ul>
 
           <iframe
-            className="mx-auto my-10 max-sm:w-fit "
+            className="mx-auto my-10 max-large:w-full "
             title="Emplacement sur Google Maps : 2 Rue de la Liberté, 93200 Saint-Denis, France"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2620.434741898566!2d2.361295176275716!3d48.94520729459332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6695023b0b505%3A0xb2e7735a65b65d47!2s2%20Rue%20de%20la%20Libert%C3%A9%2C%2093200%20Saint-Denis%2C%20France!5e0!3m2!1sfr!2sdz!4v1751030832622!5m2!1sfr!2sdz"
             width="600"
             height="450"
             style={{ border: 0 }}
-            allowfullscreen=""
+            allowFullScreen=""
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            tabindex="0"
+            referrerPolicy="no-referrer-when-downgrade"
+            tabIndex="0"
             aria-label="Carte Google Maps affichant l'adresse : 2 Rue de la Liberté, 93200 Saint-Denis, France"
           ></iframe>
         </div>
@@ -96,7 +96,7 @@ const ContactPage = () => {
         <form
           id="contactForm"
           onSubmit={(e) => onSubmit(e)}
-          className="flex flex-col w-[45%] readerMode:w-full max-large-medium:w-full mr-7"
+          className="flex flex-col w-[45%] readerMode:w-full max-large:w-full mr-7"
           method="POST"
         >
           <div className="flex flex-row items-start justify-between mb-3 max-md:flex-col">
@@ -163,7 +163,7 @@ const ContactPage = () => {
             }
           />
 
-          <div className="flex flex-row justify-end mt-4 max-md:flex-col-reverse max-md:items-end">
+          <div className="flex flex-row justify-end mt-4 max-md:justify-center">
             <SmallBorderButton
               type="reset"
               text={t("contact.form.reset")}

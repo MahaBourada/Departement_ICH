@@ -3,12 +3,14 @@ import api from "../../../api/api.js";
 import { MessagePopup } from "../../../components/MsgPopup.jsx";
 import { InputField, SelectField } from "../../../components/Inputs.jsx";
 import {
+  BackButton,
   SmallBorderButton,
   SmallFilledButton,
 } from "../../../components/Buttons.jsx";
 import Switch from "@mui/material/Switch";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { UserContext } from "../../../contexts/UserContext.jsx";
+import { CircleArrowLeft } from "lucide-react";
 
 const UpdateAdmin = () => {
   const currentAdmin = useContext(UserContext).user;
@@ -99,9 +101,11 @@ const UpdateAdmin = () => {
 
   return (
     <main className="mx-14 my-20">
-      <h1 className="text-display font-semibold ">
-        Gestion de l'administrateur {admin.firstname}{" "}
-        {admin.lastname?.toUpperCase()} ({admin.username})
+      <BackButton />
+
+      <h1 className="text-display font-semibold leading-normal">
+        Gestion de l'administrateur '{admin.firstname}{" "}
+        {admin.lastname?.toUpperCase()} ({admin.username})'
       </h1>
 
       {msgShow && (

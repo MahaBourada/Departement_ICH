@@ -28,11 +28,11 @@ const PagesListPage = () => {
       <div className="grid grid-cols-2 max-large-medium:grid-cols-1 mx-14 my-4">
         {pages.map((page, index) => (
           <Link
-            onClick={() => window.scrollTo({ top: 0 })}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             aria-label={`Mettre à jour la ${page.title}`}
             key={index}
             to={`/admin/gestion-pages/${page.idPage}`}
-            className="mx-4 my-2 bg-admin-nav-bg dark:bg-[#83421F] p-6 rounded-3xl hover:bg-accent hover:underline dark:hover:bg-[#693214]"
+            className="mx-4 my-2 bg-admin-nav-bg dark:bg-[#83421F] p-6 rounded-3xl transition-colors duration-300 hover:bg-accent hover:underline dark:hover:bg-[#693214]"
           >
             <div className=" flex justify-between items-center font-main font-medium ">
               <p>{page.title}</p>

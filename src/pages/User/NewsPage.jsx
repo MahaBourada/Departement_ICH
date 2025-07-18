@@ -39,7 +39,7 @@ const NewsPage = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main font-semibold text-display max-sm:text-header readerMode:w-fit readerMode:mx-auto">
         {t("department.news.link")}
       </h1>
 
@@ -70,7 +70,7 @@ const NewsPage = () => {
                         <a
                           href={oneNews.lien}
                           target="_blank"
-                          className="p-0.5 hover:bg-main hover:underline rounded-md"
+                          className="p-0.5 transition-colors duration-300 hover:bg-main dark:hover:bg-dark-accent hover:underline rounded-md"
                         >
                           {oneNews.lien}
                         </a>

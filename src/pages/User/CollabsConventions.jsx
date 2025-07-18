@@ -4,6 +4,9 @@ import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
 import Breadcrumb from "../../components/Breadcrumb";
 import Pagination from "../../components/Pagination";
+import { Link } from "react-router-dom";
+import { CircleArrowLeft } from "lucide-react";
+import { BackButton } from "../../components/Buttons";
 
 const CollabsConventions = () => {
   const { t } = useTranslation();
@@ -61,7 +64,9 @@ const CollabsConventions = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display max-sm:text-4xl leading-snug my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <BackButton />
+
+      <h1 className="font-main font-semibold text-display max-sm:text-header max-sm:leading-tight my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("collaboration.national.conventions")}
       </h1>
 
@@ -101,7 +106,7 @@ const CollabsConventions = () => {
                 <img
                   src={`${import.meta.env.VITE_BASE_URL}/${collab.logo}`}
                   alt={`Logo de l'organisation ${collab.nom}`}
-                  className="w-60 my-auto dark:bg-neutral-400 p-2.5 px-3 rounded-2xl max-sm:mt-8 max-sm:w-fit"
+                  className="w-60 my-auto dark:bg-neutral-400 p-2.5 px-3 rounded-2xl max-sm:mt-8 max-sm:w-full"
                 />
               </div>
               <div className="border-neutral-500 dark:border-gray-300 border-[1px] my-5 w-full"></div>

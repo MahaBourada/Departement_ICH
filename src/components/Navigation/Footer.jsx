@@ -34,7 +34,7 @@ const Footer = ({ switchLang }) => {
   }, [showLang]);
 
   return (
-    <footer className="max-large-medium:hidden flex flex-col items-center py-4 px-10 bg-main dark:bg-dark-main dark:text-gray-300 large-medium:text-nav leading-normal">
+    <footer className="max-large:hidden flex flex-col items-center py-4 px-10 bg-main dark:bg-dark-main dark:text-gray-300 large-medium:text-nav leading-normal">
       <div className="flex justify-between items-end w-full">
         <img
           src="/ich/assets/vectors/LogoDark.svg"
@@ -73,7 +73,7 @@ const Footer = ({ switchLang }) => {
         <div className="flex items-center">
           {localStorage.getItem("lang") === "en" ? (
             <button
-              className="cursor-pointer w-fit flex justify-end items-center mx-1 hover:underline p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+              className="cursor-pointer w-fit flex justify-end items-center mx-1 transition-colors duration-300 hover:underline p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
               onClick={() => switchLang("fr")}
             >
               <img
@@ -84,7 +84,7 @@ const Footer = ({ switchLang }) => {
             </button>
           ) : (
             <button
-              className="cursor-pointer w-fit flex justify-end items-center mx-1 hover:underline p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+              className="cursor-pointer w-fit flex justify-end items-center mx-1 transition-colors duration-300 hover:underline p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
               onClick={() => switchLang("en")}
             >
               <img
@@ -103,22 +103,22 @@ const Footer = ({ switchLang }) => {
         <nav className="flex justify-between font-main text-nav">
           <div className="flex flex-col px-2">
             <NavLink
-              onClick={() => window.scrollTo({ top: 0 })}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-                  : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
               }
               to="/"
             >
               {t("home.link")}
             </NavLink>
             <NavLink
-              onClick={() => window.scrollTo({ top: 0 })}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-                  : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
               }
               to="/contact"
             >
@@ -129,22 +129,22 @@ const Footer = ({ switchLang }) => {
           <div className="flex flex-col px-2">
             <p className="mx-1 p-2 font-medium">{t("department.link")}</p>
             <NavLink
-              onClick={() => window.scrollTo({ top: 0 })}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-                  : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
               }
               to="/departement/actualites"
             >
               {t("department.news.link")}
             </NavLink>
             <NavLink
-              onClick={() => window.scrollTo({ top: 0 })}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-                  : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
               }
               to="/departement/equipe"
             >
@@ -155,33 +155,33 @@ const Footer = ({ switchLang }) => {
           <div className="flex flex-col px-2">
             <p className="p-2 font-medium">{t("formation.link")}</p>
             <NavLink
-              onClick={() => window.scrollTo({ top: 0 })}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-                  : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
               }
               to="/formation/master"
             >
               {t("formation.master.link")}
             </NavLink>
             <NavLink
-              onClick={() => window.scrollTo({ top: 0 })}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-                  : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
               }
               to="/formation/projets-etudiants"
             >
               {t("formation.projects.title")}
             </NavLink>
             <NavLink
-              onClick={() => window.scrollTo({ top: 0 })}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-                  : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
               }
               to="/formation/prix-concours"
             >
@@ -192,11 +192,11 @@ const Footer = ({ switchLang }) => {
           <div className="flex flex-col px-2">
             <p className="p-2 font-medium">{t("research.link")}</p>
             <NavLink
-              onClick={() => window.scrollTo({ top: 0 })}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-                  : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
               }
               to="/recherche/lab-chart"
             >
@@ -207,22 +207,22 @@ const Footer = ({ switchLang }) => {
           <div className="flex flex-col px-2">
             <p className="p-2 font-medium">Collaborations</p>
             <NavLink
-              onClick={() => window.scrollTo({ top: 0 })}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-                  : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
               }
               to="/collaborations/collaborations-nationales"
             >
               {t("collaboration.national.link")}
             </NavLink>
             <NavLink
-              onClick={() => window.scrollTo({ top: 0 })}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
-                  : "hover:underline mx-1 px-2 py-1.5 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900 rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
               }
               to="/collaborations/collaborations-internationales"
             >
@@ -233,23 +233,38 @@ const Footer = ({ switchLang }) => {
       </div>
 
       <div className="flex justify-between items-center mt-10">
-        <Link to="/accessibilite" className="mx-1 hover:underline">
+        <Link
+          to="/accessibilite"
+          className="mx-1 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg hover:underline px-1.5"
+        >
           {t("footer.accessibility")}
         </Link>
         <p className="mx-1">|</p>
-        <Link to="/credits" className="mx-1 hover:underline">
+        <Link
+          to="/credits"
+          className="mx-1 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg hover:underline px-1.5"
+        >
           {t("footer.credits")}
         </Link>
         <p className="mx-1">|</p>
-        <Link to="/mentions-legales" className="mx-1 hover:underline">
+        <Link
+          to="/mentions-legales"
+          className="mx-1 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg hover:underline px-1.5"
+        >
           {t("footer.mentions")}
         </Link>
         <p className="mx-1">|</p>
-        <Link to="/politique-confidentialite" className="mx-1 hover:underline">
+        <Link
+          to="/politique-confidentialite"
+          className="mx-1 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg hover:underline px-1.5"
+        >
           {t("footer.policy")}
         </Link>
         <p className="mx-1">|</p>
-        <Link to="/droits-auteurs" className="mx-1 hover:underline">
+        <Link
+          to="/droits-auteurs"
+          className="mx-1 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg hover:underline px-1.5"
+        >
           {t("footer.copyright")}
         </Link>
       </div>

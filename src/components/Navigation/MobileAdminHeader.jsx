@@ -22,7 +22,7 @@ const MobileAdminHeader = () => {
   const handleLinkClick = () => {
     setShowMenu(false);
 
-    window.scrollTo({ top: 0 });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const navigate = useNavigate();
@@ -119,7 +119,7 @@ const MobileAdminHeader = () => {
               onClick={handleLinkClick}
               to="/admin/tableau-de-bord"
               className={({ isActive }) =>
-                `px-5 py-3 w-full text-center font-medium hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900  hover:underline hover:translate-[1px] ${
+                `px-5 py-3 w-full text-center font-medium transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900  hover:underline hover:translate-[1px] ${
                   isActive ? "underline bg-hover-main dark:bg-gray-900" : ""
                 }`
               }
@@ -131,7 +131,7 @@ const MobileAdminHeader = () => {
               onClick={handleLinkClick}
               to="/admin/gestion-pages"
               className={({ isActive }) =>
-                `px-5 py-3 w-full text-center font-medium hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900  hover:underline hover:translate-[1px] ${
+                `px-5 py-3 w-full text-center font-medium transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900  hover:underline hover:translate-[1px] ${
                   isActive ? "underline bg-hover-main dark:bg-gray-900" : ""
                 }`
               }
@@ -143,7 +143,7 @@ const MobileAdminHeader = () => {
               onClick={handleLinkClick}
               to="/admin/gestion-equipe"
               className={({ isActive }) =>
-                `px-5 py-3 w-full text-center font-medium hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900  hover:underline hover:translate-[1px] ${
+                `px-5 py-3 w-full text-center font-medium transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900  hover:underline hover:translate-[1px] ${
                   isActive ? "underline bg-hover-main dark:bg-gray-900" : ""
                 }`
               }
@@ -155,7 +155,7 @@ const MobileAdminHeader = () => {
               onClick={handleLinkClick}
               to="/admin/gestion-conferences"
               className={({ isActive }) =>
-                `px-5 py-3 w-full text-center font-medium hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900  hover:underline hover:translate-[1px] ${
+                `px-5 py-3 w-full text-center font-medium transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900  hover:underline hover:translate-[1px] ${
                   isActive ? "underline bg-hover-main dark:bg-gray-900" : ""
                 }`
               }
@@ -167,7 +167,7 @@ const MobileAdminHeader = () => {
               onClick={handleLinkClick}
               to="/admin/gestion-projets"
               className={({ isActive }) =>
-                `px-5 py-3 w-full text-center font-medium hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900  hover:underline hover:translate-[1px] ${
+                `px-5 py-3 w-full text-center font-medium transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900  hover:underline hover:translate-[1px] ${
                   isActive ? "underline bg-hover-main dark:bg-gray-900" : ""
                 }`
               }
@@ -179,7 +179,7 @@ const MobileAdminHeader = () => {
               onClick={handleLinkClick}
               to="/admin/gestion-prix"
               className={({ isActive }) =>
-                `px-5 py-3 w-full text-center font-medium hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900  hover:underline hover:translate-[1px] ${
+                `px-5 py-3 w-full text-center font-medium transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-gray-900 dark:focus:bg-gray-900  hover:underline hover:translate-[1px] ${
                   isActive ? "underline bg-hover-main dark:bg-gray-900" : ""
                 }`
               }

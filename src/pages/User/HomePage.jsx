@@ -53,8 +53,8 @@ const HomePage = () => {
           children={String(pageAccueil[0]?.texte)}
         />
 
-        <div className="flex flex-row justify-between items-start max-large-medium:flex-col-reverse readerMode:flex-col-reverse">
-          <div className="w-[60%] readerMode:w-full max-large-medium:w-full mr-10 max-lg:mr-5">
+        <div className="flex flex-row justify-between items-start max-large:flex-col-reverse readerMode:flex-col-reverse">
+          <div className="w-[60%] readerMode:w-full max-large:w-full mr-10 max-lg:mr-5">
             <ReactMarkdown
               className="markdown"
               children={String(pageAccueil[1]?.texte)}
@@ -111,14 +111,14 @@ const HomePage = () => {
             return (
               <div
                 key={img.idMedia}
-                className="flex flex-col items-center mx-auto readerMode:my-4"
+                className="flex flex-col items-center space-x-2.5 mx-auto readerMode:my-4"
               >
-                <div className="w-[26rem] h-[26rem] max-sm:w-fit max-sm:h-1/2 overflow-hidden">
+                <div className="w-[26rem] h-[26rem] max-sm:w-fit max-sm:h-1/2 max-xl:w-fit max-xl:h-fit overflow-hidden">
                   <img
                     src={fullPath}
                     alt={img.alt || ""}
                     width={400}
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-full object-cover object-center rounded-4xl"
                   />
                 </div>
 

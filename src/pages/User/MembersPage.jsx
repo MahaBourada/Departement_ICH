@@ -39,7 +39,7 @@ const MembersPage = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold leading-snug text-display max-sm:text-4xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main font-semibold leading-snug text-display max-sm:text-header my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("department.team.title")}
       </h1>
 
@@ -47,7 +47,7 @@ const MembersPage = () => {
         {t("department.team.categories.Directeur du département")}
       </h2>
 
-      <div className="grid grid-cols-2 mb-6 max-md:grid-cols-1 readerMode:grid-cols-1 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
+      <div className="grid grid-cols-2 mb-6 max-large:grid-cols-1 readerMode:grid-cols-1 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
         {members
           .filter((member) => member.titre === "Directeur du département")
           .map((member) => {
@@ -59,11 +59,11 @@ const MembersPage = () => {
 
             return (
               <Link
-                onClick={() => window.scrollTo({ top: 0 })}
+                onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
                 key={member.idMembre}
                 to={member.idMembre}
                 state={{ member: member }}
-                className="border-2 border-black dark:border-gray-300 rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:bg-bg-crumb focus:bg-bg-crumb dark:hover:bg-dark-bg-crumb max-lg:flex max-lg:flex-col max-lg:justify-start"
+                className="border-2 border-black dark:border-gray-300 rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full transition-colors duration-300 hover:bg-bg-crumb focus:bg-bg-crumb dark:hover:bg-dark-bg-crumb max-lg:flex max-lg:flex-col max-lg:justify-start"
               >
                 <h3 className="font-main font-medium text-dynamic-xl leading-snug max-md:text-3xl">
                   {member.prenom + " " + member.nom.toUpperCase()}
@@ -74,7 +74,7 @@ const MembersPage = () => {
                       src={`${import.meta.env.VITE_BASE_URL}/${member.image}`}
                       alt={`Photo de ${member.nom}`}
                       width={200}
-                      className="rounded-3xl minimal:hidden max-lg:mx-auto max-lg:w-fit max-xl:w-40"
+                      className="dark:bg-neutral-500 rounded-3xl minimal:hidden max-lg:mx-auto max-large:w-fit max-xl:w-40"
                     />
                   )}
 
@@ -105,7 +105,7 @@ const MembersPage = () => {
         {t("department.team.categories.Administration")}
       </h2>
 
-      <div className="grid grid-cols-2 mb-6 max-md:grid-cols-1 readerMode:grid-cols-1 readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full max-large-medium:readerMode:text-xl">
+      <div className="grid grid-cols-2 mb-6 max-large:grid-cols-1 readerMode:grid-cols-1 readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full max-large-medium:readerMode:text-xl">
         {members
           .filter((member) => member.titre === "Administration")
           .map((member) => {
@@ -117,11 +117,11 @@ const MembersPage = () => {
 
             return (
               <Link
-                onClick={() => window.scrollTo({ top: 0 })}
+                onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
                 key={member.idMembre}
                 to={member.idMembre}
                 state={{ member: member }}
-                className="border-2 border-black dark:border-gray-300 rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:bg-bg-crumb focus:bg-bg-crumb dark:hover:bg-dark-bg-crumb max-lg:flex max-lg:flex-col max-lg:justify-start"
+                className="border-2 border-black dark:border-gray-300 rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full transition-colors duration-300 hover:bg-bg-crumb focus:bg-bg-crumb dark:hover:bg-dark-bg-crumb max-lg:flex max-lg:flex-col max-lg:justify-start"
               >
                 <h3 className="font-main font-medium text-dynamic-xl leading-snug max-md:text-3xl">
                   {member.prenom + " " + member.nom.toUpperCase()}
@@ -131,7 +131,7 @@ const MembersPage = () => {
                     src={`${import.meta.env.VITE_BASE_URL}/${member.image}`}
                     alt={`Photo de ${member.nom}`}
                     width={200}
-                    className="rounded-3xl minimal:hidden max-lg:mx-auto max-lg:w-fit max-xl:w-40"
+                    className="dark:bg-neutral-500 rounded-3xl minimal:hidden max-lg:mx-auto max-large:w-fit max-xl:w-40"
                   />
 
                   <div className="ml-4 my-2 max-md:mx-1">
@@ -162,7 +162,7 @@ const MembersPage = () => {
         {/* 's' at the end for the plural */}
       </h2>
 
-      <div className="grid grid-cols-2 max-md:grid-cols-1 gap-y-10 readerMode:grid-cols-1 readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full max-large-medium:readerMode:text-xl">
+      <div className="grid grid-cols-2 max-large:grid-cols-1 gap-y-10 readerMode:grid-cols-1 readerMode:leading-loose readerMode:text-2xl readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full max-large-medium:readerMode:text-xl">
         {members
           .filter((member) => member.titre === "Enseignant(e)")
           .map((member) => {
@@ -174,11 +174,11 @@ const MembersPage = () => {
 
             return (
               <Link
-                onClick={() => window.scrollTo({ top: 0 })}
+                onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
                 key={member.idMembre}
                 to={member.idMembre}
                 state={{ member: member }}
-                className="border-2 border-black dark:border-gray-300 rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full hover:bg-bg-crumb focus:bg-bg-crumb dark:hover:bg-dark-bg-crumb max-lg:flex max-lg:flex-col max-lg:justify-start"
+                className="border-2 border-black dark:border-gray-300 rounded-[50px] px-6 py-6 m-4 mx-5 max-md:mx-auto max-md:w-full transition-colors duration-300 hover:bg-bg-crumb focus:bg-bg-crumb dark:hover:bg-dark-bg-crumb max-lg:flex max-lg:flex-col max-lg:justify-start"
               >
                 <h3 className="font-main font-medium text-dynamic-xl leading-snug max-md:text-3xl">
                   {member.prenom + " " + member.nom.toUpperCase()}
@@ -188,7 +188,7 @@ const MembersPage = () => {
                     src={`${import.meta.env.VITE_BASE_URL}/${member.image}`}
                     alt={`Photo de ${member.nom}`}
                     width={200}
-                    className="rounded-3xl minimal:hidden max-lg:mx-auto max-lg:w-fit max-xl:w-40"
+                    className="dark:bg-neutral-500 rounded-3xl minimal:hidden max-lg:mx-auto max-large:w-fit max-xl:w-40"
                   />
 
                   <div className="ml-4 my-2 max-md:mx-1">

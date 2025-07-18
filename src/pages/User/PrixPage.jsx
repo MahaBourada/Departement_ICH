@@ -1,7 +1,5 @@
-import { ChevronRight } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 import Breadcrumb from "../../components/Breadcrumb";
 import ReactMarkdown from "react-markdown";
 import api from "../../api/api";
@@ -39,7 +37,7 @@ const PrixPage = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display max-sm:text-4xl my-2 mb-4">
+      <h1 className="font-main font-semibold text-display max-sm:text-header max-sm:leading-tight my-2 mb-4">
         {t("formation.awards_title.title")}
       </h1>
 
@@ -52,7 +50,7 @@ const PrixPage = () => {
               <div className="flex flex-row items-start justify-between max-large-large:flex-col readerMode:flex-col">
                 <div
                   className={`${
-                    onePrix.image ? "w-[60%] max-sm:w-full" : "w-full"
+                    onePrix.image ? "w-[60%] max-lg:w-full" : "w-full"
                   }`}
                 >
                   <h2 className="font-semibold font-main text-dynamic-lg my-2">
@@ -116,7 +114,7 @@ const PrixPage = () => {
                         <span className="font-semibold">{t("website")} : </span>
                         <a
                           href={onePrix.lien}
-                          className="p-0.5 hover:bg-main hover:underline rounded-md max-w-full break-words whitespace-normal"
+                          className="p-0.5 transition-colors duration-300 hover:bg-main dark:hover:bg-dark-accent hover:underline rounded-md max-w-full break-words whitespace-normal"
                         >
                           {onePrix.lien}
                         </a>
@@ -130,7 +128,7 @@ const PrixPage = () => {
                     src={`${import.meta.env.VITE_BASE_URL}/${onePrix.image}`}
                     alt={onePrix.alt}
                     width={400}
-                    className="mx-4 max-sm:mx-0 minimal:hidden max-large-large:my-6 max-large-medium:w-[30rem] max-large-medium:h-[30rem] max-lg:w-64 max-lg:h-64 max-xl:w-60 max-xl:h-60 readerMode:my-4 rounded-3xl"
+                    className="mx-4 max-sm:mx-0 max-lg:mx-auto max-lg:my-5 max-lg:w-full minimal:hidden readerMode:my-4 rounded-3xl"
                   />
                 )}
               </div>

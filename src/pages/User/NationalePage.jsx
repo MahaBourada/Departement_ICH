@@ -61,7 +61,7 @@ const NationalePage = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display max-sm:text-4xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main font-semibold text-display max-sm:text-header max-sm:leading-tight my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("collaboration.national.title")}
       </h1>
 
@@ -79,7 +79,7 @@ const NationalePage = () => {
               src={`${import.meta.env.VITE_BASE_URL}/${img1.path}`}
               alt={img1.alt || ""}
               width={400}
-              className="minimal:hidden w-3/4 max-sm:w-fit m-auto my-5 max-large-medium:mx-auto max-large-medium:mb-6"
+              className="minimal:hidden w-3/4 max-large:w-fit m-auto my-5 max-large-medium:mx-auto max-large-medium:mb-6"
             />
 
             {img1?.source && (
@@ -91,9 +91,9 @@ const NationalePage = () => {
         )}
 
         <Link
-          onClick={() => window.scrollTo({ top: 0 })}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           to="/collaborations/collaborations-nationales/collabs-conventions"
-          className="mx-auto my-10 flex justify-center items-center w-fit cursor-pointer font-main font-medium rounded-xl h-fit px-5 py-3 text-black bg-accent hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white text-nav leading-normal"
+          className="mx-auto my-10 flex justify-center items-center w-fit cursor-pointer font-main font-medium rounded-xl h-fit px-5 py-3 text-black bg-accent transition-colors duration-300 hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white text-nav max-sm:text-[1.125rem] leading-normal"
         >
           {t("collaboration.national.more")}
         </Link>

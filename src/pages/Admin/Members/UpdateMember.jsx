@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import api from "../../../api/api";
 import { MessagePopup } from "../../../components/MsgPopup";
 import {
@@ -9,11 +9,13 @@ import {
   TextAreaField,
 } from "../../../components/Inputs";
 import {
+  BackButton,
   SmallBorderButton,
   SmallFilledButton,
 } from "../../../components/Buttons";
 import { getRelativePath } from "../../../utils/getRelativePath";
 import { UserContext } from "../../../contexts/UserContext";
+import { CircleArrowLeft } from "lucide-react";
 
 const UpdateMember = () => {
   const currentAdmin = useContext(UserContext).user;
@@ -39,8 +41,6 @@ const UpdateMember = () => {
       const initialImage = member.image
         ? `${import.meta.env.VITE_BASE_URL}/${member.image}`
         : member.image || null;
-
-      console.log(initialImage);
 
       setValues({
         prenom: member.prenom || "",
@@ -138,8 +138,10 @@ const UpdateMember = () => {
 
   return (
     <main className="mx-14 my-20">
-      <h1 className="text-display font-semibold">
-        Gestion du membre {member.prenom + " " + member.nom}
+      <BackButton />
+
+      <h1 className="text-display leading-normal font-semibold">
+        Gestion du membre '{member.prenom + " " + member.nom}'
       </h1>
 
       {msgShow && (
@@ -270,7 +272,7 @@ const UpdateMember = () => {
           <br />
           Voici le lien vers l'aide-mémoire Markdown :&nbsp;
           <a
-            className="underline p-0.5 hover:no-underline hover:bg-hover-main dark:hover:bg-dark-accent rounded-md"
+            className="underline p-0.5 transition-colors duration-300 hover:no-underline hover:bg-hover-main dark:hover:bg-dark-accent rounded-md"
             href="https://www.markdownguide.org/cheat-sheet/"
             title="https://www.markdownguide.org/cheat-sheet/"
             target="_blank"

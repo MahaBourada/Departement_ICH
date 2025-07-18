@@ -28,7 +28,6 @@ const InternationalePage = () => {
       setPageInternational(contentResponse.data);
       setImages(imagesResponse.data);
       setCollabs(collabsResponse.data);
-      set;
     } catch (error) {
       console.error(error);
     }
@@ -39,7 +38,6 @@ const InternationalePage = () => {
   }
 
   const img1 = getByPosition(images, 1);
-  const img2 = getByPosition(images, 2);
 
   useEffect(() => {
     fetchData();
@@ -71,7 +69,7 @@ const InternationalePage = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display max-sm:text-4xl leading-snug my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main font-semibold text-display max-sm:text-header max-sm:leading-tight my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("collaboration.international.title")}
       </h1>
 
@@ -89,7 +87,7 @@ const InternationalePage = () => {
               src={`${import.meta.env.VITE_BASE_URL}/${img1.path}`}
               alt={img1.alt || ""}
               width={400}
-              className="minimal:hidden w-3/4 max-sm:w-fit m-auto my-5 max-large-medium:mx-auto max-large-medium:mb-6"
+              className="minimal:hidden w-3/4 max-large:w-fit m-auto my-5 max-large-medium:mx-auto max-large-medium:mb-6"
             />
 
             {img1?.source && (

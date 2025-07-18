@@ -150,7 +150,7 @@ const CollabForm = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display max-sm:text-4xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main font-semibold text-display max-sm:text-header max-sm:leading-tight my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("collaboration.form.title")}
       </h1>
 
@@ -162,7 +162,7 @@ const CollabForm = () => {
         method="post"
         onSubmit={handleSubmit}
         onReset={handleReset}
-        className="w-3/4 m-auto max-sm:w-full"
+        className="w-3/4 m-auto max-large:w-full"
       >
         <div className="flex flex-row items-start justify-between mb-3 max-md:flex-col">
           <div className="w-1/2 max-md:w-full mr-3">
@@ -331,7 +331,7 @@ const CollabForm = () => {
           </div>
         </fieldset>
 
-        <div className="flex flex-row justify-end mt-4 max-md:flex-col-reverse max-md:items-end">
+        <div className="flex flex-row justify-end mt-4 max-md:justify-center">
           <SmallBorderButton
             type="reset"
             text={t("collaboration.form.reset")}

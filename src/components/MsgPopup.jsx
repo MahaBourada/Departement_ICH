@@ -24,7 +24,7 @@ export const MessagePopup = ({ message, status, onClose }) => {
       <div className="flex w-full justify-end">
         <button
           type="button"
-          className="cursor-pointer hover:translate-[1px]"
+          className="cursor-pointer transition-colors duration-300 hover:translate-[1px]"
           onClick={onClose}
         >
           <X aria-label="Fermer" size={30} strokeWidth={3} />

@@ -19,6 +19,7 @@
   --color-dark-background: #2F2F2F;
   --color-dark-white: #EDEDED;
   --color-dark-main: #3E4B56;
+  --color-dark-main-focus: #262E36;
   --color-dark-accent: #98471B;
   --color-dark-hover-accent: #713210;
   --color-dark-bg-transparent: rgba(151,56,0, 0.65);
@@ -30,6 +31,7 @@
 
   --font-main: "Poppins", "sans-serif";
   --font-body: "Albert Sans", "sans-serif";
+  --font-numbers: "Roboto", "sans-serif";
 
   --font-base: 1.35rem;
   --leading-base: 2.75rem;
@@ -43,8 +45,10 @@
   --shadow-medium: 0px 3px 5px 1px #999;
 
   --breakpoint-xs: 30rem;
+  --breakpoint-large: 65rem;
   --breakpoint-large-medium: 61rem;
   --breakpoint-large-large: 76rem; 
+  --breakpoint-xl: 82rem; 
 }
 
 .toolbar-button {
@@ -150,6 +154,19 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+@media (max-width: 640px) {
+  .mobile-font-size {
+    --font-base: 1.125rem !important;   /* 18px */
+    --leading-base: 2.5rem !important;
+  }
+}
+
+/* @media (max-width: 480px) {
+  .tablet-font-size {
+    --font-base: 1.125rem; /* 18px 
+  }
+} */
 
 @media (max-width: 640px) {
   .text-dynamic-xl {
