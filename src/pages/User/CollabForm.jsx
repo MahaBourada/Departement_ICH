@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import api from "../../api/api";
 import { useTranslation } from "react-i18next";
-import { ChevronRight } from "lucide-react";
-import { Link } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
 import Breadcrumb from "../../components/Breadcrumb";
 import { SmallBorderButton, SmallFilledButton } from "../../components/Buttons";
 import { InputField, TextAreaField } from "../../components/Inputs";
 import { MessagePopup } from "../../components/MsgPopup";
 import dayjs from "dayjs";
-import { isValidPhoneNumber } from "libphonenumber-js";
 
 const CollabForm = () => {
   const { t } = useTranslation();
@@ -58,13 +54,6 @@ const CollabForm = () => {
       return;
     }
 
-    if (!isValidPhoneNumber(values.telephone)) {
-      setMsg("Numéro de téléphone invalide.");
-      setMsgStatus(0);
-      setMsgShow(true);
-      return;
-    }
-
     const disponibilites =
       values.debutDate && values.finDate
         ? `Du ${dayjs(values.debutDate).format("DD/MM/YYYY")} au ${dayjs(
@@ -108,11 +97,21 @@ const CollabForm = () => {
       setMsgShow(true);
       setMsg("Demande de collaboration envoyée");
     } catch (error) {
-      console.error(error);
+      const backendMsg = error?.response?.data?.message;
+      const backendErrors = error?.response?.data?.errors;
 
       setMsgStatus(0);
+
+      if (backendErrors && backendErrors.length > 0) {
+        // Show only the first error
+        setMsg(backendErrors[0].msg);
+      } else if (backendMsg) {
+        setMsg(backendMsg);
+      } else {
+        setMsg("Une erreur est survenue.");
+      }
+
       setMsgShow(true);
-      setMsg("Erreur lors de l'envoi");
     }
   };
 

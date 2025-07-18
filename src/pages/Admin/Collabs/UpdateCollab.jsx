@@ -110,11 +110,18 @@ const UpdateCollab = () => {
       setMsg(response.data.message);
     } catch (error) {
       const backendMsg = error?.response?.data?.message;
+      const backendErrors = error?.response?.data?.errors;
 
-      if (backendMsg) {
-        setMsg(backendMsg); // Set the backend message from Express
-        setMsgShow(true); // Trigger your popup or message display
+      if (backendErrors && backendErrors.length > 0) {
+        // Show only the first error
+        setMsg(backendErrors[0].msg);
+      } else if (backendMsg) {
+        setMsg(backendMsg);
+      } else {
+        setMsg("Une erreur est survenue.");
       }
+
+      setMsgShow(true);
     }
   };
 

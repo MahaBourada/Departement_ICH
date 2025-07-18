@@ -114,6 +114,7 @@ const PrixPage = () => {
                         <span className="font-semibold">{t("website")} : </span>
                         <a
                           href={onePrix.lien}
+                          target="_blank"
                           className="p-0.5 transition-colors duration-300 hover:bg-main dark:hover:bg-dark-accent hover:underline rounded-md max-w-full break-words whitespace-normal"
                         >
                           {onePrix.lien}

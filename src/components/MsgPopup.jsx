@@ -9,7 +9,7 @@ export const MessagePopup = ({ message, status, onClose }) => {
     if (status === 200 || status === 0) {
       const timer = setTimeout(() => {
         onClose();
-      }, 6000);
+      }, 5000);
 
       return () => clearTimeout(timer);
     }

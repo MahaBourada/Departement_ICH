@@ -197,7 +197,7 @@ const MobileUserHeader = ({ switchLang }) => {
                   <Link
                     onClick={handleLinkClick}
                     to="/departement/actualites"
-                    className="hover:bg-gray-200 active:bg-gray-200 dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
+                    className="hover:bg-hover-main active:bg-hover-main dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
                   >
                     {t("department.news.link")}
                   </Link>
@@ -205,7 +205,7 @@ const MobileUserHeader = ({ switchLang }) => {
                   <Link
                     onClick={handleLinkClick}
                     to="/departement/equipe"
-                    className="hover:bg-gray-200 active:bg-gray-200 dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
+                    className="hover:bg-hover-main active:bg-hover-main dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
                   >
                     {t("department.team.link")}
                   </Link>
@@ -240,28 +240,28 @@ const MobileUserHeader = ({ switchLang }) => {
                   <Link
                     onClick={handleLinkClick}
                     to="/formation/master"
-                    className="hover:bg-gray-200 active:bg-gray-200 dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
+                    className="hover:bg-hover-main active:bg-hover-main dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
                   >
                     {t("formation.master.link")}
                   </Link>
                   <Link
                     onClick={handleLinkClick}
                     to="/formation/projets-etudiants"
-                    className="hover:bg-gray-200 active:bg-gray-200 dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
+                    className="hover:bg-hover-main active:bg-hover-main dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
                   >
                     {t("formation.projects.title")}
                   </Link>
                   <Link
                     onClick={handleLinkClick}
                     to="/formation/prix-concours"
-                    className="hover:bg-gray-200 active:bg-gray-200 dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
+                    className="hover:bg-hover-main active:bg-hover-main dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
                   >
                     {t("formation.awards_title.title")}
                   </Link>
                   <Link
                     onClick={handleLinkClick}
                     to="/formation/alumni"
-                    className="hover:bg-gray-200 active:bg-gray-200 dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
+                    className="hover:bg-hover-main active:bg-hover-main dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
                   >
                     Alumni
                   </Link>
@@ -291,7 +291,7 @@ const MobileUserHeader = ({ switchLang }) => {
                   <Link
                     onClick={handleLinkClick}
                     to="/recherche/lab-chart"
-                    className="hover:bg-gray-200 active:bg-gray-200 dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
+                    className="hover:bg-hover-main active:bg-hover-main dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
                   >
                     {t("research.lab-chart.link")}
                   </Link>
@@ -325,21 +325,21 @@ const MobileUserHeader = ({ switchLang }) => {
                   <Link
                     onClick={handleLinkClick}
                     to="/collaborations/collaborations-nationales"
-                    className="hover:bg-gray-200 active:bg-gray-200 dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
+                    className="hover:bg-hover-main active:bg-hover-main dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
                   >
                     {t("collaboration.national.link")}
                   </Link>
                   <Link
                     onClick={handleLinkClick}
                     to="/collaborations/collaborations-internationales"
-                    className="hover:bg-gray-200 active:bg-gray-200 dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
+                    className="hover:bg-hover-main active:bg-hover-main dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
                   >
                     {t("collaboration.international.link")}
                   </Link>
                   <Link
                     onClick={handleLinkClick}
                     to="/collaborations/collaborez-avec-nous"
-                    className="hover:bg-gray-200 active:bg-gray-200 dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
+                    className="hover:bg-hover-main active:bg-hover-main dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
                   >
                     {t("collaboration.form.link")}
                   </Link>

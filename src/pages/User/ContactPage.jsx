@@ -39,11 +39,21 @@ const ContactPage = () => {
       setMsgShow(true);
       setMsg("Message envoyé");
     } catch (error) {
-      console.error(error);
+      const backendMsg = error?.response?.data?.message;
+      const backendErrors = error?.response?.data?.errors;
 
       setMsgStatus(0);
+
+      if (backendErrors && backendErrors.length > 0) {
+        // Show only the first error
+        setMsg(backendErrors[0].msg);
+      } else if (backendMsg) {
+        setMsg(backendMsg);
+      } else {
+        setMsg("Une erreur est survenue.");
+      }
+
       setMsgShow(true);
-      setMsg("Erreur lors de l'envoi");
     }
   };
 
