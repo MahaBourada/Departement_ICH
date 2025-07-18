@@ -18,6 +18,11 @@ import path from "path";
 import { fileURLToPath } from "url";
 import multer from "multer";
 import { getAllHistory } from "./controllers/history.js";
+import {
+  validateCollabForm,
+  validateContactForm,
+} from "./middleware/validation.js";
+import { handleValidationErrors } from "./middleware/handleValidationErrors.js";
 
 const upload = multer({ dest: "uploads/" });
 const app = express();
@@ -55,7 +60,19 @@ app.use("/collaborations", collaborationsRoutes);
 app.get("/history", getAllHistory);
 
 // Post method for sending an email from the contact from
-app.post("/contact", sendEmailContact);
-app.post("/collab-request", upload.single("fichier"), sendRequestCollab);
+app.post(
+  "/contact",
+  validateContactForm,
+  handleValidationErrors,
+  sendEmailContact
+);
+
+app.post(
+  "/collab-request",
+  upload.single("fichier"),
+  validateCollabForm,
+  handleValidationErrors,
+  sendRequestCollab
+);
 
 app.listen(PORT, () => console.log(`Server running`));

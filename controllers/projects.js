@@ -188,8 +188,8 @@ export const addProject = (req, res) => {
 
           const membreValues = [
             idMembre,
-            membre?.nom,
-            membre?.prenom,
+            membre?.nom.toUpperCase(),
+            membre?.prenom.slice(0, 1).toUpperCase() + membre?.prenom.slice(1),
             idProjet,
           ];
           await query(connection, membreSql, membreValues);
@@ -385,8 +385,9 @@ export const updateProject = (req, res) => {
                               WHERE idMembre = ? AND idProjet = ?`;
 
             const membreValues = [
-              membre?.nom,
-              membre?.prenom,
+              membre?.nom.toUpperCase(),
+              membre?.prenom.slice(0, 1).toUpperCase() +
+                membre?.prenom.slice(1),
               membre.idMembre,
               idProjet,
             ];
@@ -399,8 +400,9 @@ export const updateProject = (req, res) => {
 
             const membreValues = [
               idMembre,
-              membre?.nom,
-              membre?.prenom,
+              membre?.nom.toUpperCase(),
+              membre?.prenom.slice(0, 1).toUpperCase() +
+                membre?.prenom.slice(1),
               idProjet,
             ];
             await query(connection, membreSql, membreValues);

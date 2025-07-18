@@ -131,8 +131,8 @@ export const addMember = (req, res) => {
 
   const values = [
     id,
-    memberBody?.prenom,
-    memberBody?.nom,
+    memberBody?.prenom.slice(0, 1).toUpperCase() + memberBody?.prenom.slice(1),
+    memberBody?.nom.toUpperCase(),
     memberBody?.titre,
     memberBody?.fonction_fr,
     memberBody?.section_fr,
@@ -228,8 +228,9 @@ export const updateMember = (req, res) => {
     `;
 
     const values = [
-      memberBody.prenom,
-      memberBody.nom,
+      memberBody?.prenom.slice(0, 1).toUpperCase() +
+        memberBody?.prenom.slice(1).toLowerCase(),
+      memberBody?.nom.toUpperCase(),
       memberBody.titre,
       memberBody.fonction_fr,
       memberBody.section_fr,

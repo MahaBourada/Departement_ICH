@@ -121,7 +121,7 @@ export const addPrix = (req, res) => {
   }
 
   const sql =
-    "INSERT INTO prix (idPrix, nom, organisation, projet, etudiants, categorie, annee, description_fr, description_en, image, alt_fr, alt_en, lien) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    "INSERT INTO prix (idPrix, nom, organisation, projet, etudiants, categorie, annee, description_fr, description_en, image, alt_fr, alt_en, lien) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
   const values = [
     id,

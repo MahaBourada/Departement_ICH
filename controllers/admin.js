@@ -7,13 +7,16 @@ import { logHistory } from "../utils/logHistory.js"; // adjust the path as neede
 import { dateFormatting } from "../utils/dateFormatting.js";
 
 export const getAllAdmins = (req, res) => {
-  db.query("SELECT * FROM admin ORDER BY first_name, last_name", (err, results) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    } else {
-      res.json(results);
+  db.query(
+    "SELECT * FROM admin ORDER BY createdAt DESC, first_name, last_name",
+    (err, results) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      } else {
+        res.json(results);
+      }
     }
-  });
+  );
 };
 
 export const getAdminById = (req, res) => {
@@ -58,8 +61,9 @@ export const addAdmin = (req, res) => {
 
     const values = [
       id,
-      adminBody.firstname,
-      adminBody.lastname,
+      adminBody.firstname.slice(0, 1).toUpperCase() +
+        adminBody.firstname.slice(1).toLowerCase(),
+      adminBody.lastname.toUpperCase(),
       username,
       hash,
       adminBody.email,
