@@ -4,8 +4,9 @@ import api from "../api/api"; // Make sure this import exists
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null); // { first_name, last_name }
+  const [user, setUser] = useState(null); // { first_name, last_name, accessToken }
   const [accessToken, setAccessToken] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const tryRefresh = async () => {
@@ -20,6 +21,8 @@ export const UserProvider = ({ children }) => {
       } catch {
         setAccessToken(null);
         setUser(null);
+      } finally {
+        setLoading(false); // Set loading to false when done
       }
     };
     tryRefresh();
@@ -32,6 +35,7 @@ export const UserProvider = ({ children }) => {
         setUser,
         accessToken,
         setAccessToken,
+        loading, // Provide loading
       }}
     >
       {children}
