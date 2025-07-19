@@ -22,12 +22,6 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!values.username || !values.password) {
-      setMsg("Tous les champs sont obligatoires.");
-      setMsgShow(true);
-      return;
-    }
-
     try {
       const response = await api.post("/auth/login", values, {
         withCredentials: true,
@@ -41,12 +35,12 @@ const LoginPage = () => {
 
       navigate("/admin/tableau-de-bord");
     } catch (error) {
-      const backendMsg = error?.response?.data?.message;
+      const backendMsg =
+        error?.response?.data?.message ||
+        "Une erreur est survenue. Veuillez réessayer.";
 
-      if (backendMsg) {
-        setMsg(backendMsg); // Set the backend message from Express
-        setMsgShow(true); // Trigger your popup or message display
-      }
+      setMsg(backendMsg);
+      setMsgShow(true);
     }
   };
 

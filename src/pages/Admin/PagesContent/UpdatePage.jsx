@@ -145,7 +145,7 @@ const UpdatePage = () => {
 
     try {
       // Update sections
-      await api.put(`/pages/${idPage}`, data);
+      const response = await api.put(`/pages/${idPage}`, data);
 
       // Update images
       await api.put(`/pages-images/${idPage}`, {
@@ -153,12 +153,23 @@ const UpdatePage = () => {
         images: images,
       });
 
-      setMsg("Mise à jour réussie !");
+      setMsg(response.data.message);
       setMsgStatus(200); // success
     } catch (error) {
-      console.error("Erreur lors de la mise à jour :", error);
-      setMsg("Échec de la mise à jour.");
-    } finally {
+      const backendMsg = error?.response?.data?.message;
+      const backendErrors = error?.response?.data?.errors;
+
+      setMsgStatus(0);
+
+      if (backendErrors && backendErrors.length > 0) {
+        // Show only the first error
+        setMsg(backendErrors[0].msg);
+      } else if (backendMsg) {
+        setMsg(backendMsg);
+      } else {
+        setMsg("Une erreur est survenue.");
+      }
+
       setMsgShow(true);
     }
   };

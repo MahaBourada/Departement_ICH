@@ -71,6 +71,8 @@ const AddCollab = () => {
       const backendMsg = error?.response?.data?.message;
       const backendErrors = error?.response?.data?.errors;
 
+      setMsgStatus(0);
+
       if (backendErrors && backendErrors.length > 0) {
         // Show only the first error
         setMsg(backendErrors[0].msg);
