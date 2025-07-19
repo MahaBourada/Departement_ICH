@@ -59,11 +59,11 @@ const DashboardPage = () => {
 
   const handleDelete = async () => {
     try {
-      setAdminList((prev) =>
-        prev.filter((admin) => admin.idAdmin !== selectedAdmin.idAdmin)
-      );
-
       const response = await api.delete(`/admin/${selectedAdmin.idAdmin}`, {
+        headers: {
+          Authorization: `Bearer ${currentAdmin.accessToken}`,
+        },
+        withCredentials: true,
         params: {
           currentAdmin: currentAdmin,
         },
@@ -72,8 +72,18 @@ const DashboardPage = () => {
       setMsgShow(true);
       setMsgStatus(200);
       setMsg(response.data.message);
+
+      setAdminList((prev) =>
+        prev.filter((admin) => admin.idAdmin !== selectedAdmin.idAdmin)
+      );
     } catch (error) {
-      console.error(error);
+      const backendMsg =
+        error?.response?.data?.message ||
+        "Une erreur est survenue. Veuillez réessayer.";
+
+      setMsgStatus(0);
+      setMsg(backendMsg);
+      setMsgShow(true);
     } finally {
       setConfirmOpen(false);
       setSelectedAdmin(null);

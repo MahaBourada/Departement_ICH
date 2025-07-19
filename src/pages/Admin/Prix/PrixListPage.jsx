@@ -39,11 +39,11 @@ const PrixListPage = () => {
 
   const handleDelete = async () => {
     try {
-      setPrix((prev) =>
-        prev.filter((onePrix) => onePrix.idPrix !== selectedPrix.idPrix)
-      );
-
       const response = await api.delete(`/prix/${selectedPrix.idPrix}`, {
+        headers: {
+          Authorization: `Bearer ${currentAdmin.accessToken}`,
+        },
+        withCredentials: true,
         params: {
           currentAdmin: currentAdmin,
         },
@@ -52,8 +52,18 @@ const PrixListPage = () => {
       setMsgShow(true);
       setMsgStatus(200);
       setMsg(response.data.message);
+
+      setPrix((prev) =>
+        prev.filter((onePrix) => onePrix.idPrix !== selectedPrix.idPrix)
+      );
     } catch (error) {
-      console.error(error);
+      const backendMsg =
+        error?.response?.data?.message ||
+        "Une erreur est survenue. Veuillez réessayer.";
+
+      setMsgStatus(0);
+      setMsg(backendMsg);
+      setMsgShow(true);
     } finally {
       setConfirmOpen(false);
       setSelectedPrix(null);
@@ -134,7 +144,9 @@ const PrixListPage = () => {
                 <td className="h-full px-4">
                   <div className="flex items-center justify-center space-x-2">
                     <Link
-                      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                      onClick={() =>
+                        window.scrollTo({ top: 0, behavior: "smooth" })
+                      }
                       to={`/admin/gestion-prix/${onePrix.idPrix}`}
                       type="button"
                       className="cursor-pointer mr-2 p-0.5 rounded-md transition-colors duration-300 hover:bg-neutral-300 dark:hover:bg-neutral-600"

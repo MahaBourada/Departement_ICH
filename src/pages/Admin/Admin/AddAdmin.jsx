@@ -8,8 +8,6 @@ import {
   SmallBorderButton,
   SmallFilledButton,
 } from "../../../components/Buttons.jsx";
-import { CircleArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
 
 const AddAdmin = () => {
   const currentAdmin = useContext(UserContext).user;
@@ -36,7 +34,12 @@ const AddAdmin = () => {
     };
 
     try {
-      const response = await api.post("/admin", data);
+      const response = await api.post("/admin", data, {
+        headers: {
+          Authorization: `Bearer ${currentAdmin.accessToken}`,
+        },
+        withCredentials: true,
+      });
 
       setMsgStatus(200);
       setMsg(response.data.message);

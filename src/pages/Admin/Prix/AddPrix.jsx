@@ -68,7 +68,12 @@ const AddPrix = () => {
     };
 
     try {
-      const response = await api.post("/prix", data);
+      const response = await api.post("/prix", data, {
+        headers: {
+          Authorization: `Bearer ${currentAdmin.accessToken}`,
+        },
+        withCredentials: true,
+      });
 
       setMsgShow(true);
       setMsgStatus(200);

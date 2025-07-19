@@ -12,7 +12,7 @@ import { UserContext } from "../../../contexts/UserContext";
 import { CircleArrowLeft } from "lucide-react";
 
 const UpdatePage = () => {
-  // const { accessToken } = useContext(UserContext);
+  const { accessToken } = useContext(UserContext);
   const currentAdmin = useContext(UserContext).user;
   const { idPage } = useParams();
   const [pageInfo, setPageInfo] = useState({});
@@ -21,7 +21,6 @@ const UpdatePage = () => {
   const [initialSections, setInitialSections] = useState([]);
   const [initialImages, setInitialImages] = useState([]);
 
-  // Update fetchData to also set initial values
   const fetchData = async () => {
     try {
       const responseSections = await api.get(`/pages/${idPage}`);
@@ -145,16 +144,31 @@ const UpdatePage = () => {
 
     try {
       // Update sections
-      const response = await api.put(`/pages/${idPage}`, data);
-
-      // Update images
-      await api.put(`/pages-images/${idPage}`, {
-        link: pageInfo.link,
-        images: images,
+      const response = await api.put(`/pages/${idPage}`, data, {
+        headers: {
+          Authorization: `Bearer ${currentAdmin.accessToken}`,
+        },
+        withCredentials: true,
       });
 
+      // Update images
+      await api.put(
+        `/pages-images/${idPage}`,
+        {
+          link: pageInfo.link,
+          images: images,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${currentAdmin.accessToken}`,
+          },
+          withCredentials: true,
+        }
+      );
+
+      setMsgShow(true);
+      setMsgStatus(200);
       setMsg(response.data.message);
-      setMsgStatus(200); // success
     } catch (error) {
       const backendMsg = error?.response?.data?.message;
       const backendErrors = error?.response?.data?.errors;

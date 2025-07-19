@@ -102,7 +102,13 @@ const UpdateCollab = () => {
     try {
       const response = await api.put(
         `/collaborations/${collab.idCollab}`,
-        data
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${currentAdmin.accessToken}`,
+          },
+          withCredentials: true,
+        }
       );
 
       setMsgShow(true);

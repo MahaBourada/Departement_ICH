@@ -71,7 +71,12 @@ const ProjectsManagementPage = () => {
     };
 
     try {
-      const response = await api.post("/projects", data);
+      const response = await api.post("/projects", data, {
+        headers: {
+          Authorization: `Bearer ${currentAdmin.accessToken}`,
+        },
+        withCredentials: true,
+      });
 
       setMsgShow(true);
       setMsgStatus(200);

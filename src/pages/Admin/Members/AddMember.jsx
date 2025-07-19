@@ -13,8 +13,6 @@ import {
   SmallFilledButton,
 } from "../../../components/Buttons";
 import { UserContext } from "../../../contexts/UserContext";
-import { Link } from "react-router-dom";
-import { CircleArrowLeft } from "lucide-react";
 
 const AddMember = () => {
   const currentAdmin = useContext(UserContext).user;
@@ -69,7 +67,12 @@ const AddMember = () => {
     };
 
     try {
-      const response = await api.post("/members", data);
+      const response = await api.post("/members", data, {
+        headers: {
+          Authorization: `Bearer ${currentAdmin.accessToken}`,
+        },
+        withCredentials: true,
+      });
 
       setMsgShow(true);
       setMsgStatus(200);

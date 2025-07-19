@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../api/api";
 import { CircleArrowLeft } from "lucide-react";
@@ -8,8 +8,15 @@ import { UserContext } from "../../contexts/UserContext.jsx";
 import AccessibilityMenu from "../../components/AccessibilityMenu.jsx";
 
 const LoginPage = () => {
-  const { setUser, setAccessToken } = useContext(UserContext);
+  const { setUser, setAccessToken, user, accessToken } =
+    useContext(UserContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user && accessToken) {
+      navigate("/admin/tableau-de-bord", { replace: true });
+    }
+  }, [user, accessToken, navigate]);
 
   const [values, setValues] = useState({
     username: "",
@@ -27,11 +34,12 @@ const LoginPage = () => {
         withCredentials: true,
       });
 
-      setAccessToken(response.data.accessToken);
       setUser({
         first_name: response.data.first_name,
         last_name: response.data.last_name,
+        accessToken: response.data.accessToken,
       });
+      setAccessToken(response.data.accessToken);
 
       navigate("/admin/tableau-de-bord");
     } catch (error) {

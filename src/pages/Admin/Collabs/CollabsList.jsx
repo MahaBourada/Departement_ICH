@@ -35,13 +35,13 @@ const CollabsList = () => {
 
   const handleDelete = async () => {
     try {
-      setCollabs((prev) =>
-        prev.filter((collab) => collab.idCollab !== selectedCollab.idCollab)
-      );
-
       const response = await api.delete(
         `/collaborations/${selectedCollab.idCollab}`,
         {
+          headers: {
+            Authorization: `Bearer ${currentAdmin.accessToken}`,
+          },
+          withCredentials: true,
           params: {
             currentAdmin: currentAdmin,
           },
@@ -51,8 +51,18 @@ const CollabsList = () => {
       setMsgShow(true);
       setMsgStatus(200);
       setMsg(response.data.message);
+
+      setCollabs((prev) =>
+        prev.filter((collab) => collab.idCollab !== selectedCollab.idCollab)
+      );
     } catch (error) {
-      console.error(error);
+      const backendMsg =
+        error?.response?.data?.message ||
+        "Une erreur est survenue. Veuillez réessayer.";
+
+      setMsgStatus(0);
+      setMsg(backendMsg);
+      setMsgShow(true);
     } finally {
       setConfirmOpen(false);
       setSelectedCollab(null);
@@ -131,7 +141,9 @@ const CollabsList = () => {
                 <td className="h-full px-4">
                   <div className="flex items-center justify-center space-x-2">
                     <Link
-                      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                      onClick={() =>
+                        window.scrollTo({ top: 0, behavior: "smooth" })
+                      }
                       to={`/admin/gestion-collaborations/${collab.idCollab}`}
                       type="button"
                       className="cursor-pointer mr-2 p-0.5 rounded-md transition-colors duration-300 hover:bg-neutral-300 dark:hover:bg-neutral-600"

@@ -14,7 +14,6 @@ import {
 import { MessagePopup } from "../../../components/MsgPopup";
 import { getRelativePath } from "../../../utils/getRelativePath";
 import { UserContext } from "../../../contexts/UserContext.jsx";
-import { CircleArrowLeft } from "lucide-react";
 
 const UpdateNews = () => {
   const currentAdmin = useContext(UserContext).user;
@@ -107,7 +106,12 @@ const UpdateNews = () => {
     };
 
     try {
-      const response = await api.put(`/news/${news.idActu}`, data);
+      const response = await api.put(`/news/${news.idActu}`, data, {
+        headers: {
+          Authorization: `Bearer ${currentAdmin.accessToken}`,
+        },
+        withCredentials: true,
+      });
 
       setMsgShow(true);
       setMsgStatus(200);

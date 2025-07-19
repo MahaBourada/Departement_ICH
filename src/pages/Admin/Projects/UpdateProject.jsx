@@ -125,7 +125,12 @@ const UpdateProject = () => {
     };
 
     try {
-      const response = await api.put(`/projects/${id}`, data);
+      const response = await api.put(`/projects/${id}`, data, {
+        headers: {
+          Authorization: `Bearer ${currentAdmin.accessToken}`,
+        },
+        withCredentials: true,
+      });
 
       setMsgShow(true);
       setMsgStatus(200);

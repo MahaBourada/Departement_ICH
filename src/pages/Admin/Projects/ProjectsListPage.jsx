@@ -36,13 +36,13 @@ const ProjectsListPage = () => {
 
   const handleDelete = async () => {
     try {
-      setProjects((prev) =>
-        prev.filter((project) => project.idProjet !== selectedProject.idProjet)
-      );
-
       const response = await api.delete(
         `/projects/${selectedProject.idProjet}`,
         {
+          headers: {
+            Authorization: `Bearer ${currentAdmin.accessToken}`,
+          },
+          withCredentials: true,
           params: {
             currentAdmin: currentAdmin,
           },
@@ -52,8 +52,18 @@ const ProjectsListPage = () => {
       setMsgShow(true);
       setMsgStatus(200);
       setMsg(response.data.message);
+
+      setProjects((prev) =>
+        prev.filter((project) => project.idProjet !== selectedProject.idProjet)
+      );
     } catch (error) {
-      console.error(error);
+      const backendMsg =
+        error?.response?.data?.message ||
+        "Une erreur est survenue. Veuillez réessayer.";
+
+      setMsgStatus(0);
+      setMsg(backendMsg);
+      setMsgShow(true);
     } finally {
       setConfirmOpen(false);
       setSelectedProject(null);
@@ -136,7 +146,9 @@ const ProjectsListPage = () => {
               <td className="h-full px-4">
                 <div className="flex items-center justify-center space-x-2">
                   <Link
-                    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                    onClick={() =>
+                      window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
                     to={`/admin/gestion-projets/${project.idProjet}`}
                     type="button"
                     className="cursor-pointer mr-2 p-0.5 rounded-md transition-colors duration-300 hover:bg-neutral-300 dark:hover:bg-neutral-600"

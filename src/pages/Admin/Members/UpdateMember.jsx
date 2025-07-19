@@ -110,7 +110,12 @@ const UpdateMember = () => {
     };
 
     try {
-      const response = await api.put(`/members/${member.idMembre}`, data);
+      const response = await api.put(`/members/${member.idMembre}`, data, {
+        headers: {
+          Authorization: `Bearer ${currentAdmin.accessToken}`,
+        },
+        withCredentials: true,
+      });
 
       setMsgShow(true);
       setMsgStatus(200);

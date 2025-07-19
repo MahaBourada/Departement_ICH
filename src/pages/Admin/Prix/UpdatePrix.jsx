@@ -109,7 +109,12 @@ const UpdatePrix = () => {
     };
 
     try {
-      const response = await api.put(`/prix/${prix.idPrix}`, data);
+      const response = await api.put(`/prix/${prix.idPrix}`, data, {
+        headers: {
+          Authorization: `Bearer ${currentAdmin.accessToken}`,
+        },
+        withCredentials: true,
+      });
 
       setMsgShow(true);
       setMsgStatus(200);

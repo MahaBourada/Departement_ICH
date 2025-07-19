@@ -12,8 +12,6 @@ import {
 } from "../../../components/Inputs";
 import api from "../../../api/api";
 import { UserContext } from "../../../contexts/UserContext.jsx";
-import { Link } from "react-router-dom";
-import { CircleArrowLeft } from "lucide-react";
 
 const AddNews = () => {
   const currentAdmin = useContext(UserContext).user;
@@ -69,7 +67,12 @@ const AddNews = () => {
     };
 
     try {
-      const response = await api.post("/news", data);
+      const response = await api.post("/news", data, {
+        headers: {
+          Authorization: `Bearer ${currentAdmin.accessToken}`,
+        },
+        withCredentials: true,
+      });
 
       setMsgShow(true);
       setMsgStatus(200);

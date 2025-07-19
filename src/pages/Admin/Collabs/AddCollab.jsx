@@ -62,7 +62,12 @@ const AddCollab = () => {
     };
 
     try {
-      const response = await api.post("/collaborations", data);
+      const response = await api.post("/collaborations", data, {
+        headers: {
+          Authorization: `Bearer ${currentAdmin.accessToken}`,
+        },
+        withCredentials: true,
+      });
 
       setMsgShow(true);
       setMsgStatus(200);

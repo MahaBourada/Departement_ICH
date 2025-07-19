@@ -43,6 +43,7 @@ import CreditsPage from "./pages/User/creditsPage";
 import MentionsPage from "./pages/User/mentionsPage";
 import PolicyPage from "./pages/User/policyPage";
 import CopyrightPage from "./pages/User/copyrightPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -91,44 +92,172 @@ function App() {
 
         <Route path="/admin" element={<LoginPage />} />
         <Route path="/admin" element={<AdminLayout />}>
-          <Route path="tableau-de-bord" element={<Dashboard />} />
-          <Route path="tableau-de-bord/ajouter-admin" element={<AddAdmin />} />
+          <Route
+            path="tableau-de-bord"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="tableau-de-bord/ajouter-admin"
+            element={
+              <ProtectedRoute>
+                <AddAdmin />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="tableau-de-bord/gestion-admin/:id"
-            element={<UpdateAdmin />}
+            element={
+              <ProtectedRoute>
+                <UpdateAdmin />
+              </ProtectedRoute>
+            }
           />
 
-          <Route path="gestion-pages" element={<PagesListPage />} />
-          <Route path="gestion-pages/:idPage" element={<UpdatePage />} />
+          <Route
+            path="gestion-pages"
+            element={
+              <ProtectedRoute>
+                <PagesListPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="gestion-pages/:idPage"
+            element={
+              <ProtectedRoute>
+                <UpdatePage />
+              </ProtectedRoute>
+            }
+          />
 
-          <Route path="gestion-actualites" element={<NewsListPage />} />
+          <Route
+            path="gestion-actualites"
+            element={
+              <ProtectedRoute>
+                <NewsListPage />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="gestion-actualites/ajouter-actualite"
-            element={<AddNews />}
+            element={
+              <ProtectedRoute>
+                <AddNews />
+              </ProtectedRoute>
+            }
           />
-          <Route path="gestion-actualites/:id" element={<UpdateNews />} />
+          <Route
+            path="gestion-actualites/:id"
+            element={
+              <ProtectedRoute>
+                <UpdateNews />
+              </ProtectedRoute>
+            }
+          />
 
-          <Route path="gestion-equipe" element={<MembersListPage />} />
-          <Route path="gestion-equipe/ajouter-membre" element={<AddMember />} />
-          <Route path="gestion-equipe/:id" element={<UpdateMember />} />
+          <Route
+            path="gestion-equipe"
+            element={
+              <ProtectedRoute>
+                <MembersListPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="gestion-equipe/ajouter-membre"
+            element={
+              <ProtectedRoute>
+                <AddMember />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="gestion-equipe/:id"
+            element={
+              <ProtectedRoute>
+                <UpdateMember />
+              </ProtectedRoute>
+            }
+          />
 
-          <Route path="gestion-projets" element={<ProjectsListPage />} />
+          <Route
+            path="gestion-projets"
+            element={
+              <ProtectedRoute>
+                <ProjectsListPage />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="gestion-projets/ajouter-projet"
-            element={<AddProject />}
+            element={
+              <ProtectedRoute>
+                <AddProject />
+              </ProtectedRoute>
+            }
           />
-          <Route path="gestion-projets/:id" element={<UpdateProject />} />
+          <Route
+            path="gestion-projets/:id"
+            element={
+              <ProtectedRoute>
+                <UpdateProject />
+              </ProtectedRoute>
+            }
+          />
 
-          <Route path="gestion-collaborations" element={<CollabsList />} />
+          <Route
+            path="gestion-collaborations"
+            element={
+              <ProtectedRoute>
+                <CollabsList />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="gestion-collaborations/ajouter-collaboration"
-            element={<AddCollab />}
+            element={
+              <ProtectedRoute>
+                <AddCollab />
+              </ProtectedRoute>
+            }
           />
-          <Route path="gestion-collaborations/:id" element={<UpdateCollab />} />
+          <Route
+            path="gestion-collaborations/:id"
+            element={
+              <ProtectedRoute>
+                <UpdateCollab />
+              </ProtectedRoute>
+            }
+          />
 
-          <Route path="gestion-prix" element={<PrixListPage />} />
-          <Route path="gestion-prix/ajouter-prix" element={<AddPrix />} />
-          <Route path="gestion-prix/:id" element={<UpdatePrix />} />
+          <Route
+            path="gestion-prix"
+            element={
+              <ProtectedRoute>
+                <PrixListPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="gestion-prix/ajouter-prix"
+            element={
+              <ProtectedRoute>
+                <AddPrix />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="gestion-prix/:id"
+            element={
+              <ProtectedRoute>
+                <UpdatePrix />
+              </ProtectedRoute>
+            }
+          />
         </Route>
 
         <Route path="*" element={<MissingPage />} />

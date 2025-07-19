@@ -15,6 +15,7 @@ export const UserProvider = ({ children }) => {
         setUser({
           first_name: res.data.first_name,
           last_name: res.data.last_name,
+          accessToken: res.data.accessToken,
         });
       } catch {
         setAccessToken(null);

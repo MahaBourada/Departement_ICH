@@ -39,11 +39,11 @@ const NewsListPage = () => {
 
   const handleDelete = async () => {
     try {
-      setNews((prev) =>
-        prev.filter((news) => news.idActu !== selectedNews.idActu)
-      );
-
       const response = await api.delete(`/news/${selectedNews.idActu}`, {
+        headers: {
+          Authorization: `Bearer ${currentAdmin.accessToken}`,
+        },
+        withCredentials: true,
         params: {
           currentAdmin: currentAdmin,
         },
@@ -52,8 +52,18 @@ const NewsListPage = () => {
       setMsgShow(true);
       setMsgStatus(200);
       setMsg(response.data.message);
+
+      setNews((prev) =>
+        prev.filter((news) => news.idActu !== selectedNews.idActu)
+      );
     } catch (error) {
-      console.error(error);
+      const backendMsg =
+        error?.response?.data?.message ||
+        "Une erreur est survenue. Veuillez réessayer.";
+
+      setMsgStatus(0);
+      setMsg(backendMsg);
+      setMsgShow(true);
     } finally {
       setConfirmOpen(false);
       setSelectedNews(null);
@@ -128,7 +138,9 @@ const NewsListPage = () => {
                 <td className="h-full px-4">
                   <div className="flex items-center justify-center space-x-2">
                     <Link
-                      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                      onClick={() =>
+                        window.scrollTo({ top: 0, behavior: "smooth" })
+                      }
                       to={`/admin/gestion-actualites/${oneNews.idActu}`}
                       type="button"
                       className="cursor-pointer mr-2 p-0.5 rounded-md transition-colors duration-300 hover:bg-neutral-300 dark:hover:bg-neutral-600"
