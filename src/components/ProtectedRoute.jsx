@@ -5,7 +5,7 @@ import { UserContext } from "../contexts/UserContext.jsx";
 const ProtectedRoute = ({ children }) => {
   const { user, accessToken } = useContext(UserContext);
   if (!user || !accessToken) {
-    return <Navigate to="/admin" replace />;
+    return <Navigate to="/" replace />;
   }
   return children;
 };
