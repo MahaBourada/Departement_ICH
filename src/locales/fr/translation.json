@@ -146,6 +146,9 @@
     "credits": "Crédits",
     "mentions": "Mentions légales",
     "policy": "Politique de confidentialité",
-    "copyright": "@2025 Paris 8 - Droits d'auteurs"
+    "copyright": {
+      "1": "Droits d'auteurs",
+      "2": "@2025 Paris 8 - Droits d'auteurs"
+    }
   }
 }

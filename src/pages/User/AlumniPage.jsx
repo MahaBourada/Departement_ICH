@@ -3,6 +3,7 @@ import api from "../../api/api";
 import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
 import Breadcrumb from "../../components/Breadcrumb";
+import { House } from "lucide-react";
 
 const AlumniPage = () => {
   const { t } = useTranslation();
@@ -54,7 +55,12 @@ const AlumniPage = () => {
         crumbs={[
           {
             link: "/",
-            label: t("home.link"),
+            label: (
+              <span className="flex flex-row items-center gap-x-2">
+                <House size={26} strokeWidth={2.2} />
+                {t("home.link")}
+              </span>
+            ),
           },
           {
             label: t("formation.link"),

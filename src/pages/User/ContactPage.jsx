@@ -8,6 +8,8 @@ import {
   TextAreaField,
 } from "../../components/Inputs";
 import api from "../../api/api";
+import { House } from "lucide-react";
+import Breadcrumb from "../../components/Breadcrumb";
 
 const ContactPage = () => {
   const { t } = useTranslation();
@@ -69,6 +71,23 @@ const ContactPage = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
+      <Breadcrumb
+        crumbs={[
+          {
+            link: "/",
+            label: (
+              <span className="flex flex-row items-center gap-x-2">
+                <House size={26} strokeWidth={2.2} />
+                {t("home.link")}
+              </span>
+            ),
+          },
+          {
+            label: "Contact",
+          },
+        ]}
+      />
+
       <h1 className="font-main font-semibold text-display max-sm:text-header max-sm:leading-tight readerMode:w-fit readerMode:mx-auto">
         Contact
       </h1>

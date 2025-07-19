@@ -59,7 +59,7 @@ const AdminHeader = () => {
       ref={actMenuRef}
       aria-label="Profile"
     >
-      <AccessibilityMenu />
+      <AccessibilityMenu hoverColor="bg-gray-900" />
 
       <button
         className="flex items-center justify-between w-fit cursor-pointer"

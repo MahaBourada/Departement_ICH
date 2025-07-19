@@ -6,6 +6,7 @@ import { SmallBorderButton, SmallFilledButton } from "../../components/Buttons";
 import { InputField, TextAreaField } from "../../components/Inputs";
 import { MessagePopup } from "../../components/MsgPopup";
 import dayjs from "dayjs";
+import { House } from "lucide-react";
 
 const CollabForm = () => {
   const { t } = useTranslation();
@@ -138,7 +139,12 @@ const CollabForm = () => {
         crumbs={[
           {
             link: "/",
-            label: t("home.link"),
+            label: (
+              <span className="flex flex-row items-center gap-x-2">
+                <House size={26} strokeWidth={2.2} />
+                {t("home.link")}
+              </span>
+            ),
           },
           {
             label: "Collaborations",

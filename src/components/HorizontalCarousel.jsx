@@ -13,9 +13,17 @@ const HorizontalCarousel = ({ collabs }) => {
   };
 
   return (
-    <div className="relative my-16">
+    <div
+      className="relative my-16"
+      aria-label={
+        localStorage.getItem("lang") === "en"
+          ? "Socio-economic partners carousel"
+          : "Carousel des partenaires socio-économiques"
+      }
+    >
       <div
         ref={scrollRef}
+        tabIndex={0}
         className="flex flex-row items-center overflow-x-auto space-x-16 px-10 mx-20 max-sm:mx-10 scroll-smooth hide-scrollbar dark:bg-neutral-500 dark:rounded-4xl py-6"
       >
         {collabs

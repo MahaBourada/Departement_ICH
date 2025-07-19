@@ -71,12 +71,14 @@ const Header = ({ switchLang }) => {
       <img
         src="/ich/assets/vectors/Logo.svg"
         alt="Logo de l'université Paris 8"
+        aria-hidden={localStorage.getItem("theme") === "dark" ? true : false}
         width={160}
         className="m-5 block dark:hidden"
       />
       <img
         src="/ich/assets/vectors/LogoDark.svg"
         alt="Logo de l'université Paris 8"
+        aria-hidden={localStorage.getItem("theme") === "dark" ? false : true}
         width={160}
         className="m-5 hidden dark:block"
       />
@@ -86,6 +88,7 @@ const Header = ({ switchLang }) => {
           <div className="flex items-center">
             {localStorage.getItem("lang") === "en" ? (
               <button
+                type="button"
                 className="cursor-pointer w-fit flex justify-end items-center px-2 mx-1 transition-colors duration-300 hover:underline hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
                 onClick={() => switchLang("fr")}
               >
@@ -98,6 +101,7 @@ const Header = ({ switchLang }) => {
               </button>
             ) : (
               <button
+                type="button"
                 className="cursor-pointer w-fit flex justify-end items-center px-2 mx-1 transition-colors duration-300 hover:underline hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
                 onClick={() => switchLang("en")}
               >
@@ -124,7 +128,14 @@ const Header = ({ switchLang }) => {
           </Link>
         </div>
 
-        <nav className="flex justify-between items-center">
+        <nav
+          className="flex justify-between items-center"
+          aria-label={
+            localStorage.getItem("lang") === "en"
+              ? "Main navigation"
+              : "Navigation principale"
+          }
+        >
           <Link
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             to="/"

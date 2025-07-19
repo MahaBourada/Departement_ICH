@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../../api/api";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import Breadcrumb from "../../components/Breadcrumb";
 import HorizontalCarousel from "../../components/HorizontalCarousel";
+import { House } from "lucide-react";
 
 const NationalePage = () => {
   const { t } = useTranslation();
@@ -38,7 +39,6 @@ const NationalePage = () => {
   }
 
   const img1 = getImageByPosition(images, 1);
-  const img2 = getImageByPosition(images, 2);
 
   useEffect(() => {
     fetchData();
@@ -50,7 +50,12 @@ const NationalePage = () => {
         crumbs={[
           {
             link: "/",
-            label: t("home.link"),
+            label: (
+              <span className="flex flex-row items-center gap-x-2">
+                <House size={26} strokeWidth={2.2} />
+                {t("home.link")}
+              </span>
+            ),
           },
           {
             label: "Collaborations",

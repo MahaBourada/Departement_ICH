@@ -1,6 +1,6 @@
-import { ArrowLeft, ChevronRight, CircleArrowLeft } from "lucide-react";
+import { House } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import api from "../../api/api";
 import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
@@ -38,7 +38,12 @@ const IndividualPage = () => {
         crumbs={[
           {
             link: "/",
-            label: t("home.link"),
+            label: (
+              <span className="flex flex-row items-center gap-x-2">
+                <House size={26} strokeWidth={2.2} />
+                {t("home.link")}
+              </span>
+            ),
           },
           {
             label: t("department.link"),

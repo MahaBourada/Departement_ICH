@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
 import Breadcrumb from "../../components/Breadcrumb";
 import Pagination from "../../components/Pagination";
+import { House } from "lucide-react";
 
 const InternationalePage = () => {
   const { t } = useTranslation();
@@ -58,7 +59,12 @@ const InternationalePage = () => {
         crumbs={[
           {
             link: "/",
-            label: t("home.link"),
+            label: (
+              <span className="flex flex-row items-center gap-x-2">
+                <House size={26} strokeWidth={2.2} />
+                {t("home.link")}
+              </span>
+            ),
           },
           {
             label: "Collaborations",
@@ -112,7 +118,7 @@ const InternationalePage = () => {
         <div key={index}>
           <div className="flex flex-row max-sm:flex-col items-start justify-between my-10">
             <div>
-              <h3 className="text-dynamic-lg font-semibold">{collab.nom}</h3>
+              <h2 className="text-dynamic-lg font-semibold">{collab.nom}</h2>
 
               <ReactMarkdown
                 className="markdown mx-2"

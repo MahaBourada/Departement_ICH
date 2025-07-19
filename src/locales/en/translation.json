@@ -146,6 +146,9 @@
     "credits": "Credits",
     "mentions": "Legal mentions",
     "policy": "Privacy policy",
-    "copyright": "@2025 Paris 8 - All rights reserved"
+    "copyright": {
+      "1": "Copyright",
+      "2": "@2025 Paris 8 - All rights reserved"
+    }
   }
 }

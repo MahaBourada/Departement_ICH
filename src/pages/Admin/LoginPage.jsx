@@ -69,7 +69,7 @@ const LoginPage = () => {
         />
 
         <div className="mx-2">
-          <AccessibilityMenu />
+          <AccessibilityMenu hoverColor="bg-gray-900" />
         </div>
       </header>
 

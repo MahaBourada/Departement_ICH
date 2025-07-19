@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Breadcrumb from "../../components/Breadcrumb";
 import { useTranslation } from "react-i18next";
 import api from "../../api/api";
+import { House } from "lucide-react";
 
 const NewsPage = () => {
   const { t } = useTranslation();
@@ -28,7 +29,12 @@ const NewsPage = () => {
         crumbs={[
           {
             link: "/",
-            label: t("home.link"),
+            label: (
+              <span className="flex flex-row items-center gap-x-2">
+                <House size={26} strokeWidth={2.2} />
+                {t("home.link")}
+              </span>
+            ),
           },
           {
             label: t("department.link"),

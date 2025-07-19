@@ -11,7 +11,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const AccessibilityMenu = ({ position }) => {
+const AccessibilityMenu = ({ position, hoverColor }) => {
   const { t } = useTranslation();
   const [showMenu, setShowMenu] = useState(false);
   const showMenuRef = useRef(null);
@@ -137,7 +137,11 @@ const AccessibilityMenu = ({ position }) => {
       <button
         type="button"
         onClick={() => setShowMenu(!showMenu)}
-        className="cursor-pointer w-fit flex justify-end items-center px-2 mx-1 py-1.5 transition-colors duration-300 hover:underline hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg font-medium"
+        className={`cursor-pointer w-fit flex justify-end items-center px-2 mx-1 py-1.5 transition-colors duration-300 hover:underline hover:bg-hover-main focus:bg-hover-main ${
+          hoverColor
+            ? `dark:hover:${hoverColor} dark:focus:${hoverColor}`
+            : "dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus"
+        } rounded-lg font-medium`}
       >
         <span className="mx-1">{t("accessibility.label")}</span>
         <PersonStanding

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import api from "../../api/api";
 import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
+import Breadcrumb from "../../components/Breadcrumb";
+import { House } from "lucide-react";
 
 const HomePage = () => {
   const { t } = useTranslation();
@@ -48,6 +50,26 @@ const HomePage = () => {
       </div>
 
       <div className="my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10 readerMode:leading-loose readerMode:w-[60ch] max-large-medium:readerMode:w-full readerMode:mx-auto">
+        <Breadcrumb
+          crumbs={[
+            {
+              label: (
+                <span className="flex flex-row items-center gap-x-2">
+                  <House size={26} strokeWidth={2.2} />
+                  {t("home.link")}
+                </span>
+              ),
+            },
+          ]}
+        />
+
+        <h1 className="sr-only">
+          {t("home.title.1")}
+          <br />
+          <br />
+          {t("home.title.2")}
+        </h1>
+
         <ReactMarkdown
           className="my-7 mt-10 markdown"
           children={String(pageAccueil[0]?.texte)}
@@ -75,8 +97,7 @@ const HomePage = () => {
           <div className="mx-auto text-center mb-6">
             <div
               className="w-[33rem] h-[33rem] rounded-4xl overflow-hidden mx-auto
-               max-xs:w-80 max-xs:h-80 
-               max-sm:w-96 max-sm:h-96 
+               max-sm:w-fit max-sm:h-1/2 
                max-md:w-[26rem] max-md:h-[26rem] 
                max-xl:w-[28rem] max-xl:h-[28rem]
                readerMode:mb-10"

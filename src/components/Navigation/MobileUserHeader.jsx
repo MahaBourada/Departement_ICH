@@ -18,13 +18,11 @@ const MobileUserHeader = ({ switchLang }) => {
   const [showDept, setShowDept] = useState(false);
   const [showRecherche, setShowRecherche] = useState(false);
   const [showColl, setShowColl] = useState(false);
-  const [showLang, setShowLang] = useState(false);
 
   const formationMenuRef = useRef(null);
   const deptMenuRef = useRef(null);
   const rechercheMenuRef = useRef(null);
   const collMenuRef = useRef(null);
-  const langMenuRef = useRef(null);
 
   const handleClickOutside = (event, setState, menuRef) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -46,12 +44,9 @@ const MobileUserHeader = ({ switchLang }) => {
       if (showColl) {
         handleClickOutside(event, setShowColl, collMenuRef);
       }
-      if (showLang) {
-        handleClickOutside(event, setShowLang, langMenuRef);
-      }
     };
 
-    if (showFormation || showDept || showRecherche || showColl || showLang) {
+    if (showFormation || showDept || showRecherche || showColl) {
       document.addEventListener("mousedown", handleOutsideClick);
     } else {
       document.removeEventListener("mousedown", handleOutsideClick);
@@ -60,7 +55,7 @@ const MobileUserHeader = ({ switchLang }) => {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, [showFormation, showDept, showRecherche, showColl, showLang]);
+  }, [showFormation, showDept, showRecherche, showColl]);
 
   const handleLinkClick = () => {
     setShowMenu(false);
@@ -69,7 +64,6 @@ const MobileUserHeader = ({ switchLang }) => {
     setShowDept(false);
     setShowRecherche(false);
     setShowColl(false);
-    setShowLang(false);
 
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -80,6 +74,7 @@ const MobileUserHeader = ({ switchLang }) => {
         <img
           src="/ich/assets/vectors/Logo.svg"
           alt="Logo de l'université Paris 8"
+          aria-hidden={localStorage.getItem("theme") === "dark" ? true : false}
           width={100}
           className="block dark:hidden"
         />
@@ -87,18 +82,18 @@ const MobileUserHeader = ({ switchLang }) => {
         <img
           src="/ich/assets/vectors/LogoDark.svg"
           alt="Logo de l'université Paris 8"
+          aria-hidden={localStorage.getItem("theme") === "dark" ? false : true}
           width={100}
           className="hidden dark:block"
         />
 
         <button
           type="button"
-          aria-controls="menu"
           aria-label={
             showMenu ? "Fermer le menu" : "Ouvrir le menu de navigation"
           }
           onClick={onMenuShow}
-          className="focus:translate-[1px] cursor-pointer"
+          className="cursor-pointer"
         >
           {showMenu ? (
             <X
@@ -125,7 +120,7 @@ const MobileUserHeader = ({ switchLang }) => {
           <div className="flex items-center justify-center">
             {localStorage.getItem("lang") === "en" ? (
               <button
-                className="cursor-pointer w-fit flex justify-end items-center px-2 transition-colors duration-300 hover:underline hover:translate-[1px] hover:bg-hover-main active:bg-hover-main dark:hover:bg-dark-main-focus dark:active:bg-dark-main-focus rounded-lg"
+                className="cursor-pointer w-fit flex justify-end items-center px-2 transition-colors duration-300 hover:underline hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
                 onClick={() => switchLang("fr")}
               >
                 <img
@@ -137,7 +132,7 @@ const MobileUserHeader = ({ switchLang }) => {
               </button>
             ) : (
               <button
-                className="cursor-pointer w-fit flex justify-end items-center px-2 transition-colors duration-300 hover:underline hover:translate-[1px] hover:bg-hover-main active:bg-hover-main dark:hover:bg-dark-main-focus dark:active:bg-dark-main-focus rounded-lg"
+                className="cursor-pointer w-fit flex justify-end items-center px-2 transition-colors duration-300 hover:underline hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
                 onClick={() => switchLang("en")}
               >
                 <img
@@ -154,7 +149,7 @@ const MobileUserHeader = ({ switchLang }) => {
             <Link
               onClick={handleLinkClick}
               to="/admin"
-              className="max-sm:text-[1.125rem] max-large-medium:text-xl font-medium px-2.5 py-1.5 ml-2 mx-1 cursor-pointer hover:translate-[1px] hover:underline p-2 hover:bg-hover-main active:bg-hover-main dark:hover:bg-dark-main-focus dark:active:bg-dark-main-focus rounded-lg"
+              className="max-sm:text-[1.125rem] max-large-medium:text-xl font-medium px-2.5 py-1.5 ml-2 mx-1 cursor-pointer hover:underline p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
             >
               Mon espace
             </Link>
@@ -164,7 +159,7 @@ const MobileUserHeader = ({ switchLang }) => {
             <Link
               onClick={handleLinkClick}
               to="/"
-              className={`px-5 py-3 w-full font-medium hover:bg-hover-main active:bg-hover-main dark:hover:bg-dark-main-focus dark:active:bg-dark-main-focus hover:underline hover:translate-[1px] ${
+              className={`px-5 py-3 w-full font-medium hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus hover:underline ${
                 location.pathname === "/"
                   ? "underline bg-hover-main dark:bg-dark-main-focus"
                   : ""
@@ -175,7 +170,7 @@ const MobileUserHeader = ({ switchLang }) => {
 
             <div ref={deptMenuRef}>
               <button
-                className={`cursor-pointer flex justify-between items-center w-full font-medium px-4 py-3 hover:bg-hover-main active:bg-hover-main dark:hover:bg-dark-main-focus dark:active:bg-dark-main-focus hover:underline hover:translate-[1px] ${
+                className={`cursor-pointer flex justify-between items-center w-full font-medium px-4 py-3 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus hover:underline hoverfocus:ate-[1px] ${
                   ["/departement/actualites", "/departement/equipe"].includes(
                     location.pathname
                   )
@@ -197,7 +192,7 @@ const MobileUserHeader = ({ switchLang }) => {
                   <Link
                     onClick={handleLinkClick}
                     to="/departement/actualites"
-                    className="hover:bg-hover-main active:bg-hover-main dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
+                    className="hover:bg-hover-main focus:bg-hover-main dark:bg-[#53626E] dark:focus:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
                   >
                     {t("department.news.link")}
                   </Link>
@@ -205,7 +200,7 @@ const MobileUserHeader = ({ switchLang }) => {
                   <Link
                     onClick={handleLinkClick}
                     to="/departement/equipe"
-                    className="hover:bg-hover-main active:bg-hover-main dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
+                    className="hover:bg-hover-main focus:bg-hover-main dark:bg-[#53626E] dark:focus:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
                   >
                     {t("department.team.link")}
                   </Link>
@@ -215,7 +210,7 @@ const MobileUserHeader = ({ switchLang }) => {
 
             <div ref={formationMenuRef}>
               <button
-                className={`cursor-pointer flex justify-between items-center w-full font-medium px-4 py-3 hover:bg-hover-main active:bg-hover-main dark:hover:bg-dark-main-focus dark:active:bg-dark-main-focus hover:underline hover:translate-[1px] ${
+                className={`cursor-pointer flex justify-between items-center w-full font-medium px-4 py-3 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus hover:underline hoverfocus:ate-[1px] ${
                   [
                     "/formation/master",
                     "/formation/projets-etudiants",
@@ -240,28 +235,28 @@ const MobileUserHeader = ({ switchLang }) => {
                   <Link
                     onClick={handleLinkClick}
                     to="/formation/master"
-                    className="hover:bg-hover-main active:bg-hover-main dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
+                    className="hover:bg-hover-main focus:bg-hover-main dark:bg-[#53626E] dark:focus:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
                   >
                     {t("formation.master.link")}
                   </Link>
                   <Link
                     onClick={handleLinkClick}
                     to="/formation/projets-etudiants"
-                    className="hover:bg-hover-main active:bg-hover-main dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
+                    className="hover:bg-hover-main focus:bg-hover-main dark:bg-[#53626E] dark:focus:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
                   >
                     {t("formation.projects.title")}
                   </Link>
                   <Link
                     onClick={handleLinkClick}
                     to="/formation/prix-concours"
-                    className="hover:bg-hover-main active:bg-hover-main dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
+                    className="hover:bg-hover-main focus:bg-hover-main dark:bg-[#53626E] dark:focus:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
                   >
                     {t("formation.awards_title.title")}
                   </Link>
                   <Link
                     onClick={handleLinkClick}
                     to="/formation/alumni"
-                    className="hover:bg-hover-main active:bg-hover-main dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
+                    className="hover:bg-hover-main focus:bg-hover-main dark:bg-[#53626E] dark:focus:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
                   >
                     Alumni
                   </Link>
@@ -271,7 +266,7 @@ const MobileUserHeader = ({ switchLang }) => {
 
             <div ref={rechercheMenuRef}>
               <button
-                className={`cursor-pointer flex justify-between items-center w-full font-medium px-4 py-3 hover:bg-hover-main active:bg-hover-main dark:hover:bg-dark-main-focus dark:active:bg-dark-main-focus hover:underline hover:translate-[1px] ${
+                className={`cursor-pointer flex justify-between items-center w-full font-medium px-4 py-3 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus hover:underline hoverfocus:ate-[1px] ${
                   ["/recherche/lab-chart"].includes(location.pathname)
                     ? "underline bg-hover-main dark:bg-dark-main-focus"
                     : ""
@@ -291,7 +286,7 @@ const MobileUserHeader = ({ switchLang }) => {
                   <Link
                     onClick={handleLinkClick}
                     to="/recherche/lab-chart"
-                    className="hover:bg-hover-main active:bg-hover-main dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
+                    className="hover:bg-hover-main focus:bg-hover-main dark:bg-[#53626E] dark:focus:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
                   >
                     {t("research.lab-chart.link")}
                   </Link>
@@ -301,7 +296,7 @@ const MobileUserHeader = ({ switchLang }) => {
 
             <div ref={collMenuRef}>
               <button
-                className={`cursor-pointer flex justify-between items-center w-full font-medium px-4 py-3 hover:bg-hover-main active:bg-hover-main dark:hover:bg-dark-main-focus dark:active:bg-dark-main-focus hover:underline hover:translate-[1px] ${
+                className={`cursor-pointer flex justify-between items-center w-full font-medium px-4 py-3 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus hover:underline hoverfocus:ate-[1px] ${
                   [
                     "/collaborations/collaborations-nationales",
                     "/collaborations/collaborations-internationales",
@@ -325,21 +320,21 @@ const MobileUserHeader = ({ switchLang }) => {
                   <Link
                     onClick={handleLinkClick}
                     to="/collaborations/collaborations-nationales"
-                    className="hover:bg-hover-main active:bg-hover-main dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
+                    className="hover:bg-hover-main focus:bg-hover-main dark:bg-[#53626E] dark:focus:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
                   >
                     {t("collaboration.national.link")}
                   </Link>
                   <Link
                     onClick={handleLinkClick}
                     to="/collaborations/collaborations-internationales"
-                    className="hover:bg-hover-main active:bg-hover-main dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
+                    className="hover:bg-hover-main focus:bg-hover-main dark:bg-[#53626E] dark:focus:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
                   >
                     {t("collaboration.international.link")}
                   </Link>
                   <Link
                     onClick={handleLinkClick}
                     to="/collaborations/collaborez-avec-nous"
-                    className="hover:bg-hover-main active:bg-hover-main dark:bg-[#53626E] dark:active:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
+                    className="hover:bg-hover-main focus:bg-hover-main dark:bg-[#53626E] dark:focus:bg-dark-main-focus dark:hover:bg-dark-main-focus px-4 py-3"
                   >
                     {t("collaboration.form.link")}
                   </Link>
@@ -350,7 +345,10 @@ const MobileUserHeader = ({ switchLang }) => {
             <Link
               onClick={handleLinkClick}
               to="/contact"
-              className={`px-5 py-3 hover:bg-hover-main active:bg-hover-main dark:hover:bg-dark-main-focus dark:active:bg-dark-main-focus w-full font-medium hover:underline hover:translate-[1px] ${
+              className={`px-5 py-3 w-full font-medium hover:underline
+              hover:bg-hover-main focus:bg-hover-main
+              dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus
+              ${
                 location.pathname === "/contact"
                   ? "underline bg-hover-main dark:bg-dark-main-focus"
                   : ""
@@ -359,6 +357,73 @@ const MobileUserHeader = ({ switchLang }) => {
               Contact
             </Link>
           </nav>
+
+          <div className="flex flex-col text-start justify-between items-start mt-10">
+            <Link
+              onClick={handleLinkClick}
+              to="/accessibilite"
+              className={`w-full py-1 px-5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus hover:underline line-clamp-1
+                ${
+                  location.pathname === "/accessibilite"
+                    ? "underline bg-hover-main dark:bg-dark-main-focus"
+                    : ""
+                }`}
+            >
+              {t("footer.accessibility")}
+            </Link>
+
+            <Link
+              to="/credits"
+              onClick={handleLinkClick}
+              className={`w-full py-1 px-5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus hover:underline line-clamp-1
+                ${
+                  location.pathname === "/credits"
+                    ? "underline bg-hover-main dark:bg-dark-main-focus"
+                    : ""
+                }`}
+            >
+              {t("footer.credits")}
+            </Link>
+
+            <Link
+              to="/mentions-legales"
+              onClick={handleLinkClick}
+              className={`w-full py-1 px-5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus hover:underline line-clamp-1
+                ${
+                  location.pathname === "/mentions-legales"
+                    ? "underline bg-hover-main dark:bg-dark-main-focus"
+                    : ""
+                }`}
+            >
+              {t("footer.mentions")}
+            </Link>
+
+            <Link
+              to="/politique-confidentialite"
+              onClick={handleLinkClick}
+              className={`w-full py-1 px-5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus hover:underline line-clamp-1
+                ${
+                  location.pathname === "/politique-confidentialite"
+                    ? "underline bg-hover-main dark:bg-dark-main-focus"
+                    : ""
+                }`}
+            >
+              {t("footer.policy")}
+            </Link>
+
+            <Link
+              to="/droits-auteurs"
+              onClick={handleLinkClick}
+              className={`w-full py-1 px-5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus hover:underline  max-w-full break-words whitespace-normal
+                ${
+                  location.pathname === "/droits-auteurs"
+                    ? "underline bg-hover-main dark:bg-dark-main-focus"
+                    : ""
+                }`}
+            >
+              {t("footer.copyright.2")}
+            </Link>
+          </div>
         </div>
       )}
     </header>

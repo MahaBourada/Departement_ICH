@@ -16,8 +16,16 @@ const AdminNavigation = () => {
         <img
           src="/ich/assets/vectors/Logo.svg"
           alt="Logo de l'université Paris 8"
+          aria-hidden={localStorage.getItem("theme") === "dark" ? true : false}
           width={160}
-          className="m-5 mb-10 mx-auto"
+          className="m-5 mb-10 mx-auto block dark:hidden"
+        />
+        <img
+          src="/ich/assets/vectors/LogoDark.svg"
+          alt="Logo de l'université Paris 8"
+          aria-hidden={localStorage.getItem("theme") === "dark" ? false : true}
+          width={160}
+          className="m-5 mb-10 mx-auto hidden dark:block"
         />
 
         <div className="font-medium font-main w-fit mx-auto">
