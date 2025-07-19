@@ -90,7 +90,7 @@ export const handleRefreshToken = (req, res) => {
   const cookies = req.cookies;
   if (!cookies?.jwt)
     return res.status(401).json({
-      message: "Aucun jeton de rafraîchissement fourni.",
+      message: "Administrateur non authentifié.",
     });
 
   const refreshToken = cookies.jwt;

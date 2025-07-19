@@ -8,13 +8,20 @@ import {
 } from "../controllers/prix.js";
 import { validatePrix } from "../middleware/validation.js";
 import { handleValidationErrors } from "../middleware/handleValidationErrors.js";
+import { verifyJWT } from "../middleware/verifyJWT .js";
 
 const router = express.Router();
 
 router.get("/", getAllPrix);
 router.get("/:idPrix", getOnePrix);
-router.post("/", validatePrix, handleValidationErrors, addPrix);
-router.put("/:idPrix", validatePrix, handleValidationErrors, updatePrix);
-router.delete("/:idPrix", deletePrix);
+router.post("/", verifyJWT, validatePrix, handleValidationErrors, addPrix);
+router.put(
+  "/:idPrix",
+  verifyJWT,
+  validatePrix,
+  handleValidationErrors,
+  updatePrix
+);
+router.delete("/:idPrix", verifyJWT, deletePrix);
 
 export default router;

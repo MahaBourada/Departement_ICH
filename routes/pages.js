@@ -12,8 +12,6 @@ const router = express.Router();
 router.get("/", getAllPages);
 router.get("/:idPage", getPageById);
 router.get("/title/:pageTitle", getPageByTitle);
-router.put("/:idPage", updatePage);
-/* router.post("/", verifyJWT, addPage);
-router.put("/:idSection", verifyJWT, updatePage); */
+router.put("/:idPage", verifyJWT, updatePage);
 
 export default router;
