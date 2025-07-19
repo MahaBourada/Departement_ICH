@@ -8,19 +8,24 @@ export const handleLogin = (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    return res
-      .status(400)
-      .json({ message: "Username and password are required" });
+    return res.status(400).json({
+      message: "Le nom d'utilisateur et le mot de passe sont requis.",
+    });
   }
 
   // MySQL query to find user by username
   const sql = "SELECT * FROM admin WHERE username = ?";
   db.query(sql, [username], async (err, results) => {
-    if (err) return res.status(500).json({ message: "Database error" });
+    if (err)
+      return res.status(500).json({
+        message: "Erreur lors de la connexion.",
+        error: err.message,
+      });
 
-    // If no user is found
     if (results.length === 0) {
-      return res.status(401).json({ message: "Nom d'utilisateur incorrect" });
+      return res.status(401).json({
+        message: "Nom d'utilisateur incorrect.",
+      });
     }
 
     const foundUser = results[0]; // Get the first user result
@@ -71,27 +76,46 @@ export const handleLogin = (req, res) => {
 export const handleLogout = async (req, res) => {
   const cookies = req.cookies;
 
-  if (!cookies?.jwt) return res.sendStatus(204);
+  if (!cookies?.jwt)
+    return res.status(204).json({
+      message: "Aucun cookie à supprimer.",
+    });
 
   res.clearCookie("jwt", { httpOnly: true, sameSite: "None", secure: true });
 
-  res.json({ message: "Cookie cleared" });
+  res.json({ message: "Cookie supprimé" });
 };
 
 export const handleRefreshToken = (req, res) => {
   const cookies = req.cookies;
-  if (!cookies?.jwt) return res.sendStatus(401);
+  if (!cookies?.jwt)
+    return res.status(401).json({
+      message: "Aucun jeton de rafraîchissement fourni.",
+    });
 
   const refreshToken = cookies.jwt;
 
   jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
-    if (err) return res.sendStatus(403);
+    if (err)
+      return res.status(403).json({
+        error: err.message,
+        message: "Le jeton de rafraîchissement est invalide ou expiré.",
+      });
 
     const username = decoded.username;
 
     const sql = "SELECT * FROM admin WHERE username = ?";
     db.query(sql, [username], (err, results) => {
-      if (err || results.length === 0) return res.sendStatus(403);
+      if (err)
+        return res.status(500).json({
+          message: "Erreur lors de la vérification du jeton.",
+          error: err.message,
+        });
+
+      if (results.length === 0)
+        return res.status(403).json({
+          message: "Utilisateur introuvable",
+        });
 
       const foundUser = results[0];
       const accessToken = jwt.sign(

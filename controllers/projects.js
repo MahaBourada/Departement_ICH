@@ -26,7 +26,11 @@ export const getAllProjects = (req, res) => {
                 ORDER BY projets.annee DESC, titre`;
 
   db.query(sql, (err, results) => {
-    if (err) return res.status(500).json({ error: err.message });
+    if (err)
+      return res.status(500).json({
+        message: "Erreur lors de la récupération des projets",
+        error: err.message,
+      });
 
     const projectsMap = new Map();
 
@@ -99,10 +103,14 @@ export const getProject = (req, res) => {
                 WHERE projets.idProjet = ?`;
 
   db.query(sql, [idProjet], (err, results) => {
-    if (err) return res.status(500).json({ error: err.message });
+    if (err)
+      return res.status(500).json({
+        message: "Erreur lors de la récupération du projet",
+        error: err.message,
+      });
 
     if (results.length === 0)
-      return res.status(404).json({ error: "Project not found" });
+      return res.status(404).json({ message: "Projet introuvable" });
 
     const project = {
       idProjet: results[0].idProjet,
@@ -157,10 +165,18 @@ export const addProject = (req, res) => {
   const projectBody = req.body;
 
   db.getConnection((err, connection) => {
-    if (err) return res.status(500).json({ status: "Error 1", message: err });
+    if (err)
+      return res.status(500).json({
+        message: "Connexion à la base de données échouée",
+        error: err.message,
+      });
 
     connection.beginTransaction(async (err) => {
-      if (err) return res.status(500).json({ status: "Error 2", message: err });
+      if (err)
+        return res.status(500).json({
+          message: "Échec de la transaction",
+          error: err.message,
+        });
 
       try {
         // Table : projets
@@ -289,26 +305,30 @@ export const addProject = (req, res) => {
         connection.commit((err) => {
           if (err) {
             connection.rollback(() => {
-              res
-                .status(500)
-                .json({ status: "Error 3", message: "Erreur lors du commit" });
+              res.status(500).json({
+                message: "Erreur lors de la validation des modifications.",
+                error: err.message,
+              });
             });
           } else {
             logHistory(
               projectBody.currentAdmin,
               "INSERT",
-              `Ajout du projet ${projectBody.titre}`
+              `Ajout du projet '${projectBody.titre}'`
             );
 
             res.status(200).json({
               status: "Success",
-              message: `Le projet '${projectBody.titre}' a été ajouté`,
+              message: `Projet '${projectBody.titre}' ajouté`,
             });
           }
         });
       } catch (err) {
         connection.rollback(() => {
-          res.status(500).json({ status: "Error 4", message: err.message });
+          res.status(500).json({
+            message: "Erreur lors de l'ajout du projet",
+            error: err.message,
+          });
         });
       } finally {
         connection.release();
@@ -322,10 +342,18 @@ export const updateProject = (req, res) => {
   const projectBody = req.body;
 
   db.getConnection((err, connection) => {
-    if (err) return res.status(500).json({ status: "Error 1", message: err });
+    if (err)
+      return res.status(500).json({
+        message: "Connexion à la base de données échouée",
+        error: err.message,
+      });
 
     connection.beginTransaction(async (err) => {
-      if (err) return res.status(500).json({ status: "Error 2", message: err });
+      if (err)
+        return res.status(500).json({
+          message: "Échec de la transaction",
+          error: err.message,
+        });
 
       try {
         // Table : projets
@@ -570,26 +598,30 @@ export const updateProject = (req, res) => {
         connection.commit((err) => {
           if (err) {
             connection.rollback(() => {
-              res
-                .status(500)
-                .json({ status: "Error 3", message: "Erreur lors du commit" });
+              res.status(500).json({
+                message: "Erreur lors de la validation des modifications.",
+                error: err.message,
+              });
             });
           } else {
             logHistory(
               projectBody.currentAdmin,
               "UPDATE",
-              `Mise à jour du projet ${projectBody.titre}`
+              `Mise à jour du projet '${projectBody.titre}'`
             );
 
             res.status(200).json({
               status: "Success",
-              message: `Le projet '${projectBody.titre}' a été mis à jour`,
+              message: `Projet '${projectBody.titre}' mis à jour`,
             });
           }
         });
       } catch (err) {
         connection.rollback(() => {
-          res.status(500).json({ status: "Error 4", message: err.message });
+          res.status(500).json({
+            message: "Erreur lors de la mise à jour du projet",
+            error: err.message,
+          });
         });
       } finally {
         connection.release();
@@ -603,10 +635,19 @@ export const deleteProject = async (req, res) => {
   const { currentAdmin } = req.query;
 
   db.getConnection((err, connection) => {
-    if (err) return res.status(500).json({ status: "Error 1", message: err });
+    if (err)
+      return res.status(500).json({
+        message: "Connexion à la base de données échouée",
+        error: err.message,
+      });
 
     connection.beginTransaction(async (err) => {
-      if (err) return res.status(500).json({ status: "Error 2", message: err });
+      if (err)
+        return res.status(500).json({
+          message: "Échec de la transaction",
+          error: err.message,
+        });
+
       try {
         // Get the title of the project
         const [project] = await query(
@@ -654,26 +695,30 @@ export const deleteProject = async (req, res) => {
         connection.commit((err) => {
           if (err) {
             connection.rollback(() => {
-              res
-                .status(500)
-                .json({ status: "Error 3", message: "Erreur lors du commit" });
+              res.status(500).json({
+                message: "Erreur lors de la validation des modifications.",
+                error: err.message,
+              });
             });
           } else {
             logHistory(
               currentAdmin,
               "DELETE",
-              `Suppression du projet ${titre}`
+              `Suppression du projet '${titre}'`
             );
 
             res.status(200).json({
               status: "Success",
-              message: `Projet ${titre} supprimé`,
+              message: `Projet '${titre}' supprimé`,
             });
           }
         });
       } catch (err) {
         connection.rollback(() => {
-          res.status(500).json({ status: "Error 4", message: err.message });
+          res.status(500).json({
+            message: "Erreur lors de la suppression du projet",
+            error: err.message,
+          });
         });
       } finally {
         connection.release();

@@ -10,7 +10,10 @@ export const getAllNews = (req, res) => {
     "SELECT * FROM actualites ORDER BY datePosted DESC",
     (err, results) => {
       if (err) {
-        return res.status(500).json({ error: err.message });
+        return res.status(500).json({
+          message: "Erreur lors de la récupération des actualités",
+          error: err.message,
+        });
       } else {
         res.json(results);
       }
@@ -26,11 +29,14 @@ export const getNewsById = (req, res) => {
 
   db.query(sql, [idActu], (err, results) => {
     if (err) {
-      return res.status(500).json({ error: err.message });
+      return res.status(500).json({
+        message: "Erreur lors de la récupération de l'actualité",
+        error: err.message,
+      });
     }
 
     if (results.length === 0) {
-      return res.status(404).json({ error: "News not found" });
+      return res.status(404).json({ message: "Actualité introuvable" });
     }
 
     res.json(results[0]);
@@ -55,7 +61,10 @@ export const getNewsByLang = (req, res) => {
 
   db.query(sql, (err, results) => {
     if (err) {
-      return res.status(500).json({ error: err.message });
+      return res.status(500).json({
+        message: "Erreur lors de la récupération des actualités",
+        error: err.message,
+      });
     } else {
       res.json(results);
     }
@@ -145,17 +154,21 @@ export const addNews = (req, res) => {
     dateFormatting(),
   ];
   db.query(sql, values, (err, result) => {
-    if (err) return res.json({ Error: err });
+    if (err)
+      return res.status(500).json({
+        message: "Erreur lors de l'ajout de l'actualité",
+        error: err.message,
+      });
 
     logHistory(
       newsBody.currentAdmin,
       "INSERT",
-      `Ajout de l'actualité ${newsBody.titre_fr}`
+      `Ajout de l'actualité '${newsBody.titre_fr}'`
     );
 
     return res.json({
       Status: "Success",
-      message: `${newsBody.titre_fr} ajoutée`,
+      message: `Actualité '${newsBody.titre_fr}' ajoutée`,
     });
   });
 };
@@ -170,9 +183,10 @@ export const updateNews = (req, res) => {
 
   db.query(getCurrentImageSql, [idActu], (err, results) => {
     if (err)
-      return res
-        .status(500)
-        .json({ error: "Erreur base de données", details: err });
+      return res.status(500).json({
+        message: "Erreur lors de la récupération de l'image actuelle.",
+        error: err.message,
+      });
 
     const currentImagePath = results[0]?.image; // could be null
 
@@ -272,17 +286,21 @@ export const updateNews = (req, res) => {
     ];
 
     db.query(sql, values, (err, result) => {
-      if (err) return res.status(500).json({ error: err });
+      if (err)
+        return res.status(500).json({
+          message: "Erreur lors de la mise à jour",
+          error: err.message,
+        });
 
       logHistory(
         newsBody.currentAdmin,
         "UPDATE",
-        `Mise à jour de l'actualité ${newsBody.titre_fr}`
+        `Mise à jour de l'actualité '${newsBody.titre_fr}'`
       );
 
       return res.json({
         Status: "Success",
-        message: `Informations de ${newsBody.titre_fr} mises à jour`,
+        message: `Actualité '${newsBody.titre_fr}' mise à jour`,
       });
     });
   });
@@ -293,7 +311,9 @@ export const deleteNews = (req, res) => {
   const { idActu } = req.params;
 
   if (!currentAdmin?.first_name || !currentAdmin?.last_name) {
-    return res.status(400).json({ error: "Missing current admin info" });
+    return res.status(400).json({
+      message: "Informations administrateur manquantes",
+    });
   }
 
   db.query(
@@ -301,11 +321,16 @@ export const deleteNews = (req, res) => {
     [idActu],
     (err, results) => {
       if (err) {
-        return res.status(500).json({ error: err.message });
+        return res.status(500).json({
+          message: "Erreur lors de la récupération de l'actualité.",
+          error: err.message,
+        });
       }
 
       if (results.length === 0) {
-        return res.status(404).json({ error: "News not found" });
+        return res.status(404).json({
+          message: "Actualité introuvable",
+        });
       }
 
       const { titre_fr } = results[0];
@@ -313,10 +338,17 @@ export const deleteNews = (req, res) => {
       const getImageSql = "SELECT image FROM actualites WHERE idActu = ?";
 
       db.query(getImageSql, [idActu], (err, result) => {
-        if (err) return res.status(500).json({ error: err.message });
+        if (err) {
+          return res.status(500).json({
+            message: "Erreur lors de la récupération de l'actualité.",
+            error: err.message,
+          });
+        }
 
-        if (result.length === 0) {
-          return res.status(404).json({ error: "Actualité introuvable" });
+        if (results.length === 0) {
+          return res.status(404).json({
+            message: "Actualité introuvable",
+          });
         }
 
         const imagePath = result[0].image;
@@ -324,37 +356,44 @@ export const deleteNews = (req, res) => {
         const deleteSql = "DELETE FROM actualites WHERE idActu = ?";
 
         db.query(deleteSql, [idActu], (err) => {
-          if (err) return res.status(500).json({ error: err.message });
+          if (err)
+            return res.status(500).json({
+              message: "Erreur lors de la suppression",
+              error: err.message,
+            });
 
           // Only try to delete the image if it exists
           if (imagePath) {
             const absoluteImagePath = path.resolve(imagePath);
             fs.unlink(absoluteImagePath, (err) => {
               if (err && err.code !== "ENOENT") {
-                console.error("Erreur suppression image:", err.message);
+                return res.status(500).json({
+                  message: "Erreur lors de la suppression de l'image",
+                  error: err.message,
+                });
               }
 
               logHistory(
                 currentAdmin,
                 "DELETE",
-                `Suppression de l'actualité ${titre_fr}`
+                `Suppression de l'actualité '${titre_fr}'`
               );
 
               return res.json({
                 Success: "News deleted successfully",
-                message: `Actualité ${titre_fr} supprimé`,
+                message: `Actualité '${titre_fr}' supprimée`,
               });
             });
           } else {
             logHistory(
               currentAdmin,
               "DELETE",
-              `Suppression de l'actualité ${titre_fr}`
+              `Suppression de l'actualité '${titre_fr}'`
             );
 
             return res.json({
               Success: "News deleted successfully",
-              message: `Actualité ${titre_fr} supprimé`,
+              message: `Actualité '${titre_fr}' supprimée`,
             });
           }
         });

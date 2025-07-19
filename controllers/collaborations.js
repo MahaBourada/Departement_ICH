@@ -7,7 +7,10 @@ import { logHistory } from "../utils/logHistory.js";
 export const getAllCollabs = (req, res) => {
   db.query("SELECT * FROM collaborations ORDER BY nom", (err, results) => {
     if (err) {
-      return res.status(500).json({ error: err.message });
+      return res.status(500).json({
+        message: "Erreur lors de la récupération des collaborations",
+        error: err.message,
+      });
     } else {
       res.json(results);
     }
@@ -20,11 +23,14 @@ export const getCollab = (req, res) => {
   const sql = "SELECT * FROM collaborations WHERE idCollab = ?";
   db.query(sql, [id], (err, results) => {
     if (err) {
-      return res.status(500).json({ error: err.message });
+      return res.status(500).json({
+        message: "Erreur lors de la récupération de la collaboration",
+        error: err.message,
+      });
     }
 
     if (results.length === 0) {
-      return res.status(404).json({ error: "Collaboration not found" });
+      return res.status(404).json({ messages: "Collaboration introuvable" });
     }
 
     res.json(results[0]);
@@ -48,7 +54,10 @@ export const getCollabsByLangType = (req, res) => {
 
   db.query(sql, [type], (err, results) => {
     if (err) {
-      return res.status(500).json({ error: err.message });
+      return res.status(500).json({
+        message: "Erreur lors de la récupération des collaborations",
+        error: err.message,
+      });
     } else {
       res.json(results);
     }
@@ -128,17 +137,22 @@ export const addCollab = (req, res) => {
     collaborationBody?.logo,
   ];
   db.query(sql, values, (err, result) => {
-    if (err) return res.json({ Error: err });
+    if (err) {
+      return res.status(500).json({
+        message: "Erreur lors de l'ajout de la collaboration",
+        error: err.message,
+      });
+    }
 
     logHistory(
       collaborationBody.currentAdmin,
       "INSERT",
-      `Ajout de la collaboration ${collaborationBody.nom}`
+      `Ajout de la collaboration '${collaborationBody.nom}'`
     );
 
     return res.json({
       Status: "Success",
-      message: `${collaborationBody.nom} ajoutée`,
+      message: `Collaboration '${collaborationBody.nom}' ajoutée`,
     });
   });
 };
@@ -153,9 +167,10 @@ export const updateCollab = (req, res) => {
 
   db.query(getCurrentImageSql, [idCollab], (err, results) => {
     if (err)
-      return res
-        .status(500)
-        .json({ error: "Erreur base de données", details: err });
+      return res.status(500).json({
+        message: "Erreur lors de la récupération de l'image actuelle.",
+        error: err.message,
+      });
 
     const currentImagePath = results[0]?.logo; // could be null
 
@@ -250,17 +265,22 @@ export const updateCollab = (req, res) => {
     ];
 
     db.query(sql, values, (err, result) => {
-      if (err) return res.status(500).json({ error: err });
+      if (err) {
+        return res.status(500).json({
+          message: "Erreur lors de la mise à jour de la collaboration",
+          error: err.message,
+        });
+      }
 
       logHistory(
         collaborationBody.currentAdmin,
         "UPDATE",
-        `Mise à jour de la collaboration ${collaborationBody.nom}`
+        `Mise à jour de la collaboration '${collaborationBody.nom}'`
       );
 
       return res.json({
         Status: "Success",
-        message: `Informations de ${collaborationBody.nom} mises à jour`,
+        message: `Collaboration '${collaborationBody.nom}' mise à jour`,
       });
     });
   });
@@ -270,16 +290,27 @@ export const deleteCollab = (req, res) => {
   const { idCollab } = req.params;
   const { currentAdmin } = req.query;
 
+  if (!currentAdmin?.first_name || !currentAdmin?.last_name) {
+    return res.status(400).json({
+      message: "Informations administrateur manquantes",
+    });
+  }
+
   db.query(
     "SELECT nom FROM collaborations WHERE idCollab = ?",
     [idCollab],
     (err, results) => {
       if (err) {
-        return res.status(500).json({ error: err.message });
+        return res.status(500).json({
+          message: "Erreur lors de la récupération de la collaboration.",
+          error: err.message,
+        });
       }
 
       if (results.length === 0) {
-        return res.status(404).json({ error: "Collab not found" });
+        return res.status(404).json({
+          message: "Collaboration introuvable",
+        });
       }
 
       const { nom } = results[0];
@@ -287,10 +318,17 @@ export const deleteCollab = (req, res) => {
       const getImageSql = "SELECT logo FROM collaborations WHERE idCollab = ?";
 
       db.query(getImageSql, [idCollab], (err, result) => {
-        if (err) return res.status(500).json({ error: err.message });
+        if (err) {
+          return res.status(500).json({
+            message: "Erreur lors de la récupération de la collaboration.",
+            error: err.message,
+          });
+        }
 
-        if (result.length === 0) {
-          return res.status(404).json({ error: "Collab introuvable" });
+        if (results.length === 0) {
+          return res.status(404).json({
+            message: "Collaboration introuvable",
+          });
         }
 
         const imagePath = result[0].logo;
@@ -298,37 +336,45 @@ export const deleteCollab = (req, res) => {
         const deleteSql = "DELETE FROM collaborations WHERE idCollab = ?";
 
         db.query(deleteSql, [idCollab], (err) => {
-          if (err) return res.status(500).json({ error: err.message });
+          if (err) {
+            return res.status(500).json({
+              message: "Erreur lors de la suppression de la collaboration.",
+              error: err.message,
+            });
+          }
 
           // Only try to delete the image if it exists
           if (imagePath) {
             const absoluteImagePath = path.resolve(imagePath);
             fs.unlink(absoluteImagePath, (err) => {
               if (err && err.code !== "ENOENT") {
-                console.error("Erreur suppression image:", err.message);
+                return res.status(500).json({
+                  message: "Erreur lors de la suppression de l'image",
+                  error: err.message,
+                });
               }
 
               logHistory(
                 currentAdmin,
                 "DELETE",
-                `Suppression de la collaboration ${nom}`
+                `Suppression de la collaboration '${nom}'`
               );
 
               return res.json({
                 Success: "Collab deleted successfully",
-                message: `Collaboration ${nom} supprimé`,
+                message: `Collaboration '${nom}' supprimée`,
               });
             });
           } else {
             logHistory(
               currentAdmin,
               "DELETE",
-              `Suppression de la collaboration ${nom}`
+              `Suppression de la collaboration '${nom}'`
             );
 
             return res.json({
               Success: "Collab deleted successfully",
-              message: `Collaboration ${nom} supprimé`,
+              message: `Collaboration '${nom}' supprimée`,
             });
           }
         });

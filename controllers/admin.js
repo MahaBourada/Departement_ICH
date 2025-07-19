@@ -11,7 +11,10 @@ export const getAllAdmins = (req, res) => {
     "SELECT * FROM admin ORDER BY createdAt DESC, first_name, last_name",
     (err, results) => {
       if (err) {
-        return res.status(500).json({ error: err.message });
+        return res.status(500).json({
+          message: "Erreur lors de la récupération des administrateurs",
+          error: err.message,
+        });
       } else {
         res.json(results);
       }
@@ -28,11 +31,14 @@ export const getAdminById = (req, res) => {
 
   db.query(sql, [id], (err, results) => {
     if (err) {
-      return res.status(500).json({ error: err.message });
+      return res.status(500).json({
+        message: "Erreur lors de la récupération de l'administrateur",
+        error: err.message,
+      });
     }
 
     if (results.length === 0) {
-      return res.status(404).json({ error: "Admin not found" });
+      return res.status(404).json({ message: "Administrateur introuvable" });
     }
 
     res.json(results[0]);
@@ -57,7 +63,11 @@ export const addAdmin = (req, res) => {
     "INSERT INTO admin (idAdmin, first_name, last_name, username, password, email, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
   bcrypt.hash(password.toString(), salt, (err, hash) => {
-    if (err) return res.json({ Error: err });
+    if (err)
+      return res.json({
+        Error: err,
+        message: "Erreur lors de la génération du hash de mot de passe",
+      });
 
     const values = [
       id,
@@ -71,21 +81,32 @@ export const addAdmin = (req, res) => {
     ];
 
     db.query(sqlAdmin, values, (err, result) => {
-      if (err) return res.json({ Error: err });
+      if (err) {
+        if (err.code === "ER_DUP_ENTRY") {
+          return res.status(400).json({
+            message: "Un administrateur avec cette adresse e-mail existe déjà",
+          });
+        } else {
+          return res.status(500).json({
+            message: "Erreur lors de l'ajout de l'administrateur",
+            error: err,
+          });
+        }
+      }
 
       sendPasswordEmail(adminBody.email, username, password);
 
       logHistory(
         adminBody.currentAdmin,
         "INSERT",
-        `Ajout de l'admin ${
+        `Ajout de l'admin '${
           adminBody.firstname
-        } ${adminBody.lastname.toUpperCase()}`
+        } ${adminBody.lastname.toUpperCase()}'`
       );
 
       return res.json({
         Status: "Success",
-        message: `Admin ${adminBody.firstname} ${adminBody.lastname} ajouté`,
+        message: `Admin '${adminBody.firstname} ${adminBody.lastname}' ajouté`,
       });
     });
   });
@@ -107,7 +128,13 @@ export const updateAdmin = (req, res) => {
     const salt = 10;
 
     bcrypt.hash(password.toString(), salt, (err, hash) => {
-      if (err) return res.json({ Error: err });
+      if (err) {
+        return res.status(500).json({
+          message: "Erreur lors de la génération du hash de mot de passe",
+          error: err,
+        });
+      }
+
       const updateSql = `UPDATE admin
                 SET first_name = ?, last_name = ?, username = ?, email = ?, password = ?
                 WHERE idAdmin = ?`;
@@ -115,19 +142,31 @@ export const updateAdmin = (req, res) => {
       const values = [firstname, lastname, username, email, hash, idAdmin];
 
       db.query(updateSql, values, (err, results) => {
-        if (err) return res.json({ Error: err });
+        if (err) {
+          if (err.code === "ER_DUP_ENTRY") {
+            return res.status(400).json({
+              message:
+                "Un administrateur avec cette adresse e-mail existe déjà",
+            });
+          } else {
+            return res.status(500).json({
+              message: "Erreur lors de la mise à jour de l'administrateur",
+              error: err,
+            });
+          }
+        }
 
         sendRegenerationEmail(email, username, password);
 
         logHistory(
           currentAdmin,
           "UPDATE",
-          `Mise à jour de l'admin ${firstname} ${lastname.toUpperCase()}`
+          `Mise à jour de l'admin '${firstname} ${lastname.toUpperCase()}'`
         );
 
         res.json({
           Success: "Admin updated successfully",
-          message: `Admin ${firstname} ${lastname.toUpperCase()} mis à jour`,
+          message: `Admin '${firstname} ${lastname.toUpperCase()}' mis à jour`,
         });
       });
     });
@@ -138,17 +177,28 @@ export const updateAdmin = (req, res) => {
     const values = [firstname, lastname, username, email, idAdmin];
 
     db.query(updateSql, values, (err, results) => {
-      if (err) return res.json({ Error: err });
+      if (err) {
+        if (err.code === "ER_DUP_ENTRY") {
+          return res.status(400).json({
+            message: "Un administrateur avec cette adresse e-mail existe déjà",
+          });
+        } else {
+          return res.status(500).json({
+            message: "Erreur lors de la mise à jour de l'administrateur",
+            error: err,
+          });
+        }
+      }
 
       logHistory(
         currentAdmin,
         "UPDATE",
-        `Mise à jour de l'admin ${firstname} ${lastname.toUpperCase()}`
+        `Mise à jour de l'admin '${firstname} ${lastname.toUpperCase()}'`
       );
 
       res.json({
         Success: "Admin updated successfully",
-        message: `Admin ${firstname} ${lastname.toUpperCase()} mis à jour`,
+        message: `Admin '${firstname} ${lastname.toUpperCase()}' mis à jour`,
       });
     });
   }
@@ -159,7 +209,9 @@ export const deleteAdmin = (req, res) => {
   const { currentAdmin } = req.query;
 
   if (!currentAdmin?.first_name || !currentAdmin?.last_name) {
-    return res.status(400).json({ error: "Missing current admin info" });
+    return res
+      .status(400)
+      .json({ message: "Informations administrateur manquantes" });
   }
 
   db.query(
@@ -167,11 +219,14 @@ export const deleteAdmin = (req, res) => {
     [idAdmin],
     (err, results) => {
       if (err) {
-        return res.status(500).json({ error: err.message });
+        return res.status(500).json({
+          message: "Erreur lors de la suppression de l'administrateur",
+          error: err.message,
+        });
       }
 
       if (results.length === 0) {
-        return res.status(404).json({ error: "Admin not found" });
+        return res.status(404).json({ message: "Administrateur introuvable" });
       }
 
       const { first_name, last_name } = results[0];
@@ -180,17 +235,20 @@ export const deleteAdmin = (req, res) => {
 
       db.query(sql, [idAdmin], (err, results) => {
         if (err) {
-          return res.status(500).json({ error: err.message });
+          return res.status(500).json({
+            error: err.message,
+            message: "Erreur lors de la suppression de l'administrateur",
+          });
         } else {
           logHistory(
             currentAdmin,
             "DELETE",
-            `Suppression de l'admin ${first_name} ${last_name.toUpperCase()}`
+            `Suppression de l'admin '${first_name} ${last_name.toUpperCase()}'`
           );
 
           res.json({
             Success: "Admin deleted successfully",
-            message: `Admin ${first_name} ${last_name.toUpperCase()} supprimé`,
+            message: `Admin '${first_name} ${last_name.toUpperCase()}' supprimé`,
           });
         }
       });
@@ -225,9 +283,9 @@ Le département Ingénierie - Cognition - Handicap
 
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
-      console.log("Error sending email:", err);
+      return { message: "Erreur lors de l'envoi de l'email", error: err };
     } else {
-      console.log("Email sent: " + info.response);
+      return { message: "Email envoyé avec succès" };
     }
   });
 };
@@ -259,9 +317,9 @@ Le département Ingénierie - Cognition - Handicap
 
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
-      console.log("Error sending email:", err);
+      return { message: "Erreur lors de l'envoi de l'email", error: err };
     } else {
-      console.log("Email sent: " + info.response);
+      return { message: "Email envoyé avec succès" };
     }
   });
 };

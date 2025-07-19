@@ -19,7 +19,10 @@ export const getAllPages = (req, res) => {
 
   db.query(sql, (err, results) => {
     if (err) {
-      return res.status(500).json({ error: err.message });
+      return res.status(500).json({
+        message: "Erreur lors de la récupération des sections",
+        error: err.message,
+      });
     }
 
     const pagesMap = new Map();
@@ -75,11 +78,14 @@ export const getPageById = (req, res) => {
 
   db.query(sql, [idPage], (err, results) => {
     if (err) {
-      return res.status(500).json({ error: err.message });
+      return res.status(500).json({
+        message: "Erreur lors de la récupération de la page",
+        error: err.message,
+      });
     }
 
     if (results.length === 0)
-      return res.status(404).json({ error: "Page not found" });
+      return res.status(404).json({ message: "Page introuvable" });
 
     const page = {
       idPage: results[0].idPage,
@@ -132,7 +138,10 @@ export const getPageByTitle = (req, res) => {
 
     db.query(sql, [idPage], (err, results) => {
       if (err) {
-        return res.status(500).json({ error: err.message });
+        return res.status(500).json({
+          message: "Erreur lors de la récupération des sections de la page",
+          error: err.message,
+        });
       } else {
         res.json(results);
       }
@@ -156,15 +165,17 @@ export const updatePage = (req, res) => {
 
   db.getConnection((err, connection) => {
     if (err)
-      return res
-        .status(500)
-        .json({ error: "DB connection failed", message: err });
+      return res.status(500).json({
+        message: "Connexion à la base de données échouée",
+        error: err.message,
+      });
 
     connection.beginTransaction(async (err) => {
       if (err)
-        return res
-          .status(500)
-          .json({ error: "Transaction failed", message: err });
+        return res.status(500).json({
+          message: "Échec de la transaction",
+          error: err.message,
+        });
 
       try {
         for (let section of sections) {
@@ -204,7 +215,11 @@ export const updatePage = (req, res) => {
           if (err) {
             connection.rollback(() => {
               connection.release();
-              res.status(500).json({ error: "Commit failed" });
+              res.status(500).json({
+                message:
+                  "Erreur lors de la validation des modifications.",
+                error: err.message,
+              });
             });
           } else {
             connection.release();
@@ -212,18 +227,21 @@ export const updatePage = (req, res) => {
             logHistory(
               currentAdmin,
               "UPDATE",
-              `Mise à jour des sections de la page ${pageTitle}`
+              `Mise à jour des sections de la page '${pageTitle}'`
             );
 
-            res.status(200).json({ message: "Sections mises à jour" });
+            res
+              .status(200)
+              .json({ message: `Page '${pageTitle}' mise à jour` });
           }
         });
       } catch (err) {
         connection.rollback(() => {
           connection.release();
-          res
-            .status(500)
-            .json({ error: "Transaction error", message: err.message });
+          res.status(500).json({
+            message: "Erreur lors de la mise à jour des sections.",
+            error: err.message,
+          });
         });
       }
     });

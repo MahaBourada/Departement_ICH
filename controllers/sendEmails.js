@@ -40,25 +40,25 @@ Le département Ingénierie - Cognition - Handicap.`,
 
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
-      console.error("Erreur lors de l'envoi à l'admin:", err);
-      return res
-        .status(500)
-        .json({ error: "Échec de l'envoi de l'email à l'administration." });
+      return res.status(500).json({
+        message:
+          "Erreur lors de l'envoi à l'administration. Veuillez réessayer plus tard.",
+        error: err.message,
+      });
     }
 
     // Then send confirmation to the user
     transporter.sendMail(confirmationToUser, (err2, info2) => {
       if (err2) {
-        console.error("Erreur lors de l'envoi à l'utilisateur:", err2);
         return res.status(500).json({
-          error:
-            "Email envoyé à l'admin, mais échec de la confirmation à l'utilisateur.",
+          message:
+            "Votre message a bien été transmis à l'administration, mais la confirmation n'a pas pu vous être envoyée.",
+          error: err2.message,
         });
       }
 
       return res.status(200).json({
-        message:
-          "Email envoyé avec succès et confirmation envoyée à l'utilisateur.",
+        message: "Email et confirmation envoyés avec succès",
       });
     });
   });
@@ -133,25 +133,25 @@ Le département Ingénierie - Cognition - Handicap.`,
 
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
-      console.error("Erreur lors de l'envoi à l'admin:", err);
-      return res
-        .status(500)
-        .json({ error: "Échec de l'envoi de l'email à l'administration." });
+      return res.status(500).json({
+        message:
+          "Erreur lors de l'envoi à l'administration. Veuillez réessayer plus tard.",
+        error: err.message,
+      });
     }
 
     // Then send confirmation to the user
     transporter.sendMail(confirmationToUser, (err2, info2) => {
       if (err2) {
-        console.error("Erreur lors de l'envoi à l'utilisateur:", err2);
         return res.status(500).json({
-          error:
-            "Email envoyé à l'admin, mais échec de la confirmation à l'utilisateur.",
+          message:
+            "Votre proposition a bien été transmise à l'administration, mais la confirmation n'a pas pu vous être envoyée.",
+          error: err2.message,
         });
       }
 
       return res.status(200).json({
-        message:
-          "Email envoyé avec succès et confirmation envoyée à l'utilisateur.",
+        message: "Proposition et confirmation envoyés avec succès",
       });
     });
   });

@@ -24,7 +24,10 @@ export const getAllPrix = (req, res) => {
 
   db.query(sql, (err, results) => {
     if (err) {
-      return res.status(500).json({ error: err.message });
+      return res.status(500).json({
+        message: "Erreur lors de la récupération des prix",
+        error: err.message,
+      });
     } else {
       res.json(results);
     }
@@ -40,11 +43,16 @@ export const getOnePrix = (req, res) => {
 
   db.query(sql, [id], (err, results) => {
     if (err) {
-      return res.status(500).json({ error: err.message });
+      return res.status(500).json({
+        message: "Erreur lors de la récupération du prix",
+        error: err.message,
+      });
     }
 
     if (results.length === 0) {
-      return res.status(404).json({ error: "Prix not found" });
+      return res.status(404).json({
+        message: "Prix introuvable",
+      });
     }
 
     res.json(results[0]);
@@ -139,17 +147,21 @@ export const addPrix = (req, res) => {
     prixBody?.lien,
   ];
   db.query(sql, values, (err, result) => {
-    if (err) return res.json({ Error: err });
+    if (err)
+      return res.status(500).json({
+        message: "Erreur lors de l'ajout du prix",
+        error: err.message,
+      });
 
     logHistory(
       prixBody.currentAdmin,
       "INSERT",
-      `Ajout du prix ${prixBody.nom}`
+      `Ajout du prix '${prixBody.nom}'`
     );
 
     return res.json({
       Status: "Success",
-      message: `${prixBody.nom} ajouté`,
+      message: `Prix '${prixBody.nom}' ajouté`,
     });
   });
 };
@@ -164,9 +176,10 @@ export const updatePrix = (req, res) => {
 
   db.query(getCurrentImageSql, [idPrix], (err, results) => {
     if (err)
-      return res
-        .status(500)
-        .json({ error: "Erreur base de données", details: err });
+      return res.status(500).json({
+        message: "Erreur lors de la récupération de l'image actuelle.",
+        error: err.message,
+      });
 
     const currentImagePath = results[0]?.image; // could be null
 
@@ -269,17 +282,21 @@ export const updatePrix = (req, res) => {
     ];
 
     db.query(sql, values, (err, result) => {
-      if (err) return res.status(500).json({ error: err });
+      if (err)
+        return res.status(500).json({
+          message: "Erreur lors de la mise à jour du prix",
+          error: err.message,
+        });
 
       logHistory(
         prixBody.currentAdmin,
         "UPDATE",
-        `Mise à jour du prix ${prixBody.nom}`
+        `Mise à jour du prix '${prixBody.nom}'`
       );
 
       return res.json({
         Status: "Success",
-        message: `Informations de du prix ${prixBody.nom} mises à jour`,
+        message: `Prix '${prixBody.nom}' mis à jour`,
       });
     });
   });
@@ -290,7 +307,9 @@ export const deletePrix = (req, res) => {
   const { currentAdmin } = req.query;
 
   if (!currentAdmin?.first_name || !currentAdmin?.last_name) {
-    return res.status(400).json({ error: "Missing current admin info" });
+    return res.status(400).json({
+      message: "Informations administrateur manquantes",
+    });
   }
 
   db.query(
@@ -298,11 +317,16 @@ export const deletePrix = (req, res) => {
     [idPrix],
     (err, results) => {
       if (err) {
-        return res.status(500).json({ error: err.message });
+        return res.status(500).json({
+          message: "Erreur lors de la récupération du prix.",
+          error: err.message,
+        });
       }
 
       if (results.length === 0) {
-        return res.status(404).json({ error: "Prix not found" });
+        return res.status(404).json({
+          message: "Prix introuvable",
+        });
       }
 
       const { nom } = results[0];
@@ -310,10 +334,17 @@ export const deletePrix = (req, res) => {
       const getImageSql = "SELECT image FROM prix WHERE idPrix = ?";
 
       db.query(getImageSql, [idPrix], (err, result) => {
-        if (err) return res.status(500).json({ error: err.message });
+        if (err) {
+          return res.status(500).json({
+            message: "Erreur lors de la récupération du prix.",
+            error: err.message,
+          });
+        }
 
-        if (result.length === 0) {
-          return res.status(404).json({ error: "Prix introuvable" });
+        if (results.length === 0) {
+          return res.status(404).json({
+            message: "Prix introuvable",
+          });
         }
 
         const imagePath = result[0].image;
@@ -321,29 +352,40 @@ export const deletePrix = (req, res) => {
         const deleteSql = "DELETE FROM prix WHERE idPrix = ?";
 
         db.query(deleteSql, [idPrix], (err) => {
-          if (err) return res.status(500).json({ error: err.message });
+          if (err)
+            return res.status(500).json({
+              message: "Erreur lors de la suppression du prix.",
+              error: err.message,
+            });
 
           // Only try to delete the image if it exists
           if (imagePath) {
             const absoluteImagePath = path.resolve(imagePath);
             fs.unlink(absoluteImagePath, (err) => {
               if (err && err.code !== "ENOENT") {
-                console.error("Erreur suppression image:", err.message);
+                return res.status(500).json({
+                  message: "Erreur lors de la suppression de l'image",
+                  error: err.message,
+                });
               }
 
-              logHistory(currentAdmin, "DELETE", `Suppression du prix ${nom}`);
+              logHistory(
+                currentAdmin,
+                "DELETE",
+                `Suppression du prix '${nom}'`
+              );
 
               return res.json({
                 Success: "Prix deleted successfully",
-                message: `Prix ${nom} supprimé`,
+                message: `Prix '${nom}' supprimé`,
               });
             });
           } else {
-            logHistory(currentAdmin, "DELETE", `Suppression du prix ${nom}`);
+            logHistory(currentAdmin, "DELETE", `Suppression du prix '${nom}'`);
 
             return res.json({
               Success: "Prix deleted successfully",
-              message: `Prix ${nom} supprimé`,
+              message: `Prix '${nom}' supprimé`,
             });
           }
         });

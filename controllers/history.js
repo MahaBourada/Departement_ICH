@@ -12,7 +12,10 @@ export const getAllHistory = (req, res) => {
 
   db.query(sql, (err, results) => {
     if (err) {
-      return res.status(500).json({ error: err.message });
+      return res.status(500).json({
+        message: "Erreur lors de la récupération de l'historique",
+        error: err.message,
+      });
     } else {
       res.json(results);
     }

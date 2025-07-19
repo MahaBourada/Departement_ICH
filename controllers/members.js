@@ -3,11 +3,15 @@ import { v4 as uuidv4 } from "uuid";
 import fs from "fs";
 import path from "path";
 import { logHistory } from "../utils/logHistory.js";
+import { error } from "console";
 
 export const getAllMembers = (req, res) => {
   db.query("SELECT * FROM membres_equipe ORDER BY prenom", (err, results) => {
     if (err) {
-      return res.status(500).json({ error: err.message });
+      return res.status(500).json({
+        message: "Erreur lors de la récupération des membres",
+        error: err.message,
+      });
     } else {
       res.json(results);
     }
@@ -20,11 +24,14 @@ export const getMember = (req, res) => {
   const sql = "SELECT * FROM membres_equipe WHERE idMembre = ?";
   db.query(sql, [id], (err, results) => {
     if (err) {
-      return res.status(500).json({ error: err.message });
+      return res.status(500).json({
+        message: "Erreur lors de la récupération du membre",
+        error: err.message,
+      });
     }
 
     if (results.length === 0) {
-      return res.status(404).json({ error: "Member not found" });
+      return res.status(404).json({ message: "Mmebre introuvable" });
     }
 
     res.json(results[0]);
@@ -47,7 +54,10 @@ export const getAllMembersByLang = (req, res) => {
 
   db.query(sql, (err, results) => {
     if (err) {
-      return res.status(500).json({ error: err.message });
+      return res.status(500).json({
+        message: "Erreur lors de la récupération des membres",
+        error: err.message,
+      });
     } else {
       res.json(results);
     }
@@ -71,11 +81,14 @@ export const getMemberByLang = (req, res) => {
               WHERE idMembre = ?`;
   db.query(sql, [id], (err, results) => {
     if (err) {
-      return res.status(500).json({ error: err.message });
+      return res.status(500).json({
+        message: "Erreur lors de la récupération du  membre",
+        error: err.message,
+      });
     }
 
     if (results.length === 0) {
-      return res.status(404).json({ error: "Member not found" });
+      return res.status(404).json({ message: "Membre introuvable" });
     }
 
     res.json(results[0]);
@@ -143,17 +156,24 @@ export const addMember = (req, res) => {
     memberBody?.image,
   ];
   db.query(sql, values, (err, result) => {
-    if (err) return res.json({ Error: err });
+    if (err) {
+      return res.status(500).json({
+        message: "Erreur lors de l'ajout du membre",
+        error: err.message,
+      });
+    }
 
     logHistory(
       memberBody.currentAdmin,
       "INSERT",
-      `Ajout du membre ${memberBody.prenom} ${memberBody.nom.toUpperCase()}`
+      `Ajout du membre '${memberBody.prenom} ${memberBody.nom.toUpperCase()}'`
     );
 
     return res.json({
       Status: "Success",
-      message: `${memberBody.prenom} ${memberBody.nom.toUpperCase()} ajoutée`,
+      message: `Membre '${
+        memberBody.prenom
+      } ${memberBody.nom.toUpperCase()}' ajoutée`,
     });
   });
 };
@@ -167,10 +187,12 @@ export const updateMember = (req, res) => {
   `;
 
   db.query(getCurrentImageSql, [idMembre], (err, results) => {
-    if (err)
-      return res
-        .status(500)
-        .json({ error: "Erreur base de données", details: err });
+    if (err) {
+      return res.status(500).json({
+        message: "Erreur lors de la récupération de l'image actuelle",
+        error: err.message,
+      });
+    }
 
     const currentImagePath = results[0]?.image; // could be null
 
@@ -243,19 +265,24 @@ export const updateMember = (req, res) => {
     ];
 
     db.query(sql, values, (err, result) => {
-      if (err) return res.status(500).json({ error: err });
+      if (err) {
+        return res.status(500).json({
+          message: "Erreur lors de l'ajout du membre",
+          error: err.message,
+        });
+      }
 
       logHistory(
         memberBody.currentAdmin,
         "UPDATE",
-        `Mise à jour du membre ${
+        `Mise à jour du membre '${
           memberBody.prenom
-        } ${memberBody.nom.toUpperCase()}`
+        } ${memberBody.nom.toUpperCase()}'`
       );
 
       return res.json({
         Status: "Success",
-        message: `Informations de ${memberBody.prenom} ${memberBody.nom} mises à jour`,
+        message: `Membre '${memberBody.prenom} ${memberBody.nom}' mis à jour`,
       });
     });
   });
@@ -266,7 +293,10 @@ export const deleteMember = (req, res) => {
   const { currentAdmin } = req.query;
 
   if (!currentAdmin?.first_name || !currentAdmin?.last_name) {
-    return res.status(400).json({ error: "Missing current admin info" });
+    return res.status(400).json({
+      error: "Missing current admin info",
+      message: "Informations administrateur manquantes",
+    });
   }
 
   db.query(
@@ -274,11 +304,16 @@ export const deleteMember = (req, res) => {
     [idMembre],
     (err, results) => {
       if (err) {
-        return res.status(500).json({ error: err.message });
+        return res.status(500).json({
+          message: "Erreur lors de la récupération du membre",
+          error: err.message,
+        });
       }
 
       if (results.length === 0) {
-        return res.status(404).json({ error: "Membre not found" });
+        return res
+          .status(404)
+          .json({ error: "Membre not found", message: "Membre introuvable" });
       }
 
       const { prenom, nom } = results[0];
@@ -286,10 +321,17 @@ export const deleteMember = (req, res) => {
       const getImageSql = "SELECT image FROM membres_equipe WHERE idMembre = ?";
 
       db.query(getImageSql, [idMembre], (err, result) => {
-        if (err) return res.status(500).json({ error: err.message });
+        if (err) {
+          return res.status(500).json({
+            message: "Erreur lors de la récupération du membre",
+            error: err.message,
+          });
+        }
 
-        if (result.length === 0) {
-          return res.status(404).json({ error: "Membre introuvable" });
+        if (results.length === 0) {
+          return res
+            .status(404)
+            .json({ error: "Membre not found", message: "Membre introuvable" });
         }
 
         const imagePath = result[0].image;
@@ -297,37 +339,45 @@ export const deleteMember = (req, res) => {
         const deleteSql = "DELETE FROM membres_equipe WHERE idMembre = ?";
 
         db.query(deleteSql, [idMembre], (err) => {
-          if (err) return res.status(500).json({ error: err.message });
+          if (err) {
+            return res.status(500).json({
+              message: "Erreur lors de la suppression du membre",
+              error: err.message,
+            });
+          }
 
           // Only try to delete the image if it exists
           if (imagePath) {
             const absoluteImagePath = path.resolve(imagePath);
             fs.unlink(absoluteImagePath, (err) => {
               if (err && err.code !== "ENOENT") {
-                console.error("Erreur suppression image:", err.message);
+                return res.status(500).json({
+                  message: "Erreur lors de la suppression de l'image",
+                  error: err.message,
+                });
               }
 
               logHistory(
                 currentAdmin,
                 "DELETE",
-                `Suppression du membre ${prenom} ${nom.toUpperCase()}`
+                `Suppression du membre '${prenom} ${nom.toUpperCase()}'`
               );
 
               return res.json({
                 Success: "Member deleted successfully",
-                message: `Membre ${prenom} ${nom.toUpperCase()} supprimé`,
+                message: `Membre '${prenom} ${nom.toUpperCase()}' supprimé`,
               });
             });
           } else {
             logHistory(
               currentAdmin,
               "DELETE",
-              `Suppression du membre ${prenom} ${nom.toUpperCase()}`
+              `Suppression du membre '${prenom} ${nom.toUpperCase()}'`
             );
 
             return res.json({
               Success: "Member deleted successfully",
-              message: `Membre ${prenom} ${nom.toUpperCase()} supprimé`,
+              message: `Membre '${prenom} ${nom.toUpperCase()}' supprimé`,
             });
           }
         });

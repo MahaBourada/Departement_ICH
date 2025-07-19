@@ -2,6 +2,7 @@ import db from "../config/db.js";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
 import fs from "fs";
+import { error } from "console";
 
 export const getImagesByPageId = (req, res) => {
   const idPage = req.params.idPage;
@@ -20,7 +21,10 @@ export const getImagesByPageId = (req, res) => {
 
   db.query(sql, [idPage], (err, results) => {
     if (err) {
-      return res.status(500).json({ error: err.message });
+      return res.status(500).json({
+        message: "Erreur lors de la récupération des images de la page",
+        error: err.message,
+      });
     } else {
       res.json(results);
     }
@@ -34,8 +38,14 @@ export const getImagesByPageTitle = (req, res) => {
   const sqlPageId = "SELECT * FROM pages WHERE pages.link = ?";
 
   db.query(sqlPageId, [pageTitle], (err, pageResult) => {
-    if (err) return res.json({ Error: err });
-    if (pageResult.length === 0) return res.json({ Error: err });
+    if (err)
+      return res.status(500).json({
+        message: "Erreur lors de la récupération de la page",
+        error: err.message,
+      });
+
+    if (pageResult.length === 0)
+      return res.json({ message: "Page introuvable" });
 
     const idPage = pageResult[0].idPage;
 
@@ -52,7 +62,10 @@ export const getImagesByPageTitle = (req, res) => {
 
     db.query(sql, [idPage], (err, results) => {
       if (err) {
-        return res.status(500).json({ error: err.message });
+        return res.status(500).json({
+          message: "Erreur lors de la récupération des images de la page",
+          error: err.message,
+        });
       } else {
         res.json(results);
       }
@@ -76,15 +89,17 @@ export const updateImages = async (req, res) => {
 
   db.getConnection((err, connection) => {
     if (err)
-      return res
-        .status(500)
-        .json({ error: "DB connection failed", message: err });
+      return res.status(500).json({
+        message: "Connexion à la base de données échouée",
+        error: err.message,
+      });
 
     connection.beginTransaction(async (err) => {
       if (err)
-        return res
-          .status(500)
-          .json({ error: "Transaction failed", message: err });
+        return res.status(500).json({
+          message: "Échec de la transaction",
+          error: err.message,
+        });
 
       try {
         const existingImages = await query(
@@ -244,19 +259,25 @@ export const updateImages = async (req, res) => {
           if (err) {
             connection.rollback(() => {
               connection.release();
-              res.status(500).json({ error: "Commit failed" });
+              res.status(500).json({
+                message: "Erreur lors de la validation des modifications.",
+                error: err.message,
+              });
             });
           } else {
             connection.release();
-            res.status(200).json({ message: "Images updated successfully" });
+            res
+              .status(200)
+              .json({ message: "Images mises à jour avec succès" });
           }
         });
       } catch (err) {
         connection.rollback(() => {
           connection.release();
-          res
-            .status(500)
-            .json({ error: "Transaction error", message: err.message });
+          res.status(500).json({
+            message: "Erreur lors de la mise à jour des images.",
+            error: err.message,
+          });
         });
       }
     });
