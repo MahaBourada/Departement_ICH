@@ -28,7 +28,7 @@ const AdminNavigation = () => {
           className="m-5 mb-10 mx-auto hidden dark:block"
         />
 
-        <div className="font-medium font-main w-fit mx-auto">
+        <div className="font-medium font-main dyslexiaTheme:font-dyslexia w-fit mx-auto">
           <NavLink
             to="/admin/tableau-de-bord"
             className={({ isActive }) =>

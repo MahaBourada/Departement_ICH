@@ -38,7 +38,6 @@ const DashboardPage = () => {
     fetchData();
   }, []);
 
-  const limitedHistory = historyList.slice(-10);
   const limitedAdmin = showAllAdmin ? adminList : adminList.slice(0, 10);
 
   const [msg, setMsg] = useState("");
@@ -106,7 +105,7 @@ const DashboardPage = () => {
           <Link
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             to="/admin/tableau-de-bord/ajouter-admin"
-            className="flex flex-row items-center font-main font-medium rounded-xl px-5 py-2 mx-3 my-1 text-black bg-accent transition-colors duration-300 hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white max-md:w-42 max-md:mb-4 text-nav leading-normal"
+            className="flex flex-row items-center font-main font-medium rounded-xl px-5 py-2 mx-3 my-1 text-black bg-accent transition-colors duration-300 hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white max-md:w-42 max-md:mb-4 text-nav leading-normal dyslexiaTheme:font-dyslexia"
           >
             <Plus
               aria-label="Ajouter un admin"

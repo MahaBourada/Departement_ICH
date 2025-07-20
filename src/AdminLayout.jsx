@@ -7,7 +7,7 @@ import ScrollToTop from "react-scroll-to-top";
 
 const Layout = () => {
   return (
-    <div className="App flex flex-row min-h-screen text-body bg-white bg-big-screen bg-repeat-y font-body text-black text-dynamic-base leading-9 readerMode:leading-loose dark:text-gray-300 dark:bg-dark-background">
+    <div className="App flex flex-row min-h-screen text-body bg-white bg-big-screen bg-repeat-y font-body dyslexiaTheme:font-dyslexia text-black text-dynamic-base leading-9 readerMode:leading-loose dark:text-gray-300 dark:bg-dark-background">
       <AdminNavigation />
 
       <div className="flex-grow">

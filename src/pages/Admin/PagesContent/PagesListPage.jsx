@@ -20,12 +20,12 @@ const PagesListPage = () => {
   }, []);
 
   return (
-    <main>
-      <h1 className="text-dynamic-2xl font-semibold mx-14 mt-20">
+    <main className="mx-14 mt-20">
+      <h1 className="text-dynamic-2xl font-semibold">
         Gestion des pages
       </h1>
 
-      <div className="grid grid-cols-2 max-large-medium:grid-cols-1 mx-14 my-4">
+      <div className="grid grid-cols-2 max-large-medium:grid-cols-1 my-4 dyslexiaTheme:my-7">
         {pages.map((page, index) => (
           <Link
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -34,7 +34,7 @@ const PagesListPage = () => {
             to={`/admin/gestion-pages/${page.idPage}`}
             className="mx-4 my-2 bg-admin-nav-bg dark:bg-[#83421F] p-6 rounded-3xl transition-colors duration-300 hover:bg-accent hover:underline dark:hover:bg-[#693214]"
           >
-            <div className=" flex justify-between items-center font-main font-medium ">
+            <div className=" flex justify-between items-center font-main dyslexiaTheme:font-dyslexia font-medium ">
               <p>{page.title}</p>
               <Pencil size={26} className="text-[#232323] dark:text-gray-300" />
             </div>

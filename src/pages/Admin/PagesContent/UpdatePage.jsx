@@ -237,7 +237,7 @@ const UpdatePage = () => {
             <div className="flex flex-col leading-normal mb-3">
               <label
                 htmlFor={`section${index + 1}_fr`}
-                className="font-main font-medium my-2"
+                className="font-main dyslexiaTheme:font-dyslexia font-medium my-2"
               >
                 {`Section ${index + 1} - Français`}
               </label>
@@ -259,7 +259,7 @@ const UpdatePage = () => {
             <div className="flex flex-col leading-normal my-5">
               <label
                 htmlFor={`section${index + 1}_en`}
-                className="font-main font-medium my-2"
+                className="font-main dyslexiaTheme:font-dyslexia font-medium my-2"
               >
                 {`Section ${index + 1} - Anglais`}
               </label>

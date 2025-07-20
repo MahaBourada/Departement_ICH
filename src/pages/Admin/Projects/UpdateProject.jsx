@@ -247,12 +247,16 @@ const UpdateProject = () => {
           }
         />
 
-        <p className="font-medium font-main my-4">Ajout des membres</p>
+        <p className="font-medium font-main dyslexiaTheme:font-dyslexia my-4">
+          Ajout des membres
+        </p>
 
         {membres.map((membre, index) => (
           <div key={index}>
             <div className="flex items-center justify-between">
-              <p className="font-medium font-main">Membre {index + 1}</p>
+              <p className="font-medium font-main dyslexiaTheme:font-dyslexia">
+                Membre {index + 1}
+              </p>
 
               <button
                 type="button"
@@ -325,7 +329,7 @@ const UpdateProject = () => {
               }
             }}
             disabled={membres.length >= 5}
-            className={`flex items-center border-2 text-black dark:text-dark-white border-black dark:border-dark-white font-main font-medium rounded-xl h-fit px-5 py-2.5 mx-2 my-1 transition-colors duration-300 hover:bg-neutral-300 dark:hover:bg-neutral-600 max-md:w-42 max-md:mx-3 text-nav leading-normal
+            className={`flex items-center border-2 text-black dark:text-dark-white border-black dark:border-dark-white font-main dyslexiaTheme:font-dyslexia font-medium rounded-xl h-fit px-5 py-2.5 mx-2 my-1 transition-colors duration-300 hover:bg-neutral-300 dark:hover:bg-neutral-600 max-md:w-42 max-md:mx-3 text-nav leading-normal
                       ${
                         membres.length >= 5
                           ? "cursor-not-allowed opacity-75"

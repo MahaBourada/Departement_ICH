@@ -166,7 +166,7 @@ const UpdateAdmin = () => {
             <label
               id="etiquette-switch-mdp"
               htmlFor="switch-mdp"
-              className="font-main font-medium"
+              className="font-main dyslexiaTheme:font-dyslexia font-medium"
             >
               Régénérer le mot de passe
             </label>

@@ -83,7 +83,7 @@ const PrixListPage = () => {
         <Link
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           to="/admin/gestion-prix/ajouter-prix"
-          className="flex flex-row items-center font-main font-medium rounded-xl px-5 py-2 mx-3 my-1 text-black bg-accent transition-colors duration-300 hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white max-md:w-42 max-md:mb-4 text-nav leading-normal"
+          className="flex flex-row items-center font-main dyslexiaTheme:font-dyslexia font-medium rounded-xl px-5 py-2 mx-3 my-1 text-black bg-accent transition-colors duration-300 hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white max-md:w-42 max-md:mb-4 text-nav leading-normal"
         >
           <Plus
             aria-label="Ajouter un prix"

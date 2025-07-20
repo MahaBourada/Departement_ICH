@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 
 const AccessibilityMenu = ({ position, hoverColor }) => {
   const { t } = useTranslation();
@@ -171,6 +172,8 @@ const AccessibilityMenu = ({ position, hoverColor }) => {
     localStorage.setItem("dyslexiaTheme", dyslexiaTheme);
   }, [readerMode, dyslexiaTheme, fontSize, leading]);
 
+  const location = useLocation();
+
   return (
     <div
       className="relative my-1 rounded-lg font-main dyslexiaTheme:font-dyslexia text-nav max-sm:text-[1.125rem] leading-normal"
@@ -263,24 +266,27 @@ const AccessibilityMenu = ({ position, hoverColor }) => {
               />
             </button>
           )}
-          <button
-            type="button"
-            className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background transition-colors duration-300 hover:bg-bg-crumb focus:bg-bg-crumb dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
-            onClick={toggleReaderMode}
-          >
-            <span className="mr-2">{t("accessibility.reader")}</span>
-            {readerMode ? (
-              <BookOpenCheck
-                size={29}
-                className="text-[#232323] dark:text-gray-300"
-              />
-            ) : (
-              <BookOpen
-                size={29}
-                className="text-[#232323] dark:text-gray-300"
-              />
-            )}
-          </button>
+
+          {!location.pathname.includes("/admin") && (
+            <button
+              type="button"
+              className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background transition-colors duration-300 hover:bg-bg-crumb focus:bg-bg-crumb dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
+              onClick={toggleReaderMode}
+            >
+              <span className="mr-2">{t("accessibility.reader")}</span>
+              {readerMode ? (
+                <BookOpenCheck
+                  size={29}
+                  className="text-[#232323] dark:text-gray-300"
+                />
+              ) : (
+                <BookOpen
+                  size={29}
+                  className="text-[#232323] dark:text-gray-300"
+                />
+              )}
+            </button>
+          )}
 
           <button
             type="button"
