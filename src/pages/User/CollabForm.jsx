@@ -134,7 +134,7 @@ const CollabForm = () => {
   };
 
   return (
-    <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
+    <main className="flex-grow my-10 mb-20 mx-16  max-sm:mx-7 max-md:mx-10">
       <Breadcrumb
         crumbs={[
           {
@@ -155,7 +155,7 @@ const CollabForm = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display max-sm:text-header max-sm:leading-tight my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main dyslexiaTheme:font-dyslexia font-semibold text-display max-sm:text-header max-sm:leading-tight my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("collaboration.form.title")}
       </h1>
 
@@ -279,7 +279,7 @@ const CollabForm = () => {
         />
 
         <div className="relative flex flex-col leading-normal my-4">
-          <label htmlFor="fichier" className="font-main font-medium my-2">
+          <label htmlFor="fichier" className="font-main dyslexiaTheme:font-dyslexia font-medium my-2">
             {t("collaboration.form.optional.file")}
           </label>
           <input

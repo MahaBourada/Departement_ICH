@@ -2,6 +2,7 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 @custom-variant readerMode (&:where(.readerMode, .readerMode *));
+@custom-variant dyslexiaTheme (&:where(.dyslexiaTheme, .dyslexiaTheme *));
 
 @theme {
   --color-background: #F4F4F4;
@@ -32,6 +33,7 @@
   --font-main: "Poppins", "sans-serif";
   --font-body: "Albert Sans", "sans-serif";
   --font-numbers: "Roboto", "sans-serif";
+  --font-dyslexia: "Open-Dyslexic", "sans-serif";
 
   --font-base: 1.35rem;
   --leading-base: 2.75rem;
@@ -66,7 +68,7 @@
   color: white;
 }
 
-.markdown p {
+.readerMode.markdown p {
   font-size: var(--font-base);
 }
 
@@ -150,6 +152,7 @@
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -161,12 +164,6 @@
     --leading-base: 2.5rem !important;
   }
 }
-
-/* @media (max-width: 480px) {
-  .tablet-font-size {
-    --font-base: 1.125rem; /* 18px 
-  }
-} */
 
 @media (max-width: 640px) {
   .text-dynamic-xl {

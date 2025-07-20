@@ -43,7 +43,7 @@ const ProjectsPage = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display max-sm:text-header max-sm:leading-tight my-2 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main dyslexiaTheme:font-dyslexia font-semibold text-display max-sm:text-header max-sm:leading-tight my-2 readerMode:w-fit readerMode:mx-auto">
         {t("formation.projects.title")}
       </h1>
 
@@ -55,7 +55,7 @@ const ProjectsPage = () => {
             <div className="w-full">
               <div className="flex flex-row items-start justify-between max-large-large:flex-col readerMode:flex-col">
                 <div>
-                  <h2 className="font-semibold font-main text-dynamic-xl my-2">
+                  <h2 className="font-semibold font-main dyslexiaTheme:font-dyslexia text-dynamic-xl my-2">
                     {project.titre}
                   </h2>
 
@@ -87,7 +87,7 @@ const ProjectsPage = () => {
                       src={`${import.meta.env.VITE_BASE_URL}/${image.path}`}
                       alt={image.alt}
                       width={275}
-                      className="mx-4 minimal:hidden max-lg:my-5 max-lg:w-full max-lg:h-1/2 readerMode:my-4 rounded-3xl "
+                      className="mx-4 minimal:hidden max-lg:my-5 max-lg:w-full max-lg:h-1/2 readerMode:my-4 rounded-3xl readerMode:w-1/2 readerMode:h-fit"
                     />
                   ))}
                 </div>

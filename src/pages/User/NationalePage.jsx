@@ -45,7 +45,7 @@ const NationalePage = () => {
   }, []);
 
   return (
-    <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
+    <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
       <Breadcrumb
         crumbs={[
           {
@@ -66,11 +66,11 @@ const NationalePage = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display max-sm:text-header max-sm:leading-tight my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main dyslexiaTheme:font-dyslexia font-semibold text-display max-sm:text-header max-sm:leading-tight my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("collaboration.national.title")}
       </h1>
 
-      <div className="my-5 mb-20 mx-5 font-body max-large-medium:mx-0 max-xl:mx-5 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
+      <div className="my-5 mb-20 mx-5  max-large-medium:mx-0 max-xl:mx-5 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
         {pageNational[0]?.texte && (
           <ReactMarkdown
             className={`my-3 minimal:mx-0 markdown`}
@@ -98,7 +98,7 @@ const NationalePage = () => {
         <Link
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           to="/collaborations/collaborations-nationales/collabs-conventions"
-          className="mx-auto my-10 flex justify-center items-center w-fit cursor-pointer font-main font-medium rounded-xl h-fit px-5 py-3 text-black bg-accent transition-colors duration-300 hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white text-nav max-sm:text-[1.125rem] leading-normal"
+          className="mx-auto my-10 flex justify-center items-center w-fit cursor-pointer font-main dyslexiaTheme:font-dyslexia font-medium rounded-xl h-fit px-5 py-3 text-black bg-accent transition-colors duration-300 hover:bg-hover-accent dark:bg-dark-accent dark:hover:bg-dark-hover-accent dark:text-dark-white text-nav max-sm:text-[1.125rem] leading-normal"
         >
           {t("collaboration.national.more")}
         </Link>

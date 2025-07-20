@@ -43,7 +43,7 @@ const PrixPage = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display max-sm:text-header max-sm:leading-tight my-2 mb-4">
+      <h1 className="font-main dyslexiaTheme:font-dyslexia font-semibold text-display max-sm:text-header max-sm:leading-tight my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("formation.awards_title.title")}
       </h1>
 
@@ -56,10 +56,10 @@ const PrixPage = () => {
               <div className="flex flex-row items-start justify-between max-large-large:flex-col readerMode:flex-col">
                 <div
                   className={`${
-                    onePrix.image ? "w-[60%] max-lg:w-full" : "w-full"
+                    onePrix.image ? "w-[60%] max-lg:w-full readerMode:w-full" : "w-full"
                   }`}
                 >
-                  <h2 className="font-semibold font-main text-dynamic-lg my-2">
+                  <h2 className="font-semibold font-main dyslexiaTheme:font-dyslexia text-dynamic-lg my-2">
                     {onePrix.nom}
                   </h2>
 
@@ -105,7 +105,7 @@ const PrixPage = () => {
 
                     {onePrix.description && (
                       <>
-                        <h3 className="font-medium font-main text-dynamic-lg my-2">
+                        <h3 className="font-medium font-main dyslexiaTheme:font-dyslexia text-dynamic-lg my-2">
                           Description
                         </h3>
                         <ReactMarkdown
@@ -135,7 +135,7 @@ const PrixPage = () => {
                     src={`${import.meta.env.VITE_BASE_URL}/${onePrix.image}`}
                     alt={onePrix.alt}
                     width={400}
-                    className="mx-4 max-sm:mx-0 max-lg:mx-auto max-lg:my-5 max-lg:w-full minimal:hidden readerMode:my-4 rounded-3xl"
+                    className="mx-4 max-sm:mx-0 max-lg:mx-auto max-lg:my-5 max-lg:w-full minimal:hidden readerMode:my-4 readerMode:mx-auto rounded-3xl"
                   />
                 )}
               </div>

@@ -54,7 +54,7 @@ const InternationalePage = () => {
   const totalPages = Math.ceil(collabs.length / itemsPerPage);
 
   return (
-    <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
+    <main className="flex-grow my-10 mb-20 mx-16  max-sm:mx-7 max-md:mx-10">
       <Breadcrumb
         crumbs={[
           {
@@ -75,11 +75,11 @@ const InternationalePage = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display max-sm:text-header max-sm:leading-tight my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main dyslexiaTheme:font-dyslexia font-semibold text-display max-sm:text-header max-sm:leading-tight my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("collaboration.international.title")}
       </h1>
 
-      <div className="my-5 mb-20 mx-5 font-body max-large-medium:mx-0 max-xl:mx-5 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
+      <div className="my-5 mb-20 mx-5  max-large-medium:mx-0 max-xl:mx-5 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
         {pageInternational[0]?.texte && (
           <ReactMarkdown
             className={`my-3 minimal:mx-0 markdown`}
@@ -112,10 +112,10 @@ const InternationalePage = () => {
         )}
       </div>
 
-      <div className="border-neutral-500 dark:border-gray-300 border-[1px] my-5 w-full"></div>
+      <div className="border-neutral-500 dark:border-gray-300 border-[1px] my-5 w-full readerMode:w-[60ch] readerMode:mx-auto"></div>
 
       {currentItems.map((collab, index) => (
-        <div key={index}>
+        <div key={index} className="readerMode:w-[60ch] readerMode:mx-auto">
           <div className="flex flex-row max-sm:flex-col items-start justify-between my-10">
             <div>
               <h2 className="text-dynamic-lg font-semibold">{collab.nom}</h2>

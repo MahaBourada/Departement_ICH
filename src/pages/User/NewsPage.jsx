@@ -24,7 +24,7 @@ const NewsPage = () => {
   }, []);
 
   return (
-    <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
+    <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
       <Breadcrumb
         crumbs={[
           {
@@ -45,7 +45,7 @@ const NewsPage = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display max-sm:text-header readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main dyslexiaTheme:font-dyslexia font-semibold text-display max-sm:text-header readerMode:w-fit readerMode:mx-auto">
         {t("department.news.link")}
       </h1>
 
@@ -62,7 +62,7 @@ const NewsPage = () => {
 
             {news.map((oneNews) => (
               <div key={oneNews.idActu}>
-                <div className="h-full flex flex-row max-sm:flex-col items-start justify-between my-2">
+                <div className="h-full flex flex-row readerMode:flex-col max-sm:flex-col items-start justify-between my-2">
                   <div className="flex flex-col justify-between">
                     <h2 className="text-dynamic-xl font-semibold">
                       {oneNews.titre}
@@ -103,14 +103,14 @@ const NewsPage = () => {
                   </div>
 
                   {oneNews.image && (
-                    <div className="flex flex-col items-end justify-start mt-10 my-auto max-sm:w-full">
+                    <div className="flex flex-col items-end readerMode:items-center justify-start mt-10 my-auto max-sm:w-full">
                       <img
                         src={
                           import.meta.env.VITE_BASE_URL + "/" + oneNews.image
                         }
                         alt={oneNews.alt}
                         width={500}
-                        className="my-auto rounded-2xl"
+                        className="my-auto rounded-2xl readerMode:w-3/4"
                       />
 
                       {oneNews?.source_image && (

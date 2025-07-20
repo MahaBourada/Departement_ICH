@@ -6,7 +6,7 @@ const AccessibilityPage = () => {
   const { t } = useTranslation();
 
   return (
-    <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
+    <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto">
       <Breadcrumb
         crumbs={[
           {
@@ -24,14 +24,14 @@ const AccessibilityPage = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display max-sm:text-header max-sm:leading-tight my-2 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main dyslexiaTheme:font-dyslexia font-semibold text-display max-sm:text-header max-sm:leading-tight my-2 readerMode:w-fit readerMode:mx-auto">
         {t("footer.accessibility")}
       </h1>
 
       <p>Le site web est accessible en conformité avec les normes W3C</p>
 
       <div>
-        <h2 className="font-main font-semibold mt-5">
+        <h2 className="font-main dyslexiaTheme:font-dyslexia font-semibold mt-5">
           Technologies utilisées pour la réalisation du site web :
         </h2>
         <ul className="list-disc px-10">
@@ -39,7 +39,17 @@ const AccessibilityPage = () => {
           <li>Tailwind CSS</li>
         </ul>
 
-        <h2 className="font-main font-semibold">
+        <h2 className="font-main dyslexiaTheme:font-dyslexia font-semibold">
+          Les modes utilisés :
+        </h2>
+        <ul className="list-disc px-10">
+          <li>Thème sombre - clair</li>
+          <li>Mode confort de lecture</li>
+          <li>Mode dyslexie</li>
+          <li>Option de zoom</li>
+        </ul>
+
+        <h2 className="font-main dyslexiaTheme:font-dyslexia font-semibold">
           Les outils suivants ont été utilisés lors de l'évaluation :
         </h2>
         <ul className="list-disc px-10">

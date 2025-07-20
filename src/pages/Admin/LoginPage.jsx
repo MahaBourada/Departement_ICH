@@ -87,7 +87,7 @@ const LoginPage = () => {
               className="text-[#232323] dark:text-gray-300"
             />
           </Link>
-          <h1 className="m-auto text-center text-display max-sm:text-header font-medium font-main">
+          <h1 className="m-auto text-center text-display max-sm:text-header font-medium font-main dyslexiaTheme:font-dyslexia">
             Connexion
           </h1>
         </div>

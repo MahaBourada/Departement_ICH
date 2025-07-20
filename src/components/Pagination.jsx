@@ -4,7 +4,7 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
   return (
     <nav
       aria-label="Pagination"
-      className="w-fit mx-auto mt-10 flex flex-row items-center space-x-3 text-neutral-600 text-base font-medium font-numbers dark:text-white"
+      className="w-fit mx-auto mt-10 flex flex-row items-center space-x-3 text-neutral-600 text-base font-medium font-numbers dyslexiaTheme:font-dyslexia dark:text-white"
     >
       <button
         aria-label={
@@ -35,8 +35,8 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
           className={`w-9 h-9 border-[1.5px] rounded-full transition-colors duration-300 hover:bg-neutral-300 dark:hover:bg-neutral-500 border-neutral-500 dark:border-neutral-300 cursor-pointer
           ${
             currentPage === i + 1
-              ? "bg-[#B8B8B8] dark:bg-neutral-400 text-black dark:text-white"
-              : "bg-neutral-200 dark:bg-transparent text-black dark:text-white"
+              ? "bg-[#B8B8B8] dark:bg-neutral-400 text-neutral-700 dark:text-white"
+              : "bg-neutral-200 dark:bg-transparent text-neutral-700 dark:text-white"
           }`}
         >
           <p

@@ -50,7 +50,7 @@ const MasterPage = () => {
   }, []);
 
   return (
-    <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
+    <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
       <Breadcrumb
         crumbs={[
           {
@@ -71,11 +71,11 @@ const MasterPage = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display max-sm:text-header max-sm:leading-tight my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main dyslexiaTheme:font-dyslexia font-semibold text-display max-sm:text-header max-sm:leading-tight my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         {t("formation.master.title")}
       </h1>
 
-      <div className="my-10 max-sm:mt-0 mb-20 mx-16 font-body max-large-medium:mx-0 max-xl:mx-5 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
+      <div className="my-10 max-sm:mt-0 mb-20 mx-16 max-large-medium:mx-0 max-xl:mx-5 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
         <div className="flex flex-row justify-between items-start max-large:flex-col-reverse my-7 max-sm:mt-0 readerMode:flex-col-reverse">
           {img1.path && (
             <div className="w-full flex flex-col items-center my-auto">
@@ -96,16 +96,16 @@ const MasterPage = () => {
 
           {section1.texte && (
             <ReactMarkdown
-              className="my-3 mx-7 max-sm:mx-0 markdown"
+              className="my-3 mx-7 readerMode:mx-0 max-sm:mx-0 markdown"
               children={String(section1.texte)}
             />
           )}
         </div>
 
-        <div className="flex flex-row justify-between items-center max-large:flex-col">
+        <div className="flex flex-row readerMode:flex-col justify-between items-center max-large:flex-col">
           <div
             className={`${
-              img2.path ? "w-[60%]" : "w-full"
+              img2.path ? "w-[60%] readerMode:w-full" : "w-full"
             } minimal:w-full max-large:w-full max-large:my-5 mr-10 max-large:mr-0`}
           >
             {section2.texte && (
@@ -122,7 +122,7 @@ const MasterPage = () => {
                 src={`${import.meta.env.VITE_BASE_URL}/${img2.path}`}
                 alt={img2.alt || ""}
                 width={400}
-                className="minimal:hidden w-fit h-[16rem] max-sm:w-fit max-sm:h-[16rem] max-sm:mt-5 m-auto mx-5 max-large:w-fit max-large:h-1/2 max-large-medium:mx-auto max-large-medium:mb-6 rounded-3xl"
+                className="minimal:hidden w-fit h-[16rem] readerMode:w-fit readerMode:h-[30rem] max-sm:w-fit max-sm:h-[16rem] max-sm:mt-5 m-auto mx-5 max-large:w-fit max-large:h-1/2 max-large-medium:mx-auto max-large-medium:mb-6 rounded-3xl"
               />
 
               {img2?.source && (
@@ -141,11 +141,11 @@ const MasterPage = () => {
           />
         )}
 
-        <div className="flex flex-row justify-between items-start max-large:flex-col-reverse">
+        <div className="flex flex-row readerMode:flex-col-reverse justify-between items-start max-large:flex-col-reverse">
           {section4.texte && (
             <ReactMarkdown
               className={`markdown my-10 ${
-                img3.path || img4.path ? "w-[60%] max-large:w-full" : "w-full"
+                img3.path || img4.path ? "w-[60%] max-large:w-full readerMode:w-full" : "w-full"
               }`}
               children={String(section4.texte)}
             />
@@ -164,7 +164,7 @@ const MasterPage = () => {
                   src={`${import.meta.env.VITE_BASE_URL}/${img3.path}`}
                   alt={img3.alt || ""}
                   width={400}
-                  className="minimal:hidden w-fit h-[25rem] max-large:w-full max-large:h-1/2 m-auto max-large-medium:mx-auto max-large-medium:mb-6 rounded-3xl"
+                  className="minimal:hidden w-fit h-[25rem] readerMode:w-fit readerMode:h-[40rem] max-large:w-full max-large:h-1/2 m-auto max-large-medium:mx-auto max-large-medium:mb-6 rounded-3xl"
                 />
 
                 {img3?.source && (
@@ -182,7 +182,7 @@ const MasterPage = () => {
                   src={`${import.meta.env.VITE_BASE_URL}/${img4.path}`}
                   alt={img4.alt || ""}
                   width={400}
-                  className="minimal:hidden w-fit h-[25rem] max-large:w-full max-large:h-1/2 m-auto max-large-medium:mx-auto max-large-medium:mb-6 rounded-3xl"
+                  className="minimal:hidden w-fit h-[25rem] readerMode:w-fit readerMode:h-[40rem] max-large:w-full max-large:h-1/2 m-auto max-large-medium:mx-auto max-large-medium:mb-6 rounded-3xl"
                 />
 
                 {img4?.source && (

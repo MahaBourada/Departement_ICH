@@ -13,8 +13,11 @@ export const InputField = ({
   const [showPass, setShowPass] = useState(false);
 
   return (
-    <div className="relative flex flex-col leading-normal my-4">
-      <label htmlFor={name} className="font-main font-medium my-2">
+    <div className="relative flex flex-col leading-normal my-4x">
+      <label
+        htmlFor={name}
+        className="font-main dyslexiaTheme:font-dyslexia font-medium my-2"
+      >
         {label}
       </label>
       <input
@@ -58,7 +61,10 @@ export const TextAreaField = ({
 }) => {
   return (
     <div className="relative flex flex-col leading-normal my-2">
-      <label htmlFor={name} className="font-main font-medium my-2">
+      <label
+        htmlFor={name}
+        className="font-main dyslexiaTheme:font-dyslexia font-medium my-2"
+      >
         {label}
       </label>
       <textarea
@@ -103,7 +109,10 @@ export const SelectField = ({
 }) => {
   return (
     <div className="flex flex-col leading-normal my-4">
-      <label htmlFor={name} className="font-main font-medium my-2">
+      <label
+        htmlFor={name}
+        className="font-main dyslexiaTheme:font-dyslexia font-medium my-2"
+      >
         {label}
       </label>
       <select
@@ -138,7 +147,10 @@ export const ImageField = ({
     <div className="flex flex-row items-start justify-between leading-normal my-6">
       <div className="flex flex-col mb-3 w-[49%]">
         <div className="flex items-center justify-between my-3">
-          <label htmlFor={name} className="font-main font-medium my-2">
+          <label
+            htmlFor={name}
+            className="font-main dyslexiaTheme:font-dyslexia font-medium my-2"
+          >
             {text}
           </label>
           <button

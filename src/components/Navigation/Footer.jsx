@@ -101,10 +101,10 @@ const Footer = ({ switchLang }) => {
 
           <div className="h-7 bg-black dark:bg-gray-300 w-[1px] rounded-full mx-1"></div>
 
-          <AccessibilityMenu position="bottom-[3.8rem] left-0" />
+          <AccessibilityMenu position="bottom-[3.2rem] left-1" />
         </div>
 
-        <nav className="flex justify-between font-main text-nav">
+        <nav className="flex justify-between font-main dyslexiaTheme:font-dyslexia text-nav">
           <div className="flex flex-col px-2">
             <NavLink
               onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}

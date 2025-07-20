@@ -1,10 +1,12 @@
 import {
   BookOpen,
   BookOpenCheck,
+  Check,
   Moon,
   PersonStanding,
   RotateCcw,
   Sun,
+  X,
   ZoomIn,
   ZoomOut,
 } from "lucide-react";
@@ -58,30 +60,6 @@ const AccessibilityMenu = ({ position, hoverColor }) => {
     });
   };
 
-  // Reader mode
-  const [readerMode, setReaderMode] = useState(
-    () => localStorage.getItem("readerMode") === "true"
-  );
-
-  useEffect(() => {
-    const root = window.document.documentElement;
-    if (readerMode) {
-      root.classList.add("readerMode");
-    } else {
-      root.classList.remove("readerMode");
-    }
-
-    localStorage.setItem("readerMode", readerMode);
-  }, [readerMode]);
-
-  const toggleReaderMode = () => {
-    setReaderMode((prev) => {
-      const newValue = !prev;
-
-      return newValue;
-    });
-  };
-
   // Zoom in / Zoom out / Reset
   const [fontSize, setFontSize] = useState(() => {
     // Get from localStorage or default to 1.4
@@ -129,9 +107,73 @@ const AccessibilityMenu = ({ position, hoverColor }) => {
 
   const isMobile = window.innerWidth <= 1024;
 
+  // Reader mode
+
+  const [readerMode, setReaderMode] = useState(
+    () => localStorage.getItem("readerMode") === "true"
+  );
+
+  const toggleReaderMode = () => {
+    setReaderMode((prev) => {
+      const newValue = !prev;
+
+      return newValue;
+    });
+  };
+
+  // Dyslexia theme
+  const [dyslexiaTheme, setDyslexiaTheme] = useState(
+    () => localStorage.getItem("dyslexiaTheme") === "true"
+  );
+
+  const toggleDyslexiaTheme = () => {
+    setDyslexiaTheme((prev) => {
+      const newValue = !prev;
+
+      return newValue;
+    });
+  };
+
+  useEffect(() => {
+    const root = document.documentElement;
+
+    const applyFontSettings = () => {
+      if (dyslexiaTheme) {
+        root.style.setProperty("--font-base", `1.75rem`);
+        root.style.setProperty("--leading-base", `4rem`);
+      } else if (readerMode) {
+        root.style.setProperty("--font-base", `1.75rem`);
+        root.style.setProperty("--leading-base", `4rem`);
+      } else {
+        root.style.setProperty("--font-base", `${fontSize}rem`);
+        root.style.setProperty("--leading-base", `${leading}rem`);
+      }
+    };
+
+    // Apply class names
+    if (dyslexiaTheme) {
+      root.classList.add("dyslexiaTheme");
+    } else {
+      root.classList.remove("dyslexiaTheme");
+    }
+
+    if (readerMode) {
+      root.classList.add("readerMode");
+    } else {
+      root.classList.remove("readerMode");
+    }
+
+    // Apply correct font size / leading
+    applyFontSettings();
+
+    // Save theme states
+    localStorage.setItem("readerMode", readerMode);
+    localStorage.setItem("dyslexiaTheme", dyslexiaTheme);
+  }, [readerMode, dyslexiaTheme, fontSize, leading]);
+
   return (
     <div
-      className="relative my-1 rounded-lg font-body text-nav max-sm:text-[1.125rem] leading-normal"
+      className="relative my-1 rounded-lg font-main dyslexiaTheme:font-dyslexia text-nav max-sm:text-[1.125rem] leading-normal"
       ref={showMenuRef}
     >
       <button
@@ -237,6 +279,19 @@ const AccessibilityMenu = ({ position, hoverColor }) => {
                 size={29}
                 className="text-[#232323] dark:text-gray-300"
               />
+            )}
+          </button>
+
+          <button
+            type="button"
+            className="cursor-pointer flex justify-between items-center bg-white dark:bg-dark-background transition-colors duration-300 hover:bg-bg-crumb focus:bg-bg-crumb dark:focus:bg-dark-main dark:hover:bg-dark-main px-3 py-1.5 text-nowrap w-full rounded-lg"
+            onClick={toggleDyslexiaTheme}
+          >
+            <span className="mr-2">{t("accessibility.dyslexia")}</span>
+            {dyslexiaTheme ? (
+              <Check size={29} className="text-[#232323] dark:text-gray-300" />
+            ) : (
+              <X size={29} className="text-[#232323] dark:text-gray-300" />
             )}
           </button>
         </div>

@@ -67,7 +67,7 @@ const Header = ({ switchLang }) => {
   };
 
   return (
-    <header className="max-large:hidden flex justify-between items-center font-main large-medium:text-nav font-medium py-2 px-10 max-lg:px-8 bg-main dark:bg-dark-main dark:text-gray-300 leading-normal">
+    <header className="max-large:hidden flex justify-between items-center font-main dyslexiaTheme:font-dyslexia large-medium:text-nav font-medium py-2 px-10 max-lg:px-8 bg-main dark:bg-dark-main dark:text-gray-300 leading-normal">
       <img
         src="/ich/assets/vectors/Logo.svg"
         alt="Logo de l'université Paris 8"

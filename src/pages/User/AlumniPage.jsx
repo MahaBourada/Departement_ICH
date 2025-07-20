@@ -50,7 +50,7 @@ const AlumniPage = () => {
   }, []);
 
   return (
-    <main className="flex-grow my-10 mb-20 mx-16 font-body max-sm:mx-7 max-md:mx-10">
+    <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
       <Breadcrumb
         crumbs={[
           {
@@ -71,11 +71,11 @@ const AlumniPage = () => {
         ]}
       />
 
-      <h1 className="font-main font-semibold text-display max-large-medium:text-4xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main dyslexiaTheme:font-dyslexia font-semibold text-display max-large-medium:text-4xl my-2 mb-4 readerMode:w-fit readerMode:mx-auto">
         Alumni
       </h1>
 
-      <div className="my-10 max-sm:mt-0 mb-20 mx-16 font-body max-large-medium:mx-0 max-xl:mx-5 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
+      <div className="my-10 max-sm:mt-0 mb-20 mx-16 max-large-medium:mx-0 max-xl:mx-5 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
         <div className="flex flex-row justify-between items-start max-large:flex-col-reverse my-7 max-sm:mt-0 readerMode:flex-col-reverse">
           {img1.path && (
             <div className="w-full flex flex-col items-center my-auto">

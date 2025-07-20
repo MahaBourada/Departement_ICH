@@ -7,7 +7,7 @@ const MentionsPage = () => {
   const { t } = useTranslation();
 
   return (
-    <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
+    <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto">
       <Breadcrumb
         crumbs={[
           {

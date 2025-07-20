@@ -138,7 +138,8 @@
     "dark": "Dark mode",
     "light": "Light mode",
     "reset": "Reset zoom",
-    "reader": "Reader mode"
+    "reader": "Reader mode",
+    "dyslexia": "Dyslexia mode"
   },
   "accessibility_confirmed": "Accessibility validated by",
   "footer": {

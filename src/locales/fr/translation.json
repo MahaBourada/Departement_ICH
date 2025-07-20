@@ -138,7 +138,8 @@
     "dark": "Mode sombre",
     "light": "Mode clair",
     "reset": "Réinitialiser zoom",
-    "reader": "Confort de lecture"
+    "reader": "Confort de lecture",
+    "dyslexia": "Mode dyslexie"
   },
   "accessibility_confirmed": "Accessibilité validé par",
   "footer": {

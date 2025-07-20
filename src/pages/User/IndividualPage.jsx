@@ -60,13 +60,13 @@ const IndividualPage = () => {
 
       <BackButton />
 
-      <h1 className="font-main font-semibold text-dynamic-2xl text-dynamic-xl leading-snug my-2 mb-4 max-sm:my-2 readerMode:w-fit readerMode:mx-auto">
+      <h1 className="font-main dyslexiaTheme:font-dyslexia font-semibold text-dynamic-2xl text-dynamic-xl leading-snug my-2 mb-4 max-sm:my-2 readerMode:w-fit readerMode:mx-auto">
         {member.prenom + " " + UpperNom}
       </h1>
 
       <div className="flex flex-row max-sm:flex-col items-start justify-between readerMode:flex-col readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto max-large-medium:readerMode:w-full">
         <div className="m-2 max-sm:mx-0">
-          <h2 className="font-medium text-dynamic-xl leading-snug text-dynamic-lg max-sm:font-semibold font-main">
+          <h2 className="font-medium text-dynamic-xl leading-snug text-dynamic-lg max-sm:font-semibold font-main dyslexiaTheme:font-dyslexia">
             {t(`department.team.categories.${member.titre}`)}
           </h2>
           <h3 className="font-semibold text-dynamic-lg leading-snug text-dynamic-lg m-2 max-sm:mx-0">
@@ -83,7 +83,7 @@ const IndividualPage = () => {
 
           {member.propos && (
             <>
-              <h2 className="font-medium text-dynamic-xl font-main mt-4">
+              <h2 className="font-medium text-dynamic-xl font-main dyslexiaTheme:font-dyslexia mt-4">
                 A propos
               </h2>
               <ReactMarkdown
