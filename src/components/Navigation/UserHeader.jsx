@@ -89,7 +89,7 @@ const Header = ({ switchLang }) => {
             {localStorage.getItem("lang") === "en" ? (
               <button
                 type="button"
-                className="cursor-pointer w-fit flex justify-end items-center px-2 mx-1 transition-colors duration-300 hover:underline hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                className="cursor-pointer w-fit flex justify-end items-center px-2 mx-1 transition-colors duration-300 hover:underline hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
                 onClick={() => switchLang("fr")}
               >
                 <img
@@ -102,7 +102,7 @@ const Header = ({ switchLang }) => {
             ) : (
               <button
                 type="button"
-                className="cursor-pointer w-fit flex justify-end items-center px-2 mx-1 transition-colors duration-300 hover:underline hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                className="cursor-pointer w-fit flex justify-end items-center px-2 mx-1 transition-colors duration-300 hover:underline hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
                 onClick={() => switchLang("en")}
               >
                 <img
@@ -122,7 +122,7 @@ const Header = ({ switchLang }) => {
           <Link
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             to="/admin"
-            className="text-nav px-2.5 py-1.5 mx-1 cursor-pointer hover:underline p-2 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+            className="text-nav px-2.5 py-1.5 mx-1 cursor-pointer hover:underline p-2 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
           >
             Mon espace
           </Link>
@@ -139,7 +139,7 @@ const Header = ({ switchLang }) => {
           <Link
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             to="/"
-            className={`mx-1 px-2.5 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg hover:underline ${
+            className={`mx-1 px-2.5 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg hover:underline ${
               location.pathname === "/" ? "underline" : ""
             }`}
           >
@@ -148,7 +148,7 @@ const Header = ({ switchLang }) => {
 
           <div className="relative" ref={deptMenuRef}>
             <button
-              className={`cursor-pointer flex justify-between items-center mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg hover:underline ${
+              className={`cursor-pointer flex justify-between items-center mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg hover:underline ${
                 ["/departement/actualites", "/departement/equipe"].includes(
                   location.pathname
                 )
@@ -188,7 +188,7 @@ const Header = ({ switchLang }) => {
 
           <div className="relative" ref={formationMenuRef}>
             <button
-              className={`cursor-pointer flex justify-between items-center mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg hover:underline ${
+              className={`cursor-pointer flex justify-between items-center mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg hover:underline ${
                 [
                   "/formation/master",
                   "/formation/projets-etudiants",
@@ -244,7 +244,7 @@ const Header = ({ switchLang }) => {
 
           <div className="relative" ref={rechercheMenuRef}>
             <button
-              className={`cursor-pointer flex justify-between items-center mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg hover:underline ${
+              className={`cursor-pointer flex justify-between items-center mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg hover:underline ${
                 ["/recherche/lab-chart"].includes(location.pathname)
                   ? "underline"
                   : ""
@@ -274,7 +274,7 @@ const Header = ({ switchLang }) => {
 
           <div className="relative" ref={collMenuRef}>
             <button
-              className={`cursor-pointer flex justify-between items-center mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg hover:underline ${
+              className={`cursor-pointer flex justify-between items-center mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg hover:underline ${
                 [
                   "/collaborations/collaborations-nationales",
                   "/collaborations/collaborations-internationales",
@@ -322,7 +322,7 @@ const Header = ({ switchLang }) => {
           <Link
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             to="/contact"
-            className={`px-2.5 py-1.5 mx-1 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg hover:underline ${
+            className={`px-2.5 py-1.5 mx-1 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg hover:underline ${
               location.pathname === "/contact" ? "underline" : ""
             }`}
           >

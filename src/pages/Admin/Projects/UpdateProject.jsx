@@ -169,6 +169,8 @@ const UpdateProject = () => {
 
   return (
     <main className="mx-14 my-20">
+      <title>Mettre à jour projet - Espace Admin</title>
+
       <BackButton />
 
       <h1 className="text-dynamic-2xl leading-normal font-semibold">

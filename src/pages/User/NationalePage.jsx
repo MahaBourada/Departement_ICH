@@ -46,6 +46,9 @@ const NationalePage = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
+      <title>{`${t("collaboration.national.title")} - ${t("title")}`}</title>
+      <meta name="description" content={t("meta.desc.national-collab")} />
+
       <Breadcrumb
         crumbs={[
           {

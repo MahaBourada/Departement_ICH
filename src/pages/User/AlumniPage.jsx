@@ -51,6 +51,9 @@ const AlumniPage = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
+      <title>{`Alumni - ${t("title")}`}</title>
+      <meta name="description" content={t("meta.desc.alumni")} />
+
       <Breadcrumb
         crumbs={[
           {

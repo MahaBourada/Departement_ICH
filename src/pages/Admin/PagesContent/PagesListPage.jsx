@@ -21,9 +21,9 @@ const PagesListPage = () => {
 
   return (
     <main className="mx-14 mt-20">
-      <h1 className="text-dynamic-2xl font-semibold">
-        Gestion des pages
-      </h1>
+      <title>Gestion des pages - Espace Admin</title>
+
+      <h1 className="text-dynamic-2xl font-semibold">Gestion des pages</h1>
 
       <div className="grid grid-cols-2 max-large-medium:grid-cols-1 my-4 dyslexiaTheme:my-7">
         {pages.map((page, index) => (

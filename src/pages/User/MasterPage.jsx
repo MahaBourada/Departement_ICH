@@ -51,6 +51,9 @@ const MasterPage = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
+      <title>{`${t("formation.master.title")} - ${t("title")}`}</title>
+      <meta name="description" content={t("meta.desc.master")} />
+
       <Breadcrumb
         crumbs={[
           {
@@ -145,7 +148,9 @@ const MasterPage = () => {
           {section4.texte && (
             <ReactMarkdown
               className={`markdown my-10 ${
-                img3.path || img4.path ? "w-[60%] max-large:w-full readerMode:w-full" : "w-full"
+                img3.path || img4.path
+                  ? "w-[60%] max-large:w-full readerMode:w-full"
+                  : "w-full"
               }`}
               children={String(section4.texte)}
             />

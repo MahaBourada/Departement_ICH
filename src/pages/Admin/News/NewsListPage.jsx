@@ -77,6 +77,8 @@ const NewsListPage = () => {
 
   return (
     <main className="mx-14 my-20">
+      <title>Gestion des actualités - Espace Admin</title>
+
       <div className="flex items-center justify-between text-display font-semibold">
         <h1 className="font-semibold ">Gestion des actualités</h1>
 

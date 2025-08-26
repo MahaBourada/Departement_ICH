@@ -25,6 +25,9 @@ const NewsPage = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
+      <title>{`${t("department.news.link")} - ${t("title")}`}</title>
+      <meta name="description" content={t("meta.desc.news")} />
+
       <Breadcrumb
         crumbs={[
           {

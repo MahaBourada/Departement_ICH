@@ -76,7 +76,7 @@ const Footer = ({ switchLang }) => {
           {localStorage.getItem("lang") === "en" ? (
             <button
               type="button"
-              className="cursor-pointer w-fit flex justify-end items-center mx-1 transition-colors duration-300 hover:underline p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+              className="cursor-pointer w-fit flex justify-end items-center mx-1 transition-colors duration-300 hover:underline p-2 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
               onClick={() => switchLang("fr")}
             >
               <img
@@ -88,7 +88,7 @@ const Footer = ({ switchLang }) => {
           ) : (
             <button
               type="button"
-              className="cursor-pointer w-fit flex justify-end items-center mx-1 transition-colors duration-300 hover:underline p-2 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+              className="cursor-pointer w-fit flex justify-end items-center mx-1 transition-colors duration-300 hover:underline p-2 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
               onClick={() => switchLang("en")}
             >
               <img
@@ -110,8 +110,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
-                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
               }
               to="/"
             >
@@ -121,8 +121,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
-                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
               }
               to="/contact"
             >
@@ -136,8 +136,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
-                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
               }
               to="/departement/actualites"
             >
@@ -147,8 +147,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
-                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
               }
               to="/departement/equipe"
             >
@@ -162,8 +162,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
-                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
               }
               to="/formation/master"
             >
@@ -173,8 +173,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
-                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
               }
               to="/formation/projets-etudiants"
             >
@@ -184,8 +184,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
-                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
               }
               to="/formation/prix-concours"
             >
@@ -199,8 +199,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
-                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
               }
               to="/recherche/lab-chart"
             >
@@ -214,8 +214,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
-                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
               }
               to="/collaborations/collaborations-nationales"
             >
@@ -225,8 +225,8 @@ const Footer = ({ switchLang }) => {
               onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
               className={({ isActive }) =>
                 isActive
-                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
-                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg"
+                  ? "underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
+                  : "hover:underline mx-1 px-2 py-1.5 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg"
               }
               to="/collaborations/collaborations-internationales"
             >
@@ -240,7 +240,7 @@ const Footer = ({ switchLang }) => {
         <Link
           to="/accessibilite"
           onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
-          className="mx-1 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg hover:underline px-1.5"
+          className="mx-1 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg hover:underline px-1.5"
         >
           {t("footer.accessibility")}
         </Link>
@@ -248,7 +248,7 @@ const Footer = ({ switchLang }) => {
         <Link
           to="/credits"
           onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
-          className="mx-1 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg hover:underline px-1.5"
+          className="mx-1 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg hover:underline px-1.5"
         >
           {t("footer.credits")}
         </Link>
@@ -256,7 +256,7 @@ const Footer = ({ switchLang }) => {
         <Link
           to="/mentions-legales"
           onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
-          className="mx-1 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg hover:underline px-1.5"
+          className="mx-1 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg hover:underline px-1.5"
         >
           {t("footer.mentions")}
         </Link>
@@ -264,18 +264,18 @@ const Footer = ({ switchLang }) => {
         <Link
           to="/politique-confidentialite"
           onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
-          className="mx-1 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg hover:underline px-1.5"
+          className="mx-1 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg hover:underline px-1.5"
         >
           {t("footer.policy")}
         </Link>
         <p className="mx-1">|</p>
-        <Link
-          to="/droits-auteurs"
-          onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
-          className="mx-1 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus rounded-lg hover:underline px-1.5"
+        <p
+          /* to="/droits-auteurs" */
+          /* onClick={() => window.scrollTo({ top: 0, behavior: "instant" })} */
+          className="mx-1 transition-colors duration-300 rounded-lg px-1.5"
         >
-          {t("footer.copyright.2")}
-        </Link>
+          @2025 {t("footer.copyright.2")}
+        </p>
       </div>
     </footer>
   );

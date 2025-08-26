@@ -80,6 +80,8 @@ const CollabsList = () => {
 
   return (
     <main className="mx-14 my-20">
+      <title>Gestion des collabs - Espace Admin</title>
+
       <div className="flex items-center justify-between text-display font-semibold">
         <h1 className="font-semibold ">Gestion des collaborations</h1>
 

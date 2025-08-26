@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import api from "../../api/api";
 import Breadcrumb from "../../components/Breadcrumb";
-import { House } from "lucide-react";
+import { CircleUserRound, House } from "lucide-react";
 
 const MembersPage = () => {
   const { t } = useTranslation();
@@ -25,6 +25,9 @@ const MembersPage = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
+      <title>{`${t("department.team.title")} - ${t("title")}`}</title>
+      <meta name="description" content={t("meta.desc.team")} />
+
       <Breadcrumb
         crumbs={[
           {
@@ -75,12 +78,18 @@ const MembersPage = () => {
                   {member.prenom + " " + member.nom.toUpperCase()}
                 </h3>
                 <div className="flex flex-row items-start max-lg:flex-col-reverse max-lg:justify-between max-lg:h-full">
-                  {member.image && (
+                  {member.image ? (
                     <img
                       src={`${import.meta.env.VITE_BASE_URL}/${member.image}`}
                       alt={`Photo de ${member.nom}`}
                       width={200}
                       className="dark:bg-neutral-500 rounded-3xl minimal:hidden max-lg:mx-auto max-large:w-fit max-xl:w-40"
+                    />
+                  ) : (
+                    <CircleUserRound
+                      size={160}
+                      strokeWidth={1}
+                      className="text-black dark:text-dark-white mx-10"
                     />
                   )}
 
@@ -133,12 +142,20 @@ const MembersPage = () => {
                   {member.prenom + " " + member.nom.toUpperCase()}
                 </h3>
                 <div className="flex flex-row items-start max-lg:flex-col-reverse max-lg:justify-between max-lg:h-full">
-                  <img
-                    src={`${import.meta.env.VITE_BASE_URL}/${member.image}`}
-                    alt={`Photo de ${member.nom}`}
-                    width={200}
-                    className="dark:bg-neutral-500 rounded-3xl minimal:hidden max-lg:mx-auto max-large:w-fit max-xl:w-40"
-                  />
+                  {member.image ? (
+                    <img
+                      src={`${import.meta.env.VITE_BASE_URL}/${member.image}`}
+                      alt={`Photo de ${member.nom}`}
+                      width={200}
+                      className="dark:bg-neutral-500 rounded-3xl minimal:hidden max-lg:mx-auto max-large:w-fit max-xl:w-40"
+                    />
+                  ) : (
+                    <CircleUserRound
+                      size={160}
+                      strokeWidth={1}
+                      className="text-black dark:text-dark-white mx-10"
+                    />
+                  )}
 
                   <div className="ml-4 my-2 max-md:mx-1">
                     <h4 className="font-semibold text-dynamic-lg my-2">
@@ -190,12 +207,20 @@ const MembersPage = () => {
                   {member.prenom + " " + member.nom.toUpperCase()}
                 </h3>
                 <div className="flex flex-row items-start max-lg:flex-col-reverse max-lg:justify-between max-lg:h-full">
-                  <img
-                    src={`${import.meta.env.VITE_BASE_URL}/${member.image}`}
-                    alt={`Photo de ${member.nom}`}
-                    width={200}
-                    className="dark:bg-neutral-500 rounded-3xl minimal:hidden max-lg:mx-auto max-large:w-fit max-xl:w-40"
-                  />
+                  {member.image ? (
+                    <img
+                      src={`${import.meta.env.VITE_BASE_URL}/${member.image}`}
+                      alt={`Photo de ${member.nom}`}
+                      width={200}
+                      className="dark:bg-neutral-500 rounded-3xl minimal:hidden max-lg:mx-auto max-large:w-fit max-xl:w-40"
+                    />
+                  ) : (
+                    <CircleUserRound
+                      size={160}
+                      strokeWidth={1}
+                      className="text-black dark:text-dark-white mx-10"
+                    />
+                  )}
 
                   <div className="ml-4 my-2 max-md:mx-1">
                     <h4 className="font-semibold text-dynamic-lg my-2">

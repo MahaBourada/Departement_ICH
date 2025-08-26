@@ -7,6 +7,9 @@ const AccessibilityPage = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10 readerMode:leading-loose readerMode:w-[60ch] readerMode:mx-auto">
+      <title>{`${t("footer.accessibility")} - ${t("title")}`}</title>
+      <meta name="description" content={t("meta.desc.accessibility")} />
+
       <Breadcrumb
         crumbs={[
           {

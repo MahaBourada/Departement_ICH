@@ -76,6 +76,8 @@ const MembersListPage = () => {
 
   return (
     <main className="mx-14 my-20">
+      <title>Gestion des membres - Espace Admin</title>
+
       <div className="flex items-center justify-between text-display font-semibold">
         <h1 className="font-semibold ">Gestion de l'équipe du département</h1>
 

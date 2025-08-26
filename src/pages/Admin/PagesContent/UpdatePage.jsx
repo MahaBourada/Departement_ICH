@@ -195,6 +195,8 @@ const UpdatePage = () => {
 
   return (
     <main className="mx-14 my-20">
+      <title>{`Gestion '${pageInfo.title}' - Espace Admin`}</title>
+
       <BackButton />
 
       <h1 className="text-display leading-normal font-semibold">

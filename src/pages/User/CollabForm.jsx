@@ -135,6 +135,9 @@ const CollabForm = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16  max-sm:mx-7 max-md:mx-10">
+      <title>{`${t("collaboration.form.title")} - ${t("title")}`}</title>
+      <meta name="description" content={t("meta.desc.form-collab")} />
+
       <Breadcrumb
         crumbs={[
           {
@@ -279,7 +282,10 @@ const CollabForm = () => {
         />
 
         <div className="relative flex flex-col leading-normal my-4">
-          <label htmlFor="fichier" className="font-main dyslexiaTheme:font-dyslexia font-medium my-2">
+          <label
+            htmlFor="fichier"
+            className="font-main dyslexiaTheme:font-dyslexia font-medium my-2"
+          >
             {t("collaboration.form.optional.file")}
           </label>
           <input

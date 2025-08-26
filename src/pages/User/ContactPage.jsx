@@ -71,6 +71,9 @@ const ContactPage = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16  max-sm:mx-7 max-md:mx-10">
+      <title>{`Contact - ${t("title")}`}</title>
+      <meta name="description" content={t("meta.desc.contact")} />
+
       <Breadcrumb
         crumbs={[
           {

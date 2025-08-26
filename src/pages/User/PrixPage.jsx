@@ -23,6 +23,9 @@ const PrixPage = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
+      <title>{`${t("formation.awards_title.title")} - ${t("title")}`}</title>
+      <meta name="description" content={t("meta.desc.awards")} />
+
       <Breadcrumb
         crumbs={[
           {
@@ -56,7 +59,9 @@ const PrixPage = () => {
               <div className="flex flex-row items-start justify-between max-large-large:flex-col readerMode:flex-col">
                 <div
                   className={`${
-                    onePrix.image ? "w-[60%] max-lg:w-full readerMode:w-full" : "w-full"
+                    onePrix.image
+                      ? "w-[60%] max-lg:w-full readerMode:w-full"
+                      : "w-full"
                   }`}
                 >
                   <h2 className="font-semibold font-main dyslexiaTheme:font-dyslexia text-dynamic-lg my-2">

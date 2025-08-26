@@ -109,6 +109,8 @@ const UpdateAdmin = () => {
 
   return (
     <main className="mx-14 my-20">
+      <title>Mettre à jour admin - Espace Admin</title>
+
       <BackButton />
 
       <h1 className="text-display font-semibold leading-normal">

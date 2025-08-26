@@ -1,4 +1,5 @@
 {
+  "title": "ICH Department",
   "home": {
     "link": "Home",
     "title": {
@@ -25,7 +26,7 @@
     "link": "Education",
     "master": {
       "link": "MIASHS Master",
-      "title": "Master's in MIASHS - Specialization in Technology and Disability"
+      "title": "MIASHS Master's program - Specialization in Technology and disability"
     },
     "jobs": {
       "link": "Jobs"
@@ -49,14 +50,14 @@
     "link": "Research",
     "lab-chart": {
       "link": "CHArt lab",
-      "title": "Human and ARTificial Cognition Laboratory (CHArt)"
+      "title": "Human and Artificial Cognition Laboratory (CHArt)"
     }
   },
   "collaboration": {
     "national": {
       "link": "National",
       "title": "National collaborations",
-      "conventions": "Collaborations and conventions",
+      "conventions": "Collaborations and agreements",
       "more": "Plus de collaborations"
     },
     "international": {
@@ -145,11 +146,33 @@
   "footer": {
     "accessibility": "Accessibility",
     "credits": "Credits",
-    "mentions": "Legal mentions",
+    "mentions": "Legal notices",
     "policy": "Privacy policy",
     "copyright": {
       "1": "Copyright",
-      "2": "@2025 Paris 8 - All rights reserved"
+      "2": " Paris 8 - All rights reserved"
+    }
+  },
+  "meta": {
+    "desc": {
+      "home": "Website of the Engineering - Cognition - Disability Department at Paris 8 University, UFR eriTES: education, research and collaborations.",
+      "news": "News from the Engineering - Cognition - Disability Department",
+      "team": "Engineering - Cognition - Disability Department Team: head of Department, administration and teaching staff.",
+      "member": "",
+      "master": "MIASHS Master's program, Specialization in Technology and disability: a program that combines cognitive sciences, computer science and assistive technologies.",
+      "projects": "Student projects in the Engineering - Cognition - Disability department: objectives, achievements and members.",
+      "awards": "Awards and competitions won by students in the Engineering - Cognition - Disability department: projects, categories and distinctions.",
+      "alumni": "Former students of the Engineering - Cognition - Disability Department at Paris 8 University: career paths and contributions.",
+      "lab-chart": "CHArt Laboratory (Human and Artificial Cognition): research in cognitive science, artificial intelligence and perception.",
+      "national-collab": "National collaborations of the Engineering - Cognition - Disability department: universities, hospitals and socio-economic partners.",
+      "collab-conventions": "Collaborations and agreements established by the Engineering, Cognition and Disability Department at Paris 8 University with its academic, hospital and other partners.",
+      "international-collab": "International collaborations between the Engineering - Cognition - Disability Department and universities, research centers and institutions.",
+      "form-collab": "Form to propose a collaboration with the Engineering - Cognition - Disability Department at Paris 8 University.",
+      "contact": "Contact and location of the Engineering - Cognition - Disability department: contact form and practical information.",
+      "accessibility": "Information on the accessibility of the website of the Engineering - Cognition - Disability Department at Paris 8 University, in accordance with digital accessibility standards.",
+      "credits": "Credits for the website of the Engineering - Cognition - Disability Department at Paris 8 University.",
+      "mentions": "Legal notices for the website of the Engineering - Cognition - Disability Department at Paris 8 University: publisher, hosting and responsibilities.",
+      "policy": "Privacy policy for the website of the Engineering - Cognition - Disability Department at Paris 8 University: management and protection of personal data."
     }
   }
 }

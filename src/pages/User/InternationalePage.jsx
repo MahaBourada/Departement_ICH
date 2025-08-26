@@ -55,6 +55,9 @@ const InternationalePage = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16  max-sm:mx-7 max-md:mx-10">
+      <title>{`${t("collaboration.international.title")} - ${t("title")}`}</title>
+      <meta name="description" content={t("meta.desc.international-collab")} />
+
       <Breadcrumb
         crumbs={[
           {
@@ -135,11 +138,13 @@ const InternationalePage = () => {
               )}
             </div>
 
-            <img
-              src={`${import.meta.env.VITE_BASE_URL}/${collab.logo}`}
-              alt={`Logo de l'organisation ${collab.nom}`}
-              className="w-60 my-auto max-sm:mt-8 max-sm:w-fit"
-            />
+            {collab.logo && (
+              <img
+                src={`${import.meta.env.VITE_BASE_URL}/${collab.logo}`}
+                alt={`Logo de l'organisation ${collab.nom}`}
+                className="w-60 my-auto max-sm:mt-8 max-sm:w-fit"
+              />
+            )}
           </div>
           <div className="border-neutral-500 dark:border-gray-300 border-[1px] my-5 w-full"></div>
         </div>

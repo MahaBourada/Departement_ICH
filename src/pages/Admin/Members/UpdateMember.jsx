@@ -157,6 +157,8 @@ const UpdateMember = () => {
 
   return (
     <main className="mx-14 my-20">
+      <title>Mettre à jour membre - Espace Admin</title>
+
       <BackButton />
 
       <h1 className="text-display leading-normal font-semibold">

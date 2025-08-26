@@ -114,6 +114,8 @@ const AddMember = () => {
 
   return (
     <main className="mx-14 my-20">
+      <title>Ajouter membre - Espace Admin</title>
+
       <BackButton />
 
       <h1 className="text-display font-semibold">Ajouter un membre</h1>

@@ -77,6 +77,8 @@ const PrixListPage = () => {
 
   return (
     <main className="mx-14 my-20">
+      <title>Gestion des prix - Espace Admin</title>
+
       <div className="flex items-center justify-between text-display font-semibold">
         <h1 className="font-semibold ">Gestion des prix & concours</h1>
 

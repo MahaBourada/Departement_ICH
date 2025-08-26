@@ -54,6 +54,9 @@ const LabPage = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
+      <title>{`${t("research.lab-chart.link")} - ${t("title")}`}</title>
+      <meta name="description" content={t("meta.desc.lab-chart")} />
+
       <Breadcrumb
         crumbs={[
           {

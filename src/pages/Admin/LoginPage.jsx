@@ -54,6 +54,8 @@ const LoginPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-[url('/ich/assets/vectors/AdminBg.svg')] dark:bg-[url('/ich/assets/vectors/AdminBgDark.svg')] bg-cover bg-no-repeat bg-center text-black dark:text-gray-300 leading-11 readerMode:leading-loose dark:bg-dark-background text-nav max-sm:text-[1.125rem]">
+      <title>Connexion - Espace Admin</title>
+
       <header className="flex flex-row items-center justify-between w-full leading-normal">
         <img
           src="/ich/assets/vectors/Logo.svg"

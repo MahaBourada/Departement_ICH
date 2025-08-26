@@ -37,6 +37,9 @@ const HomePage = () => {
 
   return (
     <main className="flex-grow">
+      <title>{`${t("title")}`}</title>
+      <meta name="description" content={t("meta.desc.home")} />
+
       <div className="h-72 bg-cover bg-center bg-no-repeat flex items-center justify-center bg-[url('/ich/assets/images/HomeImage.png')] max-md:hidden">
         <h1
           className="text-white bg-bg-transparent py-6 px-7 max-xl:mx-7 rounded-4xl font-main dyslexiaTheme:font-dyslexia font-semibold text-display max-large-medium:text-header text-center leading-10"

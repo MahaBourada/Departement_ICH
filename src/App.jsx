@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./UserLayout";
 import AdminLayout from "./AdminLayout";
@@ -42,7 +41,6 @@ import AccessibilityPage from "./pages/User/accessibilityPage";
 import CreditsPage from "./pages/User/creditsPage";
 import MentionsPage from "./pages/User/mentionsPage";
 import PolicyPage from "./pages/User/policyPage";
-import CopyrightPage from "./pages/User/copyrightPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
@@ -55,7 +53,6 @@ function App() {
           <Route path="credits" element={<CreditsPage />} />
           <Route path="mentions-legales" element={<MentionsPage />} />
           <Route path="politique-confidentialite" element={<PolicyPage />} />
-          <Route path="droits-auteurs" element={<CopyrightPage />} />
 
           <Route path="departement/equipe" element={<MembersPage />} />
           <Route path="departement/equipe/:id" element={<IndividualPage />} />

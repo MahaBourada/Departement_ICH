@@ -34,6 +34,9 @@ const IndividualPage = () => {
 
   return (
     <main className="flex-grow my-10 mb-20 mx-16 max-sm:mx-7 max-md:mx-10">
+      <title>{`${member.prenom} ${UpperNom} - ${t("title")}`}</title>
+      {member.propos && <meta name="description" content={member.propos} />}
+
       <Breadcrumb
         crumbs={[
           {

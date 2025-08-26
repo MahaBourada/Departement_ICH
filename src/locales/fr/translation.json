@@ -1,4 +1,5 @@
 {
+  "title": "Département ICH",
   "home": {
     "link": "Accueil",
     "title": {
@@ -27,9 +28,6 @@
       "link": "Master MIASHS",
       "title": "Master MIASHS - Parcours Technologie et handicap"
     },
-    "jobs": {
-      "link": "Emplois"
-    },
     "projects": {
       "title": "Projets étudiants",
       "members": "Membres",
@@ -49,7 +47,7 @@
     "link": "Recherche",
     "lab-chart": {
       "link": "Lab CHArt",
-      "title": "Laboratoire Cognition Humaine et ARTificielle (CHArt)"
+      "title": "Laboratoire Cognition Humaine et Artificielle (CHArt)"
     }
   },
   "collaboration": {
@@ -149,7 +147,29 @@
     "policy": "Politique de confidentialité",
     "copyright": {
       "1": "Droits d'auteurs",
-      "2": "@2025 Paris 8 - Droits d'auteurs"
+      "2": " Paris 8 - Droits d'auteurs"
+    }
+  },
+  "meta": {
+    "desc": {
+      "home": "Site du département Ingénierie - Cognition - Handicap de l'Université Paris 8, UFR eriTES : formation, recherche et collaborations.",
+      "news": "Actualités du département Ingénierie - Cognition - Handicap",
+      "team": "Équipe du département Ingénierie - Cognition - Handicap : directeur du département, administration et enseignants.",
+      "member": "",
+      "master": "Master MIASHS, parcours Technologie et handicap : formation alliant sciences cognitives, informatique et technologies d'assistance.",
+      "projects": "Projets étudiants du département Ingénierie - Cognition - Handicap : objectifs, réalisations et membres.",
+      "awards": "Prix et concours remportés par les étudiants du département Ingénierie - Cognition - Handicap : projets, catégories et distinctions.",
+      "alumni": "Anciens étudiants du département Ingénierie - Cognition - Handicap de l'Université Paris 8 : parcours professionnels et contributions.",
+      "lab-chart": "Laboratoire CHArt (Cognition Humaine et Artificielle) : recherche en sciences cognitives, intelligence artificielle et perception.",
+      "national-collab": "Partenariats nationaux du département Ingénierie - Cognition - Handicap : universités, hôpitaux et partenaires socio-économiques.",
+      "collab-conventions": "Collaborations et conventions établies par le département Ingénierie - Cognition - Handicap de l'Université Paris 8 avec ses partenaires académiques, hospitaliers et autre",
+      "international-collab": "Collaborations internationales du département Ingénierie - Cognition - Handicap avec universités, centres de recherche et institutions.",
+      "form-collab": "Formulaire pour proposer une collaboration avec le département Ingénierie - Cognition - Handicap de l'Université Paris 8.",
+      "contact": "Contact et localisation du département Ingénierie - Cognition - Handicap : formulaire de contact et informations pratiques.",
+      "accessibility": "Informations sur l'accessibilité du site du département Ingénierie - Cognition - Handicap de l'Université Paris 8, conformément aux normes d'accessibilité numérique.",
+      "credits": "Crédits du site du département Ingénierie - Cognition - Handicap de l'Université Paris 8",
+      "mentions": "Mentions légales du site du département Ingénierie - Cognition - Handicap de l'Université Paris 8 : éditeur, hébergement et responsabilités.",
+      "policy": "Politique de confidentialité du site du département Ingénierie - Cognition - Handicap de l'Université Paris 8 : gestion et protection des données personnelles."
     }
   }
 }

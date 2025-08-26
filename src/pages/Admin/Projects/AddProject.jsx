@@ -121,6 +121,8 @@ const ProjectsManagementPage = () => {
 
   return (
     <main className="mx-14 my-20">
+      <title>Ajouter projet - Espace Admin</title>
+
       <BackButton />
 
       <h1 className="text-display font-semibold">Ajouter un projet</h1>

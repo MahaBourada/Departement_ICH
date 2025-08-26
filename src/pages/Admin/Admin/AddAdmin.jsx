@@ -74,6 +74,8 @@ const AddAdmin = () => {
 
   return (
     <main className="mx-14 my-20">
+      <title>Ajouter admin - Espace Admin</title>
+
       <BackButton />
 
       <h1 className="text-display font-semibold ">

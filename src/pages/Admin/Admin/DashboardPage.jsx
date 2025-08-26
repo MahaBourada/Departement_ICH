@@ -96,6 +96,8 @@ const DashboardPage = () => {
 
   return (
     <div className="my-20">
+      <title>Tableau de bord - Espace Admin</title>
+
       <main className="mx-14 max-md:mx-4">
         <div className="flex items-center justify-between">
           <h1 className="text-display font-semibold">

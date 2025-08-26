@@ -413,18 +413,9 @@ const MobileUserHeader = ({ switchLang }) => {
               {t("footer.policy")}
             </Link>
 
-            <Link
-              to="/droits-auteurs"
-              onClick={handleLinkClick}
-              className={`w-full py-1 px-5 transition-colors duration-300 hover:bg-hover-main focus:bg-hover-main dark:hover:bg-dark-main-focus dark:focus:bg-dark-main-focus hover:underline  max-w-full break-words whitespace-normal
-                ${
-                  location.pathname === "/droits-auteurs"
-                    ? "underline bg-hover-main dark:bg-dark-main-focus"
-                    : ""
-                }`}
-            >
-              {t("footer.copyright.2")}
-            </Link>
+            <p className="w-full py-1 px-5 transition-colors duration-300 max-w-full break-words whitespace-normal text-center">
+              @2025 {t("footer.copyright.2")}
+            </p>
           </div>
         </div>
       )}
