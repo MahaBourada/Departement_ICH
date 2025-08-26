@@ -37,6 +37,7 @@ const CreditsPage = () => {
           <strong>Design et développement par :</strong>{" "}
           <a
             href="https://www.linkedin.com/in/maha-marwa-bourada/"
+            rel="noopener noreferrer"
             target="_blank"
             className="mx-1 transition-colors duration-300 hover:bg-hover-main dark:hover:bg-dark-main-focus rounded-lg hover:underline px-1.5 py-0.5"
           >
